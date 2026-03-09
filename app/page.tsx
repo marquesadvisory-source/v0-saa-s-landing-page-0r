@@ -1,446 +1,409 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import '../i18n'
+import { useState } from 'react'
+import Image from 'next/image'
+import { Check } from 'lucide-react'
 
-function LanguageSwitcher() {
-  const { i18n } = useTranslation()
-  const [mounted, setMounted] = useState(false)
+type Language = 'en' | 'es'
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) return null
-
-  return (
-    <div className="flex gap-2">
-      <button
-        onClick={() => i18n.changeLanguage('en')}
-        className={`px-3 py-1 text-sm font-semibold rounded transition-all duration-300 ${
-          i18n.language === 'en'
-            ? 'border-2'
-            : 'border border-transparent hover:border'
-        }`}
-        style={{
-          borderColor: '#D4AF37',
-          color: i18n.language === 'en' ? '#D4AF37' : '#E0E0E0',
-          backgroundColor: i18n.language === 'en' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
-        }}
-      >
-        EN
-      </button>
-      <button
-        onClick={() => i18n.changeLanguage('es')}
-        className={`px-3 py-1 text-sm font-semibold rounded transition-all duration-300 ${
-          i18n.language === 'es'
-            ? 'border-2'
-            : 'border border-transparent hover:border'
-        }`}
-        style={{
-          borderColor: '#D4AF37',
-          color: i18n.language === 'es' ? '#D4AF37' : '#E0E0E0',
-          backgroundColor: i18n.language === 'es' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
-        }}
-      >
-        ES
-      </button>
-    </div>
-  )
-}
-
-function Header() {
-  const { t } = useTranslation()
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <img src="/logo.png" alt="Marqués Advisory" className="h-16 w-auto" />
-        </div>
-        <div className="flex items-center gap-6">
-          <LanguageSwitcher />
-          <a
-            href="https://wa.me/50672679806"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-2 text-sm md:text-base font-semibold border-2 transition-all duration-300 rounded-sm hover:shadow-lg"
-            style={{
-              borderColor: '#D4AF37',
-              color: '#D4AF37',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.6)'
-              e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = 'none'
-              e.currentTarget.style.backgroundColor = 'transparent'
-            }}
-          >
-            {t('header.contact')}
-          </a>
-        </div>
-      </div>
-    </header>
-  )
-}
-
-function Hero() {
-  const { t } = useTranslation()
-  const [scrollY, setScrollY] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  return (
-    <section
-      className="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden"
-      style={{
-        backgroundImage: 'url(/hero-bg.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}
-    >
-      {/* Gradient Overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(135deg, rgba(0, 31, 63, 0.75) 0%, rgba(0, 31, 63, 0.65) 100%)',
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8 animate-in fade-in duration-1000">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif text-white text-balance leading-tight">
-          {t('hero.mainTitle')}
-        </h1>
-
-        <div className="space-y-6">
-          <p
-            className="text-lg md:text-xl font-light tracking-wider"
-            style={{ color: '#D4AF37' }}
-          >
-            {t('hero.services')}
-          </p>
-
-          <p className="text-base md:text-lg leading-relaxed text-white/90 max-w-3xl mx-auto">
-            {t('hero.tagline')}
-          </p>
-
-          <p className="text-sm md:text-base tracking-widest text-white/80 uppercase">
-            {t('hero.execution')}
-          </p>
-        </div>
-
-        <div className="pt-8">
-          <a
-            href="https://wa.me/50672679806"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-10 py-4 text-lg font-semibold border-2 transition-all duration-500 rounded-sm hover:shadow-2xl"
-            style={{
-              borderColor: '#D4AF37',
-              color: '#D4AF37',
-              backgroundColor: 'rgba(212, 175, 55, 0.05)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = '0 0 30px rgba(212, 175, 55, 0.8)'
-              e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.15)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = 'none'
-              e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.05)'
-            }}
-          >
-            {t('hero.cta')}
-          </a>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
-        style={{
-          animation: 'bounce 2s infinite',
-          color: '#D4AF37',
-        }}
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
-      </div>
-    </section>
-  )
-}
-
-function Solutions() {
-  const { t } = useTranslation()
-  const solutions = t('solutions.items', { returnObjects: true }) as Array<{ title: string; description: string }>
-
-  return (
-    <section className="py-24 md:py-32 px-6" style={{ backgroundColor: '#001F3F' }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 md:mb-24 space-y-4">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-white text-balance">
-            {t('solutions.heading')}
-          </h2>
-          <div className="h-1 w-24 mx-auto" style={{ backgroundColor: '#D4AF37' }} />
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
-          {solutions.map((solution, index) => (
-            <div
-              key={index}
-              className="p-8 md:p-10 rounded-sm border-2 transition-all duration-500 hover:shadow-2xl group"
-              style={{
-                borderColor: '#D4AF37',
-                backgroundColor: 'rgba(13, 43, 71, 0.5)',
-                backdropFilter: 'blur(10px)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 0 40px rgba(212, 175, 55, 0.4)'
-                e.currentTarget.style.backgroundColor = 'rgba(13, 43, 71, 0.8)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = 'none'
-                e.currentTarget.style.backgroundColor = 'rgba(13, 43, 71, 0.5)'
-              }}
-            >
-              <div className="flex gap-4 mb-4">
-                <div
-                  className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-serif font-bold text-lg transition-colors duration-500 group-hover:scale-110"
-                  style={{
-                    backgroundColor: '#D4AF37',
-                    color: '#001F3F',
-                  }}
-                >
-                  {index + 1}
-                </div>
-              </div>
-              <h3 className="text-xl md:text-2xl font-serif font-bold mb-4 text-white">
-                {solution.title}
-              </h3>
-              <p className="text-base leading-relaxed text-white/80 font-light">
-                {solution.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Concierge() {
-  const { t } = useTranslation()
-  return (
-    <section className="py-24 md:py-32 px-6" style={{ backgroundColor: '#0D2B47' }}>
-      <div className="max-w-4xl mx-auto text-center space-y-8">
-        <div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-white text-balance mb-4">
-            {t('concierge.heading')}
-          </h2>
-          <div className="h-1 w-24 mx-auto" style={{ backgroundColor: '#D4AF37' }} />
-        </div>
-
-        <p className="text-lg md:text-xl leading-relaxed text-white/85 font-light">
-          {t('concierge.description')}
-        </p>
-
-        <div className="space-y-4 pt-8">
-          <p className="text-white/70 text-sm uppercase tracking-widest">
-            {t('concierge.values')}
-          </p>
-          <p className="text-base text-white/80">
-            {t('concierge.details')}
-          </p>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Audience() {
-  const { t } = useTranslation()
-  const audiences = t('audience.items', { returnObjects: true }) as Array<{ title: string; description: string }>
-
-  return (
-    <section className="py-24 md:py-32 px-6" style={{ backgroundColor: '#001F3F' }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 md:mb-24 space-y-4">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-white text-balance">
-            {t('audience.heading')}
-          </h2>
-          <div className="h-1 w-24 mx-auto" style={{ backgroundColor: '#D4AF37' }} />
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {audiences.map((audience, index) => (
-            <div
-              key={index}
-              className="p-6 md:p-8 rounded-sm border border-opacity-40 transition-all duration-500 text-center hover:scale-105 group"
-              style={{
-                backgroundColor: 'rgba(13, 43, 71, 0.4)',
-                borderColor: '#D4AF37',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(13, 43, 71, 0.8)'
-                e.currentTarget.style.borderColor = '#D4AF37'
-                e.currentTarget.style.boxShadow = '0 0 30px rgba(212, 175, 55, 0.3)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(13, 43, 71, 0.4)'
-                e.currentTarget.style.borderColor = '#D4AF37'
-                e.currentTarget.style.boxShadow = 'none'
-              }}
-            >
-              <h3 className="text-lg md:text-xl font-serif font-bold mb-3 text-white">
-                {audience.title}
-              </h3>
-              <p className="text-sm md:text-base text-white/75 font-light leading-relaxed">
-                {audience.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Contact() {
-  const { t } = useTranslation()
-  return (
-    <section className="py-24 md:py-32 px-6" style={{ backgroundColor: '#0D2B47' }}>
-      <div className="max-w-4xl mx-auto text-center space-y-10">
-        <div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-white text-balance mb-4">
-            {t('contact.heading')}
-          </h2>
-          <div className="h-1 w-24 mx-auto" style={{ backgroundColor: '#D4AF37' }} />
-        </div>
-
-        <p className="text-lg md:text-xl leading-relaxed text-white/85 font-light">
-          {t('contact.description')}
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-8">
-          <a
-            href="https://wa.me/50672679806"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-10 py-4 text-lg font-semibold border-2 transition-all duration-500 rounded-sm hover:shadow-2xl"
-            style={{
-              borderColor: '#D4AF37',
-              color: '#D4AF37',
-              backgroundColor: 'rgba(212, 175, 55, 0.05)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = '0 0 30px rgba(212, 175, 55, 0.8)'
-              e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.15)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = 'none'
-              e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.05)'
-            }}
-          >
-            {t('contact.cta')}
-          </a>
-          <span className="text-white/60 text-lg">{t('contact.location')}</span>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Footer() {
-  const { t } = useTranslation()
-  return (
-    <footer className="py-12 md:py-16 px-6 border-t" style={{ backgroundColor: '#001F3F', borderColor: '#D4AF37' }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center space-y-6">
-          <div>
-            <h3 className="text-xl md:text-2xl font-serif font-bold mb-2" style={{ color: '#D4AF37' }}>
-              {t('footer.title')}
-            </h3>
-            <p className="text-white/70 text-sm">{t('footer.subtitle')}</p>
-          </div>
-
-          <div className="flex items-center justify-center gap-6 pt-4">
-            <a
-              href="https://wa.me/50672679806"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
-              title="WhatsApp"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.6 6.3C15.9 4.6 13.6 3.6 11.1 3.6 6.6 3.6 3 7.2 3 11.7c0 1.9.5 3.7 1.5 5.3L3 21l5.6-1.8c1.5.8 3.3 1.3 5.1 1.3 4.5 0 8.1-3.6 8.1-8.1 0-2.2-.8-4.2-2.1-5.8zM11.1 19c-1.6 0-3.1-.4-4.4-1.3l-.3-.2-3.1 1 1-2.9-.2-.3C4.4 14.7 4 13.4 4 11.7c0-3.9 3.2-7.1 7.1-7.1 1.9 0 3.7.7 5 2 1.3 1.3 2 3.1 2 5 0 3.9-3.2 7.1-7.1 7.1zm3.9-5.3c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.2-.7.9-.9 1.1-.2.2-.4.2-.6.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.3-.4.1-.1.2-.2.2-.4.1-.2 0-.3-.1-.4-.1-.1-.6-1.4-.8-1.9-.2-.4-.4-.4-.6-.4-.2 0-.4 0-.6 0-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s.2 2.8.3 3c.1.2 1.8 2.7 4.4 3.8 2.5 1.1 2.5.7 3 .7.4 0 1.3-.2 1.5-.5.2-.2.2-1.3.1-1.5z" />
-              </svg>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/josealvarezr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-white transition-colors"
-              title="LinkedIn"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z" />
-              </svg>
-            </a>
-          </div>
-
-          <div className="border-t border-white/20 pt-6 text-white/50 text-xs">
-            <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
-            <p className="mt-2">{t('footer.location')}</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  )
+const translations = {
+  en: {
+    nav: {
+      contact: 'Contact Confidentially',
+    },
+    hero: {
+      title: 'CONNECTING GLOBAL CAPITAL WITH STRATEGIC OPPORTUNITIES',
+      subtitle: 'PROJECT STRUCTURING | CO-INVESTMENT | REAL ASSETS',
+      tagline: 'Boutique Investment & Real Estate Concierge',
+    },
+    models: {
+      title: 'Investment Partnership Models',
+      structures: [
+        {
+          name: 'SALE & LEASEBACK',
+          description: 'Purchase existing assets to lease them back to the seller',
+          sectors: 'Industrial, Logistics, Hospitality',
+        },
+        {
+          name: 'BUILD-TO-SUIT (BTS)',
+          description: 'Develop facilities tailored to tenant needs with pre-lease agreements',
+          sectors: 'Medical Devices, Logistics, Hospitality',
+        },
+        {
+          name: 'JOINT VENTURE (JV)',
+          description: 'Co-invest partnership with investors to develop or reposition assets',
+          sectors: 'Industrial, Renewable Energy, Resorts',
+        },
+        {
+          name: 'INFRASTRUCTURE / RENEWABLE ENERGY',
+          description: 'Develop or co-invest in sustainable energy or infrastructure solutions',
+          sectors: 'Industrial, Logistics, Tourism',
+        },
+        {
+          name: 'ASSET DEVELOPMENT & MANAGEMENT',
+          description: 'From concept to operation: full-cycle asset development and management',
+          sectors: 'Industrial, Logistics, Mixed-Use Projects',
+        },
+        {
+          name: 'PRIVATE CAPITAL PARTNERSHIPS',
+          description: 'Club deals and syndications to co-invest in strategic projects',
+          sectors: 'Hospitality, Residential, Industrial',
+        },
+      ],
+    },
+    concierge: {
+      title: 'Exclusive Real Estate Concierge',
+      description: 'Curated real estate opportunities for family offices and UHNWIs. Strategic property acquisition, divestiture advisory, and bespoke real estate solutions designed for discerning investors.',
+    },
+    cta: {
+      heading: 'Ready to Explore Exclusive Investment Opportunities?',
+      button: 'Contact Our Investment Team',
+    },
+    footer: {
+      location: 'San José, Costa Rica',
+      tagline: 'Where Global Capital Meets Strategic Opportunity',
+      copyright: '© 2025 Marqués Advisory & Investments. All rights reserved.',
+    },
+  },
+  es: {
+    nav: {
+      contact: 'Contactar Confidencialmente',
+    },
+    hero: {
+      title: 'CONECTANDO CAPITAL GLOBAL CON OPORTUNIDADES ESTRATÉGICAS',
+      subtitle: 'ESTRUCTURACIÓN DE PROYECTOS | CO-INVERSIÓN | ACTIVOS REALES',
+      tagline: 'Concierge de Inversión y Bienes Raíces de Boutique',
+    },
+    models: {
+      title: 'Modelos de Asociación de Inversión',
+      structures: [
+        {
+          name: 'VENTA Y ARRENDAMIENTO',
+          description: 'Compra de activos existentes para cederlos en arrendamiento al vendedor',
+          sectors: 'Industrial, Logística, Hospitalidad',
+        },
+        {
+          name: 'CONSTRUCCIÓN A MEDIDA (BTS)',
+          description: 'Desarrollo de instalaciones adaptadas a las necesidades del inquilino con acuerdos de pre-arrendamiento',
+          sectors: 'Dispositivos Médicos, Logística, Hospitalidad',
+        },
+        {
+          name: 'JOINT VENTURE (JV)',
+          description: 'Asociación de co-inversión con inversionistas para desarrollar o reposicionar activos',
+          sectors: 'Industrial, Energía Renovable, Resorts',
+        },
+        {
+          name: 'INFRAESTRUCTURA / ENERGÍA RENOVABLE',
+          description: 'Desarrollo o co-inversión en soluciones de energía sostenible e infraestructura',
+          sectors: 'Industrial, Logística, Turismo',
+        },
+        {
+          name: 'DESARROLLO Y GESTIÓN DE ACTIVOS',
+          description: 'De concepto a operación: desarrollo y gestión de activos de ciclo completo',
+          sectors: 'Industrial, Logística, Proyectos de Uso Mixto',
+        },
+        {
+          name: 'ASOCIACIONES DE CAPITAL PRIVADO',
+          description: 'Acuerdos de club y sindicaciones para co-invertir en proyectos estratégicos',
+          sectors: 'Hospitalidad, Residencial, Industrial',
+        },
+      ],
+    },
+    concierge: {
+      title: 'Concierge Exclusivo de Bienes Raíces',
+      description: 'Oportunidades inmobiliarias seleccionadas para oficinas familiares e inversionistas de alto patrimonio neto. Adquisición de propiedades estratégicas, asesoramiento en desinversión y soluciones inmobiliarias diseñadas específicamente para inversionistas distinguidos.',
+    },
+    cta: {
+      heading: '¿Listo para Explorar Oportunidades de Inversión Exclusivas?',
+      button: 'Contactar Nuestro Equipo de Inversiones',
+    },
+    footer: {
+      location: 'San José, Costa Rica',
+      tagline: 'Donde el Capital Global se Encuentra con Oportunidades Estratégicas',
+      copyright: '© 2025 Marqués Advisory & Investments. Todos los derechos reservados.',
+    },
+  },
 }
 
 export default function Home() {
+  const [language, setLanguage] = useState<Language>('en')
+  const t = translations[language]
+
   return (
-    <main className="min-h-screen">
-      <style>{`
-        @keyframes fadeInDown {
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Header */}
+      <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b border-accent/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <div className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="Marqués Advisory"
+              width={120}
+              height={50}
+              className="h-12 w-auto"
+            />
+          </div>
+
+          <div className="flex items-center gap-6">
+            <div className="flex gap-2">
+              <button
+                onClick={() => setLanguage('en')}
+                className={`px-3 py-1 text-sm font-semibold rounded transition-all duration-300 ${
+                  language === 'en'
+                    ? 'border-2 border-accent bg-accent/10 text-accent'
+                    : 'border border-accent/30 text-gray-400 hover:border-accent/60'
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLanguage('es')}
+                className={`px-3 py-1 text-sm font-semibold rounded transition-all duration-300 ${
+                  language === 'es'
+                    ? 'border-2 border-accent bg-accent/10 text-accent'
+                    : 'border border-accent/30 text-gray-400 hover:border-accent/60'
+                }`}
+              >
+                ES
+              </button>
+            </div>
+
+            <div className="flex gap-4">
+              <a
+                href="https://wa.me/50672679806"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 transition-colors"
+                title="WhatsApp"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371 0-.57 0-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.773 1.149l-.334.196-3.46-.86.876 3.387.23.364a9.758 9.758 0 00-1.469 4.972c0 5.475 4.457 9.986 9.926 9.986 2.649 0 5.129-.823 7.153-2.413l.371-.252 3.596.853-.847-3.48.266-.43a9.75 9.75 0 001.378-4.466c0-5.474-4.457-9.986-9.926-9.986z"/>
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/josealvarezr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 transition-colors"
+                title="LinkedIn"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative w-full h-screen mt-16 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(/hero-bg-new.jpg)',
+            backgroundPosition: 'center',
+          }}
+        />
+        <div className="absolute inset-0 bg-black/65" />
+
+        <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
+          {/* Logo */}
+          <div className="mb-8 animate-fade-in">
+            <Image
+              src="/logo.png"
+              alt="Marqués Advisory"
+              width={180}
+              height={120}
+              className="h-24 w-auto mx-auto"
+            />
+          </div>
+
+          {/* Hero Text */}
+          <div className="max-w-4xl mx-auto space-y-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <h1 className="font-serif text-5xl md:text-6xl font-bold text-white leading-tight">
+              {t.hero.title}
+            </h1>
+
+            <div className="flex items-center justify-center gap-4 text-accent text-xl md:text-2xl font-semibold">
+              <div className="h-0.5 w-16 bg-gradient-to-r from-accent to-transparent" />
+              <span>{t.hero.subtitle}</span>
+              <div className="h-0.5 w-16 bg-gradient-to-l from-accent to-transparent" />
+            </div>
+
+            <p className="text-gray-200 text-lg md:text-xl italic">
+              {t.hero.tagline}
+            </p>
+
+            <div className="pt-8">
+              <a
+                href="https://wa.me/50672679806"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-8 py-4 bg-accent text-background font-bold text-lg rounded-lg hover:bg-accent/90 transition-all duration-300 hover:shadow-lg hover:shadow-accent/30"
+              >
+                {t.nav.contact}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      </section>
+
+      {/* Investment Partnership Models */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-accent mb-2">
+              {t.models.title}
+            </h2>
+            <div className="h-1 w-20 bg-accent mx-auto" />
+          </div>
+
+          {/* Responsive Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-primary text-white">
+                  <th className="px-6 py-4 text-left font-bold text-sm">STRUCTURE</th>
+                  <th className="px-6 py-4 text-left font-bold text-sm">DESCRIPTION</th>
+                  <th className="px-6 py-4 text-left font-bold text-sm">TARGET SECTORS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {t.models.structures.map((structure, idx) => (
+                  <tr
+                    key={idx}
+                    className={`border-b border-accent/20 ${
+                      idx % 2 === 0 ? 'bg-primary/50' : 'bg-primary/30'
+                    } hover:bg-primary/60 transition-colors`}
+                  >
+                    <td className="px-6 py-4">
+                      <div className="flex items-start gap-3">
+                        <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                        <span className="font-semibold text-white text-sm">
+                          {structure.name}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-gray-200 text-sm">
+                      {structure.description}
+                    </td>
+                    <td className="px-6 py-4 text-gray-200 text-sm">
+                      {structure.sectors}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Real Estate Concierge */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-accent mb-6">
+            {t.concierge.title}
+          </h2>
+          <p className="text-gray-200 text-lg leading-relaxed">
+            {t.concierge.description}
+          </p>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-8">
+            {t.cta.heading}
+          </h2>
+          <a
+            href="https://wa.me/50672679806"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-10 py-4 bg-accent text-background font-bold text-lg rounded-lg hover:bg-accent/90 transition-all duration-300 hover:shadow-lg hover:shadow-accent/30"
+          >
+            {t.cta.button}
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-primary/50 border-t border-accent/20 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-8">
+            <div className="flex justify-center md:justify-start">
+              <Image
+                src="/logo.png"
+                alt="Marqués Advisory"
+                width={100}
+                height={60}
+                className="h-10 w-auto"
+              />
+            </div>
+
+            <div className="text-center">
+              <p className="text-accent font-semibold mb-1">
+                {t.footer.location}
+              </p>
+              <p className="text-gray-400 text-sm italic">
+                {t.footer.tagline}
+              </p>
+            </div>
+
+            <div className="flex justify-center md:justify-end gap-6">
+              <a
+                href="https://wa.me/50672679806"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371 0-.57 0-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.773 1.149l-.334.196-3.46-.86.876 3.387.23.364a9.758 9.758 0 00-1.469 4.972c0 5.475 4.457 9.986 9.926 9.986 2.649 0 5.129-.823 7.153-2.413l.371-.252 3.596.853-.847-3.48.266-.43a9.75 9.75 0 001.378-4.466c0-5.474-4.457-9.986-9.926-9.986z"/>
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/josealvarezr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent/80 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div className="border-t border-accent/20 pt-8 text-center text-gray-400 text-sm">
+            <p>{t.footer.copyright}</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Add custom animation */}
+      <style jsx>{`
+        @keyframes fadeIn {
           from {
             opacity: 0;
-            transform: translateY(-30px);
+            transform: translateY(20px);
           }
           to {
             opacity: 1;
             transform: translateY(0);
           }
         }
-        
-        @keyframes bounce {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-        
-        .animate-in {
-          animation: fadeInDown 1s ease-out;
+        .animate-fade-in {
+          animation: fadeIn 1s ease-out forwards;
         }
       `}</style>
-      <Header />
-      <Hero />
-      <Solutions />
-      <Concierge />
-      <Audience />
-      <Contact />
-      <Footer />
-    </main>
+    </div>
   )
 }
