@@ -1,47 +1,93 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import '../i18n'
+
+function LanguageSwitcher() {
+  const { i18n } = useTranslation()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
+  return (
+    <div className="flex gap-2">
+      <button
+        onClick={() => i18n.changeLanguage('en')}
+        className={`px-3 py-1 text-sm font-semibold rounded transition-all duration-300 ${
+          i18n.language === 'en'
+            ? 'border-2'
+            : 'border border-transparent hover:border'
+        }`}
+        style={{
+          borderColor: '#D4AF37',
+          color: i18n.language === 'en' ? '#D4AF37' : '#E0E0E0',
+          backgroundColor: i18n.language === 'en' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+        }}
+      >
+        EN
+      </button>
+      <button
+        onClick={() => i18n.changeLanguage('es')}
+        className={`px-3 py-1 text-sm font-semibold rounded transition-all duration-300 ${
+          i18n.language === 'es'
+            ? 'border-2'
+            : 'border border-transparent hover:border'
+        }`}
+        style={{
+          borderColor: '#D4AF37',
+          color: i18n.language === 'es' ? '#D4AF37' : '#E0E0E0',
+          backgroundColor: i18n.language === 'es' ? 'rgba(212, 175, 55, 0.1)' : 'transparent',
+        }}
+      >
+        ES
+      </button>
+    </div>
+  )
+}
 
 function Header() {
+  const { t } = useTranslation()
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="flex flex-col">
-            <span className="text-2xl md:text-3xl font-bold font-serif tracking-wider" style={{ color: '#D4AF37' }}>
-              MARQUÉS
-            </span>
-            <span className="text-xs md:text-sm tracking-widest font-light" style={{ color: '#E0E0E0' }}>
-              ADVISORY & INVESTMENTS
-            </span>
-          </div>
+        <div className="flex items-center gap-4">
+          <img src="/logo.png" alt="Marqués Advisory" className="h-16 w-auto" />
         </div>
-        <a
-          href="https://wa.me/50672679806"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-6 py-2 text-sm md:text-base font-semibold border-2 transition-all duration-300 rounded-sm hover:shadow-lg"
-          style={{
-            borderColor: '#D4AF37',
-            color: '#D4AF37',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.6)'
-            e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = 'none'
-            e.currentTarget.style.backgroundColor = 'transparent'
-          }}
-        >
-          Contacto
-        </a>
+        <div className="flex items-center gap-6">
+          <LanguageSwitcher />
+          <a
+            href="https://wa.me/50672679806"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-2 text-sm md:text-base font-semibold border-2 transition-all duration-300 rounded-sm hover:shadow-lg"
+            style={{
+              borderColor: '#D4AF37',
+              color: '#D4AF37',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.6)'
+              e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = 'none'
+              e.currentTarget.style.backgroundColor = 'transparent'
+            }}
+          >
+            {t('header.contact')}
+          </a>
+        </div>
       </div>
     </header>
   )
 }
 
 function Hero() {
+  const { t } = useTranslation()
   const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
@@ -70,48 +116,24 @@ function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8 animate-in fade-in duration-1000">
-        {/* Logo Mark */}
-        <div className="flex justify-center mb-8">
-          <div
-            className="flex flex-col items-center"
-            style={{
-              animation: 'fadeInDown 1s ease-out',
-            }}
-          >
-            <div className="flex gap-2 mb-4">
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="w-1 rounded-full"
-                  style={{
-                    height: '80px',
-                    backgroundColor: '#D4AF37',
-                    opacity: 0.9 - i * 0.15,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-serif text-white text-balance leading-tight">
-          CONNECTING GLOBAL CAPITAL WITH STRATEGIC OPPORTUNITIES
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif text-white text-balance leading-tight">
+          {t('hero.mainTitle')}
         </h1>
 
         <div className="space-y-6">
           <p
-            className="text-lg md:text-2xl font-light tracking-wider"
+            className="text-lg md:text-xl font-light tracking-wider"
             style={{ color: '#D4AF37' }}
           >
-            PROJECT STRUCTURING · CO-INVESTMENT · REAL ASSETS
+            {t('hero.services')}
           </p>
 
           <p className="text-base md:text-lg leading-relaxed text-white/90 max-w-3xl mx-auto">
-            Boutique Investment & Real Estate Concierge for Family Offices and Institutional Investors
+            {t('hero.tagline')}
           </p>
 
           <p className="text-sm md:text-base tracking-widest text-white/80 uppercase">
-            Strategy · Capital · Sustainable Execution
+            {t('hero.execution')}
           </p>
         </div>
 
@@ -135,7 +157,7 @@ function Hero() {
               e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.05)'
             }}
           >
-            Iniciar Conversación en WhatsApp
+            {t('hero.cta')}
           </a>
         </div>
       </div>
@@ -157,35 +179,15 @@ function Hero() {
 }
 
 function Solutions() {
-  const solutions = [
-    {
-      title: 'Capital Structuring & Institutional Co-Investment',
-      description:
-        'Strategic capital deployment for institutional investors, family offices, and high-net-worth individuals seeking vetted opportunities in premium real assets across Latin America.',
-    },
-    {
-      title: 'Sustainable Financing: Green & Blue Bonds',
-      description:
-        'Access to environmentally conscious investment vehicles through the Costa Rican National Stock Exchange, connecting capital with sustainable impact.',
-    },
-    {
-      title: 'ESG-Focused Financial Models',
-      description:
-        'Comprehensive structuring of investment vehicles with measurable social and environmental impact, designed for the modern investor with purpose.',
-    },
-    {
-      title: 'Project Development & Asset Management',
-      description:
-        'End-to-end management of real estate projects, from development to operational excellence, ensuring sustainable value creation.',
-    },
-  ]
+  const { t } = useTranslation()
+  const solutions = t('solutions.items', { returnObjects: true }) as Array<{ title: string; description: string }>
 
   return (
     <section className="py-24 md:py-32 px-6" style={{ backgroundColor: '#001F3F' }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 md:mb-24 space-y-4">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-white text-balance">
-            Integrated Solutions for Smart Capital
+            {t('solutions.heading')}
           </h2>
           <div className="h-1 w-24 mx-auto" style={{ backgroundColor: '#D4AF37' }} />
         </div>
@@ -235,27 +237,27 @@ function Solutions() {
 }
 
 function Concierge() {
+  const { t } = useTranslation()
   return (
     <section className="py-24 md:py-32 px-6" style={{ backgroundColor: '#0D2B47' }}>
       <div className="max-w-4xl mx-auto text-center space-y-8">
         <div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-white text-balance mb-4">
-            Exclusive Real Estate Concierge
+            {t('concierge.heading')}
           </h2>
           <div className="h-1 w-24 mx-auto" style={{ backgroundColor: '#D4AF37' }} />
         </div>
 
         <p className="text-lg md:text-xl leading-relaxed text-white/85 font-light">
-          An invitation-only service for family offices, institutional investors, and high-net-worth individuals seeking
-          privileged access to premium real estate opportunities across Costa Rica and Latin America.
+          {t('concierge.description')}
         </p>
 
         <div className="space-y-4 pt-8">
           <p className="text-white/70 text-sm uppercase tracking-widest">
-            Discretion · Excellence · Exclusive Opportunities
+            {t('concierge.values')}
           </p>
           <p className="text-base text-white/80">
-            Curated investment opportunities, direct relationships with developers, and bespoke portfolio solutions tailored to your investment thesis.
+            {t('concierge.details')}
           </p>
         </div>
       </div>
@@ -264,31 +266,15 @@ function Concierge() {
 }
 
 function Audience() {
-  const audiences = [
-    {
-      title: 'Institutional Investors',
-      description: 'Pension funds, endowments, and institutional capital seeking diversified exposure to premium assets.',
-    },
-    {
-      title: 'Family Offices',
-      description: 'Multi-generational wealth management with tailored structures and bespoke investment opportunities.',
-    },
-    {
-      title: 'Sustainable Capital',
-      description: 'Impact-focused investors seeking measurable environmental and social returns alongside financial performance.',
-    },
-    {
-      title: 'Real Estate Developers',
-      description: 'Strategic partnerships for project financing, co-investment structures, and capital optimization.',
-    },
-  ]
+  const { t } = useTranslation()
+  const audiences = t('audience.items', { returnObjects: true }) as Array<{ title: string; description: string }>
 
   return (
     <section className="py-24 md:py-32 px-6" style={{ backgroundColor: '#001F3F' }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 md:mb-24 space-y-4">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-white text-balance">
-            For Those Who Turn Capital into Impact
+            {t('audience.heading')}
           </h2>
           <div className="h-1 w-24 mx-auto" style={{ backgroundColor: '#D4AF37' }} />
         </div>
@@ -328,19 +314,19 @@ function Audience() {
 }
 
 function Contact() {
+  const { t } = useTranslation()
   return (
     <section className="py-24 md:py-32 px-6" style={{ backgroundColor: '#0D2B47' }}>
       <div className="max-w-4xl mx-auto text-center space-y-10">
         <div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-white text-balance mb-4">
-            Let's Discuss Co-Investment Opportunities
+            {t('contact.heading')}
           </h2>
           <div className="h-1 w-24 mx-auto" style={{ backgroundColor: '#D4AF37' }} />
         </div>
 
         <p className="text-lg md:text-xl leading-relaxed text-white/85 font-light">
-          Connect with our advisory team to explore tailored co-investment opportunities, structured financing solutions, and
-          exclusive real estate access in Costa Rica and Latin America.
+          {t('contact.description')}
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-8">
@@ -363,9 +349,9 @@ function Contact() {
               e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.05)'
             }}
           >
-            WhatsApp
+            {t('contact.cta')}
           </a>
-          <span className="text-white/60 text-lg">📍 Costa Rica</span>
+          <span className="text-white/60 text-lg">{t('contact.location')}</span>
         </div>
       </div>
     </section>
@@ -373,15 +359,16 @@ function Contact() {
 }
 
 function Footer() {
+  const { t } = useTranslation()
   return (
     <footer className="py-12 md:py-16 px-6 border-t" style={{ backgroundColor: '#001F3F', borderColor: '#D4AF37' }}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center space-y-6">
           <div>
             <h3 className="text-xl md:text-2xl font-serif font-bold mb-2" style={{ color: '#D4AF37' }}>
-              MARQUÉS ADVISORY & INVESTMENTS
+              {t('footer.title')}
             </h3>
-            <p className="text-white/70 text-sm">Boutique Investment & Real Estate Advisory</p>
+            <p className="text-white/70 text-sm">{t('footer.subtitle')}</p>
           </div>
 
           <div className="flex items-center justify-center gap-6 pt-4">
@@ -397,7 +384,7 @@ function Footer() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com/in/marques-advisory"
+              href="https://www.linkedin.com/in/josealvarezr/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/70 hover:text-white transition-colors"
@@ -410,8 +397,8 @@ function Footer() {
           </div>
 
           <div className="border-t border-white/20 pt-6 text-white/50 text-xs">
-            <p>© {new Date().getFullYear()} Marqués Advisory & Investments. All rights reserved.</p>
-            <p className="mt-2">Based in Costa Rica | Serving Global Capital</p>
+            <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
+            <p className="mt-2">{t('footer.location')}</p>
           </div>
         </div>
       </div>

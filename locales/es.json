@@ -1,0 +1,74 @@
+{
+  "header": {
+    "title": "MARQUÉS",
+    "subtitle": "ADVISORY & INVESTMENTS",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "mainTitle": "CONECTANDO CAPITAL GLOBAL CON OPORTUNIDADES ESTRATÉGICAS",
+    "services": "ESTRUCTURACIÓN DE PROYECTOS · CO-INVERSIÓN · ACTIVOS REALES",
+    "tagline": "Concierge de Inversión Inmobiliaria Boutique para Family Offices e Inversores Institucionales",
+    "execution": "Estrategia · Capital · Ejecución Sostenible",
+    "cta": "Iniciar Conversación en WhatsApp"
+  },
+  "solutions": {
+    "heading": "Soluciones Integradas para Capital Inteligente",
+    "items": [
+      {
+        "title": "Estructuración de Capital e Co-Inversión Institucional",
+        "description": "Despliegue estratégico de capital para inversores institucionales, family offices e individuos de alto patrimonio neto buscando oportunidades verificadas en activos reales premium en América Latina."
+      },
+      {
+        "title": "Financiamiento Sostenible: Bonos Verdes y Azules",
+        "description": "Acceso a vehículos de inversión con conciencia ambiental a través de la Bolsa Nacional de Valores de Costa Rica, conectando capital con impacto sostenible."
+      },
+      {
+        "title": "Modelos Financieros Enfocados en ESG",
+        "description": "Estructuración integral de vehículos de inversión con impacto social y ambiental medible, diseñados para el inversor moderno con propósito."
+      },
+      {
+        "title": "Desarrollo de Proyectos y Gestión de Activos",
+        "description": "Gestión integral de proyectos inmobiliarios, desde desarrollo hasta excelencia operacional, asegurando creación de valor sostenible."
+      }
+    ]
+  },
+  "concierge": {
+    "heading": "Concierge Inmobiliario Exclusivo",
+    "description": "Un servicio solo por invitación para family offices, inversores institucionales e individuos de alto patrimonio neto que buscan acceso privilegiado a oportunidades inmobiliarias premium en Costa Rica y América Latina.",
+    "values": "Discreción · Excelencia · Oportunidades Exclusivas",
+    "details": "Oportunidades curadas, relaciones directas con desarrolladores, y soluciones de portafolio personalizadas adaptadas a tu tesis de inversión."
+  },
+  "audience": {
+    "heading": "Para Quienes Convierten Capital en Impacto",
+    "items": [
+      {
+        "title": "Inversores Institucionales",
+        "description": "Fondos de pensión, dotaciones y capital institucional buscando exposición diversificada a activos premium."
+      },
+      {
+        "title": "Family Offices",
+        "description": "Gestión de patrimonio multigeneracional con estructuras personalizadas y oportunidades de inversión exclusivas."
+      },
+      {
+        "title": "Capital Sostenible",
+        "description": "Inversores enfocados en impacto buscando retornos ambientales y sociales medibles junto con desempeño financiero."
+      },
+      {
+        "title": "Desarrolladores Inmobiliarios",
+        "description": "Asociaciones estratégicas para financiamiento de proyectos, estructuras de co-inversión y optimización de capital."
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Hablemos de Oportunidades de Co-Inversión",
+    "description": "Conecta con nuestro equipo de asesoría para explorar oportunidades de co-inversión personalizadas, soluciones de financiamiento estructurado y acceso exclusivo a bienes raíces en Costa Rica y América Latina.",
+    "cta": "WhatsApp",
+    "location": "📍 Costa Rica"
+  },
+  "footer": {
+    "title": "MARQUÉS ADVISORY & INVESTMENTS",
+    "subtitle": "Concierge de Asesoría Inmobiliaria y de Inversión Boutique",
+    "copyright": "© {{year}} Marqués Advisory & Investments. Todos los derechos reservados.",
+    "location": "Basado en Costa Rica | Sirviendo Capital Global"
+  }
+}

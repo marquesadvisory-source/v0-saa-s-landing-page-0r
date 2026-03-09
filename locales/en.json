@@ -1,0 +1,74 @@
+{
+  "header": {
+    "title": "MARQUÉS",
+    "subtitle": "ADVISORY & INVESTMENTS",
+    "contact": "Contact"
+  },
+  "hero": {
+    "mainTitle": "CONNECTING GLOBAL CAPITAL WITH STRATEGIC OPPORTUNITIES",
+    "services": "PROJECT STRUCTURING · CO-INVESTMENT · REAL ASSETS",
+    "tagline": "Boutique Investment & Real Estate Concierge for Family Offices and Institutional Investors",
+    "execution": "Strategy · Capital · Sustainable Execution",
+    "cta": "Start Conversation on WhatsApp"
+  },
+  "solutions": {
+    "heading": "Integrated Solutions for Smart Capital",
+    "items": [
+      {
+        "title": "Capital Structuring & Institutional Co-Investment",
+        "description": "Strategic capital deployment for institutional investors, family offices, and high-net-worth individuals seeking vetted opportunities in premium real assets across Latin America."
+      },
+      {
+        "title": "Sustainable Financing: Green & Blue Bonds",
+        "description": "Access to environmentally conscious investment vehicles through the Costa Rican National Stock Exchange, connecting capital with sustainable impact."
+      },
+      {
+        "title": "ESG-Focused Financial Models",
+        "description": "Comprehensive structuring of investment vehicles with measurable social and environmental impact, designed for the modern investor with purpose."
+      },
+      {
+        "title": "Project Development & Asset Management",
+        "description": "End-to-end management of real estate projects, from development to operational excellence, ensuring sustainable value creation."
+      }
+    ]
+  },
+  "concierge": {
+    "heading": "Exclusive Real Estate Concierge",
+    "description": "An invitation-only service for family offices, institutional investors, and high-net-worth individuals seeking privileged access to premium real estate opportunities across Costa Rica and Latin America.",
+    "values": "Discretion · Excellence · Exclusive Opportunities",
+    "details": "Curated investment opportunities, direct relationships with developers, and bespoke portfolio solutions tailored to your investment thesis."
+  },
+  "audience": {
+    "heading": "For Those Who Turn Capital into Impact",
+    "items": [
+      {
+        "title": "Institutional Investors",
+        "description": "Pension funds, endowments, and institutional capital seeking diversified exposure to premium assets."
+      },
+      {
+        "title": "Family Offices",
+        "description": "Multi-generational wealth management with tailored structures and bespoke investment opportunities."
+      },
+      {
+        "title": "Sustainable Capital",
+        "description": "Impact-focused investors seeking measurable environmental and social returns alongside financial performance."
+      },
+      {
+        "title": "Real Estate Developers",
+        "description": "Strategic partnerships for project financing, co-investment structures, and capital optimization."
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Let's Discuss Co-Investment Opportunities",
+    "description": "Connect with our advisory team to explore tailored co-investment opportunities, structured financing solutions, and exclusive real estate access in Costa Rica and Latin America.",
+    "cta": "WhatsApp",
+    "location": "📍 Costa Rica"
+  },
+  "footer": {
+    "title": "MARQUÉS ADVISORY & INVESTMENTS",
+    "subtitle": "Boutique Investment & Real Estate Advisory",
+    "copyright": "© {{year}} Marqués Advisory & Investments. All rights reserved.",
+    "location": "Based in Costa Rica | Serving Global Capital"
+  }
+}
