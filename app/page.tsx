@@ -95,9 +95,10 @@ function Header() {
         {/* Logo */}
         <button onClick={() => scrollTo('hero')} className="flex items-center gap-3 shrink-0">
           <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo-UNstj7JT5pOoqTVG3p84huM4s6Hf5o.jpg"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20sin%20fondo-76W6yyCO5gUzFF2qWEPYIWgP3amG1g.png"
             alt="Marqués Advisory & Investments"
-            className="h-10 w-auto object-contain"
+            className="h-14 w-auto object-contain"
+            style={{ filter: 'drop-shadow(0 0 8px rgba(201,169,110,0.18))' }}
           />
         </button>
 
@@ -870,9 +871,10 @@ function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo-UNstj7JT5pOoqTVG3p84huM4s6Hf5o.jpg"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20sin%20fondo-76W6yyCO5gUzFF2qWEPYIWgP3amG1g.png"
               alt="Marqués Advisory & Investments"
-              className="h-10 w-auto object-contain mb-4"
+              className="h-16 w-auto object-contain mb-5"
+              style={{ filter: 'drop-shadow(0 0 6px rgba(201,169,110,0.15))' }}
             />
             <p className="text-xs leading-relaxed mb-5" style={{ color: WHITE40 }}>
               Plataforma boutique de estructuración institucional para activos reales en Costa Rica.
@@ -913,10 +915,31 @@ function Footer() {
             <p className="text-xs uppercase tracking-widest mb-5 font-semibold" style={{ color: GOLD, letterSpacing: '0.12em' }}>
               Enfoque
             </p>
-            <ul className="flex flex-col gap-3">
-              {['Real Estate', 'Infraestructura', 'Capital Privado', 'Project Finance', 'Fideicomisos', 'Estructuración Institucional'].map((item) => (
-                <li key={item}>
-                  <span className="text-xs" style={{ color: WHITE40 }}>{item}</span>
+            <ul className="flex flex-col divide-y" style={{ borderColor: GOLD20 }}>
+              {[
+                { label: 'Real Estate', desc: 'Estructuración y reposicionamiento de activos inmobiliarios con enfoque institucional.' },
+                { label: 'Infraestructura', desc: 'Plataformas orientadas a conectividad, logística y desarrollo estratégico.' },
+                { label: 'Capital Privado', desc: 'Preparación y estructuración de oportunidades para capital sofisticado.' },
+                { label: 'Project Finance', desc: 'Desarrollo de estructuras de financiamiento por fases y activos generadores de flujo.' },
+                { label: 'Fideicomisos', desc: 'Arquitectura fiduciaria para protección, gobernanza y trazabilidad.' },
+                { label: 'Estructuración Institucional', desc: 'Conversión de oportunidades complejas en plataformas bancables y defendibles.' },
+              ].map((item) => (
+                <li
+                  key={item.label}
+                  className="group py-3 cursor-default"
+                >
+                  <p
+                    className="text-xs font-semibold mb-1 transition-colors group-hover:text-[#C9A96E]"
+                    style={{ color: 'rgba(255,255,255,0.75)', letterSpacing: '0.04em' }}
+                  >
+                    {item.label}
+                  </p>
+                  <p
+                    className="text-xs leading-relaxed transition-colors"
+                    style={{ color: 'rgba(255,255,255,0.32)' }}
+                  >
+                    {item.desc}
+                  </p>
                 </li>
               ))}
             </ul>
