@@ -117,7 +117,9 @@ function Header() {
 
         {/* CTA */}
         <a
-          href="mailto:marquesadvisory@gmail.com"
+          href="https://wa.me/50672679806"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden lg:inline-flex items-center gap-2 px-5 py-2 text-xs tracking-widest uppercase border transition-colors hover:bg-[#C9A96E] hover:text-[#0D1B2A]"
           style={{ borderColor: GOLD, color: GOLD, fontWeight: 600, letterSpacing: '0.1em' }}
         >
@@ -152,7 +154,9 @@ function Header() {
             </button>
           ))}
           <a
-            href="mailto:marquesadvisory@gmail.com"
+            href="https://wa.me/50672679806"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-2 px-5 py-3 text-xs tracking-widest uppercase text-center border"
             style={{ borderColor: GOLD, color: GOLD, fontWeight: 600 }}
           >
@@ -224,7 +228,9 @@ function Hero() {
           <FadeIn delay={400}>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="mailto:marquesadvisory@gmail.com"
+                href="https://wa.me/50672679806"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
                 style={{ backgroundColor: GOLD, color: NAVY }}
               >
@@ -812,18 +818,18 @@ function Contacto() {
                 </div>
               </a>
               <a
-                href="tel:+50672123915"
+                href="tel:+50672679806"
                 className="flex items-center gap-4 px-6 py-4 border transition-all hover:bg-white/5"
                 style={{ borderColor: GOLD20 }}
               >
                 <Phone size={18} style={{ color: GOLD }} />
                 <div>
                   <p className="text-xs uppercase tracking-wide mb-0.5" style={{ color: GOLD }}>Teléfono</p>
-                  <p className="text-sm text-white">+506 7212-3915</p>
+                  <p className="text-sm text-white">+506 7267-9806</p>
                 </div>
               </a>
               <a
-                href="https://wa.me/50672123915"
+                href="https://wa.me/50672679806"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 px-6 py-4 border transition-all hover:bg-white/5"
@@ -832,11 +838,13 @@ function Contacto() {
                 <MessageCircle size={18} style={{ color: GOLD }} />
                 <div>
                   <p className="text-xs uppercase tracking-wide mb-0.5" style={{ color: GOLD }}>WhatsApp</p>
-                  <p className="text-sm text-white">+506 7212-3915</p>
+                  <p className="text-sm text-white">+506 7267-9806</p>
                 </div>
               </a>
               <a
-                href="mailto:marquesadvisory@gmail.com"
+                href="https://wa.me/50672679806"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-2 flex items-center justify-center gap-2 px-6 py-4 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
                 style={{ backgroundColor: GOLD, color: NAVY }}
               >
@@ -922,11 +930,13 @@ function Footer() {
               Solicite una conversación privada con nuestro equipo.
             </p>
             <a
-              href="mailto:marquesadvisory@gmail.com"
+              href="https://wa.me/50672679806"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center w-full px-4 py-3 text-xs font-semibold border tracking-wide mb-3 transition-all hover:bg-white/5"
               style={{ borderColor: GOLD40, color: GOLD }}
             >
-              Solicitar conversación
+              Solicitar conversación institucional
             </a>
             <p className="text-xs" style={{ color: WHITE40 }}>marquesadvisory@gmail.com</p>
           </div>
