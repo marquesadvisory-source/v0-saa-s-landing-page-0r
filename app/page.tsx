@@ -555,15 +555,16 @@ function Proyectos() {
               className="relative min-h-64 lg:min-h-full bg-cover bg-center"
               style={{
                 backgroundImage:
-                  'url(https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80)',
+                  'url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/D%C3%A9cima%20Avenida%20Rdr-fqy4LI79dGShBO9WtIpkK9WaN4dQ2e.jpg)',
+              backgroundPosition: 'center top',
               }}
             >
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(13,27,42,0.5) 0%, rgba(13,27,42,0.1) 50%, rgba(17,32,50,0.7) 100%)',
-                }}
-              />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(to right, rgba(17,32,50,0) 60%, rgba(17,32,50,0.4) 100%)',
+              }}
+            />
             </div>
 
             {/* Content */}
