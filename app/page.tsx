@@ -2,292 +2,405 @@
 
 import { useState, useEffect, useRef } from 'react'
 import {
-  Building2,
-  Leaf,
-  BarChart3,
-  Briefcase,
   Landmark,
-  Shield,
-  Building,
-  Globe,
-  ChevronDown,
-  Linkedin,
+  BarChart3,
+  FileText,
+  DollarSign,
+  ShieldCheck,
+  Layers,
+  ArrowRight,
+  Menu,
+  X,
   Mail,
-  MapPin,
+  Phone,
+  MessageCircle,
+  Linkedin,
+  Scale,
+  Globe2,
+  Wifi,
+  Users,
+  Building2,
 } from 'lucide-react'
 
-function FadeInUp({ children }: { children: React.ReactNode }) {
+/* ── helpers ────────────────────────────────────────────────── */
+
+const GOLD = '#C9A96E'
+const NAVY = '#0D1B2A'
+const NAVY2 = '#112032'
+const GRAPHITE = '#1C2B3A'
+const WHITE70 = 'rgba(255,255,255,0.70)'
+const WHITE40 = 'rgba(255,255,255,0.40)'
+const GOLD20 = 'rgba(201,169,110,0.20)'
+const GOLD10 = 'rgba(201,169,110,0.10)'
+const GOLD40 = 'rgba(201,169,110,0.40)'
+
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+}
+
+function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
-  
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true)
-      },
-      { threshold: 0.15 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true) }, { threshold: 0.12 })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
   }, [])
-  
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
     >
       {children}
     </div>
   )
 }
 
+function Divider() {
+  return <div className="w-10 h-px my-6" style={{ backgroundColor: GOLD }} />
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+
+const NAV_LINKS = [
+  { label: 'Tesis de inversión', id: 'tesis' },
+  { label: 'Qué hacemos', id: 'que-hacemos' },
+  { label: 'Cómo pensamos', id: 'como-pensamos' },
+  { label: 'Proyectos', id: 'proyectos' },
+  { label: 'Costa Rica', id: 'costa-rica' },
+  { label: 'Contacto', id: 'contacto' },
+]
+
 function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 60)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const fn = () => setScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', fn)
+    return () => window.removeEventListener('scroll', fn)
   }, [])
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 px-4 py-4 transition-all duration-300 ${
-        isScrolled ? 'bg-[#0F1E35]/95 backdrop-blur-md border-b border-[#C4A76A]/20' : 'bg-transparent'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        backgroundColor: scrolled ? 'rgba(13,27,42,0.97)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        borderBottom: scrolled ? `1px solid ${GOLD20}` : 'none',
+      }}
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <button onClick={() => scrollTo('hero')} className="flex items-center gap-3 shrink-0">
           <img
-            src="/logo.jpg"
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20sin%20fondo-76W6yyCO5gUzFF2qWEPYIWgP3amG1g.png"
             alt="Marqués Advisory & Investments"
-            className="w-auto"
-            style={{ maxHeight: '70px', padding: '16px' }}
+            className="h-14 w-auto object-contain"
+            style={{ filter: 'drop-shadow(0 0 8px rgba(201,169,110,0.18))' }}
           />
-          <span className="hidden md:block text-sm font-medium" style={{ color: '#C4A76A' }}>
-            Boutique Investment & Real Estate Concierge
-          </span>
-        </div>
-        <div className="flex items-center gap-4">
-          <a
-            href="https://www.linkedin.com/in/josealvarezr/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-lg transition-all hover:scale-110"
-            style={{ color: '#C4A76A' }}
-          >
-            <Linkedin size={20} />
-          </a>
+        </button>
+
+        {/* Desktop nav */}
+        <nav className="hidden lg:flex items-center gap-7">
+          {NAV_LINKS.map((l) => (
+            <button
+              key={l.id}
+              onClick={() => scrollTo(l.id)}
+              className="text-xs tracking-widest uppercase transition-colors hover:text-[#C9A96E]"
+              style={{ color: WHITE70, fontWeight: 500, letterSpacing: '0.08em' }}
+            >
+              {l.label}
+            </button>
+          ))}
+        </nav>
+
+        {/* CTA */}
+        <a
+          href="https://wa.me/50672679806"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden lg:inline-flex items-center gap-2 px-5 py-2 text-xs tracking-widest uppercase border transition-colors hover:bg-[#C9A96E] hover:text-[#0D1B2A]"
+          style={{ borderColor: GOLD, color: GOLD, fontWeight: 600, letterSpacing: '0.1em' }}
+        >
+          Contacto Institucional
+        </a>
+
+        {/* Mobile hamburger */}
+        <button
+          className="lg:hidden p-2"
+          style={{ color: GOLD }}
+          onClick={() => setOpen(!open)}
+          aria-label="Menú"
+        >
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {open && (
+        <div
+          className="lg:hidden px-6 pb-6 flex flex-col gap-4"
+          style={{ backgroundColor: 'rgba(13,27,42,0.98)', borderTop: `1px solid ${GOLD20}` }}
+        >
+          {NAV_LINKS.map((l) => (
+            <button
+              key={l.id}
+              onClick={() => { scrollTo(l.id); setOpen(false) }}
+              className="text-left text-sm py-2 border-b transition-colors hover:text-[#C9A96E]"
+              style={{ color: WHITE70, borderColor: GOLD20 }}
+            >
+              {l.label}
+            </button>
+          ))}
           <a
             href="https://wa.me/50672679806"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-2 text-sm md:text-base font-semibold rounded-lg transition-all hover:scale-105"
-            style={{ backgroundColor: '#C4A76A', color: '#1B2A4A' }}
+            className="mt-2 px-5 py-3 text-xs tracking-widest uppercase text-center border"
+            style={{ borderColor: GOLD, color: GOLD, fontWeight: 600 }}
           >
-            Contact
+            Contacto Institucional
           </a>
         </div>
-      </div>
+      )}
     </header>
   )
 }
 
-function TrustBar() {
-  return (
-    <section
-      className="py-12 border-y"
-      style={{ backgroundColor: '#0C1628', borderColor: 'rgba(196,167,106,0.15)' }}
-    >
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-8">
-          <FadeInUp>
-            <div className="flex flex-col items-center gap-2 md:border-r" style={{ borderColor: 'rgba(196,167,106,0.2)' }}>
-              <span className="text-3xl">🏛️</span>
-              <p className="font-bold tracking-wide text-white">BCCR Listed</p>
-              <p className="text-sm" style={{ color: 'rgba(196,167,106,0.7)' }}>
-                National Stock Exchange
-              </p>
-            </div>
-          </FadeInUp>
-          <FadeInUp>
-            <div className="flex flex-col items-center gap-2 md:border-r" style={{ borderColor: 'rgba(196,167,106,0.2)' }}>
-              <span className="text-3xl">🌿</span>
-              <p className="font-bold tracking-wide text-white">ESG + Green Bonds</p>
-              <p className="text-sm" style={{ color: 'rgba(196,167,106,0.7)' }}>
-                Sustainable Capital
-              </p>
-            </div>
-          </FadeInUp>
-          <FadeInUp>
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-3xl">🤝</span>
-              <p className="font-bold tracking-wide text-white">Boutique Grade</p>
-              <p className="text-sm" style={{ color: 'rgba(196,167,106,0.7)' }}>
-                Family Office Service
-              </p>
-            </div>
-          </FadeInUp>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-export default function Home() {
-  return (
-    <main className="min-h-screen">
-      <Header />
-      <Hero />
-      <TrustBar />
-      <Features />
-      <Concierge />
-      <Audience />
-      <Contact />
-      <Footer />
-    </main>
-  )
-}
+/* ── Hero ────────────────────────────────────────────────────── */
 
 function Hero() {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center px-6 py-20 pt-32"
-      style={{
-        background: 'radial-gradient(ellipse at 60% 50%, rgba(196,167,106,0.08) 0%, transparent 70%), #0F1E35',
-      }}
+      id="hero"
+      className="relative min-h-screen flex flex-col justify-end"
+      style={{ backgroundColor: NAVY }}
     >
-      <div className="max-w-5xl mx-auto text-center">
-        <FadeInUp>
-          <span
-            className="border text-xs tracking-widest px-4 py-1 rounded-full mb-6 inline-block"
-            style={{ borderColor: 'rgba(196,167,106,0.5)', color: '#C4A76A' }}
-          >
-            BOUTIQUE INVESTMENT FIRM · COSTA RICA
-          </span>
-        </FadeInUp>
-        <FadeInUp>
-          <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-white text-balance">
-            Connecting Global Capital with Strategic Opportunities
-          </h1>
-        </FadeInUp>
-        <FadeInUp>
-          <p className="text-xl md:text-2xl mb-10 text-white/70 leading-relaxed max-w-4xl mx-auto text-pretty">
-            A boutique investment firm specializing in real estate co-investment, financial structuring, and green & blue
-            capital raising through the Costa Rican National Stock Exchange.
-          </p>
-        </FadeInUp>
-        <FadeInUp>
-          <a
-            href="https://wa.me/50672679806"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg transition-all hover:scale-105"
-            style={{ backgroundColor: '#C4A76A', color: '#1B2A4A' }}
-          >
-            💬 Contact Us on WhatsApp
-          </a>
-        </FadeInUp>
-        <FadeInUp>
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-            <span
-              className="border text-sm px-4 py-1 rounded-full"
-              style={{
-                backgroundColor: 'rgba(196,167,106,0.1)',
-                borderColor: 'rgba(196,167,106,0.3)',
-                color: '#C4A76A',
-              }}
+      {/* Background image overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            'url(https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80)',
+          opacity: 0.35,
+        }}
+      />
+      {/* Cinematic gradient overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(to bottom, rgba(13,27,42,0.45) 0%, rgba(13,27,42,0.5) 40%, rgba(13,27,42,0.88) 75%, ${NAVY} 100%)`,
+        }}
+      />
+      {/* Subtle vignette sides */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to right, rgba(13,27,42,0.6) 0%, transparent 30%, transparent 70%, rgba(13,27,42,0.6) 100%)',
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-6 pb-20 pt-40 w-full">
+        <div className="max-w-3xl">
+          <FadeIn>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+              Marqués Advisory & Investments
+            </p>
+          </FadeIn>
+          <FadeIn delay={100}>
+            <h1
+              className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 text-white text-balance"
+              style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
             >
-              Project Structuring
-            </span>
-            <span
-              className="border text-sm px-4 py-1 rounded-full"
-              style={{
-                backgroundColor: 'rgba(196,167,106,0.1)',
-                borderColor: 'rgba(196,167,106,0.3)',
-                color: '#C4A76A',
-              }}
-            >
-              Co-Investment
-            </span>
-            <span
-              className="border text-sm px-4 py-1 rounded-full"
-              style={{
-                backgroundColor: 'rgba(196,167,106,0.1)',
-                borderColor: 'rgba(196,167,106,0.3)',
-                color: '#C4A76A',
-              }}
-            >
-              Real Assets
-            </span>
-          </div>
-        </FadeInUp>
+              Estructuración institucional para activos reales en Costa Rica
+            </h1>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <Divider />
+          </FadeIn>
+          <FadeIn delay={300}>
+            <p className="text-base md:text-lg leading-relaxed mb-10 max-w-xl text-pretty" style={{ color: WHITE70 }}>
+              Convertimos oportunidades inmobiliarias y de infraestructura en plataformas de inversión trazables, bancables y defendibles.
+            </p>
+          </FadeIn>
+          <FadeIn delay={400}>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://wa.me/50672679806"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
+                style={{ backgroundColor: GOLD, color: NAVY }}
+              >
+                Solicitar conversación institucional
+                <ArrowRight size={16} />
+              </a>
+              <button
+                onClick={() => scrollTo('que-hacemos')}
+                className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold tracking-wide border transition-all hover:bg-white/5"
+                style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.85)' }}
+              >
+                Explorar enfoque
+              </button>
+            </div>
+          </FadeIn>
+        </div>
       </div>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" style={{ color: '#C4A76A' }}>
-        <ChevronDown size={32} />
+
+      {/* Bottom trust bar */}
+      <div
+        className="relative border-t"
+        style={{ borderColor: GOLD20, backgroundColor: 'rgba(13,27,42,0.85)', backdropFilter: 'blur(8px)' }}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {[
+            { label: 'Enfoque', value: 'Costa Rica' },
+            { label: 'Estrategia', value: 'Real Assets & Structuring' },
+            { label: 'Aliados', value: 'Inversionistas, Bancos, Fiduciarios y Family Offices' },
+            { label: 'Objetivo', value: 'Crear valor institucional de largo plazo' },
+          ].map((item, i) => (
+            <div key={i} className="flex flex-col gap-1">
+              <span className="text-xs tracking-widest uppercase" style={{ color: GOLD, letterSpacing: '0.12em' }}>
+                {item.label}
+              </span>
+              <span className="text-sm font-medium text-white">{item.value}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
 }
 
-function Features() {
-  const features = [
-    {
-      icon: Building2,
-      title: 'Project Structuring',
-      description:
-        'End-to-end financial architecture for complex real estate and infrastructure projects',
-    },
-    {
-      icon: Briefcase,
-      title: 'Co-Investment',
-      description:
-        'Institutional frameworks connecting global capital with Costa Rican opportunities',
-    },
-    {
-      icon: Leaf,
-      title: 'Sustainable Finance',
-      description:
-        'Green and blue bond issuance and ESG-aligned capital structures via the BCCR',
-    },
-    {
-      icon: BarChart3,
-      title: 'Real Assets',
-      description: 'Portfolio management and value creation across real estate and infrastructure',
-    },
-  ]
+/* ── Tesis de Inversión ─────────────────────────────────────── */
 
+function Tesis() {
   return (
-    <section className="py-24 px-6" style={{ backgroundColor: '#1B2A4A' }}>
-      <div className="max-w-6xl mx-auto">
-        <FadeInUp>
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-balance text-white">
-            Integrated Solutions for Smart Capital
-          </h2>
-        </FadeInUp>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => {
-            const Icon = feature.icon
+    <section id="tesis" className="overflow-hidden" style={{ backgroundColor: '#F5F1EB' }}>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 min-h-[460px]">
+          {/* Editorial image panel */}
+          <div
+            className="relative min-h-56 lg:min-h-full bg-cover bg-center order-2 lg:order-1"
+            style={{
+              backgroundImage:
+                'url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80)',
+            }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(to right, rgba(245,241,235,0.0) 0%, rgba(245,241,235,0.35) 100%)',
+              }}
+            />
+          </div>
+
+          {/* Content */}
+          <div className="py-20 px-8 lg:px-14 flex flex-col justify-center order-1 lg:order-2">
+            <FadeIn>
+              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+                Tesis de inversión
+              </p>
+              <h2
+                className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-balance"
+                style={{ fontFamily: 'var(--font-playfair), serif', color: '#0D1B2A', fontWeight: 600 }}
+              >
+                Costa Rica necesita más que oportunidades. Necesita estructuras financiables.
+              </h2>
+              <div className="w-10 h-px my-6" style={{ backgroundColor: GOLD }} />
+              <p className="text-base leading-relaxed mb-5" style={{ color: '#334155' }}>
+                Existe una brecha significativa entre la abundancia de activos con potencial en Costa Rica y la capacidad de transformarlos en oportunidades listas para capital institucional. Los activos existen. El capital existe. Lo que falta es la arquitectura financiera, legal y estratégica que los conecte.
+              </p>
+              <p className="text-base leading-relaxed" style={{ color: '#334155' }}>
+                Marqués trabaja exactamente en esa brecha: entre la oportunidad del activo y la estructura bancable, trazable y defendible que permite atraer capital sofisticado con claridad, gobernanza y visión de largo plazo.
+              </p>
+            </FadeIn>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ── Qué Hacemos ─────────────────────────────────────────────── */
+
+const SERVICIOS = [
+  {
+    icon: Landmark,
+    title: 'Estructuración institucional',
+    desc: 'Diseño de estructuras financieras y fiduciarias a la medida para activos reales con vocación institucional.',
+  },
+  {
+    icon: Building2,
+    title: 'Asesoría en Activos Reales',
+    desc: 'Evaluación estratégica y posicionamiento de oportunidades inmobiliarias e infraestructura.',
+  },
+  {
+    icon: FileText,
+    title: 'Preparación para Inversión',
+    desc: 'Investment memos, modelación financiera y paquetes para due diligence con estándares institucionales.',
+  },
+  {
+    icon: DollarSign,
+    title: 'Estrategia de Project Finance',
+    desc: 'Estructuración de deuda, capital y soluciones de financiamiento para proyectos complejos.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Riesgo y Gobernanza',
+    desc: 'Análisis de riesgos, gobernanza y trazabilidad institucional para activos en estructuración.',
+  },
+  {
+    icon: Layers,
+    title: 'Proyectos de Uso Mixto e Infraestructura',
+    desc: 'Desarrollo y estructuración de proyectos con impacto económico y social de largo plazo.',
+  },
+]
+
+function QueHacemos() {
+  return (
+    <section id="que-hacemos" className="py-24 px-6" style={{ backgroundColor: '#FFFFFF' }}>
+      <div className="max-w-7xl mx-auto">
+        {/* Header row */}
+        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          <FadeIn>
+            <div>
+              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+                Qué hacemos
+              </p>
+              <h2
+                className="font-serif text-3xl md:text-4xl leading-tight text-balance"
+                style={{ fontFamily: 'var(--font-playfair), serif', color: '#0D1B2A', fontWeight: 600 }}
+              >
+                Estructuración institucional para activos reales
+              </h2>
+            </div>
+          </FadeIn>
+          <FadeIn delay={100}>
+            <p className="text-base leading-relaxed self-end" style={{ color: '#334155' }}>
+              Diseñamos la arquitectura financiera, legal y estratégica que permite transformar activos complejos en oportunidades listas para capital sofisticado.
+            </p>
+          </FadeIn>
+        </div>
+
+        {/* Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SERVICIOS.map((s, i) => {
+            const Icon = s.icon
             return (
-              <FadeInUp key={index}>
+              <FadeIn key={i} delay={i * 60}>
                 <div
-                  className="p-8 rounded-xl border transition-all hover:border-[#C4A76A]/60 hover:shadow-2xl hover:-translate-y-1"
-                  style={{
-                    backgroundColor: 'rgba(255,255,255,0.05)',
-                    borderColor: 'rgba(196,167,106,0.2)',
-                  }}
+                  className="p-8 border flex flex-col gap-4 h-full transition-all hover:-translate-y-1 hover:shadow-lg"
+                  style={{ borderColor: '#E5DDD0', backgroundColor: '#FAFAF8' }}
                 >
-                  <Icon size={32} className="mb-4" style={{ color: '#C4A76A' }} />
-                  <h3 className="font-bold text-white text-xl mb-2">{feature.title}</h3>
-                  <p className="leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>
-                    {feature.description}
-                  </p>
+                  <Icon size={24} style={{ color: GOLD }} />
+                  <h3 className="font-semibold text-base" style={{ color: '#0D1B2A' }}>{s.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: '#64748B' }}>{s.desc}</p>
                 </div>
-              </FadeInUp>
+              </FadeIn>
             )
           })}
         </div>
@@ -296,72 +409,373 @@ function Features() {
   )
 }
 
-function Concierge() {
+/* ── Cómo Pensamos ───────────────────────────────────────────── */
+
+const PROCESO = [
+  { step: '01', label: 'Origen del activo' },
+  { step: '02', label: 'Tesis' },
+  { step: '03', label: 'Validación' },
+  { step: '04', label: 'Estructura' },
+  { step: '05', label: 'Capital' },
+  { step: '06', label: 'Ejecución' },
+]
+
+function ComoPensamos() {
   return (
-    <section className="py-24 px-6" style={{ backgroundColor: '#0F1E35' }}>
-      <div className="max-w-4xl mx-auto">
-        <FadeInUp>
-          <div className="pl-8 border-l-4" style={{ borderColor: '#C4A76A' }}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-balance text-white">Real Estate Concierge</h2>
-            <p className="text-xl leading-relaxed text-pretty" style={{ color: 'rgba(255,255,255,0.7)' }}>
-              An exclusive service tailored for high-net-worth families and international advisory firms. We provide
-              access to premium real estate opportunities, structured co-investments, and bespoke solutions across Costa
-              Rica.
-            </p>
-            <p className="italic text-lg mt-6" style={{ color: '#C4A76A' }}>
-              Discretion. Excellence. Execution.
-            </p>
-          </div>
-        </FadeInUp>
+    <section id="como-pensamos" className="py-24 px-6" style={{ backgroundColor: GRAPHITE }}>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <FadeIn>
+            <div>
+              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+                Cómo pensamos
+              </p>
+              <h2
+                className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-white text-balance"
+                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
+              >
+                Antes del capital, viene la estructura.
+              </h2>
+              <Divider />
+              <p className="text-base leading-relaxed" style={{ color: WHITE70 }}>
+                No buscamos capital para proyectos sin estructura. Construimos la estructura que hace que el capital llegue por convicción, no por especulación. Cada activo pasa por un proceso riguroso que asegura trazabilidad, gobernanza y bancabilidad desde el origen.
+              </p>
+            </div>
+          </FadeIn>
+          <FadeIn delay={150}>
+            <div className="flex flex-col gap-0">
+              {PROCESO.map((p, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-6 py-5 border-b"
+                  style={{ borderColor: GOLD20 }}
+                >
+                  <span className="text-xs font-mono" style={{ color: GOLD, minWidth: '2rem' }}>{p.step}</span>
+                  <div className="w-px h-6 shrink-0" style={{ backgroundColor: GOLD40 }} />
+                  <span className="text-base font-medium text-white">{p.label}</span>
+                  {i < PROCESO.length - 1 && (
+                    <ArrowRight size={14} className="ml-auto" style={{ color: GOLD40 }} />
+                  )}
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
       </div>
     </section>
   )
 }
 
-function Audience() {
-  const audiences = [
-    {
-      icon: Landmark,
-      label: 'Institutional Investors',
-    },
-    {
-      icon: Shield,
-      label: 'Family Offices & Private Funds',
-    },
-    {
-      icon: Building,
-      label: 'Real Estate Developers',
-    },
-    {
-      icon: Globe,
-      label: 'Sustainable Capital Seekers',
-    },
-  ]
+/* ── Proyectos ───────────────────────────────────────────────── */
+
+function ProyectoModal({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const fn = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', fn)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', fn)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
 
   return (
-    <section className="py-24 px-6" style={{ backgroundColor: '#1B2A4A' }}>
-      <div className="max-w-6xl mx-auto">
-        <FadeInUp>
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-balance text-white">
-            For Those Who Turn Capital into Impact
-          </h2>
-        </FadeInUp>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {audiences.map((audience, index) => {
-            const Icon = audience.icon
-            return (
-              <FadeInUp key={index}>
-                <div
-                  className="p-6 rounded-xl border transition-all hover:scale-105"
-                  style={{
-                    backgroundColor: 'rgba(255,255,255,0.05)',
-                    borderColor: 'rgba(196,167,106,0.2)',
-                  }}
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      style={{ backgroundColor: 'rgba(13,27,42,0.92)', backdropFilter: 'blur(8px)' }}
+      onClick={onClose}
+    >
+      <div
+        className="relative max-w-2xl w-full p-10 border"
+        style={{ backgroundColor: NAVY2, borderColor: GOLD40 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 p-1 transition-opacity hover:opacity-60"
+          style={{ color: WHITE70 }}
+          aria-label="Cerrar"
+        >
+          <X size={20} />
+        </button>
+        <p className="text-xs tracking-widest uppercase mb-3" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+          Proyectos en estructuración
+        </p>
+        <h3
+          className="font-serif text-2xl md:text-3xl text-white mb-2"
+          style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
+        >
+          Décima Avenida
+        </h3>
+        <div
+          className="inline-block px-3 py-1 text-xs tracking-wide uppercase mb-5"
+          style={{ backgroundColor: GOLD10, border: `1px solid ${GOLD40}`, color: GOLD }}
+        >
+          Estado: Prefactibilidad institucional
+        </div>
+        <p className="text-sm leading-relaxed mb-6" style={{ color: WHITE70 }}>
+          Activo estratégico ubicado en El Roble de Alajuela, con flujo existente y potencial de desarrollo escalonado en el ecosistema Coyol–Aeropuerto. El proyecto se encuentra en fase preliminar de estructuración institucional, orientado a capital privado sofisticado con visión de largo plazo.
+        </p>
+        <div className="grid grid-cols-2 gap-5 mb-8 border-t border-b py-5" style={{ borderColor: GOLD20 }}>
+          {[
+            { label: 'Ubicación', value: 'El Roble, Alajuela' },
+            { label: 'Activo', value: 'Uso mixto' },
+            { label: 'Estrategia', value: 'Desarrollo por fases' },
+            { label: 'Enfoque', value: 'Valor institucional y escalabilidad' },
+          ].map((d, i) => (
+            <div key={i}>
+              <p className="text-xs uppercase tracking-wide mb-1" style={{ color: GOLD }}>{d.label}</p>
+              <p className="text-sm text-white">{d.value}</p>
+            </div>
+          ))}
+        </div>
+        <a
+          href="mailto:marquesadvisory@gmail.com"
+          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
+          style={{ backgroundColor: GOLD, color: NAVY }}
+        >
+          Solicitar información institucional
+          <ArrowRight size={14} />
+        </a>
+      </div>
+    </div>
+  )
+}
+
+function Proyectos() {
+  const [modalOpen, setModalOpen] = useState(false)
+
+  return (
+    <>
+      {modalOpen && <ProyectoModal onClose={() => setModalOpen(false)} />}
+      <section id="proyectos" className="py-0" style={{ backgroundColor: NAVY2 }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 min-h-[520px]">
+            {/* Image with cinematic overlay */}
+            <div
+              className="relative min-h-64 lg:min-h-full bg-cover bg-center"
+              style={{
+                backgroundImage:
+                  'url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/D%C3%A9cima%20Avenida%20Rdr-fqy4LI79dGShBO9WtIpkK9WaN4dQ2e.jpg)',
+              backgroundPosition: 'center top',
+              }}
+            >
+            <div
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(to right, rgba(17,32,50,0) 60%, rgba(17,32,50,0.4) 100%)',
+              }}
+            />
+            </div>
+
+            {/* Content */}
+            <div className="py-16 px-10 lg:px-14 flex flex-col justify-center">
+              <FadeIn>
+                <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+                  Proyectos en estructuración
+                </p>
+                <h2
+                  className="font-serif text-3xl md:text-4xl leading-tight mb-4 text-white text-balance"
+                  style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
                 >
-                  <Icon size={28} className="mx-auto mb-4" style={{ color: '#C4A76A' }} />
-                  <p className="text-lg font-semibold text-white">{audience.label}</p>
+                  Décima Avenida
+                </h2>
+                <div
+                  className="inline-block px-3 py-1 text-xs tracking-wide uppercase mb-6"
+                  style={{ backgroundColor: GOLD10, border: `1px solid ${GOLD40}`, color: GOLD }}
+                >
+                  Estado: Prefactibilidad institucional
                 </div>
-              </FadeInUp>
+                <p className="text-base leading-relaxed mb-8" style={{ color: WHITE70 }}>
+                  Proyecto en fase preliminar de estructuración institucional en El Roble de Alajuela, con flujo existente y potencial de desarrollo escalonado orientado al ecosistema Coyol–Aeropuerto.
+                </p>
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  {[
+                    { label: 'Ubicación', value: 'El Roble, Alajuela' },
+                    { label: 'Activo', value: 'Uso mixto' },
+                    { label: 'Estrategia', value: 'Desarrollo por fases' },
+                    { label: 'Enfoque', value: 'Valor institucional y escalabilidad' },
+                  ].map((d, i) => (
+                    <div key={i}>
+                      <p className="text-xs uppercase tracking-wide mb-1" style={{ color: GOLD }}>{d.label}</p>
+                      <p className="text-sm text-white">{d.value}</p>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border transition-all hover:bg-white/5 self-start"
+                  style={{ borderColor: 'rgba(255,255,255,0.25)', color: 'rgba(255,255,255,0.85)' }}
+                >
+                  Conocer más
+                  <ArrowRight size={14} />
+                </button>
+              </FadeIn>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
+
+/* ── Infraestructura Operativa Institucional ─────────────────── */
+
+const IAOS_PROCESSES = [
+  'Análisis estratégico',
+  'Investigación',
+  'Estructuración',
+  'Documentación',
+  'Trazabilidad',
+  'Gestión de riesgos',
+  'Preparación de expedientes institucionales',
+]
+
+function Iaos() {
+  return (
+    <section className="py-0 overflow-hidden" style={{ backgroundColor: '#F5F1EB' }}>
+      {/* Top editorial band */}
+      <div
+        className="relative py-20 px-6"
+        style={{
+          background: 'linear-gradient(135deg, #0D1B2A 0%, #1C2B3A 60%, #0D1B2A 100%)',
+        }}
+      >
+        {/* Subtle architectural grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(201,169,110,1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(201,169,110,1) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            {/* Left: Label + Title */}
+            <div className="lg:col-span-5">
+              <FadeIn>
+                <p className="text-xs tracking-widest uppercase mb-5" style={{ color: GOLD, letterSpacing: '0.18em' }}>
+                  Infraestructura operativa institucional
+                </p>
+                <h2
+                  className="font-serif text-3xl md:text-4xl leading-tight text-white text-balance"
+                  style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
+                >
+                  Tecnología aplicada a estructuración, análisis y preparación institucional.
+                </h2>
+                <div className="w-10 h-px my-8" style={{ backgroundColor: GOLD }} />
+                <p className="text-sm leading-relaxed" style={{ color: WHITE70 }}>
+                  Marqués Advisory & Investments utiliza un sistema operativo institucional asistido por inteligencia artificial para fortalecer procesos de alta complejidad en activos reales y estructuración institucional.
+                </p>
+                <p className="text-sm leading-relaxed mt-4" style={{ color: WHITE40 }}>
+                  El objetivo es aumentar capacidad analítica, consistencia operativa y velocidad de ejecución dentro de procesos complejos.
+                </p>
+              </FadeIn>
+            </div>
+
+            {/* Right: Process list with editorial line design */}
+            <div className="lg:col-span-7 lg:pl-12 lg:border-l" style={{ borderColor: GOLD20 }}>
+              <FadeIn delay={120}>
+                <p className="text-xs uppercase tracking-widest mb-6 font-semibold" style={{ color: GOLD40, letterSpacing: '0.14em' }}>
+                  Procesos fortalecidos
+                </p>
+                <div className="flex flex-col">
+                  {IAOS_PROCESSES.map((process, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-5 py-4 border-b"
+                      style={{ borderColor: 'rgba(201,169,110,0.12)' }}
+                    >
+                      <span
+                        className="text-xs font-mono shrink-0 w-6 text-right"
+                        style={{ color: GOLD40 }}
+                      >
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <div className="w-px h-4 shrink-0" style={{ backgroundColor: GOLD20 }} />
+                      <span className="text-sm font-medium text-white">{process}</span>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom light band: capability summary */}
+      <div className="py-14 px-6" style={{ backgroundColor: '#F5F1EB' }}>
+        <div className="max-w-7xl mx-auto">
+          <FadeIn>
+            <div
+              className="border-l-2 pl-8 max-w-3xl"
+              style={{ borderColor: GOLD }}
+            >
+              <p className="text-base leading-relaxed italic" style={{ color: '#334155' }}>
+                "No es automatización de tareas. Es infraestructura analítica aplicada a la estructuración de activos reales: más precisa, más consistente, más defendible."
+              </p>
+              <p className="text-xs uppercase tracking-widest mt-4 font-semibold" style={{ color: GOLD }}>
+                Marqués Advisory & Investments
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ── Por qué Costa Rica ──────────────────────────────────────── */
+
+const CR_CARDS = [
+  { icon: Scale, title: 'Estabilidad jurídica', desc: 'Marco legal sólido, estado de derecho consolidado y seguridad contractual para inversiones de largo plazo.' },
+  { icon: Globe2, title: 'Zona franca e inversión extranjera', desc: 'Régimen de zona franca líder en América Latina con incentivos fiscales y apertura a capital internacional.' },
+  { icon: Wifi, title: 'Infraestructura y conectividad', desc: 'Conectividad logística estratégica con acceso a mercados de América del Norte, Europa y Asia.' },
+  { icon: Users, title: 'Talento y servicios', desc: 'Capital humano calificado y ecosistema de servicios profesionales de alto nivel.' },
+  { icon: Building2, title: 'Activos reales con potencial institucional', desc: 'Mercado inmobiliario y de infraestructura con oportunidades subvaloradas y potencial de estructuración.' },
+]
+
+function CostaRica() {
+  return (
+    <section id="costa-rica" className="py-24 px-6" style={{ backgroundColor: GRAPHITE }}>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 mb-14">
+          <FadeIn>
+            <div>
+              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+                Por qué Costa Rica
+              </p>
+              <h2
+                className="font-serif text-3xl md:text-4xl leading-tight text-white text-balance"
+                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
+              >
+                Un entorno sólido para invertir con visión de largo plazo.
+              </h2>
+            </div>
+          </FadeIn>
+          <FadeIn delay={100}>
+            <p className="text-base leading-relaxed self-end" style={{ color: WHITE70 }}>
+              Estabilidad macroeconómica, talento, infraestructura, régimen de zona franca, apertura comercial y compromiso con la sostenibilidad convierten a Costa Rica en el destino estratégico para capital institucional.
+            </p>
+          </FadeIn>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {CR_CARDS.map((c, i) => {
+            const Icon = c.icon
+            return (
+              <FadeIn key={i} delay={i * 60}>
+                <div
+                  className="flex flex-col gap-4 p-7 border h-full transition-all hover:-translate-y-1"
+                  style={{ borderColor: GOLD20, backgroundColor: 'rgba(255,255,255,0.04)' }}
+                >
+                  <Icon size={22} style={{ color: GOLD }} />
+                  <h3 className="font-semibold text-sm text-white leading-snug">{c.title}</h3>
+                  <p className="text-xs leading-relaxed" style={{ color: WHITE40 }}>{c.desc}</p>
+                </div>
+              </FadeIn>
             )
           })}
         </div>
@@ -370,92 +784,220 @@ function Audience() {
   )
 }
 
-function Contact() {
+/* ── Contacto ────────────────────────────────────────────────── */
+
+function Contacto() {
   return (
-    <section className="py-24 px-6" style={{ backgroundColor: '#0F1E35' }}>
-      <div className="max-w-4xl mx-auto text-center">
-        <FadeInUp>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white text-balance">
-            Let's Talk About Co-Investment Opportunities
-          </h2>
-        </FadeInUp>
-        <FadeInUp>
-          <p className="text-xl mb-10 text-white/70 leading-relaxed text-pretty">
-            Connect with us to explore tailored co-investment and sustainable capital structuring opportunities in Costa
-            Rica.
-          </p>
-        </FadeInUp>
-        <FadeInUp>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
-            <a
-              href="https://wa.me/50672679806"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold rounded-lg transition-all hover:scale-105"
-              style={{ backgroundColor: '#C4A76A', color: '#1B2A4A' }}
-            >
-              💬 WhatsApp
-            </a>
-            <p className="text-white/60 text-sm mt-6">
-              Abraham Álvarez · Managing Partner · marquesadvisory@gmail.com
-            </p>
+    <section id="contacto" className="py-24 px-6" style={{ backgroundColor: NAVY2 }}>
+      <div className="max-w-5xl mx-auto">
+        <FadeIn>
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div>
+              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+                Contacto institucional
+              </p>
+              <h2
+                className="font-serif text-3xl md:text-4xl leading-tight text-white mb-6 text-balance"
+                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
+              >
+                Conversemos sobre activos reales, capital y estructuración.
+              </h2>
+              <Divider />
+              <p className="text-base leading-relaxed" style={{ color: WHITE70 }}>
+                Solicite una conversación privada con nuestro equipo. Trabajamos con family offices, fondos, bancos, fiduciarias y desarrolladores con visión institucional.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4">
+              <a
+                href="mailto:marquesadvisory@gmail.com"
+                className="flex items-center gap-4 px-6 py-4 border transition-all hover:bg-white/5"
+                style={{ borderColor: GOLD40 }}
+              >
+                <Mail size={18} style={{ color: GOLD }} />
+                <div>
+                  <p className="text-xs uppercase tracking-wide mb-0.5" style={{ color: GOLD }}>Email</p>
+                  <p className="text-sm text-white">marquesadvisory@gmail.com</p>
+                </div>
+              </a>
+              <a
+                href="tel:+50672679806"
+                className="flex items-center gap-4 px-6 py-4 border transition-all hover:bg-white/5"
+                style={{ borderColor: GOLD20 }}
+              >
+                <Phone size={18} style={{ color: GOLD }} />
+                <div>
+                  <p className="text-xs uppercase tracking-wide mb-0.5" style={{ color: GOLD }}>Teléfono</p>
+                  <p className="text-sm text-white">+506 7267-9806</p>
+                </div>
+              </a>
+              <a
+                href="https://wa.me/50672679806"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 px-6 py-4 border transition-all hover:bg-white/5"
+                style={{ borderColor: GOLD20 }}
+              >
+                <MessageCircle size={18} style={{ color: GOLD }} />
+                <div>
+                  <p className="text-xs uppercase tracking-wide mb-0.5" style={{ color: GOLD }}>WhatsApp</p>
+                  <p className="text-sm text-white">+506 7267-9806</p>
+                </div>
+              </a>
+              <a
+                href="https://wa.me/50672679806"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 flex items-center justify-center gap-2 px-6 py-4 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
+                style={{ backgroundColor: GOLD, color: NAVY }}
+              >
+                Solicitar conversación
+                <ArrowRight size={16} />
+              </a>
+            </div>
           </div>
-        </FadeInUp>
+        </FadeIn>
       </div>
     </section>
   )
 }
+
+/* ── Footer ──────────────────────────────────────────────────── */
 
 function Footer() {
   return (
-    <footer
-      className="py-12 px-6 border-t"
-      style={{ backgroundColor: '#0C1628', borderColor: 'rgba(196,167,106,0.2)' }}
-    >
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between mb-8">
-          <div>
-            <p className="text-lg font-bold mb-2" style={{ color: '#C4A76A' }}>
-              Marqués Advisory & Investments
+    <footer style={{ backgroundColor: NAVY, borderTop: `1px solid ${GOLD20}` }}>
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+          {/* Brand */}
+          <div className="lg:col-span-1">
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20sin%20fondo-76W6yyCO5gUzFF2qWEPYIWgP3amG1g.png"
+              alt="Marqués Advisory & Investments"
+              className="h-16 w-auto object-contain mb-5"
+              style={{ filter: 'drop-shadow(0 0 6px rgba(201,169,110,0.15))' }}
+            />
+            <p className="text-xs leading-relaxed mb-5" style={{ color: WHITE40 }}>
+              Plataforma boutique de estructuración institucional para activos reales en Costa Rica.
             </p>
-            <p className="text-sm" style={{ color: '#C4A76A' }}>
-              Abraham Álvarez · Managing Partner
-            </p>
+            <a
+              href="https://www.linkedin.com/company/marquesadvisory"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-8 h-8 border transition-all hover:border-[#C9A96E]"
+              style={{ borderColor: GOLD20, color: WHITE40 }}
+            >
+              <Linkedin size={14} />
+            </a>
           </div>
-          <div className="flex items-center gap-6 mt-6 md:mt-0">
+
+          {/* Navegación */}
+          <div>
+            <p className="text-xs uppercase tracking-widest mb-5 font-semibold" style={{ color: GOLD, letterSpacing: '0.12em' }}>
+              Navegación
+            </p>
+            <ul className="flex flex-col gap-3">
+              {NAV_LINKS.map((l) => (
+                <li key={l.id}>
+                  <button
+                    onClick={() => scrollTo(l.id)}
+                    className="text-xs transition-colors hover:text-[#C9A96E]"
+                    style={{ color: WHITE40 }}
+                  >
+                    {l.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Enfoque */}
+          <div>
+            <p className="text-xs uppercase tracking-widest mb-5 font-semibold" style={{ color: GOLD, letterSpacing: '0.12em' }}>
+              Enfoque
+            </p>
+            <ul className="flex flex-col divide-y" style={{ borderColor: GOLD20 }}>
+              {[
+                { label: 'Real Estate', desc: 'Estructuración y reposicionamiento de activos inmobiliarios con enfoque institucional.' },
+                { label: 'Infraestructura', desc: 'Plataformas orientadas a conectividad, logística y desarrollo estratégico.' },
+                { label: 'Capital Privado', desc: 'Preparación y estructuración de oportunidades para capital sofisticado.' },
+                { label: 'Project Finance', desc: 'Desarrollo de estructuras de financiamiento por fases y activos generadores de flujo.' },
+                { label: 'Fideicomisos', desc: 'Arquitectura fiduciaria para protección, gobernanza y trazabilidad.' },
+                { label: 'Estructuración Institucional', desc: 'Conversión de oportunidades complejas en plataformas bancables y defendibles.' },
+              ].map((item) => (
+                <li
+                  key={item.label}
+                  className="group py-3 cursor-default"
+                >
+                  <p
+                    className="text-xs font-semibold mb-1 transition-colors group-hover:text-[#C9A96E]"
+                    style={{ color: 'rgba(255,255,255,0.75)', letterSpacing: '0.04em' }}
+                  >
+                    {item.label}
+                  </p>
+                  <p
+                    className="text-xs leading-relaxed transition-colors"
+                    style={{ color: 'rgba(255,255,255,0.32)' }}
+                  >
+                    {item.desc}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contacto */}
+          <div>
+            <p className="text-xs uppercase tracking-widest mb-5 font-semibold" style={{ color: GOLD, letterSpacing: '0.12em' }}>
+              Contacto Institucional
+            </p>
+            <p className="text-xs mb-5 leading-relaxed" style={{ color: WHITE40 }}>
+              Solicite una conversación privada con nuestro equipo.
+            </p>
             <a
               href="https://wa.me/50672679806"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg transition-all hover:scale-110"
-              style={{ color: '#C4A76A' }}
+              className="inline-flex items-center justify-center w-full px-4 py-3 text-xs font-semibold border tracking-wide mb-3 transition-all hover:bg-white/5"
+              style={{ borderColor: GOLD40, color: GOLD }}
             >
-              <span className="text-2xl">💬</span>
+              Solicitar conversación institucional
             </a>
-            <a
-              href="https://www.linkedin.com/in/josealvarezr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg transition-all hover:scale-110"
-              style={{ color: '#C4A76A' }}
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="mailto:marquesadvisory@gmail.com"
-              className="p-2 rounded-lg transition-all hover:scale-110"
-              style={{ color: '#C4A76A' }}
-            >
-              <Mail size={24} />
-            </a>
+            <p className="text-xs" style={{ color: WHITE40 }}>marquesadvisory@gmail.com</p>
           </div>
         </div>
-        <div className="border-t text-center pt-8" style={{ borderColor: 'rgba(196,167,106,0.15)' }}>
-          <p className="text-white/60 text-sm">
-            © 2025 Marqués Advisory & Investments. All rights reserved.
+
+        {/* Bottom */}
+        <div
+          className="pt-8 border-t flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+          style={{ borderColor: GOLD20 }}
+        >
+          <p className="text-xs" style={{ color: WHITE40 }}>
+            © 2024 Marqués Advisory & Investments. Todos los derechos reservados.
+          </p>
+          <p className="text-xs max-w-2xl leading-relaxed text-right" style={{ color: WHITE40 }}>
+            La información contenida en este sitio tiene fines informativos e institucionales. No constituye oferta pública de valores, recomendación de inversión, promesa de rentabilidad ni solicitud formal de capital.
           </p>
         </div>
       </div>
     </footer>
+  )
+}
+
+/* ── Page ────────────────────────────────────────────────────── */
+
+export default function Home() {
+  return (
+    <main>
+      <Header />
+      <Hero />
+      <Tesis />
+      <QueHacemos />
+      <ComoPensamos />
+      <Proyectos />
+      <Iaos />
+      <CostaRica />
+      <Contacto />
+      <Footer />
+    </main>
   )
 }

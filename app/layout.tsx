@@ -1,19 +1,25 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Montserrat } from "next/font/google"
+import { Montserrat, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-montserrat",
 })
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-playfair",
+})
+
 export const metadata: Metadata = {
-  title: "Marqués Advisory & Investments",
+  title: "Marqués Advisory & Investments | Estructuración institucional para activos reales en Costa Rica",
   description:
-    "Boutique investment and real estate advisory firm based in Costa Rica. Specializing in co-investment, financial structuring, green and blue capital raising, and exclusive real estate concierge services.",
+    "Plataforma boutique de estructuración institucional para activos reales, project finance, fideicomisos y preparación de oportunidades para capital sofisticado en Costa Rica.",
   generator: "v0.app",
   icons: {
     icon: [
@@ -40,8 +46,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es">
-      <body className={`${montserrat.variable} font-sans antialiased`}>
+    <html lang="es" className="bg-[#0D1B2A]">
+      <body className={`${montserrat.variable} ${playfair.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>
