@@ -179,14 +179,21 @@ function Hero() {
         style={{
           backgroundImage:
             'url(https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80)',
-          opacity: 0.28,
+          opacity: 0.35,
         }}
       />
-      {/* Gradient overlay */}
+      {/* Cinematic gradient overlay */}
       <div
         className="absolute inset-0"
         style={{
-          background: `linear-gradient(to bottom, rgba(13,27,42,0.3) 0%, rgba(13,27,42,0.55) 50%, rgba(13,27,42,0.92) 80%, ${NAVY} 100%)`,
+          background: `linear-gradient(to bottom, rgba(13,27,42,0.45) 0%, rgba(13,27,42,0.5) 40%, rgba(13,27,42,0.88) 75%, ${NAVY} 100%)`,
+        }}
+      />
+      {/* Subtle vignette sides */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to right, rgba(13,27,42,0.6) 0%, transparent 30%, transparent 70%, rgba(13,27,42,0.6) 100%)',
         }}
       />
 
@@ -265,11 +272,28 @@ function Hero() {
 
 function Tesis() {
   return (
-    <section id="tesis" className="py-24 px-6" style={{ backgroundColor: '#F5F1EB' }}>
+    <section id="tesis" className="overflow-hidden" style={{ backgroundColor: '#F5F1EB' }}>
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <FadeIn>
-            <div>
+        <div className="grid lg:grid-cols-2 min-h-[460px]">
+          {/* Editorial image panel */}
+          <div
+            className="relative min-h-56 lg:min-h-full bg-cover bg-center order-2 lg:order-1"
+            style={{
+              backgroundImage:
+                'url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80)',
+            }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(to right, rgba(245,241,235,0.0) 0%, rgba(245,241,235,0.35) 100%)',
+              }}
+            />
+          </div>
+
+          {/* Content */}
+          <div className="py-20 px-8 lg:px-14 flex flex-col justify-center order-1 lg:order-2">
+            <FadeIn>
               <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
                 Tesis de inversión
               </p>
@@ -280,18 +304,14 @@ function Tesis() {
                 Costa Rica necesita más que oportunidades. Necesita estructuras financiables.
               </h2>
               <div className="w-10 h-px my-6" style={{ backgroundColor: GOLD }} />
-            </div>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div>
               <p className="text-base leading-relaxed mb-5" style={{ color: '#334155' }}>
                 Existe una brecha significativa entre la abundancia de activos con potencial en Costa Rica y la capacidad de transformarlos en oportunidades listas para capital institucional. Los activos existen. El capital existe. Lo que falta es la arquitectura financiera, legal y estratégica que los conecte.
               </p>
               <p className="text-base leading-relaxed" style={{ color: '#334155' }}>
                 Marqués trabaja exactamente en esa brecha: entre la oportunidad del activo y la estructura bancable, trazable y defendible que permite atraer capital sofisticado con claridad, gobernanza y visión de largo plazo.
               </p>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         </div>
       </div>
     </section>
@@ -441,125 +461,257 @@ function ComoPensamos() {
 
 /* ── Proyectos ───────────────────────────────────────────────── */
 
-function Proyectos() {
-  return (
-    <section id="proyectos" className="py-0" style={{ backgroundColor: NAVY2 }}>
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 min-h-[520px]">
-          {/* Image */}
-          <div
-            className="relative min-h-64 lg:min-h-full bg-cover bg-center"
-            style={{
-              backgroundImage:
-                'url(https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80)',
-            }}
-          >
-            <div
-              className="absolute inset-0"
-              style={{
-                background: 'linear-gradient(to right, rgba(13,27,42,0) 60%, rgba(17,32,50,0.6) 100%)',
-              }}
-            />
-          </div>
+function ProyectoModal({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const fn = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', fn)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', fn)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
 
-          {/* Content */}
-          <div className="py-16 px-10 lg:px-14 flex flex-col justify-center">
-            <FadeIn>
-              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Proyectos en estructuración
-              </p>
-              <h2
-                className="font-serif text-3xl md:text-4xl leading-tight mb-4 text-white text-balance"
-                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
-              >
-                Décima Avenida
-              </h2>
-              <div
-                className="inline-block px-3 py-1 text-xs tracking-wide uppercase mb-6"
-                style={{ backgroundColor: GOLD10, border: `1px solid ${GOLD40}`, color: GOLD }}
-              >
-                Estado: Prefactibilidad institucional
-              </div>
-              <p className="text-base leading-relaxed mb-8" style={{ color: WHITE70 }}>
-                Proyecto en fase preliminar de estructuración institucional en El Roble de Alajuela, con flujo existente y potencial de desarrollo escalonado orientado al ecosistema Coyol–Aeropuerto.
-              </p>
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {[
-                  { label: 'Ubicación', value: 'El Roble, Alajuela' },
-                  { label: 'Activo', value: 'Uso mixto' },
-                  { label: 'Estrategia', value: 'Desarrollo por fases' },
-                  { label: 'Enfoque', value: 'Valor institucional y escalabilidad' },
-                ].map((d, i) => (
-                  <div key={i}>
-                    <p className="text-xs uppercase tracking-wide mb-1" style={{ color: GOLD }}>{d.label}</p>
-                    <p className="text-sm text-white">{d.value}</p>
-                  </div>
-                ))}
-              </div>
-              <button
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border transition-all hover:bg-white/5 self-start"
-                style={{ borderColor: 'rgba(255,255,255,0.25)', color: 'rgba(255,255,255,0.85)' }}
-              >
-                Conocer más
-                <ArrowRight size={14} />
-              </button>
-            </FadeIn>
-          </div>
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      style={{ backgroundColor: 'rgba(13,27,42,0.92)', backdropFilter: 'blur(8px)' }}
+      onClick={onClose}
+    >
+      <div
+        className="relative max-w-2xl w-full p-10 border"
+        style={{ backgroundColor: NAVY2, borderColor: GOLD40 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 p-1 transition-opacity hover:opacity-60"
+          style={{ color: WHITE70 }}
+          aria-label="Cerrar"
+        >
+          <X size={20} />
+        </button>
+        <p className="text-xs tracking-widest uppercase mb-3" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+          Proyectos en estructuración
+        </p>
+        <h3
+          className="font-serif text-2xl md:text-3xl text-white mb-2"
+          style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
+        >
+          Décima Avenida
+        </h3>
+        <div
+          className="inline-block px-3 py-1 text-xs tracking-wide uppercase mb-5"
+          style={{ backgroundColor: GOLD10, border: `1px solid ${GOLD40}`, color: GOLD }}
+        >
+          Estado: Prefactibilidad institucional
         </div>
+        <p className="text-sm leading-relaxed mb-6" style={{ color: WHITE70 }}>
+          Activo estratégico ubicado en El Roble de Alajuela, con flujo existente y potencial de desarrollo escalonado en el ecosistema Coyol–Aeropuerto. El proyecto se encuentra en fase preliminar de estructuración institucional, orientado a capital privado sofisticado con visión de largo plazo.
+        </p>
+        <div className="grid grid-cols-2 gap-5 mb-8 border-t border-b py-5" style={{ borderColor: GOLD20 }}>
+          {[
+            { label: 'Ubicación', value: 'El Roble, Alajuela' },
+            { label: 'Activo', value: 'Uso mixto' },
+            { label: 'Estrategia', value: 'Desarrollo por fases' },
+            { label: 'Enfoque', value: 'Valor institucional y escalabilidad' },
+          ].map((d, i) => (
+            <div key={i}>
+              <p className="text-xs uppercase tracking-wide mb-1" style={{ color: GOLD }}>{d.label}</p>
+              <p className="text-sm text-white">{d.value}</p>
+            </div>
+          ))}
+        </div>
+        <a
+          href="mailto:marquesadvisory@gmail.com"
+          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
+          style={{ backgroundColor: GOLD, color: NAVY }}
+        >
+          Solicitar información institucional
+          <ArrowRight size={14} />
+        </a>
       </div>
-    </section>
+    </div>
   )
 }
 
-/* ── IAOS ────────────────────────────────────────────────────── */
+function Proyectos() {
+  const [modalOpen, setModalOpen] = useState(false)
 
-const IAOS_CAPS = [
-  { icon: BarChart3, label: 'Investigación\nAcelerada' },
-  { icon: Layers, label: 'Modelación y\nAnálisis Avanzado' },
-  { icon: FileText, label: 'Documentación\nInteligente' },
-  { icon: ShieldCheck, label: 'Análisis de Riesgos\ny Escenarios' },
-  { icon: Landmark, label: 'Preparación\nInstitucional' },
+  return (
+    <>
+      {modalOpen && <ProyectoModal onClose={() => setModalOpen(false)} />}
+      <section id="proyectos" className="py-0" style={{ backgroundColor: NAVY2 }}>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 min-h-[520px]">
+            {/* Image with cinematic overlay */}
+            <div
+              className="relative min-h-64 lg:min-h-full bg-cover bg-center"
+              style={{
+                backgroundImage:
+                  'url(https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80)',
+              }}
+            >
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(13,27,42,0.5) 0%, rgba(13,27,42,0.1) 50%, rgba(17,32,50,0.7) 100%)',
+                }}
+              />
+            </div>
+
+            {/* Content */}
+            <div className="py-16 px-10 lg:px-14 flex flex-col justify-center">
+              <FadeIn>
+                <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+                  Proyectos en estructuración
+                </p>
+                <h2
+                  className="font-serif text-3xl md:text-4xl leading-tight mb-4 text-white text-balance"
+                  style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
+                >
+                  Décima Avenida
+                </h2>
+                <div
+                  className="inline-block px-3 py-1 text-xs tracking-wide uppercase mb-6"
+                  style={{ backgroundColor: GOLD10, border: `1px solid ${GOLD40}`, color: GOLD }}
+                >
+                  Estado: Prefactibilidad institucional
+                </div>
+                <p className="text-base leading-relaxed mb-8" style={{ color: WHITE70 }}>
+                  Proyecto en fase preliminar de estructuración institucional en El Roble de Alajuela, con flujo existente y potencial de desarrollo escalonado orientado al ecosistema Coyol–Aeropuerto.
+                </p>
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  {[
+                    { label: 'Ubicación', value: 'El Roble, Alajuela' },
+                    { label: 'Activo', value: 'Uso mixto' },
+                    { label: 'Estrategia', value: 'Desarrollo por fases' },
+                    { label: 'Enfoque', value: 'Valor institucional y escalabilidad' },
+                  ].map((d, i) => (
+                    <div key={i}>
+                      <p className="text-xs uppercase tracking-wide mb-1" style={{ color: GOLD }}>{d.label}</p>
+                      <p className="text-sm text-white">{d.value}</p>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border transition-all hover:bg-white/5 self-start"
+                  style={{ borderColor: 'rgba(255,255,255,0.25)', color: 'rgba(255,255,255,0.85)' }}
+                >
+                  Conocer más
+                  <ArrowRight size={14} />
+                </button>
+              </FadeIn>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
+
+/* ── Infraestructura Operativa Institucional ─────────────────── */
+
+const IAOS_PROCESSES = [
+  'Análisis estratégico',
+  'Investigación',
+  'Estructuración',
+  'Documentación',
+  'Trazabilidad',
+  'Gestión de riesgos',
+  'Preparación de expedientes institucionales',
 ]
 
 function Iaos() {
   return (
-    <section className="py-24 px-6" style={{ backgroundColor: '#F5F1EB' }}>
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <FadeIn>
-            <div>
-              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Nuestra ventaja
-              </p>
-              <h2
-                className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-balance"
-                style={{ fontFamily: 'var(--font-playfair), serif', color: '#0D1B2A', fontWeight: 600 }}
-              >
-                IAOS: Inteligencia aplicada a la estructuración institucional.
-              </h2>
-              <Divider />
-              <p className="text-base leading-relaxed" style={{ color: '#334155' }}>
-                Nuestro sistema operativo institucional propio utiliza inteligencia artificial para acelerar análisis, investigación, documentación y modelación, permitiendo decisiones más precisas, trazables y eficientes. No es un chatbot. Es infraestructura analítica aplicada al structuring de activos reales.
-              </p>
+    <section className="py-0 overflow-hidden" style={{ backgroundColor: '#F5F1EB' }}>
+      {/* Top editorial band */}
+      <div
+        className="relative py-20 px-6"
+        style={{
+          background: 'linear-gradient(135deg, #0D1B2A 0%, #1C2B3A 60%, #0D1B2A 100%)',
+        }}
+      >
+        {/* Subtle architectural grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(201,169,110,1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(201,169,110,1) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            {/* Left: Label + Title */}
+            <div className="lg:col-span-5">
+              <FadeIn>
+                <p className="text-xs tracking-widest uppercase mb-5" style={{ color: GOLD, letterSpacing: '0.18em' }}>
+                  Infraestructura operativa institucional
+                </p>
+                <h2
+                  className="font-serif text-3xl md:text-4xl leading-tight text-white text-balance"
+                  style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
+                >
+                  Tecnología aplicada a estructuración, análisis y preparación institucional.
+                </h2>
+                <div className="w-10 h-px my-8" style={{ backgroundColor: GOLD }} />
+                <p className="text-sm leading-relaxed" style={{ color: WHITE70 }}>
+                  Marqués Advisory & Investments utiliza un sistema operativo institucional asistido por inteligencia artificial para fortalecer procesos de alta complejidad en activos reales y estructuración institucional.
+                </p>
+                <p className="text-sm leading-relaxed mt-4" style={{ color: WHITE40 }}>
+                  El objetivo es aumentar capacidad analítica, consistencia operativa y velocidad de ejecución dentro de procesos complejos.
+                </p>
+              </FadeIn>
             </div>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-              {IAOS_CAPS.map((c, i) => {
-                const Icon = c.icon
-                return (
-                  <div
-                    key={i}
-                    className="flex flex-col items-center gap-3 p-6 border text-center"
-                    style={{ borderColor: '#E5DDD0', backgroundColor: '#FAFAF8' }}
-                  >
-                    <Icon size={22} style={{ color: GOLD }} />
-                    <p className="text-xs font-semibold leading-snug whitespace-pre-line" style={{ color: '#0D1B2A' }}>
-                      {c.label}
-                    </p>
-                  </div>
-                )
-              })}
+
+            {/* Right: Process list with editorial line design */}
+            <div className="lg:col-span-7 lg:pl-12 lg:border-l" style={{ borderColor: GOLD20 }}>
+              <FadeIn delay={120}>
+                <p className="text-xs uppercase tracking-widest mb-6 font-semibold" style={{ color: GOLD40, letterSpacing: '0.14em' }}>
+                  Procesos fortalecidos
+                </p>
+                <div className="flex flex-col">
+                  {IAOS_PROCESSES.map((process, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-5 py-4 border-b"
+                      style={{ borderColor: 'rgba(201,169,110,0.12)' }}
+                    >
+                      <span
+                        className="text-xs font-mono shrink-0 w-6 text-right"
+                        style={{ color: GOLD40 }}
+                      >
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <div className="w-px h-4 shrink-0" style={{ backgroundColor: GOLD20 }} />
+                      <span className="text-sm font-medium text-white">{process}</span>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom light band: capability summary */}
+      <div className="py-14 px-6" style={{ backgroundColor: '#F5F1EB' }}>
+        <div className="max-w-7xl mx-auto">
+          <FadeIn>
+            <div
+              className="border-l-2 pl-8 max-w-3xl"
+              style={{ borderColor: GOLD }}
+            >
+              <p className="text-base leading-relaxed italic" style={{ color: '#334155' }}>
+                "No es automatización de tareas. Es infraestructura analítica aplicada a la estructuración de activos reales: más precisa, más consistente, más defendible."
+              </p>
+              <p className="text-xs uppercase tracking-widest mt-4 font-semibold" style={{ color: GOLD }}>
+                Marqués Advisory & Investments
+              </p>
             </div>
           </FadeIn>
         </div>
@@ -776,7 +928,7 @@ function Footer() {
             >
               Solicitar conversación
             </a>
-            <p className="text-xs" style={{ color: WHITE40 }}>info@marquesai.com</p>
+            <p className="text-xs" style={{ color: WHITE40 }}>marquesadvisory@gmail.com</p>
           </div>
         </div>
 
