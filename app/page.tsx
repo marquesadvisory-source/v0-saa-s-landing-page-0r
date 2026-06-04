@@ -21,6 +21,8 @@ import {
   Users,
   Building2,
 } from 'lucide-react'
+import { SiteHeader } from '@/components/site-header'
+import { siteConfig } from '@/lib/site'
 
 /* ── helpers ────────────────────────────────────────────────── */
 
@@ -64,12 +66,13 @@ function Divider() {
 /* ── Header ─────────────────────────────────────────────────── */
 
 const NAV_LINKS = [
-  { label: 'Tesis de inversión', id: 'tesis' },
-  { label: 'Qué hacemos', id: 'que-hacemos' },
-  { label: 'Cómo pensamos', id: 'como-pensamos' },
-  { label: 'Proyectos', id: 'proyectos' },
+  { label: 'About', href: '/about' },
+  { label: 'Who We Serve', href: '/who-we-serve' },
+  { label: 'What We Do', href: '/what-we-do' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Investment Thesis', id: 'tesis' },
   { label: 'Costa Rica', id: 'costa-rica' },
-  { label: 'Contacto', id: 'contacto' },
+  { label: 'Inquiry', href: '/institutional-inquiry' },
 ]
 
 function Header() {
@@ -105,14 +108,25 @@ function Header() {
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-7">
           {NAV_LINKS.map((l) => (
-            <button
-              key={l.id}
-              onClick={() => scrollTo(l.id)}
-              className="text-xs tracking-widest uppercase transition-colors hover:text-[#C9A96E]"
-              style={{ color: WHITE70, fontWeight: 500, letterSpacing: '0.08em' }}
-            >
-              {l.label}
-            </button>
+            'href' in l ? (
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-xs tracking-widest uppercase transition-colors hover:text-[#C9A96E]"
+                style={{ color: WHITE70, fontWeight: 500, letterSpacing: '0.08em' }}
+              >
+                {l.label}
+              </a>
+            ) : (
+              <button
+                key={l.id}
+                onClick={() => scrollTo(l.id)}
+                className="text-xs tracking-widest uppercase transition-colors hover:text-[#C9A96E]"
+                style={{ color: WHITE70, fontWeight: 500, letterSpacing: '0.08em' }}
+              >
+                {l.label}
+              </button>
+            )
           ))}
         </nav>
 
@@ -124,7 +138,7 @@ function Header() {
           className="hidden lg:inline-flex items-center gap-2 px-5 py-2 text-xs tracking-widest uppercase border transition-colors hover:bg-[#C9A96E] hover:text-[#0D1B2A]"
           style={{ borderColor: GOLD, color: GOLD, fontWeight: 600, letterSpacing: '0.1em' }}
         >
-          Contacto Institucional
+          Institutional Inquiry
         </a>
 
         {/* Mobile hamburger */}
@@ -132,7 +146,7 @@ function Header() {
           className="lg:hidden p-2"
           style={{ color: GOLD }}
           onClick={() => setOpen(!open)}
-          aria-label="Menú"
+            aria-label="Menu"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -145,14 +159,25 @@ function Header() {
           style={{ backgroundColor: 'rgba(13,27,42,0.98)', borderTop: `1px solid ${GOLD20}` }}
         >
           {NAV_LINKS.map((l) => (
-            <button
-              key={l.id}
-              onClick={() => { scrollTo(l.id); setOpen(false) }}
-              className="text-left text-sm py-2 border-b transition-colors hover:text-[#C9A96E]"
-              style={{ color: WHITE70, borderColor: GOLD20 }}
-            >
-              {l.label}
-            </button>
+            'href' in l ? (
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-left text-sm py-2 border-b transition-colors hover:text-[#C9A96E]"
+                style={{ color: WHITE70, borderColor: GOLD20 }}
+              >
+                {l.label}
+              </a>
+            ) : (
+              <button
+                key={l.id}
+                onClick={() => { scrollTo(l.id); setOpen(false) }}
+                className="text-left text-sm py-2 border-b transition-colors hover:text-[#C9A96E]"
+                style={{ color: WHITE70, borderColor: GOLD20 }}
+              >
+                {l.label}
+              </button>
+            )
           ))}
           <a
             href="https://wa.me/50672679806"
@@ -161,7 +186,7 @@ function Header() {
             className="mt-2 px-5 py-3 text-xs tracking-widest uppercase text-center border"
             style={{ borderColor: GOLD, color: GOLD, fontWeight: 600 }}
           >
-            Contacto Institucional
+            Institutional Inquiry
           </a>
         </div>
       )}
@@ -215,7 +240,7 @@ function Hero() {
               className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 text-white text-balance"
               style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
             >
-              Estructuración institucional para activos reales en Costa Rica
+              Institutional structuring for real assets in Costa Rica
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
@@ -223,7 +248,7 @@ function Hero() {
           </FadeIn>
           <FadeIn delay={300}>
             <p className="text-base md:text-lg leading-relaxed mb-10 max-w-xl text-pretty" style={{ color: WHITE70 }}>
-              Convertimos oportunidades inmobiliarias y de infraestructura en plataformas de inversión trazables, bancables y defendibles.
+              We transform real estate and infrastructure opportunities into traceable, bankable and defensible investment platforms.
             </p>
           </FadeIn>
           <FadeIn delay={400}>
@@ -235,7 +260,7 @@ function Hero() {
                 className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
                 style={{ backgroundColor: GOLD, color: NAVY }}
               >
-                Solicitar conversación institucional
+                Request Institutional Conversation
                 <ArrowRight size={16} />
               </a>
               <button
@@ -243,7 +268,7 @@ function Hero() {
                 className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold tracking-wide border transition-all hover:bg-white/5"
                 style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.85)' }}
               >
-                Explorar enfoque
+                Explore Our Approach
               </button>
             </div>
           </FadeIn>
@@ -257,10 +282,10 @@ function Hero() {
       >
         <div className="max-w-7xl mx-auto px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { label: 'Enfoque', value: 'Costa Rica' },
-            { label: 'Estrategia', value: 'Real Assets & Structuring' },
-            { label: 'Aliados', value: 'Inversionistas, Bancos, Fiduciarios y Family Offices' },
-            { label: 'Objetivo', value: 'Crear valor institucional de largo plazo' },
+            { label: 'Focus', value: 'Costa Rica' },
+            { label: 'Strategy', value: 'Real Assets & Structuring' },
+            { label: 'Counterparties', value: 'Investors, Banks, Fiduciaries and Family Offices' },
+            { label: 'Objective', value: 'Create long-term institutional value' },
           ].map((item, i) => (
             <div key={i} className="flex flex-col gap-1">
               <span className="text-xs tracking-widest uppercase" style={{ color: GOLD, letterSpacing: '0.12em' }}>
@@ -302,20 +327,20 @@ function Tesis() {
           <div className="py-20 px-8 lg:px-14 flex flex-col justify-center order-1 lg:order-2">
             <FadeIn>
               <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Tesis de inversión
+                Investment Thesis
               </p>
               <h2
                 className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-balance"
                 style={{ fontFamily: 'var(--font-playfair), serif', color: '#0D1B2A', fontWeight: 600 }}
               >
-                Costa Rica necesita más que oportunidades. Necesita estructuras financiables.
+                Costa Rica needs more than opportunities. It needs financeable structures.
               </h2>
               <div className="w-10 h-px my-6" style={{ backgroundColor: GOLD }} />
               <p className="text-base leading-relaxed mb-5" style={{ color: '#334155' }}>
-                Existe una brecha significativa entre la abundancia de activos con potencial en Costa Rica y la capacidad de transformarlos en oportunidades listas para capital institucional. Los activos existen. El capital existe. Lo que falta es la arquitectura financiera, legal y estratégica que los conecte.
+                There is a significant gap between the abundance of real assets with potential in Costa Rica and the ability to prepare them for institutional capital review. The assets exist. The capital exists. What is often missing is the financial, legal and strategic architecture that connects them.
               </p>
               <p className="text-base leading-relaxed" style={{ color: '#334155' }}>
-                Marqués trabaja exactamente en esa brecha: entre la oportunidad del activo y la estructura bancable, trazable y defendible que permite atraer capital sofisticado con claridad, gobernanza y visión de largo plazo.
+                Marqués Advisory & Investments works in that gap: between the asset opportunity and the bankable, traceable and defensible structure that allows sophisticated capital to evaluate with clarity, governance and a long-term perspective.
               </p>
             </FadeIn>
           </div>
@@ -330,33 +355,33 @@ function Tesis() {
 const SERVICIOS = [
   {
     icon: Landmark,
-    title: 'Estructuración institucional',
-    desc: 'Diseño de estructuras financieras y fiduciarias a la medida para activos reales con vocación institucional.',
+    title: 'Institutional Structuring',
+    desc: 'Design of financial and fiduciary-ready structures for real assets with institutional potential.',
   },
   {
     icon: Building2,
-    title: 'Asesoría en Activos Reales',
-    desc: 'Evaluación estratégica y posicionamiento de oportunidades inmobiliarias e infraestructura.',
+    title: 'Real Asset Advisory',
+    desc: 'Strategic assessment and positioning of real estate and infrastructure-related opportunities.',
   },
   {
     icon: FileText,
-    title: 'Preparación para Inversión',
-    desc: 'Investment memos, modelación financiera y paquetes para due diligence con estándares institucionales.',
+    title: 'Investment Preparation',
+    desc: 'Investment memos, financial modeling and diligence packages aligned with institutional standards.',
   },
   {
     icon: DollarSign,
-    title: 'Estrategia de Project Finance',
-    desc: 'Estructuración de deuda, capital y soluciones de financiamiento para proyectos complejos.',
+    title: 'Project Finance Strategy',
+    desc: 'Structuring support for debt, capital and financing pathways for complex projects.',
   },
   {
     icon: ShieldCheck,
-    title: 'Riesgo y Gobernanza',
-    desc: 'Análisis de riesgos, gobernanza y trazabilidad institucional para activos en estructuración.',
+    title: 'Risk and Governance',
+    desc: 'Risk analysis, governance and institutional traceability for assets under structuring.',
   },
   {
     icon: Layers,
-    title: 'Proyectos de Uso Mixto e Infraestructura',
-    desc: 'Desarrollo y estructuración de proyectos con impacto económico y social de largo plazo.',
+    title: 'Mixed-Use and Infrastructure Projects',
+    desc: 'Development and structuring support for projects with long-term economic and social relevance.',
   },
 ]
 
@@ -369,19 +394,19 @@ function QueHacemos() {
           <FadeIn>
             <div>
               <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Qué hacemos
+                What We Do
               </p>
               <h2
                 className="font-serif text-3xl md:text-4xl leading-tight text-balance"
                 style={{ fontFamily: 'var(--font-playfair), serif', color: '#0D1B2A', fontWeight: 600 }}
               >
-                Estructuración institucional para activos reales
+                Institutional structuring for real assets
               </h2>
             </div>
           </FadeIn>
           <FadeIn delay={100}>
             <p className="text-base leading-relaxed self-end" style={{ color: '#334155' }}>
-              Diseñamos la arquitectura financiera, legal y estratégica que permite transformar activos complejos en oportunidades listas para capital sofisticado.
+              We help design the financial, legal and strategic architecture that can transform complex assets into opportunities ready for sophisticated capital review.
             </p>
           </FadeIn>
         </div>
@@ -412,12 +437,12 @@ function QueHacemos() {
 /* ── Cómo Pensamos ───────────────────────────────────────────── */
 
 const PROCESO = [
-  { step: '01', label: 'Origen del activo' },
-  { step: '02', label: 'Tesis' },
-  { step: '03', label: 'Validación' },
-  { step: '04', label: 'Estructura' },
+  { step: '01', label: 'Asset origination' },
+  { step: '02', label: 'Thesis' },
+  { step: '03', label: 'Validation' },
+  { step: '04', label: 'Structure' },
   { step: '05', label: 'Capital' },
-  { step: '06', label: 'Ejecución' },
+  { step: '06', label: 'Execution' },
 ]
 
 function ComoPensamos() {
@@ -428,17 +453,17 @@ function ComoPensamos() {
           <FadeIn>
             <div>
               <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Cómo pensamos
+                How We Think
               </p>
               <h2
                 className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-white text-balance"
                 style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
               >
-                Antes del capital, viene la estructura.
+                Before capital, there is structure.
               </h2>
               <Divider />
               <p className="text-base leading-relaxed" style={{ color: WHITE70 }}>
-                No buscamos capital para proyectos sin estructura. Construimos la estructura que hace que el capital llegue por convicción, no por especulación. Cada activo pasa por un proceso riguroso que asegura trazabilidad, gobernanza y bancabilidad desde el origen.
+                We do not seek capital for projects without structure. We help build the structure that allows capital to evaluate with conviction, not speculation. Each asset is reviewed through a disciplined process focused on traceability, governance and bankability from origination.
               </p>
             </div>
           </FadeIn>
@@ -499,7 +524,7 @@ function ProyectoModal({ onClose }: { onClose: () => void }) {
           <X size={20} />
         </button>
         <p className="text-xs tracking-widest uppercase mb-3" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-          Proyectos en estructuración
+          Projects in Structuring
         </p>
         <h3
           className="font-serif text-2xl md:text-3xl text-white mb-2"
@@ -511,17 +536,17 @@ function ProyectoModal({ onClose }: { onClose: () => void }) {
           className="inline-block px-3 py-1 text-xs tracking-wide uppercase mb-5"
           style={{ backgroundColor: GOLD10, border: `1px solid ${GOLD40}`, color: GOLD }}
         >
-          Estado: Prefactibilidad institucional
+          Status: Institutional pre-feasibility
         </div>
         <p className="text-sm leading-relaxed mb-6" style={{ color: WHITE70 }}>
-          Activo estratégico ubicado en El Roble de Alajuela, con flujo existente y potencial de desarrollo escalonado en el ecosistema Coyol–Aeropuerto. El proyecto se encuentra en fase preliminar de estructuración institucional, orientado a capital privado sofisticado con visión de largo plazo.
+          Strategic asset located in El Roble, Alajuela, with existing activity and phased development potential within the Coyol-Airport ecosystem. The project is in a preliminary institutional structuring phase and remains subject to diligence and appropriate review.
         </p>
         <div className="grid grid-cols-2 gap-5 mb-8 border-t border-b py-5" style={{ borderColor: GOLD20 }}>
           {[
-            { label: 'Ubicación', value: 'El Roble, Alajuela' },
-            { label: 'Activo', value: 'Uso mixto' },
-            { label: 'Estrategia', value: 'Desarrollo por fases' },
-            { label: 'Enfoque', value: 'Valor institucional y escalabilidad' },
+            { label: 'Location', value: 'El Roble, Alajuela' },
+            { label: 'Asset', value: 'Mixed-use' },
+            { label: 'Strategy', value: 'Phased development' },
+            { label: 'Focus', value: 'Institutional value and scalability' },
           ].map((d, i) => (
             <div key={i}>
               <p className="text-xs uppercase tracking-wide mb-1" style={{ color: GOLD }}>{d.label}</p>
@@ -534,7 +559,7 @@ function ProyectoModal({ onClose }: { onClose: () => void }) {
           className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
           style={{ backgroundColor: GOLD, color: NAVY }}
         >
-          Solicitar información institucional
+          Request Institutional Information
           <ArrowRight size={14} />
         </a>
       </div>
@@ -572,7 +597,7 @@ function Proyectos() {
             <div className="py-16 px-10 lg:px-14 flex flex-col justify-center">
               <FadeIn>
                 <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                  Proyectos en estructuración
+                  Projects in Structuring
                 </p>
                 <h2
                   className="font-serif text-3xl md:text-4xl leading-tight mb-4 text-white text-balance"
@@ -584,17 +609,17 @@ function Proyectos() {
                   className="inline-block px-3 py-1 text-xs tracking-wide uppercase mb-6"
                   style={{ backgroundColor: GOLD10, border: `1px solid ${GOLD40}`, color: GOLD }}
                 >
-                  Estado: Prefactibilidad institucional
+                  Status: Institutional pre-feasibility
                 </div>
                 <p className="text-base leading-relaxed mb-8" style={{ color: WHITE70 }}>
-                  Proyecto en fase preliminar de estructuración institucional en El Roble de Alajuela, con flujo existente y potencial de desarrollo escalonado orientado al ecosistema Coyol–Aeropuerto.
+                  Preliminary institutional structuring project in El Roble, Alajuela, with existing activity and phased development potential oriented to the Coyol-Airport ecosystem.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   {[
-                    { label: 'Ubicación', value: 'El Roble, Alajuela' },
-                    { label: 'Activo', value: 'Uso mixto' },
-                    { label: 'Estrategia', value: 'Desarrollo por fases' },
-                    { label: 'Enfoque', value: 'Valor institucional y escalabilidad' },
+                    { label: 'Location', value: 'El Roble, Alajuela' },
+                    { label: 'Asset', value: 'Mixed-use' },
+                    { label: 'Strategy', value: 'Phased development' },
+                    { label: 'Focus', value: 'Institutional value and scalability' },
                   ].map((d, i) => (
                     <div key={i}>
                       <p className="text-xs uppercase tracking-wide mb-1" style={{ color: GOLD }}>{d.label}</p>
@@ -607,7 +632,7 @@ function Proyectos() {
                   className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border transition-all hover:bg-white/5 self-start"
                   style={{ borderColor: 'rgba(255,255,255,0.25)', color: 'rgba(255,255,255,0.85)' }}
                 >
-                  Conocer más
+                  Learn More
                   <ArrowRight size={14} />
                 </button>
               </FadeIn>
@@ -622,13 +647,13 @@ function Proyectos() {
 /* ── Infraestructura Operativa Institucional ─────────────────── */
 
 const IAOS_PROCESSES = [
-  'Análisis estratégico',
-  'Investigación',
-  'Estructuración',
-  'Documentación',
-  'Trazabilidad',
-  'Gestión de riesgos',
-  'Preparación de expedientes institucionales',
+  'Strategic analysis',
+  'Research',
+  'Structuring',
+  'Documentation',
+  'Traceability',
+  'Risk management',
+  'Institutional file preparation',
 ]
 
 function Iaos() {
@@ -658,20 +683,20 @@ function Iaos() {
             <div className="lg:col-span-5">
               <FadeIn>
                 <p className="text-xs tracking-widest uppercase mb-5" style={{ color: GOLD, letterSpacing: '0.18em' }}>
-                  Infraestructura operativa institucional
+                  Institutional operating infrastructure
                 </p>
                 <h2
                   className="font-serif text-3xl md:text-4xl leading-tight text-white text-balance"
                   style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
                 >
-                  Tecnología aplicada a estructuración, análisis y preparación institucional.
+                  Technology applied to structuring, analysis and institutional preparation.
                 </h2>
                 <div className="w-10 h-px my-8" style={{ backgroundColor: GOLD }} />
                 <p className="text-sm leading-relaxed" style={{ color: WHITE70 }}>
-                  Marqués Advisory & Investments utiliza un sistema operativo institucional asistido por inteligencia artificial para fortalecer procesos de alta complejidad en activos reales y estructuración institucional.
+                  Marqués Advisory & Investments uses an AI-assisted institutional operating system to strengthen high-complexity processes in real assets and institutional structuring.
                 </p>
                 <p className="text-sm leading-relaxed mt-4" style={{ color: WHITE40 }}>
-                  El objetivo es aumentar capacidad analítica, consistencia operativa y velocidad de ejecución dentro de procesos complejos.
+                  The objective is to increase analytical capacity, operational consistency and execution speed within complex processes.
                 </p>
               </FadeIn>
             </div>
@@ -680,7 +705,7 @@ function Iaos() {
             <div className="lg:col-span-7 lg:pl-12 lg:border-l" style={{ borderColor: GOLD20 }}>
               <FadeIn delay={120}>
                 <p className="text-xs uppercase tracking-widest mb-6 font-semibold" style={{ color: GOLD40, letterSpacing: '0.14em' }}>
-                  Procesos fortalecidos
+                  Strengthened processes
                 </p>
                 <div className="flex flex-col">
                   {IAOS_PROCESSES.map((process, i) => (
@@ -715,7 +740,7 @@ function Iaos() {
               style={{ borderColor: GOLD }}
             >
               <p className="text-base leading-relaxed italic" style={{ color: '#334155' }}>
-                "No es automatización de tareas. Es infraestructura analítica aplicada a la estructuración de activos reales: más precisa, más consistente, más defendible."
+                "This is not task automation. It is analytical infrastructure applied to real asset structuring: more precise, more consistent and more defensible."
               </p>
               <p className="text-xs uppercase tracking-widest mt-4 font-semibold" style={{ color: GOLD }}>
                 Marqués Advisory & Investments
@@ -731,11 +756,11 @@ function Iaos() {
 /* ── Por qué Costa Rica ──────────────────────────────────────── */
 
 const CR_CARDS = [
-  { icon: Scale, title: 'Estabilidad jurídica', desc: 'Marco legal sólido, estado de derecho consolidado y seguridad contractual para inversiones de largo plazo.' },
-  { icon: Globe2, title: 'Zona franca e inversión extranjera', desc: 'Régimen de zona franca líder en América Latina con incentivos fiscales y apertura a capital internacional.' },
-  { icon: Wifi, title: 'Infraestructura y conectividad', desc: 'Conectividad logística estratégica con acceso a mercados de América del Norte, Europa y Asia.' },
-  { icon: Users, title: 'Talento y servicios', desc: 'Capital humano calificado y ecosistema de servicios profesionales de alto nivel.' },
-  { icon: Building2, title: 'Activos reales con potencial institucional', desc: 'Mercado inmobiliario y de infraestructura con oportunidades subvaloradas y potencial de estructuración.' },
+  { icon: Scale, title: 'Legal stability', desc: 'A solid legal framework, established rule of law and contractual security for long-term investment review.' },
+  { icon: Globe2, title: 'Free zones and foreign investment', desc: 'A well-established free zone regime with fiscal incentives and openness to international capital.' },
+  { icon: Wifi, title: 'Infrastructure and connectivity', desc: 'Strategic logistics connectivity with access to North American, European and global markets.' },
+  { icon: Users, title: 'Talent and services', desc: 'Qualified human capital and a professional services ecosystem suited to institutional processes.' },
+  { icon: Building2, title: 'Real assets with institutional potential', desc: 'Real estate and infrastructure markets with opportunities that may benefit from disciplined structuring.' },
 ]
 
 function CostaRica() {
@@ -746,19 +771,19 @@ function CostaRica() {
           <FadeIn>
             <div>
               <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Por qué Costa Rica
+                Why Costa Rica
               </p>
               <h2
                 className="font-serif text-3xl md:text-4xl leading-tight text-white text-balance"
                 style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
               >
-                Un entorno sólido para invertir con visión de largo plazo.
+                A solid environment for long-term investment review.
               </h2>
             </div>
           </FadeIn>
           <FadeIn delay={100}>
             <p className="text-base leading-relaxed self-end" style={{ color: WHITE70 }}>
-              Estabilidad macroeconómica, talento, infraestructura, régimen de zona franca, apertura comercial y compromiso con la sostenibilidad convierten a Costa Rica en el destino estratégico para capital institucional.
+              Macroeconomic stability, talent, infrastructure, a free zone regime, commercial openness and sustainability commitments make Costa Rica a strategic market for institutional capital evaluation.
             </p>
           </FadeIn>
         </div>
@@ -794,17 +819,17 @@ function Contacto() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
               <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Contacto institucional
+                Institutional Inquiry
               </p>
               <h2
                 className="font-serif text-3xl md:text-4xl leading-tight text-white mb-6 text-balance"
                 style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
               >
-                Conversemos sobre activos reales, capital y estructuración.
+                Let us discuss real assets, capital and structuring.
               </h2>
               <Divider />
               <p className="text-base leading-relaxed" style={{ color: WHITE70 }}>
-                Solicite una conversación privada con nuestro equipo. Trabajamos con family offices, fondos, bancos, fiduciarias y desarrolladores con visión institucional.
+                Request a private conversation with our team. We support family offices, funds, banks, fiduciaries and developers with an institutional perspective.
               </p>
             </div>
             <div className="flex flex-col gap-4">
@@ -826,7 +851,7 @@ function Contacto() {
               >
                 <Phone size={18} style={{ color: GOLD }} />
                 <div>
-                  <p className="text-xs uppercase tracking-wide mb-0.5" style={{ color: GOLD }}>Teléfono</p>
+                  <p className="text-xs uppercase tracking-wide mb-0.5" style={{ color: GOLD }}>Phone</p>
                   <p className="text-sm text-white">+506 7267-9806</p>
                 </div>
               </a>
@@ -850,7 +875,7 @@ function Contacto() {
                 className="mt-2 flex items-center justify-center gap-2 px-6 py-4 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
                 style={{ backgroundColor: GOLD, color: NAVY }}
               >
-                Solicitar conversación
+                Request Conversation
                 <ArrowRight size={16} />
               </a>
             </div>
@@ -877,7 +902,7 @@ function Footer() {
               style={{ filter: 'drop-shadow(0 0 6px rgba(201,169,110,0.15))' }}
             />
             <p className="text-xs leading-relaxed mb-5" style={{ color: WHITE40 }}>
-              Plataforma boutique de estructuración institucional para activos reales en Costa Rica.
+              Boutique platform for institutional structuring of real assets in Costa Rica.
             </p>
             <a
               href="https://www.linkedin.com/company/marquesadvisory"
@@ -893,18 +918,28 @@ function Footer() {
           {/* Navegación */}
           <div>
             <p className="text-xs uppercase tracking-widest mb-5 font-semibold" style={{ color: GOLD, letterSpacing: '0.12em' }}>
-              Navegación
+              Navigation
             </p>
             <ul className="flex flex-col gap-3">
               {NAV_LINKS.map((l) => (
-                <li key={l.id}>
-                  <button
-                    onClick={() => scrollTo(l.id)}
-                    className="text-xs transition-colors hover:text-[#C9A96E]"
-                    style={{ color: WHITE40 }}
-                  >
-                    {l.label}
-                  </button>
+                <li key={'href' in l ? l.href : l.id}>
+                  {'href' in l ? (
+                    <a
+                      href={l.href}
+                      className="text-xs transition-colors hover:text-[#C9A96E]"
+                      style={{ color: WHITE40 }}
+                    >
+                      {l.label}
+                    </a>
+                  ) : (
+                    <button
+                      onClick={() => scrollTo(l.id)}
+                      className="text-xs transition-colors hover:text-[#C9A96E]"
+                      style={{ color: WHITE40 }}
+                    >
+                      {l.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -913,16 +948,16 @@ function Footer() {
           {/* Enfoque */}
           <div>
             <p className="text-xs uppercase tracking-widest mb-5 font-semibold" style={{ color: GOLD, letterSpacing: '0.12em' }}>
-              Enfoque
+              Focus
             </p>
             <ul className="flex flex-col divide-y" style={{ borderColor: GOLD20 }}>
               {[
-                { label: 'Real Estate', desc: 'Estructuración y reposicionamiento de activos inmobiliarios con enfoque institucional.' },
-                { label: 'Infraestructura', desc: 'Plataformas orientadas a conectividad, logística y desarrollo estratégico.' },
-                { label: 'Capital Privado', desc: 'Preparación y estructuración de oportunidades para capital sofisticado.' },
-                { label: 'Project Finance', desc: 'Desarrollo de estructuras de financiamiento por fases y activos generadores de flujo.' },
-                { label: 'Fideicomisos', desc: 'Arquitectura fiduciaria para protección, gobernanza y trazabilidad.' },
-                { label: 'Estructuración Institucional', desc: 'Conversión de oportunidades complejas en plataformas bancables y defendibles.' },
+                { label: 'Real Estate', desc: 'Structuring and repositioning of real estate assets with an institutional lens.' },
+                { label: 'Infrastructure', desc: 'Platforms oriented to connectivity, logistics and strategic development.' },
+                { label: 'Private Capital', desc: 'Preparation and structuring of opportunities for sophisticated capital review.' },
+                { label: 'Project Finance', desc: 'Development of phased financing structures and cash-flowing asset strategies.' },
+                { label: 'Fiduciary Architecture', desc: 'Fiduciary-ready architecture for protection, governance and traceability.' },
+                { label: 'Institutional Structuring', desc: 'Conversion of complex opportunities into bankable and defensible platforms.' },
               ].map((item) => (
                 <li
                   key={item.label}
@@ -948,10 +983,10 @@ function Footer() {
           {/* Contacto */}
           <div>
             <p className="text-xs uppercase tracking-widest mb-5 font-semibold" style={{ color: GOLD, letterSpacing: '0.12em' }}>
-              Contacto Institucional
+              Institutional Inquiry
             </p>
             <p className="text-xs mb-5 leading-relaxed" style={{ color: WHITE40 }}>
-              Solicite una conversación privada con nuestro equipo.
+              Request a private conversation with our team.
             </p>
             <a
               href="https://wa.me/50672679806"
@@ -960,7 +995,7 @@ function Footer() {
               className="inline-flex items-center justify-center w-full px-4 py-3 text-xs font-semibold border tracking-wide mb-3 transition-all hover:bg-white/5"
               style={{ borderColor: GOLD40, color: GOLD }}
             >
-              Solicitar conversación institucional
+              Request Institutional Conversation
             </a>
             <p className="text-xs" style={{ color: WHITE40 }}>marquesadvisory@gmail.com</p>
           </div>
@@ -972,10 +1007,10 @@ function Footer() {
           style={{ borderColor: GOLD20 }}
         >
           <p className="text-xs" style={{ color: WHITE40 }}>
-            © 2024 Marqués Advisory & Investments. Todos los derechos reservados.
+            © 2024 Marqués Advisory & Investments. All rights reserved.
           </p>
           <p className="text-xs max-w-2xl leading-relaxed text-right" style={{ color: WHITE40 }}>
-            La información contenida en este sitio tiene fines informativos e institucionales. No constituye oferta pública de valores, recomendación de inversión, promesa de rentabilidad ni solicitud formal de capital.
+            {siteConfig.disclaimer}
           </p>
         </div>
       </div>
@@ -988,7 +1023,7 @@ function Footer() {
 export default function Home() {
   return (
     <main>
-      <Header />
+      <SiteHeader />
       <Hero />
       <Tesis />
       <QueHacemos />
