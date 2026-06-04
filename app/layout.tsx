@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "hRvLrayifbMS4unPzWsQU87kZxwI1UKL0ePGSvZnREE",
+    google: "mdWw-KcfuQNUAy1PGgRQxKgz_RX75PcqWhMcx0rgQcg",
   },
   icons: {
     icon: [
