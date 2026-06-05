@@ -300,6 +300,142 @@ function Hero() {
   )
 }
 
+/* ── Platform Layer ───────────────────────────────────────────── */
+
+const PLATFORM_STAGES = ['Origination', 'Structuring', 'Capital Readiness', 'Execution', 'Monetization']
+
+const PLATFORM_WORKS = [
+  {
+    title: 'Origination',
+    desc: 'Identifying opportunities before they become widely marketed.',
+  },
+  {
+    title: 'Structuring',
+    desc: 'Transforming opportunities into clear, defensible investment frameworks.',
+  },
+  {
+    title: 'Capital Readiness',
+    desc: 'Preparing opportunities for institutional review, financing and execution.',
+  },
+  {
+    title: 'Execution Coordination',
+    desc: 'Coordinating legal, financial, technical and commercial stakeholders.',
+  },
+]
+
+function PlatformLayer() {
+  return (
+    <section className="py-24 px-6" style={{ backgroundColor: GRAPHITE }}>
+      <div className="max-w-7xl mx-auto">
+        <FadeIn>
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            <div>
+              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+                Institutional Platform
+              </p>
+              <h2
+                className="font-serif text-3xl md:text-4xl leading-tight text-white text-balance"
+                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
+              >
+                From Origination to Monetization
+              </h2>
+            </div>
+            <p className="text-base leading-relaxed self-end" style={{ color: WHITE70 }}>
+              A platform designed to identify, structure and prepare real asset opportunities for capital.
+            </p>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={100}>
+          <div className="grid gap-5 mb-16">
+            <div className="border p-6 md:p-8" style={{ borderColor: GOLD20, backgroundColor: 'rgba(255,255,255,0.04)' }}>
+              <p className="text-xs uppercase tracking-widest mb-3" style={{ color: GOLD, letterSpacing: '0.14em' }}>
+                Capital Relationships
+              </p>
+              <p className="text-sm md:text-base text-white">
+                Family Offices · Investors · Banks · Funds · Developers · Operators
+              </p>
+            </div>
+
+            <div className="flex justify-center">
+              <span className="text-2xl" style={{ color: GOLD }}>↓</span>
+            </div>
+
+            <div className="border p-7 md:p-9 text-center" style={{ borderColor: GOLD40, backgroundColor: NAVY2 }}>
+              <p className="font-serif text-2xl md:text-3xl text-white" style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}>
+                Marqués Advisory & Investments
+              </p>
+              <p className="text-sm mt-3" style={{ color: WHITE40 }}>
+                Institutional real assets platform under evaluation, in structuring and capital readiness.
+              </p>
+            </div>
+
+            <div className="flex justify-center">
+              <span className="text-2xl" style={{ color: GOLD }}>↓</span>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+              {PLATFORM_STAGES.map((stage, index) => (
+                <div
+                  key={stage}
+                  className="border p-5 text-center"
+                  style={{ borderColor: GOLD20, backgroundColor: 'rgba(255,255,255,0.035)' }}
+                >
+                  <p className="text-xs font-mono mb-2" style={{ color: GOLD40 }}>{String(index + 1).padStart(2, '0')}</p>
+                  <p className="text-sm font-semibold text-white">{stage}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex justify-center">
+              <span className="text-2xl" style={{ color: GOLD }}>↓</span>
+            </div>
+
+            <div className="border p-6 md:p-8 text-center" style={{ borderColor: GOLD20, backgroundColor: 'rgba(255,255,255,0.04)' }}>
+              <p className="text-xs uppercase tracking-widest mb-3" style={{ color: GOLD, letterSpacing: '0.14em' }}>
+                Real Assets
+              </p>
+              <p className="text-sm leading-relaxed max-w-2xl mx-auto" style={{ color: WHITE70 }}>
+                Opportunities remain subject to diligence, documentation, institutional review and appropriate professional coordination.
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+
+        <div>
+          <FadeIn>
+            <div className="mb-10">
+              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
+                How the Platform Works
+              </p>
+              <h3
+                className="font-serif text-2xl md:text-3xl leading-tight text-white"
+                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
+              >
+                A disciplined pathway for institutional preparation.
+              </h3>
+            </div>
+          </FadeIn>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {PLATFORM_WORKS.map((item, index) => (
+              <FadeIn key={item.title} delay={index * 70}>
+                <div
+                  className="border p-7 h-full"
+                  style={{ borderColor: GOLD20, backgroundColor: 'rgba(255,255,255,0.04)' }}
+                >
+                  <p className="text-xs font-mono mb-5" style={{ color: GOLD }}>{String(index + 1).padStart(2, '0')}</p>
+                  <h4 className="text-base font-semibold text-white mb-3">{item.title}</h4>
+                  <p className="text-sm leading-relaxed" style={{ color: WHITE70 }}>{item.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 /* ── Tesis de Inversión ─────────────────────────────────────── */
 
 function Tesis() {
@@ -524,7 +660,7 @@ function ProyectoModal({ onClose }: { onClose: () => void }) {
           <X size={20} />
         </button>
         <p className="text-xs tracking-widest uppercase mb-3" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-          Projects in Structuring
+          Institutional Opportunities
         </p>
         <h3
           className="font-serif text-2xl md:text-3xl text-white mb-2"
@@ -597,7 +733,7 @@ function Proyectos() {
             <div className="py-16 px-10 lg:px-14 flex flex-col justify-center">
               <FadeIn>
                 <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                  Projects in Structuring
+                  Institutional Opportunities
                 </p>
                 <h2
                   className="font-serif text-3xl md:text-4xl leading-tight mb-4 text-white text-balance"
@@ -1025,6 +1161,7 @@ export default function Home() {
     <main>
       <SiteHeader />
       <Hero />
+      <PlatformLayer />
       <Tesis />
       <QueHacemos />
       <ComoPensamos />
