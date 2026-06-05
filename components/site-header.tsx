@@ -14,7 +14,7 @@ const navItems = [
   { label: "Who We Serve", href: "/who-we-serve" },
   { label: "Capabilities", href: "/what-we-do" },
   { label: "Opportunities", href: "/projects" },
-  { label: "Investment Framework", href: "/#tesis" },
+  { label: "Investment Framework", href: "/investment-framework" },
   { label: "Capital Partners", href: "/capital-partners" },
 ]
 

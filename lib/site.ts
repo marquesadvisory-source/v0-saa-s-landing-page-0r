@@ -19,7 +19,7 @@ export const siteConfig = {
     { label: "Who We Serve", href: "/who-we-serve" },
     { label: "Capabilities", href: "/what-we-do" },
     { label: "Opportunities", href: "/projects" },
-    { label: "Investment Framework", href: "/#tesis" },
+    { label: "Investment Framework", href: "/investment-framework" },
     { label: "Capital Partners", href: "/capital-partners" },
   ],
 } as const
@@ -29,6 +29,7 @@ export const siteRoutes = [
   "/about",
   "/who-we-serve",
   "/what-we-do",
+  "/investment-framework",
   "/capital-partners",
   "/projects",
   "/projects/plaza-los-mangos",

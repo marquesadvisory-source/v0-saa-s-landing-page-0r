@@ -70,7 +70,7 @@ const NAV_LINKS = [
   { label: 'Who We Serve', href: '/who-we-serve' },
   { label: 'Capabilities', href: '/what-we-do' },
   { label: 'Opportunities', href: '/projects' },
-  { label: 'Investment Framework', id: 'tesis' },
+  { label: 'Investment Framework', href: '/investment-framework' },
   { label: 'Capital Partners', href: '/capital-partners' },
 ]
 
