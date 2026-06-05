@@ -9,7 +9,6 @@ import {
   ShieldCheck,
   Layers,
   ArrowRight,
-  Menu,
   X,
   Mail,
   Phone,
@@ -63,7 +62,7 @@ function Divider() {
   return <div className="w-10 h-px my-6" style={{ backgroundColor: GOLD }} />
 }
 
-/* ── Header ─────────────────────────────────────────────────── */
+/* ── Footer navigation ──────────────────────────────────────── */
 
 const NAV_LINKS = [
   { label: 'Platform', href: '/about' },
@@ -73,125 +72,6 @@ const NAV_LINKS = [
   { label: 'Investment Framework', href: '/investment-framework' },
   { label: 'Capital Partners', href: '/capital-partners' },
 ]
-
-function Header() {
-  const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', fn)
-    return () => window.removeEventListener('scroll', fn)
-  }, [])
-
-  return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        backgroundColor: scrolled ? 'rgba(13,27,42,0.97)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
-        borderBottom: scrolled ? `1px solid ${GOLD20}` : 'none',
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <button onClick={() => scrollTo('hero')} className="flex items-center gap-3 shrink-0">
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20sin%20fondo-76W6yyCO5gUzFF2qWEPYIWgP3amG1g.png"
-            alt="Marqués Advisory & Investments"
-            className="h-14 w-auto object-contain"
-            style={{ filter: 'drop-shadow(0 0 8px rgba(201,169,110,0.18))' }}
-          />
-        </button>
-
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-7">
-          {NAV_LINKS.map((l) => (
-            'href' in l ? (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-xs tracking-widest uppercase transition-colors hover:text-[#C9A96E]"
-                style={{ color: WHITE70, fontWeight: 500, letterSpacing: '0.08em' }}
-              >
-                {l.label}
-              </a>
-            ) : (
-              <button
-                key={l.id}
-                onClick={() => scrollTo(l.id)}
-                className="text-xs tracking-widest uppercase transition-colors hover:text-[#C9A96E]"
-                style={{ color: WHITE70, fontWeight: 500, letterSpacing: '0.08em' }}
-              >
-                {l.label}
-              </button>
-            )
-          ))}
-        </nav>
-
-        {/* CTA */}
-        <a
-          href="https://wa.me/50672679806"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden lg:inline-flex items-center gap-2 px-5 py-2 text-xs tracking-widest uppercase border transition-colors hover:bg-[#C9A96E] hover:text-[#0D1B2A]"
-          style={{ borderColor: GOLD, color: GOLD, fontWeight: 600, letterSpacing: '0.1em' }}
-        >
-          Institutional Inquiry
-        </a>
-
-        {/* Mobile hamburger */}
-        <button
-          className="lg:hidden p-2"
-          style={{ color: GOLD }}
-          onClick={() => setOpen(!open)}
-            aria-label="Menu"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      {open && (
-        <div
-          className="lg:hidden px-6 pb-6 flex flex-col gap-4"
-          style={{ backgroundColor: 'rgba(13,27,42,0.98)', borderTop: `1px solid ${GOLD20}` }}
-        >
-          {NAV_LINKS.map((l) => (
-            'href' in l ? (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-left text-sm py-2 border-b transition-colors hover:text-[#C9A96E]"
-                style={{ color: WHITE70, borderColor: GOLD20 }}
-              >
-                {l.label}
-              </a>
-            ) : (
-              <button
-                key={l.id}
-                onClick={() => { scrollTo(l.id); setOpen(false) }}
-                className="text-left text-sm py-2 border-b transition-colors hover:text-[#C9A96E]"
-                style={{ color: WHITE70, borderColor: GOLD20 }}
-              >
-                {l.label}
-              </button>
-            )
-          ))}
-          <a
-            href="https://wa.me/50672679806"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 px-5 py-3 text-xs tracking-widest uppercase text-center border"
-            style={{ borderColor: GOLD, color: GOLD, fontWeight: 600 }}
-          >
-            Institutional Inquiry
-          </a>
-        </div>
-      )}
-    </header>
-  )
-}
 
 /* ── Hero ────────────────────────────────────────────────────── */
 
