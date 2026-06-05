@@ -66,13 +66,12 @@ function Divider() {
 /* ── Header ─────────────────────────────────────────────────── */
 
 const NAV_LINKS = [
-  { label: 'About', href: '/about' },
+  { label: 'Platform', href: '/about' },
   { label: 'Who We Serve', href: '/who-we-serve' },
-  { label: 'What We Do', href: '/what-we-do' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Investment Thesis', id: 'tesis' },
-  { label: 'Costa Rica', id: 'costa-rica' },
-  { label: 'Inquiry', href: '/institutional-inquiry' },
+  { label: 'Capabilities', href: '/what-we-do' },
+  { label: 'Opportunities', href: '/projects' },
+  { label: 'Investment Framework', id: 'tesis' },
+  { label: 'Capital Partners', href: '/capital-partners' },
 ]
 
 function Header() {
@@ -240,7 +239,7 @@ function Hero() {
               className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 text-white text-balance"
               style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
             >
-              Institutional structuring for real assets in Costa Rica
+              Relationship-Driven Real Assets Platform
             </h1>
           </FadeIn>
           <FadeIn delay={200}>
@@ -248,7 +247,7 @@ function Hero() {
           </FadeIn>
           <FadeIn delay={300}>
             <p className="text-base md:text-lg leading-relaxed mb-10 max-w-xl text-pretty" style={{ color: WHITE70 }}>
-              We transform real estate and infrastructure opportunities into traceable, bankable and defensible investment platforms.
+              Origination. Structuring. Capital Readiness. Marqués Advisory & Investments is a relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.
             </p>
           </FadeIn>
           <FadeIn delay={400}>
@@ -341,7 +340,7 @@ function PlatformLayer() {
               </h2>
             </div>
             <p className="text-base leading-relaxed self-end" style={{ color: WHITE70 }}>
-              A platform designed to identify, structure and prepare real asset opportunities for capital.
+              Relationship-driven. Institutionally positioned. Capital ready.
             </p>
           </div>
         </FadeIn>
@@ -463,17 +462,17 @@ function Tesis() {
           <div className="py-20 px-8 lg:px-14 flex flex-col justify-center order-1 lg:order-2">
             <FadeIn>
               <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Investment Thesis
+                Investment Framework
               </p>
               <h2
                 className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-balance"
                 style={{ fontFamily: 'var(--font-playfair), serif', color: '#0D1B2A', fontWeight: 600 }}
               >
-                Costa Rica needs more than opportunities. It needs financeable structures.
+                Costa Rica needs more than opportunities. It needs an institutional framework.
               </h2>
               <div className="w-10 h-px my-6" style={{ backgroundColor: GOLD }} />
               <p className="text-base leading-relaxed mb-5" style={{ color: '#334155' }}>
-                There is a significant gap between the abundance of real assets with potential in Costa Rica and the ability to prepare them for institutional capital review. The assets exist. The capital exists. What is often missing is the financial, legal and strategic architecture that connects them.
+                There is a significant gap between the abundance of real assets with potential in Costa Rica and the ability to move them from origination into structuring, capital readiness, execution coordination and monetization. The assets exist. The capital exists. What is often missing is the institutional framework that connects them.
               </p>
               <p className="text-base leading-relaxed" style={{ color: '#334155' }}>
                 Marqués Advisory & Investments works in that gap: between the asset opportunity and the bankable, traceable and defensible structure that allows sophisticated capital to evaluate with clarity, governance and a long-term perspective.
@@ -507,7 +506,7 @@ const SERVICIOS = [
   {
     icon: DollarSign,
     title: 'Project Finance Strategy',
-    desc: 'Structuring support for debt, capital and financing pathways for complex projects.',
+    desc: 'Structuring support for debt, capital and financing pathways for complex institutional opportunities.',
   },
   {
     icon: ShieldCheck,
@@ -516,8 +515,8 @@ const SERVICIOS = [
   },
   {
     icon: Layers,
-    title: 'Mixed-Use and Infrastructure Projects',
-    desc: 'Development and structuring support for projects with long-term economic and social relevance.',
+    title: 'Mixed-Use and Infrastructure Opportunities',
+    desc: 'Development and structuring support for opportunities with long-term economic and social relevance.',
   },
 ]
 
@@ -530,19 +529,19 @@ function QueHacemos() {
           <FadeIn>
             <div>
               <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                What We Do
+                Capabilities
               </p>
               <h2
                 className="font-serif text-3xl md:text-4xl leading-tight text-balance"
                 style={{ fontFamily: 'var(--font-playfair), serif', color: '#0D1B2A', fontWeight: 600 }}
               >
-                Institutional structuring for real assets
+                Platform capabilities for real assets
               </h2>
             </div>
           </FadeIn>
           <FadeIn delay={100}>
             <p className="text-base leading-relaxed self-end" style={{ color: '#334155' }}>
-              We help design the financial, legal and strategic architecture that can transform complex assets into opportunities ready for sophisticated capital review.
+              We help shape origination, structuring, capital readiness and execution coordination so real asset opportunities can be reviewed with institutional discipline.
             </p>
           </FadeIn>
         </div>
@@ -599,7 +598,7 @@ function ComoPensamos() {
               </h2>
               <Divider />
               <p className="text-base leading-relaxed" style={{ color: WHITE70 }}>
-                We do not seek capital for projects without structure. We help build the structure that allows capital to evaluate with conviction, not speculation. Each asset is reviewed through a disciplined process focused on traceability, governance and bankability from origination.
+                We do not seek capital for opportunities without structure. We help build the platform logic that allows capital relationships to evaluate with conviction, not speculation. Each asset is reviewed through a disciplined process focused on traceability, governance and capital readiness from origination.
               </p>
             </div>
           </FadeIn>
@@ -675,7 +674,7 @@ function ProyectoModal({ onClose }: { onClose: () => void }) {
           Status: Institutional pre-feasibility
         </div>
         <p className="text-sm leading-relaxed mb-6" style={{ color: WHITE70 }}>
-          Strategic asset located in El Roble, Alajuela, with existing activity and phased development potential within the Coyol-Airport ecosystem. The project is in a preliminary institutional structuring phase and remains subject to diligence and appropriate review.
+          Strategic asset located in El Roble, Alajuela, with existing activity and phased development potential within the Coyol-Airport ecosystem. The opportunity is in a preliminary institutional structuring phase and remains subject to diligence and appropriate review.
         </p>
         <div className="grid grid-cols-2 gap-5 mb-8 border-t border-b py-5" style={{ borderColor: GOLD20 }}>
           {[
@@ -748,7 +747,7 @@ function Proyectos() {
                   Status: Institutional pre-feasibility
                 </div>
                 <p className="text-base leading-relaxed mb-8" style={{ color: WHITE70 }}>
-                  Preliminary institutional structuring project in El Roble, Alajuela, with existing activity and phased development potential oriented to the Coyol-Airport ecosystem.
+                  Preliminary institutional opportunity in El Roble, Alajuela, with existing activity and phased development potential oriented to the Coyol-Airport ecosystem.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   {[
@@ -895,7 +894,7 @@ const CR_CARDS = [
   { icon: Scale, title: 'Legal stability', desc: 'A solid legal framework, established rule of law and contractual security for long-term investment review.' },
   { icon: Globe2, title: 'Free zones and foreign investment', desc: 'A well-established free zone regime with fiscal incentives and openness to international capital.' },
   { icon: Wifi, title: 'Infrastructure and connectivity', desc: 'Strategic logistics connectivity with access to North American, European and global markets.' },
-  { icon: Users, title: 'Talent and services', desc: 'Qualified human capital and a professional services ecosystem suited to institutional processes.' },
+  { icon: Users, title: 'Talent and capabilities', desc: 'Qualified human capital and a professional capabilities ecosystem suited to institutional processes.' },
   { icon: Building2, title: 'Real assets with institutional potential', desc: 'Real estate and infrastructure markets with opportunities that may benefit from disciplined structuring.' },
 ]
 
@@ -1038,7 +1037,7 @@ function Footer() {
               style={{ filter: 'drop-shadow(0 0 6px rgba(201,169,110,0.15))' }}
             />
             <p className="text-xs leading-relaxed mb-5" style={{ color: WHITE40 }}>
-              Boutique platform for institutional structuring of real assets in Costa Rica.
+              Relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.
             </p>
             <a
               href="https://www.linkedin.com/company/marquesadvisory"
@@ -1088,10 +1087,10 @@ function Footer() {
             </p>
             <ul className="flex flex-col divide-y" style={{ borderColor: GOLD20 }}>
               {[
-                { label: 'Real Estate', desc: 'Structuring and repositioning of real estate assets with an institutional lens.' },
+                { label: 'Real Assets', desc: 'Origination and structuring of real asset opportunities with an institutional lens.' },
                 { label: 'Infrastructure', desc: 'Platforms oriented to connectivity, logistics and strategic development.' },
                 { label: 'Private Capital', desc: 'Preparation and structuring of opportunities for sophisticated capital review.' },
-                { label: 'Project Finance', desc: 'Development of phased financing structures and cash-flowing asset strategies.' },
+                { label: 'Capital Readiness', desc: 'Development of phased financing logic and capital-facing asset strategies.' },
                 { label: 'Fiduciary Architecture', desc: 'Fiduciary-ready architecture for protection, governance and traceability.' },
                 { label: 'Institutional Structuring', desc: 'Conversion of complex opportunities into bankable and defensible platforms.' },
               ].map((item) => (

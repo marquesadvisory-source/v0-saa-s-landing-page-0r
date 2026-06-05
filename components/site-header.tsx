@@ -10,13 +10,12 @@ const GOLD20 = "rgba(201,169,110,0.20)"
 const WHITE70 = "rgba(255,255,255,0.70)"
 
 const navItems = [
-  { label: "About", href: "/about" },
+  { label: "Platform", href: "/about" },
   { label: "Who We Serve", href: "/who-we-serve" },
-  { label: "What We Do", href: "/what-we-do" },
-  { label: "Projects", href: "/projects" },
-  { label: "Investment Thesis", href: "/#tesis" },
-  { label: "Costa Rica", href: "/#costa-rica" },
-  { label: "Inquiry", href: "/institutional-inquiry" },
+  { label: "Capabilities", href: "/what-we-do" },
+  { label: "Opportunities", href: "/projects" },
+  { label: "Investment Framework", href: "/#tesis" },
+  { label: "Capital Partners", href: "/capital-partners" },
 ]
 
 export function SiteHeader() {

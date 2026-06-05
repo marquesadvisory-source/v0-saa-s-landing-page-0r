@@ -56,7 +56,7 @@ export default function PlazaLosMangosPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
-          { name: "Projects", path: "/projects" },
+          { name: "Institutional Opportunities", path: "/projects" },
           { name: "Plaza Los Mangos", path: "/projects/plaza-los-mangos" },
         ])}
       />

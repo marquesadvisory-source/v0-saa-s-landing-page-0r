@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
   title: {
     default:
-      "Marqués Advisory & Investments | Institutional Real Asset Structuring in Costa Rica",
+      "Marqués Advisory & Investments | Relationship-Driven Real Assets Platform",
     template: "%s | Marqués Advisory & Investments",
   },
   description:
-    "A boutique advisory and investment structuring platform focused on institutional preparation for real assets in Costa Rica, from origination to monetization.",
+    "Marqués Advisory & Investments is a relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.",
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
@@ -35,6 +35,11 @@ export const metadata: Metadata = {
   keywords: [
     "Marqués Advisory & Investments",
     "real assets Costa Rica",
+    "real assets platform",
+    "origination",
+    "capital readiness",
+    "institutional opportunities",
+    "capital partners",
     "institutional preparation",
     "investment structuring",
     "project finance Costa Rica",
@@ -45,9 +50,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Marqués Advisory & Investments | Institutional Real Asset Structuring in Costa Rica",
+      "Marqués Advisory & Investments | Relationship-Driven Real Assets Platform",
     description:
-      "A boutique advisory and investment structuring platform focused on institutional preparation for real assets in Costa Rica.",
+      "A relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.",
     url: siteConfig.domain,
     siteName: siteConfig.name,
     locale: siteConfig.locale,
@@ -65,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Marqués Advisory & Investments",
     description:
-      "Institutional preparation and structuring for real assets in Costa Rica.",
+      "Origination, structuring and capital readiness for real assets in Costa Rica.",
     images: [siteConfig.ogImage],
   },
   robots: {

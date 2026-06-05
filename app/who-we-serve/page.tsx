@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { JsonLd } from "@/components/json-ld"
+import { SiteHeader } from "@/components/site-header"
 import { breadcrumbSchema, createMetadata } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
 
@@ -39,18 +39,9 @@ export default function WhoWeServePage() {
           { name: "Who We Serve", path: "/who-we-serve" },
         ])}
       />
-      <section className="px-6 py-8">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <Link href="/" className="text-sm font-semibold tracking-[0.16em] text-[#C9A96E] uppercase">
-            Marqués Advisory & Investments
-          </Link>
-          <Link href="/what-we-do" className="border border-[#C9A96E] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#C9A96E]">
-            What We Do
-          </Link>
-        </div>
-      </section>
+      <SiteHeader />
 
-      <section className="px-6 pb-20 pt-16">
+      <section className="px-6 pb-20 pt-40">
         <div className="mx-auto max-w-7xl">
           <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">Who We Serve</p>
           <h1 className="max-w-4xl font-serif text-4xl leading-tight md:text-6xl">

@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site"
 export const metadata: Metadata = createMetadata({
   title: "Institutional Opportunities",
   description:
-    "Institutional opportunities, real asset structuring, capital readiness and Costa Rica investment platform context from Marqués Advisory & Investments.",
+    "Institutional opportunities, real assets platform context, origination, structuring, capital readiness and capital relationships in Costa Rica from Marqués Advisory & Investments.",
   path: "/projects",
 })
 
@@ -38,10 +38,16 @@ const pipelineStages = [
 
 const reviewFramework = ["Asset", "Thesis", "Structure", "Capital", "Execution", "Monetization"]
 
+const decimaAvenidaImage =
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/D%C3%A9cima%20Avenida%20Rdr-fqy4LI79dGShBO9WtIpkK9WaN4dQ2e.jpg"
+
 const opportunities = [
   {
     name: "Plaza Los Mangos",
     location: "Santa Cruz, Guanacaste, Costa Rica",
+    visualLabel: "Mixed-use institutional framework",
+    image: "/projects/plaza-los-mangos.png",
+    imagePosition: "center",
     assetClass: "Mixed-Use Real Asset Development",
     status: "Predevelopment & Institutional Structuring",
     stage: "Under Structuring / Capital Readiness",
@@ -54,6 +60,9 @@ const opportunities = [
   {
     name: "Décima Avenida",
     location: "El Roble, Alajuela, Costa Rica",
+    visualLabel: "Coyol-Airport growth corridor",
+    image: decimaAvenidaImage,
+    imagePosition: "58% 18%",
     assetClass: "Mixed-Use / Real Asset Opportunity",
     status: "Early-Stage Institutional Review",
     stage: "Origination / Under Structuring",
@@ -114,7 +123,7 @@ export default function ProjectsPage() {
               Selected real asset opportunities reviewed through MA&I&apos;s institutional preparation framework.
             </p>
             <p>
-              Projects shown on this page are not public offerings, investment solicitations or brokerage listings. They are institutional showcases of opportunities under evaluation, structuring or preparation.
+              Opportunities shown on this page are not public offerings, investment solicitations or brokerage listings. They are institutional showcases of real asset opportunities under evaluation, structuring or capital readiness preparation.
             </p>
           </div>
         </div>
@@ -172,18 +181,53 @@ export default function ProjectsPage() {
             {opportunities.map((opportunity) => (
               <article
                 key={opportunity.name}
-                className="grid overflow-hidden bg-[#112032] text-white lg:grid-cols-[0.85fr_1.15fr]"
+                className="grid overflow-hidden border border-[#C9A96E]/15 bg-[#112032] text-white shadow-[0_24px_70px_rgba(0,0,0,0.16)] lg:grid-cols-[0.95fr_1.05fr]"
               >
-                <div className="flex min-h-[340px] flex-col justify-end bg-[#0D1B2A] p-8 md:p-12">
-                  <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                    Institutional Opportunity
-                  </p>
-                  <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                    {opportunity.name}
-                  </h2>
-                  <p className="mt-5 max-w-md text-sm leading-7 text-white/60">
-                    {opportunity.location}
-                  </p>
+                <div className="relative min-h-[320px] overflow-hidden bg-[#0D1B2A] lg:min-h-full">
+                  {opportunity.image ? (
+                    <div
+                      className="absolute inset-0 bg-cover bg-no-repeat"
+                      style={{
+                        backgroundImage: `url(${opportunity.image})`,
+                        backgroundPosition: opportunity.imagePosition,
+                      }}
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_20%,rgba(201,169,110,0.26),transparent_30%),linear-gradient(135deg,rgba(17,32,50,0.95),rgba(13,27,42,0.94))]">
+                      <div className="absolute inset-x-8 top-10 h-px bg-[#C9A96E]/35" />
+                      <div className="absolute inset-y-10 left-10 w-px bg-[#C9A96E]/25" />
+                      <div className="absolute bottom-12 left-10 right-10 grid grid-cols-5 gap-3">
+                        {["Commercial", "Hospitality", "Residential", "Retail", "Parking"].map((component) => (
+                          <div key={component} className="min-h-24 border border-[#C9A96E]/25 bg-white/[0.04] p-3">
+                            <div className="mb-3 h-1.5 w-8 bg-[#C9A96E]/60" />
+                            <p className="text-[10px] uppercase leading-4 tracking-[0.12em] text-white/55">
+                              {component}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="absolute right-10 top-12 flex h-24 w-24 items-center justify-center border border-[#C9A96E]/30 bg-[#0D1B2A]/35">
+                        <Layers className="text-[#C9A96E]" size={30} />
+                      </div>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0D1B2A]/28 via-[#0D1B2A]/52 to-[#0D1B2A]/88" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0D1B2A] to-transparent" />
+
+                  <div className="relative flex min-h-[320px] flex-col justify-end p-8 md:p-12 lg:min-h-[520px]">
+                    <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
+                      Institutional Opportunity
+                    </p>
+                    <h2 className="font-serif text-3xl leading-tight md:text-4xl">
+                      {opportunity.name}
+                    </h2>
+                    <p className="mt-5 max-w-md text-sm leading-7 text-white/68">
+                      {opportunity.location}
+                    </p>
+                    <p className="mt-6 inline-flex w-fit border border-[#C9A96E]/35 bg-[#0D1B2A]/45 px-3 py-2 text-[10px] uppercase tracking-[0.14em] text-[#C9A96E]">
+                      {opportunity.visualLabel}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="p-8 md:p-12">
