@@ -60,8 +60,8 @@ const opportunities = [
     role: "Early-stage thesis development, structuring review and strategic positioning.",
     thesis:
       "A preliminary real asset opportunity under evaluation in the Coyol-Airport ecosystem, with potential for phased positioning subject to diligence, documentation and institutional review.",
-    href: null,
-    cta: "Institutional overview in preparation",
+    href: "/projects/decima-avenida",
+    cta: "View Institutional Overview",
   },
 ]
 
