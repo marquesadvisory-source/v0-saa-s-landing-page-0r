@@ -7,44 +7,66 @@ import { breadcrumbSchema, createMetadata } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
 
 export const metadata: Metadata = createMetadata({
-  title: "Projects",
+  title: "Institutional Opportunities",
   description:
-    "Institutional project framework for private real asset opportunities supported by Marqués Advisory & Investments in Costa Rica.",
+    "Institutional opportunities, real asset structuring, capital readiness and Costa Rica investment platform context from Marqués Advisory & Investments.",
   path: "/projects",
 })
 
-const projectFramework = [
+const pipelineStages = [
   {
     title: "Origination",
-    body: "Initial asset context, sponsor objectives, location logic and preliminary opportunity framing.",
+    body: "Identified opportunity or relationship-driven asset access.",
   },
   {
-    title: "Institutional preparation",
-    body: "Documentation, diligence readiness, risk framing and governance considerations before private evaluation.",
+    title: "Under Structuring",
+    body: "Opportunity being evaluated, documented and shaped into an institutional framework.",
   },
   {
-    title: "Structuring",
-    body: "Financial, legal and strategic structuring paths reviewed with appropriate professional counterparties.",
+    title: "Capital Readiness",
+    body: "Materials, diligence, financial logic and counterparties being prepared for capital review.",
   },
   {
-    title: "Monetization path",
-    body: "Private positioning of the opportunity once the asset, documentation and structure are sufficiently developed.",
+    title: "Execution Coordination",
+    body: "Legal, financial, technical and commercial stakeholders being coordinated.",
+  },
+  {
+    title: "Monetization",
+    body: "Exit, refinancing, sale, lease-up, stabilization or long-term ownership strategy.",
   },
 ]
 
-const projectFacts = [
-  { label: "Location", value: "El Roble, Alajuela" },
-  { label: "Asset profile", value: "Mixed-use real asset" },
-  { label: "Current stage", value: "Institutional pre-feasibility" },
-  { label: "Strategic context", value: "Coyol-Airport corridor" },
+const reviewFramework = ["Asset", "Thesis", "Structure", "Capital", "Execution", "Monetization"]
+
+const opportunities = [
+  {
+    name: "Plaza Los Mangos",
+    location: "Santa Cruz, Guanacaste, Costa Rica",
+    assetClass: "Mixed-Use Real Asset Development",
+    status: "Predevelopment & Institutional Structuring",
+    stage: "Under Structuring / Capital Readiness",
+    role: "Origination, structuring, capital readiness and institutional positioning.",
+    thesis:
+      "A mixed-use real asset opportunity currently in structuring, designed to integrate commercial, hospitality, residential, service-oriented retail and parking uses within a single institutional development framework.",
+    href: "/projects/plaza-los-mangos",
+    cta: "View Institutional Overview",
+  },
+  {
+    name: "Décima Avenida",
+    location: "El Roble, Alajuela, Costa Rica",
+    assetClass: "Mixed-Use / Real Asset Opportunity",
+    status: "Early-Stage Institutional Review",
+    stage: "Origination / Under Structuring",
+    role: "Early-stage thesis development, structuring review and strategic positioning.",
+    thesis:
+      "A preliminary real asset opportunity under evaluation in the Coyol-Airport ecosystem, with potential for phased positioning subject to diligence, documentation and institutional review.",
+    href: null,
+    cta: "Institutional overview in preparation",
+  },
 ]
 
-const plazaFacts = [
-  { label: "Location", value: "Santa Cruz, Guanacaste" },
-  { label: "Asset profile", value: "Mixed-use real asset development" },
-  { label: "Current stage", value: "Predevelopment & institutional structuring" },
-  { label: "Components", value: "Commercial, hospitality, residential and service-oriented uses" },
-]
+const pageDisclaimer =
+  "Information regarding specific opportunities is provided for institutional context only. Nothing on this page constitutes a public offering of securities, investment solicitation, real estate brokerage listing, guarantee of investment performance or invitation to invest. Additional materials may be shared only with qualified parties following appropriate review, confidentiality procedures and legal documentation."
 
 export default function ProjectsPage() {
   return (
@@ -53,19 +75,24 @@ export default function ProjectsPage() {
         data={[
           breadcrumbSchema([
             { name: "Home", path: "/" },
-            { name: "Projects", path: "/projects" },
+            { name: "Institutional Opportunities", path: "/projects" },
           ]),
           {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            name: "Projects",
+            name: "Institutional Opportunities",
             url: `${siteConfig.domain}/projects`,
             description:
-              "Institutional project framework for private real asset opportunities supported by Marqués Advisory & Investments.",
+              "Selected real asset opportunities reviewed through MA&I's institutional preparation framework in Costa Rica.",
             publisher: {
               "@type": "Organization",
               name: siteConfig.name,
             },
+            mainEntity: opportunities.map((opportunity) => ({
+              "@type": "CreativeWork",
+              name: opportunity.name,
+              description: opportunity.thesis,
+            })),
           },
         ]}
       />
@@ -76,18 +103,18 @@ export default function ProjectsPage() {
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-              Projects Framework
+              Institutional Pipeline
             </p>
             <h1 className="font-serif text-4xl leading-tight md:text-6xl">
-              Real asset opportunities reviewed through an institutional preparation lens.
+              Institutional Opportunities
             </h1>
           </div>
           <div className="space-y-6 text-base leading-8 text-white/70">
             <p>
-              Marqués Advisory & Investments presents projects as private opportunities in preparation, not as public offerings or investment products.
+              Selected real asset opportunities reviewed through MA&I&apos;s institutional preparation framework.
             </p>
             <p>
-              Each opportunity is framed through the platform thesis: from origination to monetization, with emphasis on documentation, diligence readiness, governance and appropriate professional review.
+              Projects shown on this page are not public offerings, investment solicitations or brokerage listings. They are institutional showcases of opportunities under evaluation, structuring or preparation.
             </p>
           </div>
         </div>
@@ -98,131 +125,118 @@ export default function ProjectsPage() {
           <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                Institutional Process
+                Opportunity Pipeline Stages
               </p>
               <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                A disciplined framework before any capital-facing conversation.
+                A disciplined path from asset access to monetization strategy.
               </h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
-              {projectFramework.map((item, index) => (
-                <article key={item.title} className="border border-[#E5DDD0] bg-white p-6">
+              {pipelineStages.map((stage, index) => (
+                <article
+                  key={stage.title}
+                  className="border border-[#E5DDD0] bg-white p-6"
+                >
                   <p className="mb-4 text-xs font-mono text-[#C9A96E]">
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="mb-3 text-base font-semibold">{item.title}</h3>
-                  <p className="text-sm leading-7 text-slate-600">{item.body}</p>
+                  <h3 className="mb-3 text-base font-semibold">{stage.title}</h3>
+                  <p className="text-sm leading-7 text-slate-600">{stage.body}</p>
                 </article>
               ))}
             </div>
           </div>
 
-          <article className="mb-10 grid overflow-hidden bg-[#112032] text-white lg:grid-cols-2">
-            <div className="flex min-h-[340px] flex-col justify-end bg-[#0D1B2A] p-8 md:p-12">
+          <div className="mb-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
               <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                Institutional Showcase
+                How MA&I Reviews Opportunities
               </p>
-              <h2 className="font-serif text-3xl leading-tight md:text-4xl">Plaza Los Mangos</h2>
-              <p className="mt-5 max-w-md text-sm leading-7 text-white/60">
-                Santa Cruz, Guanacaste, Costa Rica
-              </p>
+              <h2 className="font-serif text-3xl leading-tight md:text-4xl">
+                Each opportunity is reviewed through a repeatable institutional lens.
+              </h2>
             </div>
-            <div className="p-8 md:p-12">
-              <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                Project in Structuring
-              </p>
-              <div className="mb-6 inline-block border border-[#C9A96E]/40 bg-[#C9A96E]/10 px-3 py-1 text-xs uppercase tracking-[0.14em] text-[#C9A96E]">
-                Status: Predevelopment & institutional structuring
-              </div>
-              <p className="mb-8 text-sm leading-7 text-white/70">
-                Plaza Los Mangos is currently under structuring as a mixed-use real asset opportunity designed to integrate commercial, hospitality, residential and service-oriented uses within a single institutional development framework.
-              </p>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {reviewFramework.map((item, index) => (
+                <div key={item} className="border border-[#E5DDD0] bg-white p-5">
+                  <p className="mb-2 text-xs font-mono text-[#C9A96E]">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <p className="text-sm font-semibold">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-              <div className="mb-8 grid grid-cols-2 gap-5 border-y border-[#C9A96E]/20 py-6">
-                {plazaFacts.map((fact) => (
-                  <div key={fact.label}>
-                    <p className="mb-1 text-xs uppercase tracking-[0.12em] text-[#C9A96E]">
-                      {fact.label}
-                    </p>
-                    <p className="text-sm text-white">{fact.value}</p>
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                href="/projects/plaza-los-mangos"
-                className="inline-flex items-center gap-2 bg-[#C9A96E] px-6 py-3 text-sm font-semibold text-[#0D1B2A] transition-opacity hover:opacity-90"
+          <div className="grid gap-8">
+            {opportunities.map((opportunity) => (
+              <article
+                key={opportunity.name}
+                className="grid overflow-hidden bg-[#112032] text-white lg:grid-cols-[0.85fr_1.15fr]"
               >
-                View institutional showcase
-                <ArrowRight size={16} />
-              </Link>
-            </div>
-          </article>
+                <div className="flex min-h-[340px] flex-col justify-end bg-[#0D1B2A] p-8 md:p-12">
+                  <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
+                    Institutional Opportunity
+                  </p>
+                  <h2 className="font-serif text-3xl leading-tight md:text-4xl">
+                    {opportunity.name}
+                  </h2>
+                  <p className="mt-5 max-w-md text-sm leading-7 text-white/60">
+                    {opportunity.location}
+                  </p>
+                </div>
 
-          <article className="grid overflow-hidden bg-[#112032] text-white lg:grid-cols-2">
-            <div
-              className="min-h-[340px] bg-cover bg-center"
-              style={{
-                backgroundImage:
-                  "url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/D%C3%A9cima%20Avenida%20Rdr-fqy4LI79dGShBO9WtIpkK9WaN4dQ2e.jpg)",
-                backgroundPosition: "center top",
-              }}
-              aria-label="Décima Avenida project visual"
-            />
-            <div className="p-8 md:p-12">
-              <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                Project in Structuring
-              </p>
-              <h2 className="font-serif text-3xl leading-tight md:text-4xl">Décima Avenida</h2>
-              <div className="my-6 inline-block border border-[#C9A96E]/40 bg-[#C9A96E]/10 px-3 py-1 text-xs uppercase tracking-[0.14em] text-[#C9A96E]">
-                Status: Institutional pre-feasibility
-              </div>
-              <p className="mb-8 text-sm leading-7 text-white/70">
-                Décima Avenida is a preliminary mixed-use real asset opportunity in El Roble, Alajuela. The project is being reviewed through an institutional preparation framework focused on asset logic, documentation, phasing, governance and private diligence.
-              </p>
-
-              <div className="mb-8 grid grid-cols-2 gap-5 border-y border-[#C9A96E]/20 py-6">
-                {projectFacts.map((fact) => (
-                  <div key={fact.label}>
-                    <p className="mb-1 text-xs uppercase tracking-[0.12em] text-[#C9A96E]">
-                      {fact.label}
-                    </p>
-                    <p className="text-sm text-white">{fact.value}</p>
+                <div className="p-8 md:p-12">
+                  <div className="mb-6 inline-block border border-[#C9A96E]/40 bg-[#C9A96E]/10 px-3 py-1 text-xs uppercase tracking-[0.14em] text-[#C9A96E]">
+                    {opportunity.status}
                   </div>
-                ))}
-              </div>
+                  <p className="mb-8 text-sm leading-7 text-white/70">
+                    {opportunity.thesis}
+                  </p>
 
-              <div className="mb-8 grid gap-4 sm:grid-cols-2">
-                {[
-                  [Building2, "Asset review"],
-                  [FileText, "Documentation readiness"],
-                  [ShieldCheck, "Risk and governance"],
-                  [Layers, "Phasing logic"],
-                ].map(([Icon, label]) => {
-                  const ProjectIcon = Icon as typeof Building2
-                  return (
-                    <div key={label as string} className="flex items-center gap-3 text-sm text-white/70">
-                      <ProjectIcon size={18} className="text-[#C9A96E]" />
-                      <span>{label as string}</span>
+                  <div className="mb-8 grid gap-5 border-y border-[#C9A96E]/20 py-6 sm:grid-cols-2">
+                    {[
+                      ["Asset Class", opportunity.assetClass],
+                      ["Pipeline Stage", opportunity.stage],
+                      ["MA&I Role", opportunity.role],
+                      ["Review Basis", "Subject to diligence and institutional review"],
+                    ].map(([label, value]) => (
+                      <div key={label}>
+                        <p className="mb-1 text-xs uppercase tracking-[0.12em] text-[#C9A96E]">
+                          {label}
+                        </p>
+                        <p className="text-sm text-white">{value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {opportunity.href ? (
+                    <Link
+                      href={opportunity.href}
+                      className="inline-flex items-center gap-2 bg-[#C9A96E] px-6 py-3 text-sm font-semibold text-[#0D1B2A] transition-opacity hover:opacity-90"
+                    >
+                      {opportunity.cta}
+                      <ArrowRight size={16} />
+                    </Link>
+                  ) : (
+                    <div className="inline-flex items-center gap-2 border border-white/25 px-6 py-3 text-sm font-semibold text-white/70">
+                      {opportunity.cta}
                     </div>
-                  )
-                })}
-              </div>
-
-              <Link
-                href="/institutional-inquiry"
-                className="inline-flex items-center gap-2 bg-[#C9A96E] px-6 py-3 text-sm font-semibold text-[#0D1B2A] transition-opacity hover:opacity-90"
-              >
-                Request institutional information
-                <ArrowRight size={16} />
-              </Link>
-            </div>
-          </article>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="px-6 py-12">
-        <p className="mx-auto max-w-5xl text-xs leading-6 text-white/45">{siteConfig.disclaimer}</p>
+        <div className="mx-auto max-w-5xl">
+          <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
+            Institutional Disclaimer
+          </p>
+          <p className="text-xs leading-6 text-white/45">{pageDisclaimer}</p>
+        </div>
       </section>
     </main>
   )
