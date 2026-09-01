@@ -112,7 +112,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="bg-[#0D1B2A]">
+    <html lang="en" className="bg-background">
       <body className={`${montserrat.variable} ${playfair.variable} font-sans antialiased`}>
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         {children}
