@@ -4,7 +4,6 @@ import { ArrowRight, Building2, FileText, Layers, MapPin, ShieldCheck } from "lu
 import { SiteHeader } from "@/components/site-header"
 import { JsonLd } from "@/components/json-ld"
 import { breadcrumbSchema, createMetadata } from "@/lib/seo"
-import { siteConfig } from "@/lib/site"
 
 const projectDisclaimer =
   "Information regarding this project is provided for institutional context only. Nothing on this page constitutes a public offering of securities, investment solicitation, real estate brokerage listing, guarantee of investment performance or invitation to invest. Additional materials may be shared only with qualified parties following appropriate review, confidentiality procedures and legal documentation."
