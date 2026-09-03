@@ -9,14 +9,7 @@ const NAVY = "#0D1B2A"
 const GOLD20 = "rgba(201,169,110,0.20)"
 const WHITE70 = "rgba(255,255,255,0.70)"
 
-const navItems = [
-  { label: "Platform", href: "/about" },
-  { label: "Who We Serve", href: "/who-we-serve" },
-  { label: "Capabilities", href: "/what-we-do" },
-  { label: "Opportunities", href: "/projects" },
-  { label: "Investment Framework", href: "/investment-framework" },
-  { label: "Capital Partners", href: "/capital-partners" },
-]
+const navItems = siteConfig.nav.map((item) => ({ label: item.label, href: item.href }))
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
@@ -62,7 +55,7 @@ export function SiteHeader() {
         </nav>
 
         <a
-          href="/institutional-inquiry"
+          href="/contact"
           className="hidden items-center gap-2 border px-5 py-2 text-xs uppercase tracking-widest transition-colors hover:bg-[#C9A96E] hover:text-[#0D1B2A] lg:inline-flex"
           style={{ borderColor: GOLD, color: GOLD, fontWeight: 600, letterSpacing: "0.1em" }}
         >
@@ -96,7 +89,7 @@ export function SiteHeader() {
             </a>
           ))}
           <a
-            href="/institutional-inquiry"
+            href="/contact"
             className="mt-2 border px-5 py-3 text-center text-xs uppercase tracking-widest"
             style={{ borderColor: GOLD, color: GOLD, fontWeight: 600 }}
           >
