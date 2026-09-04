@@ -1,67 +1,7 @@
 import type { Metadata } from "next"
-import { JsonLd } from "@/components/json-ld"
-import { SiteHeader } from "@/components/site-header"
-import { breadcrumbSchema, createMetadata } from "@/lib/seo"
-import { siteConfig } from "@/lib/site"
+import { CtaBand, PageIntro, SiteFrame } from "@/components/editorial-shell"
+import { createMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = createMetadata({
-  title: "Platform",
-  description:
-    "Learn about Marqués Advisory & Investments, a relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.",
-  path: "/about",
-})
+export const metadata: Metadata = createMetadata({ title: "About Marqués", description: "Learn how Marqués Advisory & Investments connects international capital, qualified investments and Residency by Investment in Costa Rica.", path: "/about" })
 
-export default function AboutPage() {
-  return (
-    <main className="min-h-screen bg-[#0D1B2A] text-white">
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Platform", path: "/about" },
-        ])}
-      />
-      <SiteHeader />
-
-      <section className="px-6 pb-24 pt-40">
-        <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">Platform</p>
-            <h1 className="font-serif text-4xl leading-tight md:text-6xl">
-              A relationship-driven real assets platform in Costa Rica.
-            </h1>
-          </div>
-          <div className="space-y-6 text-base leading-8 text-white/70">
-            <p>
-              Marqués Advisory & Investments is a relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.
-            </p>
-            <p>
-              The platform supports asset owners, sponsors and capital-facing stakeholders in moving from origination to structuring, capital readiness, execution coordination and monetization.
-            </p>
-            <p>
-              Marqués Advisory & Investments is not positioned as a traditional real estate brokerage. Its work helps structure opportunities so they can be evaluated privately with greater clarity, discipline and institutional readiness.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#F5F1EB] px-6 py-20 text-[#0D1B2A]">
-        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
-          {[
-            ["Framework", "From origination to monetization."],
-            ["Focus", "Real assets, capital readiness and Costa Rica-based institutional opportunities."],
-            ["Approach", "Prudent structuring, private evaluation and documentation-led readiness."],
-          ].map(([title, body]) => (
-            <div key={title} className="border-l border-[#C9A96E] pl-6">
-              <h2 className="mb-3 text-sm font-semibold uppercase tracking-[0.14em] text-[#C9A96E]">{title}</h2>
-              <p className="text-sm leading-7 text-slate-700">{body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="px-6 py-12">
-        <p className="mx-auto max-w-5xl text-xs leading-6 text-white/45">{siteConfig.disclaimer}</p>
-      </section>
-    </main>
-  )
-}
+export default function AboutPage() { return <SiteFrame><PageIntro eyebrow="About Marqués" title="Global advisory. Local execution."><p>Marqués Advisory & Investments is a Costa Rica-based investment advisory platform and local investment partner for Residency by Investment.</p></PageIntro><main><section className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-24"><div className="space-y-6 text-base leading-8 text-muted-foreground"><p>I am the Founder & Managing Director of Marqués Advisory & Investments, a Costa Rica-based investment advisory platform and local investment partner for Residency by Investment.</p><p>I work with international investors, families and wealth migration firms seeking to access Costa Rica through qualified investment opportunities, institutional investment structuring and Real Assets.</p><p>Our focus is on productive and income-generating assets across hospitality, commercial, industrial, residential and mixed-use real estate, connecting international capital with local opportunities and execution.</p><p>For investors and wealth migration firms looking for a trusted investment partner in Costa Rica, Marqués Advisory & Investments provides the local connection between capital, qualified investments and Residency by Investment.</p></div><div className="mt-16 grid gap-8 border-t border-border pt-10 md:grid-cols-3">{[["Residency by Investment","Connecting qualified investment with the Costa Rica residency pathway."],["Institutional Structuring","Coordinating investment structure, due diligence and relevant professional counterparties."],["Real Assets","Hospitality, commercial, industrial, residential and mixed-use opportunities in Costa Rica."]].map(([title, body]) => <div key={title}><p className="text-[10px] font-bold uppercase tracking-[0.16em] text-accent">{title}</p><p className="mt-4 text-sm leading-6 text-primary">{body}</p></div>)}</div></section></main><CtaBand title="Build a considered relationship with Costa Rica." href="/contact"/></SiteFrame> }

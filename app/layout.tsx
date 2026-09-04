@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
   title: {
     default:
-      "Márquez Advisory & Investments | Global mobility and real assets in Costa Rica",
+      "Marqués Advisory & Investments | Global mobility and real assets in Costa Rica",
     template: "%s | Marqués Advisory & Investments",
   },
   description:
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Márquez Advisory & Investments | Global mobility and real assets in Costa Rica",
+      "Marqués Advisory & Investments | Global mobility and real assets in Costa Rica",
     description:
       "A relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.",
     url: siteConfig.domain,
