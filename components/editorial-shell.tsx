@@ -1,15 +1,10 @@
 import Link from "next/link"
-import { ArrowUpRight, Menu } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { siteConfig } from "@/lib/site"
+import { SiteHeader } from "@/components/site-header"
 
 export function EditorialHeader() {
-  return <header className="border-b border-border bg-background">
-    <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-8">
-      <Link href="/" className="flex items-center gap-3" aria-label="Marqués Advisory home"><span className="flex h-9 w-9 items-center justify-center border border-accent font-serif text-xl text-accent">M</span><span className="text-[10px] font-semibold uppercase leading-tight tracking-[0.18em] text-primary">Marqués<br />Advisory & Investments</span></Link>
-      <nav className="hidden items-center gap-7 md:flex" aria-label="Primary navigation">{siteConfig.nav.map((item) => <Link key={item.href} href={item.href} className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-primary">{item.label}</Link>)}</nav>
-      <div className="flex items-center gap-3"><Link href="/contact" className="hidden items-center gap-2 border border-primary px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:flex">Start a conversation <ArrowUpRight size={13} /></Link><button className="rounded border border-border p-2 text-primary md:hidden" aria-label="Open menu"><Menu size={18} /></button></div>
-    </div>
-  </header>
+  return <SiteHeader />
 }
 
 export function Footer() {
