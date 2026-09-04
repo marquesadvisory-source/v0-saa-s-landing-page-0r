@@ -1,0 +1,44 @@
+import type { Locale } from "@/lib/home-content"
+
+export const residencyContent: Record<Locale, {
+  tabs: { about: string; program: string; realEstate: string }
+  countries: { kicker: string; title: string; body: string; type: string; action: string }
+  about: { kicker: string; title: string; body: string; note: string; action: string }
+  program: { kicker: string; title: string; body: string; investment: string; investmentDetail: string; benefit: string; benefitDetail: string; enquiry: string; factSheet: string }
+  realEstate: { kicker: string; title: string; body: string; status: string; statusDetail: string; enquiry: string }
+  investments: { kicker: string; title: string; body: string; realEstate: string; realAssets: string; comingSoon: string; enquiry: string }
+}> = {
+  en: {
+    tabs: { about: "About Costa Rica", program: "Residence by Investment", realEstate: "Real Estate" },
+    countries: { kicker: "Residence programs", title: "Establish your presence in Costa Rica.", body: "Our first residence-program jurisdiction connects private advisory, local execution and selected investment opportunities.", type: "Residence program", action: "View program" },
+    about: { kicker: "Country profile", title: "Costa Rica", body: "Costa Rica combines institutional continuity, international connectivity, exceptional natural assets and a distinctive quality of life for families establishing a long-term presence.", note: "MA&I coordinates the residence pathway and, when relevant, the investment and professional relationships required for local execution.", action: "Explore residence pathways" },
+    program: { kicker: "Costa Rica residence program", title: "Become a Resident in Costa Rica.", body: "A coordinated route for investors, pensioners and rentiers, from initial profile review through local execution with qualified professionals.", investment: "Pathways", investmentDetail: "Investor · Pensioner · Rentier", benefit: "Private coordination", benefitDetail: "One advisory relationship from profile review to next steps", enquiry: "Enquiry", factSheet: "Fact Sheet" },
+    realEstate: { kicker: "Costa Rica real estate", title: "Real estate connected to your Costa Rica strategy.", body: "Selected properties that may support a residence or broader investment strategy will appear only after MA&I has reviewed their status and available documentation.", status: "Portfolio in preparation", statusDetail: "No property is represented as residence-eligible until its structure and supporting evidence have been reviewed.", enquiry: "Real estate enquiry" },
+    investments: { kicker: "Marques Investments", title: "Private investment opportunities in Costa Rica.", body: "Selected real estate, real assets and structured opportunities sourced and coordinated for private review. The investment platform also serves investors who are not seeking residence.", realEstate: "Real Estate", realAssets: "Structured Real Assets", comingSoon: "Opportunities coming soon", enquiry: "Investment enquiry" },
+  },
+  es: {
+    tabs: { about: "Acerca de Costa Rica", program: "Residencia por inversión", realEstate: "Bienes raíces" },
+    countries: { kicker: "Programas de residencia", title: "Establezca su presencia en Costa Rica.", body: "Nuestra primera jurisdicción conecta asesoría privada, ejecución local y oportunidades seleccionadas de inversión.", type: "Programa de residencia", action: "Ver programa" },
+    about: { kicker: "Perfil del país", title: "Costa Rica", body: "Costa Rica combina continuidad institucional, conectividad internacional, activos naturales excepcionales y una calidad de vida distintiva para familias que desean establecer una presencia de largo plazo.", note: "MA&I coordina la ruta de residencia y, cuando corresponde, la inversión y las relaciones profesionales necesarias para la ejecución local.", action: "Explorar rutas de residencia" },
+    program: { kicker: "Programa de residencia en Costa Rica", title: "Conviértase en residente de Costa Rica.", body: "Una ruta coordinada para inversionistas, pensionados y rentistas, desde la revisión inicial del perfil hasta la ejecución local con profesionales calificados.", investment: "Rutas", investmentDetail: "Inversionista · Pensionado · Rentista", benefit: "Coordinación privada", benefitDetail: "Una relación de asesoría desde la revisión del perfil hasta los próximos pasos", enquiry: "Consulta", factSheet: "Fact Sheet" },
+    realEstate: { kicker: "Bienes raíces en Costa Rica", title: "Bienes raíces conectados con su estrategia en Costa Rica.", body: "Las propiedades seleccionadas que puedan apoyar una estrategia de residencia o inversión aparecerán únicamente después de que MA&I revise su estado y documentación disponible.", status: "Portafolio en preparación", statusDetail: "Ninguna propiedad se presenta como elegible para residencia hasta revisar su estructura y evidencia de respaldo.", enquiry: "Consulta de bienes raíces" },
+    investments: { kicker: "Marques Investments", title: "Oportunidades privadas de inversión en Costa Rica.", body: "Bienes raíces, activos reales y oportunidades estructuradas seleccionadas para revisión privada. La plataforma también atiende inversionistas que no buscan residencia.", realEstate: "Bienes raíces", realAssets: "Activos reales estructurados", comingSoon: "Oportunidades próximamente", enquiry: "Consulta de inversión" },
+  },
+  fr: {
+    tabs: { about: "À propos du Costa Rica", program: "Résidence par investissement", realEstate: "Immobilier" },
+    countries: { kicker: "Programmes de résidence", title: "Établissez votre présence au Costa Rica.", body: "Notre première juridiction relie conseil privé, exécution locale et opportunités d’investissement sélectionnées.", type: "Programme de résidence", action: "Voir le programme" },
+    about: { kicker: "Profil du pays", title: "Costa Rica", body: "Le Costa Rica réunit continuité institutionnelle, connectivité internationale, patrimoine naturel exceptionnel et qualité de vie distinctive pour les familles souhaitant s’y établir durablement.", note: "MA&I coordonne le parcours de résidence et, le cas échéant, l’investissement et les relations professionnelles nécessaires à l’exécution locale.", action: "Explorer les parcours de résidence" },
+    program: { kicker: "Programme de résidence au Costa Rica", title: "Devenez résident au Costa Rica.", body: "Un parcours coordonné pour investisseurs, retraités et rentiers, de l’examen initial du profil à l’exécution locale avec des professionnels qualifiés.", investment: "Parcours", investmentDetail: "Investisseur · Retraité · Rentier", benefit: "Coordination privée", benefitDetail: "Une relation de conseil, de l’étude du profil aux prochaines étapes", enquiry: "Demande", factSheet: "Fiche d’information" },
+    realEstate: { kicker: "Immobilier au Costa Rica", title: "L’immobilier au service de votre stratégie au Costa Rica.", body: "Les biens sélectionnés susceptibles de soutenir une stratégie de résidence ou d’investissement ne seront présentés qu’après examen de leur statut et de la documentation disponible par MA&I.", status: "Portefeuille en préparation", statusDetail: "Aucun bien n’est présenté comme admissible à la résidence avant examen de sa structure et des justificatifs disponibles.", enquiry: "Demande immobilière" },
+    investments: { kicker: "Marques Investments", title: "Opportunités d’investissement privées au Costa Rica.", body: "Immobilier, actifs réels et opportunités structurées sélectionnés pour un examen privé. La plateforme s’adresse également aux investisseurs ne recherchant pas la résidence.", realEstate: "Immobilier", realAssets: "Actifs réels structurés", comingSoon: "Opportunités bientôt disponibles", enquiry: "Demande d’investissement" },
+  },
+  zh: {
+    tabs: { about: "关于哥斯达黎加", program: "投资居留", realEstate: "房地产" },
+    countries: { kicker: "居留项目", title: "在哥斯达黎加建立您的长期布局。", body: "我们的首个居留项目地区，将私人咨询、本地执行与精选投资机会连接起来。", type: "居留项目", action: "查看项目" },
+    about: { kicker: "国家概况", title: "哥斯达黎加", body: "哥斯达黎加兼具制度延续性、国际连接、卓越自然资源与独特生活品质，适合希望建立长期布局的家庭。", note: "MA&I 协调居留路径，并在适用时协调投资及本地执行所需的专业关系。", action: "了解居留路径" },
+    program: { kicker: "哥斯达黎加居留项目", title: "成为哥斯达黎加居民。", body: "为投资者、退休人士及稳定收入人士提供协调一致的路径，从初步背景评估到与合资格专业人士共同推进本地执行。", investment: "申请路径", investmentDetail: "投资者 · 退休人士 · 稳定收入人士", benefit: "私人协调", benefitDetail: "从背景评估到下一步安排，由同一咨询关系协调", enquiry: "提交咨询", factSheet: "项目概览" },
+    realEstate: { kicker: "哥斯达黎加房地产", title: "让房地产与您的哥斯达黎加策略相连接。", body: "可能支持居留或更广泛投资策略的精选物业，仅在 MA&I 审核其状态及现有文件后展示。", status: "投资组合筹备中", statusDetail: "在完成结构及支持文件审核前，任何物业均不会被标示为符合居留条件。", enquiry: "房地产咨询" },
+    investments: { kicker: "Marques Investments", title: "哥斯达黎加私人投资机会。", body: "为私人审核而筛选及协调的房地产、实体资产与结构化机会。该平台同样服务于不以居留为目标的投资者。", realEstate: "房地产", realAssets: "结构化实体资产", comingSoon: "投资机会即将推出", enquiry: "投资咨询" },
+  },
+}
+

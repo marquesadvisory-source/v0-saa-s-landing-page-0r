@@ -4,7 +4,6 @@ import { ArrowRight, Building2, FileText, Layers, MapPin, ShieldCheck } from "lu
 import { SiteHeader } from "@/components/site-header"
 import { JsonLd } from "@/components/json-ld"
 import { breadcrumbSchema, createMetadata } from "@/lib/seo"
-import { siteConfig } from "@/lib/site"
 
 const heroImage =
   "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/D%C3%A9cima%20Avenida%20Rdr-fqy4LI79dGShBO9WtIpkK9WaN4dQ2e.jpg"

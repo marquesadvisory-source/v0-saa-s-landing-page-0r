@@ -1,109 +1,207 @@
 "use client"
 
+import Image from "next/image"
+import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Menu, X } from "lucide-react"
-import { siteConfig } from "@/lib/site"
+import { ChevronDown, Menu, X } from "lucide-react"
+import { homeContent, localeLabels, type Locale } from "@/lib/home-content"
 
-const GOLD = "#C9A96E"
-const NAVY = "#0D1B2A"
-const GOLD20 = "rgba(201,169,110,0.20)"
-const WHITE70 = "rgba(255,255,255,0.70)"
+type SiteHeaderProps = {
+  locale?: Locale
+  onLocaleChange?: (locale: Locale) => void
+}
 
-const navItems = [
-  { label: "Platform", href: "/about" },
-  { label: "Who We Serve", href: "/who-we-serve" },
-  { label: "Capabilities", href: "/what-we-do" },
-  { label: "Opportunities", href: "/projects" },
-  { label: "Investment Framework", href: "/investment-framework" },
-  { label: "Capital Partners", href: "/capital-partners" },
-]
+const locales = Object.keys(localeLabels) as Locale[]
+const localeStorageKey = "mai.locale.v1"
 
-export function SiteHeader() {
+export function SiteHeader({ locale = "en", onLocaleChange }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const nav = homeContent[locale].nav
 
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 50)
+    const update = () => setScrolled(window.scrollY > 24)
     update()
-    window.addEventListener("scroll", update)
+    window.addEventListener("scroll", update, { passive: true })
     return () => window.removeEventListener("scroll", update)
   }, [])
 
+  useEffect(() => {
+    document.documentElement.lang = locale === "zh" ? "zh-CN" : locale
+  }, [locale])
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem(localeStorageKey) as Locale | null
+    if (saved && locales.includes(saved) && saved !== locale) onLocaleChange?.(saved)
+  }, [locale, onLocaleChange])
+
+  const setLanguage = (nextLocale: Locale) => {
+    window.localStorage.setItem(localeStorageKey, nextLocale)
+    onLocaleChange?.(nextLocale)
+    setOpen(false)
+  }
+
   return (
     <header
-      className="fixed left-0 right-0 top-0 z-50 transition-all duration-300"
-      style={{
-        backgroundColor: scrolled ? "rgba(13,27,42,0.97)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? `1px solid ${GOLD20}` : "none",
-      }}
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled || open
+          ? "border-[#c7a66a]/20 bg-[#091725]/95 shadow-[0_14px_40px_rgba(3,12,20,.16)] backdrop-blur-xl"
+          : "border-white/10 bg-[#091725]/70 backdrop-blur-md"
+      }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="/" className="flex shrink-0 items-center gap-3">
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20sin%20fondo-76W6yyCO5gUzFF2qWEPYIWgP3amG1g.png"
-            alt={siteConfig.name}
-            className="h-14 w-auto object-contain"
-            style={{ filter: "drop-shadow(0 0 8px rgba(201,169,110,0.18))" }}
+      <div className="mx-auto flex h-[88px] max-w-[1440px] items-center justify-between px-5 md:px-8">
+        <Link href="/" aria-label="Marques Advisory & Investments home" className="relative z-10 flex items-center">
+          <Image
+            src="/brand/marques-logo.png"
+            alt="Marques Advisory & Investments"
+            width={126}
+            height={82}
+            priority
+            className="h-[72px] w-auto object-contain md:h-[78px]"
           />
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-xs uppercase tracking-widest transition-colors hover:text-[#C9A96E]"
-              style={{ color: WHITE70, fontWeight: 500, letterSpacing: "0.08em" }}
+        <nav aria-label="Primary navigation" className="hidden items-center gap-7 xl:flex">
+          <div className="group relative">
+            <button
+              type="button"
+              aria-haspopup="true"
+              className="flex min-h-11 items-center gap-1.5 text-[12px] font-medium uppercase tracking-[0.12em] text-white/78 transition-colors hover:text-[#d7b779] focus-visible:text-[#d7b779]"
             >
-              {item.label}
-            </a>
-          ))}
+              {nav.program}
+              <ChevronDown aria-hidden="true" size={14} />
+            </button>
+            <div className="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+              <Link
+                href="/countries"
+                className="grid grid-cols-[42px_1fr] items-center gap-4 border border-[#c7a66a]/25 bg-[#f5f0e7] p-5 text-[#0b1b2a] shadow-2xl transition-colors hover:bg-white"
+              >
+                <Image src="/costa-rica/coat-of-arms.svg" alt="" width={42} height={46} className="h-11 w-auto" />
+                <span>
+                  <strong className="block font-serif text-xl font-medium">{nav.costaRica}</strong>
+                  <span className="mt-1 block text-[11px] uppercase tracking-[0.12em] text-[#8d6c34]">
+                    {nav.costaRicaDetail}
+                  </span>
+                </span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="group relative">
+            <button
+              type="button"
+              aria-haspopup="true"
+              className="flex min-h-11 items-center gap-1.5 text-[12px] font-medium uppercase tracking-[0.12em] text-white/78 transition-colors hover:text-[#d7b779] focus-visible:text-[#d7b779]"
+            >
+              {nav.advisory}
+              <ChevronDown aria-hidden="true" size={14} />
+            </button>
+            <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+              <div className="border border-[#c7a66a]/20 bg-[#0d2031] p-2 shadow-2xl">
+                {[
+                  [nav.investor, "investor"],
+                  [nav.pensioner, "pensioner"],
+                  [nav.rentier, "rentier"],
+                ].map(([label, route]) => (
+                  <Link
+                    key={route}
+                    href={`/residency#${route}`}
+                    className="block border-b border-white/8 px-4 py-3 text-sm text-white/76 transition-colors last:border-0 hover:bg-white/5 hover:text-[#d7b779]"
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <Link href="/investments" className="text-[12px] font-medium uppercase tracking-[0.12em] text-white/78 transition-colors hover:text-[#d7b779]">
+            {nav.investments}
+          </Link>
+          <Link href="/#experience" className="text-[12px] font-medium uppercase tracking-[0.12em] text-white/78 transition-colors hover:text-[#d7b779]">
+            {nav.experience}
+          </Link>
         </nav>
 
-        <a
-          href="/institutional-inquiry"
-          className="hidden items-center gap-2 border px-5 py-2 text-xs uppercase tracking-widest transition-colors hover:bg-[#C9A96E] hover:text-[#0D1B2A] lg:inline-flex"
-          style={{ borderColor: GOLD, color: GOLD, fontWeight: 600, letterSpacing: "0.1em" }}
-        >
-          Institutional Inquiry
-        </a>
+        <div className="hidden items-center gap-5 xl:flex">
+          <div className="flex items-center gap-1 border-r border-white/15 pr-5" aria-label="Language">
+            {locales.map((item) => (
+              <button
+                key={item}
+                type="button"
+                onClick={() => setLanguage(item)}
+                aria-pressed={item === locale}
+                className={`min-h-9 min-w-9 px-1 text-[11px] tracking-[0.08em] transition-colors ${
+                  item === locale ? "text-[#d7b779]" : "text-white/45 hover:text-white"
+                }`}
+              >
+                {localeLabels[item]}
+              </button>
+            ))}
+          </div>
+          <Link
+            href="/residence-inquiry"
+            className="inline-flex min-h-11 items-center border border-[#c7a66a] px-5 text-[11px] font-semibold uppercase tracking-[0.13em] text-[#d7b779] transition-colors hover:bg-[#c7a66a] hover:text-[#091725]"
+          >
+            {nav.consultation}
+          </Link>
+        </div>
 
         <button
-          className="p-2 lg:hidden"
-          style={{ color: GOLD }}
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
+          type="button"
+          aria-label={nav.menu}
+          aria-expanded={open}
+          onClick={() => setOpen((value) => !value)}
+          className="flex min-h-11 min-w-11 items-center justify-center text-[#d7b779] xl:hidden"
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X aria-hidden="true" size={24} /> : <Menu aria-hidden="true" size={24} />}
         </button>
       </div>
 
-      {open && (
-        <div
-          className="flex flex-col gap-4 px-6 pb-6 lg:hidden"
-          style={{ backgroundColor: "rgba(13,27,42,0.98)", borderTop: `1px solid ${GOLD20}` }}
-        >
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="border-b py-2 text-left text-sm transition-colors hover:text-[#C9A96E]"
-              style={{ color: WHITE70, borderColor: GOLD20 }}
-            >
-              {item.label}
-            </a>
-          ))}
-          <a
-            href="/institutional-inquiry"
-            className="mt-2 border px-5 py-3 text-center text-xs uppercase tracking-widest"
-            style={{ borderColor: GOLD, color: GOLD, fontWeight: 600 }}
-          >
-            Institutional Inquiry
-          </a>
+      {open ? (
+        <div className="max-h-[calc(100vh-88px)] overflow-y-auto border-t border-white/10 bg-[#091725] px-5 py-6 xl:hidden">
+          <nav aria-label="Mobile navigation" className="mx-auto flex max-w-xl flex-col">
+            <p className="mb-2 text-[10px] uppercase tracking-[0.16em] text-[#d7b779]">{nav.program}</p>
+            <Link href="/countries" onClick={() => setOpen(false)} className="border-b border-white/10 py-3 text-base text-white">
+              {nav.costaRica} · {nav.costaRicaDetail}
+            </Link>
+            <p className="mb-2 mt-6 text-[10px] uppercase tracking-[0.16em] text-[#d7b779]">{nav.advisory}</p>
+            {[
+              [nav.investor, "investor"],
+              [nav.pensioner, "pensioner"],
+              [nav.rentier, "rentier"],
+            ].map(([label, route]) => (
+              <Link key={route} href={`/residency#${route}`} onClick={() => setOpen(false)} className="border-b border-white/10 py-3 text-base text-white/80">
+                {label}
+              </Link>
+            ))}
+            <Link href="/investments" onClick={() => setOpen(false)} className="border-b border-white/10 py-4 text-base text-white/80">
+              {nav.investments}
+            </Link>
+            <Link href="/#experience" onClick={() => setOpen(false)} className="border-b border-white/10 py-4 text-base text-white/80">
+              {nav.experience}
+            </Link>
+            <div className="my-5 flex flex-wrap gap-2" aria-label="Language">
+              {locales.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() => setLanguage(item)}
+                  aria-pressed={item === locale}
+                  className={`min-h-11 min-w-12 border px-3 text-xs ${
+                    item === locale ? "border-[#c7a66a] text-[#d7b779]" : "border-white/15 text-white/60"
+                  }`}
+                >
+                  {localeLabels[item]}
+                </button>
+              ))}
+            </div>
+            <Link href="/residence-inquiry" onClick={() => setOpen(false)} className="mt-2 bg-[#c7a66a] px-5 py-4 text-center text-xs font-semibold uppercase tracking-[0.13em] text-[#091725]">
+              {nav.consultation}
+            </Link>
+          </nav>
         </div>
-      )}
+      ) : null}
     </header>
   )
 }

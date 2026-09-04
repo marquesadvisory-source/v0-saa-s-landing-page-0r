@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Building2, FileText, Layers, ShieldCheck } from "lucide-react"
+import { ArrowRight, Layers } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { JsonLd } from "@/components/json-ld"
 import { breadcrumbSchema, createMetadata } from "@/lib/seo"
