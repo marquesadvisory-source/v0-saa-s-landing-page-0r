@@ -6,7 +6,7 @@ export const siteConfig = {
   description:
     "Independent advisory for global mobility through Costa Rica residency and carefully structured real assets investment.",
   locale: "en_US",
-  email: "advisory@marquezadvisory.com",
+  email: "info@marquescr.com",
   phone: "+506 72679806",
   callbackForm: "https://forms.zohopublic.com/presidenciamarq1/form/CallbackRequest/formperma/6XDt5Ynkv1LDfRqtebKiISldzdn2WFP-WrNCLDXhTC4",
   location: "Costa Rica",
