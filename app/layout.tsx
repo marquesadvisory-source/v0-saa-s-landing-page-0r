@@ -1,22 +1,26 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Montserrat, Playfair_Display } from "next/font/google"
+import { Cormorant_Garamond, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { EnquiryProvider } from "@/components/enquiry-provider"
+import { FixedCallback } from "@/components/fixed-callback"
+import { LanguageProvider } from "@/components/language-provider"
 import { JsonLd } from "@/components/json-ld"
 import { organizationSchema, websiteSchema } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
+import { isHostingPreview } from "@/lib/crawl-policy"
 import "./globals.css"
 
-const montserrat = Montserrat({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-montserrat",
+  variable: "--font-inter",
 })
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-playfair",
+  variable: "--font-cormorant",
 })
 
 export const metadata: Metadata = {
@@ -60,8 +64,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
+        width: 1672,
+        height: 941,
         alt: siteConfig.name,
       },
     ],
@@ -74,11 +78,11 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   robots: {
-    index: true,
-    follow: true,
+    index: !isHostingPreview(),
+    follow: !isHostingPreview(),
     googleBot: {
-      index: true,
-      follow: true,
+      index: !isHostingPreview(),
+      follow: !isHostingPreview(),
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
@@ -113,9 +117,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-[#0D1B2A]">
-      <body className={`${montserrat.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}>
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
-        {children}
+        <LanguageProvider><EnquiryProvider>{children}<FixedCallback /></EnquiryProvider></LanguageProvider>
         <Analytics />
       </body>
     </html>

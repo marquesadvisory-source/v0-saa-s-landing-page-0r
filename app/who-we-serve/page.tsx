@@ -1,3 +1,4 @@
+import { T } from "@/components/language-provider"
 import type { Metadata } from "next"
 import { JsonLd } from "@/components/json-ld"
 import { SiteHeader } from "@/components/site-header"
@@ -43,13 +44,13 @@ export default function WhoWeServePage() {
 
       <section className="px-6 pb-20 pt-40">
         <div className="mx-auto max-w-7xl">
-          <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">Who We Serve</p>
+          <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]"><T>Who We Serve</T></p>
           <h1 className="max-w-4xl font-serif text-4xl leading-tight md:text-6xl">
-            Built for stakeholders who need real asset opportunities to be privately evaluated with institutional discipline.
-          </h1>
+            <T>Built for stakeholders who need real asset opportunities to be privately evaluated with institutional discipline.
+          </T></h1>
           <p className="mt-8 max-w-3xl text-base leading-8 text-white/70">
-            Marqués Advisory & Investments supports conversations where assets, capital, legal structure and documentation must align before an opportunity can move forward responsibly.
-          </p>
+            <T>Marqués Advisory & Investments supports conversations where assets, capital, legal structure and documentation must align before an opportunity can move forward responsibly.
+          </T></p>
         </div>
       </section>
 
@@ -57,15 +58,15 @@ export default function WhoWeServePage() {
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {audiences.map((audience) => (
             <article key={audience.title} className="border border-[#E5DDD0] bg-white p-8">
-              <h2 className="mb-4 text-lg font-semibold">{audience.title}</h2>
-              <p className="text-sm leading-7 text-slate-600">{audience.body}</p>
+              <h2 className="mb-4 text-lg font-semibold"><T>{audience.title}</T></h2>
+              <p className="text-sm leading-7 text-slate-600"><T>{audience.body}</T></p>
             </article>
           ))}
         </div>
       </section>
 
       <section className="px-6 py-12">
-        <p className="mx-auto max-w-5xl text-xs leading-6 text-white/45">{siteConfig.disclaimer}</p>
+        <p className="mx-auto max-w-5xl text-xs leading-6 text-white/45"><T>{siteConfig.disclaimer}</T></p>
       </section>
     </main>
   )

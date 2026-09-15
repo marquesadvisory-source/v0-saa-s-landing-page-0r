@@ -1,108 +1,94 @@
 "use client"
+import { locales, localeDefinitions } from "@/lib/i18n/config"
+import { T, useLanguage } from "@/components/language-provider"
 
-import { useEffect, useState } from "react"
-import { Menu, X } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { ArrowUpRight, Menu, Phone, X } from "lucide-react"
 import { siteConfig } from "@/lib/site"
-
-const GOLD = "#C9A96E"
-const NAVY = "#0D1B2A"
-const GOLD20 = "rgba(201,169,110,0.20)"
-const WHITE70 = "rgba(255,255,255,0.70)"
-
-const navItems = [
-  { label: "Platform", href: "/about" },
-  { label: "Who We Serve", href: "/who-we-serve" },
-  { label: "Capabilities", href: "/what-we-do" },
-  { label: "Opportunities", href: "/projects" },
-  { label: "Investment Framework", href: "/investment-framework" },
-  { label: "Capital Partners", href: "/capital-partners" },
-]
+import styles from "./site-header.module.css"
+import { EnquiryButton } from "./enquiry-provider"
 
 export function SiteHeader() {
-  const [scrolled, setScrolled] = useState(false)
+  const {locale, setLocale, t} = useLanguage()
   const [open, setOpen] = useState(false)
+  const toggleRef = useRef<HTMLButtonElement>(null)
+  const pathname = usePathname()
 
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 50)
-    update()
-    window.addEventListener("scroll", update)
-    return () => window.removeEventListener("scroll", update)
-  }, [])
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && open) {
+        setOpen(false)
+        toggleRef.current?.focus()
+      }
+    }
+    const desktop = window.matchMedia("(min-width: 1100px)")
+    const closeOnDesktop = () => { if (desktop.matches) setOpen(false) }
+    document.addEventListener("keydown", closeOnEscape)
+    desktop.addEventListener("change", closeOnDesktop)
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape)
+      desktop.removeEventListener("change", closeOnDesktop)
+    }
+  }, [open])
 
   return (
-    <header
-      className="fixed left-0 right-0 top-0 z-50 transition-all duration-300"
-      style={{
-        backgroundColor: scrolled ? "rgba(13,27,42,0.97)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? `1px solid ${GOLD20}` : "none",
-      }}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="/" className="flex shrink-0 items-center gap-3">
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20sin%20fondo-76W6yyCO5gUzFF2qWEPYIWgP3amG1g.png"
-            alt={siteConfig.name}
-            className="h-14 w-auto object-contain"
-            style={{ filter: "drop-shadow(0 0 8px rgba(201,169,110,0.18))" }}
-          />
-        </a>
-
-        <nav className="hidden items-center gap-6 lg:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-xs uppercase tracking-widest transition-colors hover:text-[#C9A96E]"
-              style={{ color: WHITE70, fontWeight: 500, letterSpacing: "0.08em" }}
-            >
-              {item.label}
+    <header className={styles.header} lang={locale === "zh-cn" ? "zh-Hans" : locale}>
+      {pathname === "/" && <a href="#home-content" className={styles.skip}><T>Skip to content</T></a>}
+      <div className={styles.utility}>
+        <div className={styles.utilityInner}>
+          <span className={styles.location}><T>Private advisory. Costa Rica.</T></span>
+          <div className={styles.utilityLinks}>
+            <EnquiryButton kind="callback" className={styles.callback}><T>
+              Request a Callback </T><ArrowUpRight size={12} aria-hidden="true" />
+            </EnquiryButton>
+            <a href={siteConfig.whatsapp} className={styles.phone}>
+              <Phone size={12} aria-hidden="true" /> <T>{siteConfig.phone}</T>
             </a>
+            <div className={styles.languages} lang={locale === "zh-cn" ? "zh-Hans" : locale} aria-label={t("Website language")}>
+              {locales.map((code, index) => <span key={code} className={styles.languageItem}>
+                {index > 0 && <span aria-hidden="true">|</span>}
+                <button type="button" lang={code === "zh-cn" ? "zh-Hans" : code} aria-label={localeDefinitions[code].label} aria-pressed={locale === code} className={locale === code ? styles.activeLanguage : undefined} onClick={() => setLocale(code)}>{localeDefinitions[code].shortLabel}</button>
+              </span>)}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.main}>
+        <Link href="/" className={styles.brand} aria-label={t(siteConfig.name + " home")}>
+          <img src={siteConfig.logo} alt={siteConfig.name} width={1672} height={941} />
+        </Link>
+        <nav className={styles.desktopNav} aria-label={t("Main navigation")}>
+          {siteConfig.nav.map((item) => (
+            <Link key={item.href} href={item.href} aria-current={pathname === item.href ? "page" : undefined}>
+              <T>{item.label}</T>
+            </Link>
           ))}
         </nav>
-
-        <a
-          href="/institutional-inquiry"
-          className="hidden items-center gap-2 border px-5 py-2 text-xs uppercase tracking-widest transition-colors hover:bg-[#C9A96E] hover:text-[#0D1B2A] lg:inline-flex"
-          style={{ borderColor: GOLD, color: GOLD, fontWeight: 600, letterSpacing: "0.1em" }}
-        >
-          Institutional Inquiry
-        </a>
-
         <button
-          className="p-2 lg:hidden"
-          style={{ color: GOLD }}
+          ref={toggleRef}
+          type="button"
+          className={styles.toggle}
           onClick={() => setOpen(!open)}
-          aria-label="Menu"
+          aria-label={t(open ? "Close navigation" : "Open navigation")}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-
       {open && (
-        <div
-          className="flex flex-col gap-4 px-6 pb-6 lg:hidden"
-          style={{ backgroundColor: "rgba(13,27,42,0.98)", borderTop: `1px solid ${GOLD20}` }}
-        >
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="border-b py-2 text-left text-sm transition-colors hover:text-[#C9A96E]"
-              style={{ color: WHITE70, borderColor: GOLD20 }}
-            >
-              {item.label}
-            </a>
+        <nav id="mobile-navigation" className={styles.mobileNav} aria-label={t("Mobile navigation")}>
+          {siteConfig.nav.map((item) => (
+            <Link key={item.href} href={item.href} onClick={() => setOpen(false)} aria-current={pathname === item.href ? "page" : undefined}>
+              <T>{item.label}</T><ArrowUpRight size={16} aria-hidden="true" />
+            </Link>
           ))}
-          <a
-            href="/institutional-inquiry"
-            className="mt-2 border px-5 py-3 text-center text-xs uppercase tracking-widest"
-            style={{ borderColor: GOLD, color: GOLD, fontWeight: 600 }}
-          >
-            Institutional Inquiry
-          </a>
-        </div>
+          <EnquiryButton kind="callback" onOpen={() => setOpen(false)} className={styles.mobileCallback}><T>
+            Request a Callback </T><Phone size={16} aria-hidden="true" />
+          </EnquiryButton>
+        </nav>
       )}
     </header>
   )

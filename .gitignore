@@ -18,6 +18,7 @@ yarn-error.log*
 
 # env files
 .env*
+!/.env.example
 
 # vercel
 .vercel
@@ -25,3 +26,21 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local build, preview and QA artifacts (not public website assets)
+/.next-*/
+/*-build-20*/
+/*-cache-20*/
+/tmp/
+/output/
+/artifacts/
+/screenshots/
+/playwright-report/
+/test-results/
+/coverage/
+*.log
+*.tmp
+
+# Observed OneDrive conflict-copy suffix; preserve originals
+*-COSTAILUMINACR*
+* (conflicted copy)*

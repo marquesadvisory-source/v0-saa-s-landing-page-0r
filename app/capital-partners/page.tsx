@@ -1,3 +1,4 @@
+import { T } from "@/components/language-provider"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight, Building2, FileText, Handshake, Landmark, Layers, ShieldCheck } from "lucide-react"
@@ -97,25 +98,25 @@ export default function CapitalPartnersPage() {
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-              Capital Partners
-            </p>
+              <T>Capital Partners
+            </T></p>
             <h1 className="font-serif text-4xl leading-tight md:text-6xl">
-              A relationship-driven platform for institutional real asset opportunities in Costa Rica.
-            </h1>
+              <T>A relationship-driven platform for institutional real asset opportunities in Costa Rica.
+            </T></h1>
           </div>
           <div className="space-y-6 text-base leading-8 text-white/70">
             <p>
-              Marqués Advisory & Investments works with select capital relationships, developers, operators and institutional counterparties to evaluate, structure and prepare real asset opportunities for disciplined review and execution.
-            </p>
+              <T>Marqués Advisory & Investments works with select capital relationships, developers, operators and institutional counterparties to evaluate, structure and prepare real asset opportunities for disciplined review and execution.
+            </T></p>
             <p>
-              Marqués Advisory & Investments is a relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.
-            </p>
+              <T>Marqués Advisory & Investments is a relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.
+            </T></p>
             <Link
               href="/institutional-inquiry"
               className="inline-flex items-center gap-2 bg-[#C9A96E] px-6 py-3 text-sm font-semibold text-[#0D1B2A] transition-opacity hover:opacity-90"
             >
-              Begin Institutional Inquiry
-              <ArrowRight size={16} />
+              <T>Begin Institutional Inquiry
+              </T><ArrowRight size={16} />
             </Link>
           </div>
         </div>
@@ -127,21 +128,21 @@ export default function CapitalPartnersPage() {
             <div className="mb-10 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
               <div>
                 <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                  Who This Is For
-                </p>
+                  <T>Who This Is For
+                </T></p>
                 <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                  Institutional counterparties aligned with real asset preparation and execution.
-                </h2>
+                  <T>Institutional counterparties aligned with real asset preparation and execution.
+                </T></h2>
               </div>
               <p className="text-sm leading-7 text-slate-700">
-                The platform is designed for private, qualified and relationship-driven conversations where assets, capital, structure and execution must be evaluated with discipline.
-              </p>
+                <T>The platform is designed for private, qualified and relationship-driven conversations where assets, capital, structure and execution must be evaluated with discipline.
+              </T></p>
             </div>
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {audiences.map((audience) => (
                 <article key={audience} className="border border-[#E5DDD0] bg-white p-7">
                   <Handshake className="mb-5 text-[#C9A96E]" size={24} />
-                  <h3 className="text-base font-semibold">{audience}</h3>
+                  <h3 className="text-base font-semibold"><T>{audience}</T></h3>
                 </article>
               ))}
             </div>
@@ -150,11 +151,11 @@ export default function CapitalPartnersPage() {
           <section>
             <div className="mb-8">
               <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                How MA&I Works With Capital
-              </p>
+                <T>How MA&I Works With Capital
+              </T></p>
               <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                From relationships to institutional monetization strategy.
-              </h2>
+                <T>From relationships to institutional monetization strategy.
+              </T></h2>
             </div>
             <div className="grid gap-3 md:grid-cols-3 lg:grid-cols-6">
               {capitalFramework.map((stage, index) => (
@@ -162,7 +163,7 @@ export default function CapitalPartnersPage() {
                   <p className="mb-4 text-xs font-mono text-[#C9A96E]">
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="text-sm font-semibold">{stage}</h3>
+                  <h3 className="text-sm font-semibold"><T>{stage}</T></h3>
                 </article>
               ))}
             </div>
@@ -171,18 +172,18 @@ export default function CapitalPartnersPage() {
           <section>
             <div className="mb-8">
               <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                What We Bring to the Table
-              </p>
+                <T>What We Bring to the Table
+              </T></p>
               <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                Platform capabilities for institutional preparation.
-              </h2>
+                <T>Platform capabilities for institutional preparation.
+              </T></h2>
             </div>
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
               {[Landmark, ShieldCheck, Layers, FileText].map((Icon, index) => (
                 <article key={valueCards[index].title} className="border border-[#E5DDD0] bg-white p-7">
                   <Icon className="mb-5 text-[#C9A96E]" size={24} />
-                  <h3 className="mb-3 text-base font-semibold">{valueCards[index].title}</h3>
-                  <p className="text-sm leading-7 text-slate-600">{valueCards[index].body}</p>
+                  <h3 className="mb-3 text-base font-semibold"><T>{valueCards[index].title}</T></h3>
+                  <p className="text-sm leading-7 text-slate-600"><T>{valueCards[index].body}</T></p>
                 </article>
               ))}
             </div>
@@ -191,27 +192,27 @@ export default function CapitalPartnersPage() {
           <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="border border-[#E5DDD0] bg-white p-8">
               <Building2 className="mb-5 text-[#C9A96E]" size={24} />
-              <h2 className="mb-5 text-xl font-semibold">What MA&I Is Not</h2>
+              <h2 className="mb-5 text-xl font-semibold"><T>What MA&I Is Not</T></h2>
               <div className="space-y-4">
                 {notList.map((item) => (
                   <p key={item} className="border-b border-[#E5DDD0] pb-4 text-sm leading-7 text-slate-700">
-                    {item}
+                    <T>{item}</T>
                   </p>
                 ))}
               </div>
             </div>
             <div className="border border-[#E5DDD0] bg-white p-8">
               <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                Engagement Models
-              </p>
-              <h2 className="mb-5 text-xl font-semibold">Potential relationship structures</h2>
+                <T>Engagement Models
+              </T></p>
+              <h2 className="mb-5 text-xl font-semibold"><T>Potential relationship structures</T></h2>
               <p className="mb-6 text-sm leading-7 text-slate-700">
-                Potential engagement models may vary by opportunity, jurisdiction, counterparty and professional review.
-              </p>
+                <T>Potential engagement models may vary by opportunity, jurisdiction, counterparty and professional review.
+              </T></p>
               <div className="grid gap-3 sm:grid-cols-2">
                 {engagementModels.map((model) => (
                   <div key={model} className="border border-[#E5DDD0] p-4 text-sm font-semibold">
-                    {model}
+                    <T>{model}</T>
                   </div>
                 ))}
               </div>
@@ -220,27 +221,27 @@ export default function CapitalPartnersPage() {
 
           <section className="bg-[#112032] p-8 text-white md:p-12">
             <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-              Institutional Inquiry
-            </p>
+              <T>Institutional Inquiry
+            </T></p>
             <h2 className="max-w-3xl font-serif text-3xl leading-tight md:text-4xl">
-              Begin with a private institutional conversation.
-            </h2>
+              <T>Begin with a private institutional conversation.
+            </T></h2>
             <p className="mt-6 max-w-3xl text-sm leading-7 text-white/70">
-              If there may be alignment between your investment mandate, capital relationships or real asset strategy and MA&I&apos;s platform, the appropriate next step is a private institutional conversation.
-            </p>
+              <T>If there may be alignment between your investment mandate, capital relationships or real asset strategy and MA&I&apos;s platform, the appropriate next step is a private institutional conversation.
+            </T></p>
             <Link
               href="/institutional-inquiry"
               className="mt-8 inline-flex items-center gap-2 bg-[#C9A96E] px-6 py-3 text-sm font-semibold text-[#0D1B2A] transition-opacity hover:opacity-90"
             >
-              Begin Institutional Inquiry
-              <ArrowRight size={16} />
+              <T>Begin Institutional Inquiry
+              </T><ArrowRight size={16} />
             </Link>
           </section>
         </div>
       </section>
 
       <section className="px-6 py-12">
-        <p className="mx-auto max-w-5xl text-xs leading-6 text-white/45">{siteConfig.disclaimer}</p>
+        <p className="mx-auto max-w-5xl text-xs leading-6 text-white/45"><T>{siteConfig.disclaimer}</T></p>
       </section>
     </main>
   )

@@ -1,0 +1,23 @@
+.dialog { position: fixed; inset: 0; margin: auto; width: min(580px, calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 0; border: 1px solid #c7b58f; background: #fff; color: #19313f; overflow-y: auto; font-family: var(--font-inter), sans-serif; }
+.dialog::backdrop { background: rgb(10 28 39 / 72%); }
+.formDialog { width: min(900px, calc(100% - 32px)); }
+.formDialog .inner { padding: 40px 24px 22px; }
+.formDialog .eyebrow, .formDialog h2, .formDialog .privacy { margin-inline: 16px; }
+.formDialog .close { z-index: 1; background: #fff; }
+.inner { position: relative; padding: 46px; }
+.close { position: absolute; top: 14px; right: 14px; display: grid; place-items: center; width: 38px; height: 38px; cursor: pointer; background: transparent; border: 1px solid #deded6; }
+.eyebrow { font-size: 9px !important; color: #8a703b !important; margin: 0 0 18px !important; }
+.inner h2 { font: 500 39px/1.1 var(--font-cormorant), Georgia, serif; margin: 0 0 22px; }
+.inner p { font-size: 13px; line-height: 1.8; color: #5d6a70; margin: 0 0 20px; }
+.inner .notice { font-size: 11px; padding: 15px 0; border-block: 1px solid #e0e1d9; }
+.primary, .secondary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; text-decoration: none; font-size: 12px; }
+.primary { background: #183241; color: white; margin-top: 20px; }
+.secondary { color: #183241; padding-inline: 0; border-bottom: 1px solid #c2ad80; margin-top: 6px; }
+.inner .privacy { font-size: 10px; margin: 26px 0 0; }
+.privacy a { text-decoration: underline; text-underline-offset: 3px; }
+.label { display: block; font-size: 11px; margin-bottom: 9px; }
+.inner select { width: 100%; background: white; color: #183241; padding: 13px; border: 1px solid #b8c0be; font-size: 13px; }
+.embed { display: block; width: 100%; height: min(620px, 60dvh); min-height: 280px; border: 0; background: #fff; }
+.dialog :focus-visible { outline: 2px solid #987940; outline-offset: 3px; }
+@media(max-width:600px) { .inner { padding: 48px 25px 28px; } .inner h2 { font-size: 34px; } }
+@media(max-width:600px) { .formDialog { width: calc(100% - 16px); max-height: calc(100dvh - 16px); } .formDialog .inner { padding: 48px 4px 18px; } .formDialog .embed { height: 60dvh; min-height: 240px; } }
