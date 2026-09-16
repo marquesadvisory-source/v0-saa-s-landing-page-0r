@@ -37,7 +37,6 @@ export function organizationSchema() {
     description: siteConfig.description, slogan: siteConfig.tagline,
     email: siteConfig.email, telephone: siteConfig.phone,
     areaServed: { "@type": "Country", name: "Costa Rica" },
-    sameAs: [siteConfig.linkedIn],
   }
 }
 export function websiteSchema() {

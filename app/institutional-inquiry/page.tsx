@@ -58,24 +58,24 @@ export default function InstitutionalInquiryPage() {
           <EnquiryButton className="flex items-center justify-between gap-4 border border-[#C9A96E] bg-[#0D1B2A] p-6 text-left text-white">
             <T>General Enquiry </T><Mail size={20} />
           </EnquiryButton>
-          <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-4 border border-[#E5DDD0] bg-white p-6">
+          <a href="mailto:presidencia@marquescr.com" className="flex items-center gap-4 border border-[#E5DDD0] bg-white p-6">
             <Mail className="text-[#C9A96E]" size={20} />
             <div>
-              <p className="text-xs uppercase tracking-[0.14em] text-[#C9A96E]"><T>Email</T></p>
-              <p className="text-sm font-medium"><T>{siteConfig.email}</T></p>
+              <p className="text-xs uppercase tracking-[0.14em] text-[#826631]"><T>Email</T></p>
+              <p className="text-sm font-medium [overflow-wrap:anywhere]"><T>presidencia@marquescr.com</T></p>
             </div>
           </a>
           <a href={siteConfig.whatsapp} className="flex items-center gap-4 border border-[#E5DDD0] bg-white p-6">
             <Phone className="text-[#C9A96E]" size={20} />
             <div>
-              <p className="text-xs uppercase tracking-[0.14em] text-[#C9A96E]"><T>Phone</T></p>
+              <p className="text-xs uppercase tracking-[0.14em] text-[#826631]"><T>Phone</T></p>
               <p className="text-sm font-medium"><T>{siteConfig.phone}</T></p>
             </div>
           </a>
           <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 border border-[#E5DDD0] bg-white p-6">
             <MessageCircle className="text-[#C9A96E]" size={20} />
             <div>
-              <p className="text-xs uppercase tracking-[0.14em] text-[#C9A96E]"><T>WhatsApp</T></p>
+              <p className="text-xs uppercase tracking-[0.14em] text-[#826631]"><T>WhatsApp</T></p>
               <p className="text-sm font-medium"><T>{siteConfig.phone}</T></p>
             </div>
           </a>

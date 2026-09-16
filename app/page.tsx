@@ -5,7 +5,7 @@ import { createMetadata, webPageSchema } from "@/lib/seo"
 import { JsonLd } from "@/components/json-ld"
 import { T } from "@/components/language-provider"
 import Link from "next/link"
-import { ArrowDown, ArrowRight, ArrowUpRight, Linkedin, Mail, Phone } from "lucide-react"
+import { ArrowDown, ArrowRight, ArrowUpRight, Mail, Phone } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { EnquiryButton } from "@/components/enquiry-provider"
 import { siteConfig } from "@/lib/site"
@@ -280,7 +280,7 @@ export default function Home() {
             </div>
             <div><h3><T>Explore Marqués</T></h3><Localized as="nav" aria-label="Footer navigation">{siteConfig.nav.map(item => <Link key={item.href} href={item.href}><T>{item.label}</T></Link>)}</Localized></div>
             <div><h3><T>Institutional Perspective</T></h3><Localized as="nav" aria-label="Institutional resources"><Link href="/who-we-serve"><T>Who We Serve</T></Link><Link href="/what-we-do"><T>Capabilities</T></Link><Link href="/investment-framework"><T>Investment Framework</T></Link><Link href="/capital-partners"><T>Capital Partners</T></Link><Link href="/projects"><T>Institutional Opportunities</T></Link></Localized></div>
-            <div className={styles.footerContact}><h3><T>Connect</T></h3><a href={"mailto:" + siteConfig.email}><Mail size={14} aria-hidden="true" /><T>{siteConfig.email}</T></a><a href={siteConfig.whatsapp}><Phone size={14} aria-hidden="true" /><T>{siteConfig.phone}</T></a><a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer"><T>WhatsApp </T><ArrowUpRight size={14} aria-hidden="true" /></a><a href={siteConfig.linkedIn} target="_blank" rel="noopener noreferrer"><Linkedin size={14} aria-hidden="true" /><T>LinkedIn</T></a></div>
+            <div className={styles.footerContact}><h3><T>Connect</T></h3><a href={"mailto:" + siteConfig.email}><Mail size={14} aria-hidden="true" /><T>{siteConfig.email}</T></a><a href={siteConfig.whatsapp}><Phone size={14} aria-hidden="true" /><T>{siteConfig.phone}</T></a><a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer"><T>WhatsApp </T><ArrowUpRight size={14} aria-hidden="true" /></a></div>
           </div>
           <p className={styles.disclaimer}><T>{siteConfig.disclaimer}</T></p>
           <div className={styles.footerBottom}><p>© {new Date().getFullYear()}<T> Marqués Advisory &amp; Investments. All rights reserved.</T></p><span><T>Costa Rica</T></span></div>
