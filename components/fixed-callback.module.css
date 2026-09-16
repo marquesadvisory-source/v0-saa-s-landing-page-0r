@@ -1,0 +1,8 @@
+.control { position: fixed; right: max(28px, env(safe-area-inset-right)); bottom: max(28px, env(safe-area-inset-bottom)); z-index: 40; display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 52px; padding: 16px 20px; border: 1px solid #bca370; border-radius: 2px; background: #193340; color: #f6f5f0; font: 500 10px/1.5 var(--font-inter), sans-serif; letter-spacing: 0; cursor: pointer; box-shadow: 0 3px 14px rgb(0 0 0 / 12%); }
+.control svg { color: #d0b783; flex-shrink: 0; }
+.control:hover { background: #244656; }
+.control:focus-visible { outline: 2px solid #bca370; outline-offset: 4px; }
+@media (max-width: 700px) {
+  .control { right: calc(14px + env(safe-area-inset-right)); bottom: calc(14px + env(safe-area-inset-bottom)); width: 48px; height: 48px; min-height: 48px; padding: 0; }
+  .control span { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}

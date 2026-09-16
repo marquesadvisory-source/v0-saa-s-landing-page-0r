@@ -1,0 +1,153 @@
+import { residencyMessages } from "./residency-translations"
+import { realEstateMessages } from "./real-estate-translations"
+import { editorialMessages } from "./editorial-translations"
+import { faqMessages } from "./faq-translations"
+import { investmentMessages } from "./investment-translations"
+import { residencyFinalMessages } from "./residency-final-translations"
+import { platformFinalMessages } from "./platform-final-translations"
+import { projectFinalMessages } from "./project-final-translations"
+import { institutionalFinalMessages } from "./institutional-final-translations"
+import { interfaceFinalMessages } from "./interface-final-translations"
+import { accessibilityMessages } from "./accessibility-translations"
+import { servicesMessages } from "./services-translations"
+import type { Locale } from "./i18n/config"
+export type { Locale } from "./i18n/config"
+type Translation = readonly [es: string, fr: string, zh: string]
+
+// English source keys preserve the approved copy; translations never change asset data.
+export const messages: Record<string, Translation> = {
+  ...residencyMessages,
+  ...realEstateMessages,
+  ...editorialMessages,
+  ...faqMessages,
+  ...investmentMessages,
+  ...residencyFinalMessages,
+  ...platformFinalMessages,
+  ...projectFinalMessages,
+  ...institutionalFinalMessages,
+  ...interfaceFinalMessages,
+  ...accessibilityMessages,
+  ...servicesMessages,
+  "Website language": ["Idioma del sitio", "Langue du site", "网站语言"],
+  "Costa Rica residency": ["Residencia en Costa Rica", "Résidence au Costa Rica", "哥斯达黎加居留"],
+  "Real estate opportunity views": ["Vistas de oportunidades inmobiliarias", "Vues des opportunités immobilières", "房地产机会视图"],
+  "Private advisory. Costa Rica.": ["Asesoría privada. Costa Rica.", "Conseil privé. Costa Rica.", "私人顾问服务 · 哥斯达黎加"],
+  "Skip to content": ["Ir al contenido", "Aller au contenu", "跳至正文"],
+  "Request a Callback": ["Solicitar una llamada", "Demander un rappel", "预约回电"],
+  "Become a Resident in Costa Rica": ["Establezca su residencia en Costa Rica", "Établir sa résidence au Costa Rica", "在哥斯达黎加取得居留身份"],
+  "Investments": ["Inversiones", "Investissements", "投资"],
+  "Services": ["Servicios", "Services", "服务"],
+  "About": ["Acerca de Marqués", "À propos", "关于我们"],
+  "Contact": ["Contacto", "Contact", "联系我们"],
+  "Open navigation": ["Abrir navegación", "Ouvrir la navigation", "打开导航"],
+  "Close navigation": ["Cerrar navegación", "Fermer la navigation", "关闭导航"],
+  "Main navigation": ["Navegación principal", "Navigation principale", "主导航"],
+  "Mobile navigation": ["Navegación móvil", "Navigation mobile", "移动导航"],
+  "About Costa Rica": ["Acerca de Costa Rica", "À propos du Costa Rica", "了解哥斯达黎加"],
+  "Residence by Investment": ["Residencia por inversión", "Résidence par investissement", "投资居留"],
+  "Residency by Investment": ["Residencia por inversión", "Résidence par investissement", "投资居留"],
+  "Real Estate": ["Bienes raíces", "Immobilier", "房地产"],
+  "Privacy Policy": ["Política de privacidad", "Politique de confidentialité", "隐私政策"],
+  "General Enquiry": ["Consulta general", "Demande générale", "一般咨询"],
+  "Real Estate Enquiry": ["Consulta inmobiliaria", "Demande immobilière", "房地产咨询"],
+  "Private Client Enquiry": ["Consulta privada", "Demande privée", "私人客户咨询"],
+  "Enquiry": ["Consulta", "Demande de renseignements", "咨询"],
+  "Enquire": ["Consultar", "Nous contacter", "咨询"],
+  "Close enquiry": ["Cerrar consulta", "Fermer la demande", "关闭咨询"],
+  "Costa Rica Residence Guide": ["Guía de residencia en Costa Rica", "Guide de résidence au Costa Rica", "哥斯达黎加居留指南"],
+  "The approved Costa Rica residence guide, in your preferred language.": ["La guía aprobada de residencia en Costa Rica, en el idioma de su preferencia.", "Le guide approuvé de résidence au Costa Rica, dans la langue de votre choix.", "以您选择的语言提供经批准的哥斯达黎加居留指南。"],
+  "Guide language": ["Idioma de la guía", "Langue du guide", "指南语言"],
+  "Download Fact Sheet": ["Descargar ficha informativa", "Télécharger la fiche d’information", "下载资料"],
+  "Read in browser": ["Leer en el navegador", "Lire dans le navigateur", "在浏览器中阅读"],
+  "Please review our": ["Consulte nuestra", "Veuillez consulter notre", "请阅读我们的"],
+  "before sharing personal information.": ["antes de compartir información personal.", "avant de communiquer des données personnelles.", "后再提供个人信息。"],
+  "before sharing personal information. Do not send sensitive documents through an initial enquiry.": ["antes de compartir información personal. No envíe documentos sensibles en una consulta inicial.", "avant de communiquer des données personnelles. Ne transmettez pas de documents sensibles lors d’une première demande.", "后再提供个人信息。首次咨询请勿发送敏感文件。"],
+  "The approved Privacy Policy is available in English only. The English legal text remains the source of truth.": ["La Política de privacidad aprobada solo está disponible en inglés. El texto legal en inglés es la fuente de referencia.", "La Politique de confidentialité approuvée est uniquement disponible en anglais. Le texte juridique anglais fait référence.", "经批准的隐私政策仅提供英文版本，英文法律文本为准。"],
+  "This page is currently available in English. Navigation follows your selected language.": ["Esta página está disponible actualmente en inglés. La navegación conserva el idioma seleccionado.", "Cette page est actuellement disponible en anglais. La navigation reste dans la langue sélectionnée.", "此页面目前仅提供英文内容。导航使用您选择的语言。"],
+  "Who We Serve": ["A quiénes acompañamos", "Nos interlocuteurs", "服务对象"],
+  "Capabilities": ["Capacidades", "Expertises", "专业能力"],
+  "Investment Framework": ["Marco de inversión", "Cadre d’investissement", "投资框架"],
+  "Capital Partners": ["Socios de capital", "Partenaires financiers", "资本合作伙伴"],
+  "Institutional Opportunities": ["Oportunidades institucionales", "Opportunités institutionnelles", "机构投资机会"],
+  "Explore Marqués": ["Conozca Marqués", "Découvrir Marqués", "了解 Marqués"],
+  "Institutional Perspective": ["Perspectiva institucional", "Perspective institutionnelle", "机构视角"],
+  "Connect": ["Conversemos", "Échanger", "联系"],
+  "Establish Your": ["Establezca su", "Établissez votre", "开启您的"],
+  "Presence in": ["presencia en", "présence au", "生活新篇章，尽在"],
+  "Costa Rica.": ["Costa Rica.", "Costa Rica.", "哥斯达黎加。"],
+  "Costa Rica": ["Costa Rica", "Costa Rica", "哥斯达黎加"],
+  "Private advisory for residency, real assets and investment opportunities in Costa Rica.": ["Asesoría privada en residencia, activos reales y oportunidades de inversión en Costa Rica.", "Conseil privé en résidence, actifs réels et opportunités d’investissement au Costa Rica.", "为哥斯达黎加居留规划、实物资产与投资机会提供私人顾问服务。"],
+  "Explore Investment Opportunities": ["Explorar oportunidades de inversión", "Découvrir les opportunités d’investissement", "了解投资机会"],
+  "A local perspective. An international outlook.": ["Perspectiva local. Visión internacional.", "Un ancrage local. Une vision internationale.", "立足本地，放眼全球。"],
+  "A local perspective.": ["Perspectiva local.", "Un ancrage local.", "立足本地。"],
+  "An international outlook.": ["Visión internacional.", "Une vision internationale.", "放眼全球。"],
+  "Pacific perspective": ["Perspectiva del Pacífico", "Perspective sur le Pacifique", "太平洋视野"],
+  "One considered perspective": ["Una perspectiva integral", "Une perspective réfléchie", "周全的视角"],
+  "Institutional Structuring": ["Estructuración institucional", "Structuration institutionnelle", "机构化架构设计"],
+  "Real Assets": ["Activos reales", "Actifs réels", "实物资产"],
+  "About Marqués": ["Acerca de Marqués", "À propos de Marqués", "关于 Marqués"],
+  "Advisory Meets": ["Donde la asesoría se une a la", "Le conseil au service de", "顾问服务与"],
+  "Investment.": ["inversión.", "l’investissement.", "投资相融。"],
+  "Global perspective.": ["Perspectiva global.", "Une vision globale.", "全球视野。"],
+  "A personal connection to Costa Rica.": ["Una conexión personal con Costa Rica.", "Un lien personnel avec le Costa Rica.", "与哥斯达黎加建立切身联系。"],
+  "Discover Marqués": ["Conozca Marqués", "Découvrir Marqués", "了解 Marqués"],
+  "Your presence. Your perspective.": ["Su presencia. Su perspectiva.", "Votre présence. Votre perspective.", "您的生活，您的视角。"],
+  "Two conversations.": ["Dos conversaciones.", "Deux échanges.", "两个议题。"],
+  "One connection to Costa Rica.": ["Una conexión con Costa Rica.", "Un lien avec le Costa Rica.", "同一份与哥斯达黎加的联系。"],
+  "Residency": ["Residencia", "Résidence", "居留"],
+  "Residence": ["Residencia", "Résidence", "居留"],
+  "A place to call your own.": ["Un lugar para construir su vida.", "Un lieu où se sentir chez soi.", "一个安身之所。"],
+  "A more considered opportunity.": ["Una oportunidad evaluada con rigor.", "Une opportunité mûrement étudiée.", "审慎评估的机会。"],
+  "Personal objectives": ["Objetivos personales", "Objectifs personnels", "个人目标"],
+  "Local perspective": ["Perspectiva local", "Perspective locale", "本地视角"],
+  "Professional review": ["Revisión profesional", "Examen professionnel", "专业审查"],
+  "Structuring": ["Estructuración", "Structuration", "架构设计"],
+  "Capital readiness": ["Preparación para capital", "Préparation au financement", "资本准备"],
+  "Discuss your presence in Costa Rica": ["Conversemos sobre su presencia en Costa Rica", "Échanger sur votre présence au Costa Rica", "探讨您的哥斯达黎加规划"],
+  "Private Client Services": ["Servicios para clientes privados", "Services aux clients privés", "私人客户服务"],
+  "A considered approach.": ["Un enfoque reflexivo.", "Une approche réfléchie.", "审慎的服务方式。"],
+  "A personal relationship.": ["Una relación personal.", "Une relation personnelle.", "专属的客户关系。"],
+  "Concierge": ["Concierge", "Conciergerie", "礼宾服务"],
+  "Additional Services": ["Servicios complementarios", "Services complémentaires", "配套服务"],
+  "Discuss your plans": ["Conversemos sobre sus planes", "Échanger sur vos projets", "探讨您的计划"],
+  "Explore our real asset approach": ["Conozca nuestro enfoque en activos reales", "Découvrir notre approche des actifs réels", "了解我们的实物资产理念"],
+  "Begin a private conversation": ["Iniciar una conversación privada", "Engager un échange privé", "开启私人沟通"],
+  "Discuss your requirements": ["Conversemos sobre sus necesidades", "Échanger sur vos besoins", "探讨您的需求"],
+  "Properties &": ["Inmuebles y", "Immobilier et", "房地产与"],
+  "Hotel Development": ["desarrollo hotelero", "développement hôtelier", "酒店开发"],
+  "Explore development capabilities": ["Conozca nuestras capacidades de desarrollo", "Découvrir nos expertises en développement", "了解开发专业能力"],
+  "Sovereign Portfolio": ["Sovereign Portfolio", "Sovereign Portfolio", "Sovereign Portfolio"],
+  "The whole picture.": ["Una visión integral.", "Une vue d’ensemble.", "纵览全局。"],
+  "Thoughtfully connected.": ["Conexiones bien fundamentadas.", "Des liens réfléchis.", "周全协调。"],
+  "Capital": ["Capital", "Capital", "资本"],
+  "Private Client Coordination": ["Coordinación para clientes privados", "Coordination pour clients privés", "私人客户协调服务"],
+  "Our institutional framework": ["Nuestro marco institucional", "Notre cadre institutionnel", "我们的机构化框架"],
+  "Private Investment Perspective": ["Perspectiva de inversión privada", "Perspective d’investissement privé", "私人投资视角"],
+  "Selected": ["Oportunidades", "Opportunités", "精选"],
+  "Opportunities.": ["seleccionadas.", "sélectionnées.", "机会。"],
+  "Access begins with alignment.": ["El acceso comienza con la afinidad de objetivos.", "L’accès commence par la convergence des objectifs.", "目标契合，是接洽的起点。"],
+  "Discuss Investment Opportunities": ["Conversemos sobre oportunidades de inversión", "Échanger sur les opportunités d’investissement", "探讨投资机会"],
+  "Why Costa Rica": ["Por qué Costa Rica", "Pourquoi le Costa Rica", "为何选择哥斯达黎加"],
+  "A compelling destination": ["Un destino con perspectivas", "Une destination à considérer", "值得关注的目的地"],
+  "for global citizens.": ["para ciudadanos globales.", "pour les citoyens du monde.", "面向全球公民。"],
+  "Stability": ["Estabilidad", "Stabilité", "稳定性"],
+  "Rule of Law": ["Estado de derecho", "État de droit", "法治"],
+  "Connectivity": ["Conectividad", "Connectivité", "互联互通"],
+  "Lifestyle": ["Estilo de vida", "Cadre de vie", "生活方式"],
+  "Long-Term Presence": ["Presencia a largo plazo", "Présence à long terme", "长期居留规划"],
+  "Explore your connection to Costa Rica": ["Explore su conexión con Costa Rica", "Explorer votre lien avec le Costa Rica", "探索您与哥斯达黎加的联系"],
+  "A private conversation": ["Una conversación privada", "Un échange privé", "私人沟通"],
+  "Your next chapter": ["Su próxima etapa", "Votre prochain chapitre", "您的下一篇章"],
+  "starts with a conversation.": ["comienza con una conversación.", "commence par un échange.", "始于一次交流。"],
+  "Share your perspective. Let us consider what comes next, together.": ["Comparta su perspectiva. Evaluemos juntos los próximos pasos.", "Partagez votre perspective. Envisageons ensemble la suite.", "分享您的想法，共同审视下一步。"],
+}
+
+const lookup = new Map(Object.entries(messages).map(([key, value]) => [key.toLowerCase(), value]))
+
+export function translate(text: string, locale: Locale): string {
+  if (locale === "en") return text
+  const key = text.trim().replace(/\s+/g, " ")
+  const found = lookup.get(key.toLowerCase())
+  if (!found) return text
+  return text.slice(0, text.length - text.trimStart().length) + found[locale === "es" ? 0 : locale === "fr" ? 1 : 2] + text.slice(text.trimEnd().length)
+}

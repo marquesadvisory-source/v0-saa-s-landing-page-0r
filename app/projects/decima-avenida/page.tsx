@@ -1,9 +1,11 @@
+import { Localized } from "@/components/language-provider"
+import { T } from "@/components/language-provider"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight, Building2, FileText, Layers, MapPin, ShieldCheck } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { JsonLd } from "@/components/json-ld"
-import { breadcrumbSchema, createMetadata } from "@/lib/seo"
+import { breadcrumbSchema, createMetadata, webPageSchema } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
 
 const heroImage =
@@ -12,12 +14,14 @@ const heroImage =
 const projectDisclaimer =
   "Information regarding this opportunity is provided for institutional context only. Nothing on this page constitutes a public offering of securities, investment solicitation, securities offering, real estate brokerage listing, guarantee of investment performance or invitation to invest. Additional materials may be shared only with qualified parties following appropriate review, confidentiality procedures and legal documentation."
 
-export const metadata: Metadata = createMetadata({
+const projectSeo = {
   title: "Décima Avenida",
   description:
     "Décima Avenida is an institutional mixed-use real asset opportunity in El Roble, Alajuela, Costa Rica, currently under institutional review and structuring.",
   path: "/projects/decima-avenida",
-})
+  image: heroImage,
+}
+export const metadata: Metadata = createMetadata(projectSeo)
 
 const snapshot = [
   ["Asset Class", "Mixed-Use Real Asset Opportunity"],
@@ -34,24 +38,19 @@ export default function DecimaAvenidaPage() {
   return (
     <main className="min-h-screen bg-[#0D1B2A] text-white">
       <JsonLd
-        data={breadcrumbSchema([
+        data={[{...webPageSchema(projectSeo), spatialCoverage: {"@type": "Place", name: "El Roble, Alajuela, Costa Rica"}}, breadcrumbSchema([
           { name: "Home", path: "/" },
           { name: "Institutional Opportunities", path: "/projects" },
           { name: "Décima Avenida", path: "/projects/decima-avenida" },
-        ])}
+        ])]}
       />
 
       <SiteHeader />
 
       <section className="relative min-h-screen overflow-hidden bg-[#0D1B2A]">
-        <div
-          className="absolute inset-0 bg-cover"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundPosition: "58% 12%",
-          }}
-          aria-label="Décima Avenida tower rendering"
-        />
+        <Localized as="img" src={heroImage} alt="Décima Avenida mixed-use tower rendering in El Roble, Alajuela"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{objectPosition: "58% 12%"}} fetchPriority="high" loading="eager" decoding="async" />
         <div className="absolute inset-0 bg-[#0D1B2A]/30" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D1B2A]/10 via-[#0D1B2A]/25 to-[#0D1B2A]/95" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B2A]/85 via-[#0D1B2A]/35 to-transparent" />
@@ -59,21 +58,21 @@ export default function DecimaAvenidaPage() {
         <div className="relative mx-auto flex min-h-screen max-w-7xl items-end px-6 pb-20 pt-44">
           <div className="max-w-4xl">
             <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-              Institutional Mixed-Use Opportunity
-            </p>
-            <h1 className="font-serif text-4xl leading-tight md:text-6xl">Décima Avenida</h1>
+              <T>Institutional Mixed-Use Opportunity
+            </T></p>
+            <h1 className="font-serif text-4xl leading-tight md:text-6xl"><T>Décima Avenida</T></h1>
             <p className="mt-5 text-sm uppercase tracking-[0.14em] text-white/55">
-              El Roble, Alajuela, Costa Rica
-            </p>
+              <T>El Roble, Alajuela, Costa Rica
+            </T></p>
             <p className="mt-8 max-w-2xl text-base leading-8 text-white/75">
-              A mixed-use real asset opportunity positioned within the Coyol-Airport growth corridor and currently under institutional review and structuring.
-            </p>
+              <T>A mixed-use real asset opportunity positioned within the Coyol-Airport growth corridor and currently under institutional review and structuring.
+            </T></p>
             <Link
               href="/institutional-inquiry"
               className="mt-9 inline-flex items-center gap-2 bg-[#C9A96E] px-6 py-3 text-sm font-semibold text-[#0D1B2A] transition-opacity hover:opacity-90"
             >
-              Institutional Inquiry
-              <ArrowRight size={16} />
+              <T>Institutional Inquiry
+              </T><ArrowRight size={16} />
             </Link>
           </div>
         </div>
@@ -84,39 +83,39 @@ export default function DecimaAvenidaPage() {
           <section className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                Why This Opportunity Matters
-              </p>
+                <T>Why This Opportunity Matters
+              </T></p>
               <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                A strategically located real asset opportunity within an expanding growth corridor.
-              </h2>
+                <T>A strategically located real asset opportunity within an expanding growth corridor.
+              </T></h2>
             </div>
             <div className="space-y-5 text-sm leading-7 text-slate-700">
               <p>
-                Décima Avenida is positioned within the Coyol-Airport ecosystem, a corridor shaped by corporate, industrial, logistics and service-oriented activity.
-              </p>
+                <T>Décima Avenida is positioned within the Coyol-Airport ecosystem, a corridor shaped by corporate, industrial, logistics and service-oriented activity.
+              </T></p>
               <p>
-                The opportunity is being reviewed through residential, commercial and service demand drivers, with a focus on mixed-use urban integration and long-term institutional relevance.
-              </p>
+                <T>The opportunity is being reviewed through residential, commercial and service demand drivers, with a focus on mixed-use urban integration and long-term institutional relevance.
+              </T></p>
               <p>
-                Any future strategy remains subject to diligence, market validation, documentation and stakeholder coordination.
-              </p>
+                <T>Any future strategy remains subject to diligence, market validation, documentation and stakeholder coordination.
+              </T></p>
             </div>
           </section>
 
           <section>
             <div className="mb-8">
               <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                Opportunity Snapshot
-              </p>
+                <T>Opportunity Snapshot
+              </T></p>
               <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                Institutional information for preliminary review.
-              </h2>
+                <T>Institutional information for preliminary review.
+              </T></h2>
             </div>
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {snapshot.map(([label, value]) => (
                 <article key={label} className="border border-[#E5DDD0] bg-white p-7">
-                  <p className="mb-3 text-xs uppercase tracking-[0.14em] text-[#C9A96E]">{label}</p>
-                  <p className="text-sm leading-7 text-slate-700">{value}</p>
+                  <p className="mb-3 text-xs uppercase tracking-[0.14em] text-[#C9A96E]"><T>{label}</T></p>
+                  <p className="text-sm leading-7 text-slate-700"><T>{value}</T></p>
                 </article>
               ))}
             </div>
@@ -125,28 +124,28 @@ export default function DecimaAvenidaPage() {
           <section className="grid gap-6 md:grid-cols-3">
             <article className="border border-[#E5DDD0] bg-white p-8 md:col-span-2">
               <FileText className="mb-5 text-[#C9A96E]" size={24} />
-              <h2 className="mb-4 text-xl font-semibold">Our Role</h2>
+              <h2 className="mb-4 text-xl font-semibold"><T>Our Role</T></h2>
               <p className="text-sm leading-7 text-slate-700">
-                Marqués Advisory & Investments is evaluating the opportunity from a structuring, positioning and institutional-readiness perspective. Any future development strategy remains subject to diligence, documentation, market validation and stakeholder coordination.
-              </p>
+                <T>Marqués Advisory & Investments is evaluating the opportunity from a structuring, positioning and institutional-readiness perspective. Any future development strategy remains subject to diligence, documentation, market validation and stakeholder coordination.
+              </T></p>
             </article>
             <article className="border border-[#E5DDD0] bg-white p-8">
               <ShieldCheck className="mb-5 text-[#C9A96E]" size={24} />
-              <h2 className="mb-4 text-xl font-semibold">Current Stage</h2>
+              <h2 className="mb-4 text-xl font-semibold"><T>Current Stage</T></h2>
               <p className="text-sm leading-7 text-slate-700">
-                Origination / Under Structuring. Review remains subject to diligence and institutional validation.
-              </p>
+                <T>Origination / Under Structuring. Review remains subject to diligence and institutional validation.
+              </T></p>
             </article>
           </section>
 
           <section>
             <div className="mb-8">
               <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                Position Within the MA&I Platform
-              </p>
+                <T>Position Within the MA&I Platform
+              </T></p>
               <h2 className="max-w-3xl font-serif text-3xl leading-tight md:text-4xl">
-                From origination to monetization, with current emphasis on early structuring.
-              </h2>
+                <T>From origination to monetization, with current emphasis on early structuring.
+              </T></h2>
             </div>
             <div className="grid gap-4 md:grid-cols-5">
               {platformStages.map((stage, index) => {
@@ -164,11 +163,11 @@ export default function DecimaAvenidaPage() {
                     <p className="mb-4 text-xs font-mono text-[#C9A96E]">
                       {String(index + 1).padStart(2, "0")}
                     </p>
-                    <h3 className="text-sm font-semibold">{stage}</h3>
+                    <h3 className="text-sm font-semibold"><T>{stage}</T></h3>
                     {active && (
                       <p className="mt-4 text-xs leading-6 text-white/60">
-                        Current stage: Origination / Under Structuring
-                      </p>
+                        <T>Current stage: Origination / Under Structuring
+                      </T></p>
                     )}
                   </article>
                 )
@@ -186,8 +185,8 @@ export default function DecimaAvenidaPage() {
               return (
                 <article key={title as string} className="border border-[#E5DDD0] bg-white p-8">
                   <CardIcon className="mb-5 text-[#C9A96E]" size={24} />
-                  <h2 className="mb-4 text-xl font-semibold">{title as string}</h2>
-                  <p className="text-sm leading-7 text-slate-700">{body as string}</p>
+                  <h2 className="mb-4 text-xl font-semibold"><T>{title as string}</T></h2>
+                  <p className="text-sm leading-7 text-slate-700"><T>{body as string}</T></p>
                 </article>
               )
             })}
@@ -198,9 +197,9 @@ export default function DecimaAvenidaPage() {
       <section className="px-6 py-12">
         <div className="mx-auto max-w-5xl">
           <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-            Institutional Disclaimer
-          </p>
-          <p className="text-xs leading-6 text-white/45">{projectDisclaimer}</p>
+            <T>Institutional Disclaimer
+          </T></p>
+          <p className="text-xs leading-6 text-white/45"><T>{projectDisclaimer}</T></p>
         </div>
       </section>
     </main>

@@ -1,11 +1,10 @@
 import type { MetadataRoute } from "next"
-import { siteConfig, siteRoutes } from "@/lib/site"
+import { siteRoutes } from "@/lib/site"
+import { absoluteUrl } from "@/lib/seo"
+import { isHostingPreview } from "@/lib/crawl-policy"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return siteRoutes.map((route) => ({
-    url: new URL(route, siteConfig.domain).toString(),
-    lastModified: new Date(),
-    changeFrequency: route === "/" ? "weekly" : "monthly",
-    priority: route === "/" ? 1 : 0.8,
-  }))
+  if (isHostingPreview()) return []
+  // Explicit public-route allowlist. Do not manufacture lastmod dates on each build.
+  return [...new Set(siteRoutes)].map(route => ({ url: absoluteUrl(route) }))
 }

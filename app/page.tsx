@@ -1,1054 +1,292 @@
-'use client'
+import { Localized } from "@/components/language-provider"
+import { SeoImage } from "@/components/seo-image"
+import { pageSeo } from "@/lib/page-seo"
+import { createMetadata, webPageSchema } from "@/lib/seo"
+import { JsonLd } from "@/components/json-ld"
+import { T } from "@/components/language-provider"
+import Link from "next/link"
+import { ArrowDown, ArrowRight, ArrowUpRight, Mail, Phone } from "lucide-react"
+import { SiteHeader } from "@/components/site-header"
+import { EnquiryButton } from "@/components/enquiry-provider"
+import { siteConfig } from "@/lib/site"
+import styles from "./home.module.css"
 
-import { useState, useEffect, useRef } from 'react'
-import {
-  Landmark,
-  BarChart3,
-  FileText,
-  DollarSign,
-  ShieldCheck,
-  Layers,
-  ArrowRight,
-  X,
-  Mail,
-  Phone,
-  MessageCircle,
-  Linkedin,
-  Scale,
-  Globe2,
-  Wifi,
-  Users,
-  Building2,
-} from 'lucide-react'
-import { SiteHeader } from '@/components/site-header'
-import { siteConfig } from '@/lib/site'
+export const metadata = createMetadata(pageSeo["/"])
 
-/* ── helpers ────────────────────────────────────────────────── */
+const INQUIRY = "/institutional-inquiry"
+const towerImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/D%C3%A9cima%20Avenida%20Rdr-fqy4LI79dGShBO9WtIpkK9WaN4dQ2e.jpg"
 
-const GOLD = '#C9A96E'
-const NAVY = '#0D1B2A'
-const NAVY2 = '#112032'
-const GRAPHITE = '#1C2B3A'
-const WHITE70 = 'rgba(255,255,255,0.70)'
-const WHITE40 = 'rgba(255,255,255,0.40)'
-const GOLD20 = 'rgba(201,169,110,0.20)'
-const GOLD10 = 'rgba(201,169,110,0.10)'
-const GOLD40 = 'rgba(201,169,110,0.40)'
-
-function scrollTo(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-}
-
-function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true) }, { threshold: 0.12 })
-    if (ref.current) obs.observe(ref.current)
-    return () => obs.disconnect()
-  }, [])
+function TextLink({ href, children, light = false }: { href: string; children: React.ReactNode; light?: boolean }) {
+  if (href === INQUIRY) return (
+    <EnquiryButton className={light ? styles.lightLink : styles.textLink}>
+      <span>{children}</span><ArrowUpRight size={17} strokeWidth={1.4} aria-hidden="true" />
+    </EnquiryButton>
+  )
   return (
-    <div
-      ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-    >
-      {children}
-    </div>
+    <Link href={href} className={light ? styles.lightLink : styles.textLink}>
+      <span>{children}</span><ArrowUpRight size={17} strokeWidth={1.4} aria-hidden="true" />
+    </Link>
   )
 }
 
-function Divider() {
-  return <div className="w-10 h-px my-6" style={{ backgroundColor: GOLD }} />
-}
-
-/* ── Footer navigation ──────────────────────────────────────── */
-
-const NAV_LINKS = [
-  { label: 'Platform', href: '/about' },
-  { label: 'Who We Serve', href: '/who-we-serve' },
-  { label: 'Capabilities', href: '/what-we-do' },
-  { label: 'Opportunities', href: '/projects' },
-  { label: 'Investment Framework', href: '/investment-framework' },
-  { label: 'Capital Partners', href: '/capital-partners' },
-]
-
-/* ── Hero ────────────────────────────────────────────────────── */
-
-function Hero() {
+function EditorialImage({ src, alt, className = "", eager = false }: { src: string; alt: string; className?: string; eager?: boolean }) {
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex flex-col justify-end"
-      style={{ backgroundColor: NAVY }}
-    >
-      {/* Background image overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80)',
-          opacity: 0.35,
-        }}
-      />
-      {/* Cinematic gradient overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `linear-gradient(to bottom, rgba(13,27,42,0.45) 0%, rgba(13,27,42,0.5) 40%, rgba(13,27,42,0.88) 75%, ${NAVY} 100%)`,
-        }}
-      />
-      {/* Subtle vignette sides */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(to right, rgba(13,27,42,0.6) 0%, transparent 30%, transparent 70%, rgba(13,27,42,0.6) 100%)',
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-6 pb-20 pt-40 w-full">
-        <div className="max-w-3xl">
-          <FadeIn>
-            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-              Marqués Advisory & Investments
-            </p>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <h1
-              className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 text-white text-balance"
-              style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
-            >
-              Relationship-Driven Real Assets Platform
-            </h1>
-          </FadeIn>
-          <FadeIn delay={200}>
-            <Divider />
-          </FadeIn>
-          <FadeIn delay={300}>
-            <p className="text-base md:text-lg leading-relaxed mb-10 max-w-xl text-pretty" style={{ color: WHITE70 }}>
-              Origination. Structuring. Capital Readiness. Marqués Advisory & Investments is a relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.
-            </p>
-          </FadeIn>
-          <FadeIn delay={400}>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="https://wa.me/50672679806"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
-                style={{ backgroundColor: GOLD, color: NAVY }}
-              >
-                Request Institutional Conversation
-                <ArrowRight size={16} />
-              </a>
-              <button
-                onClick={() => scrollTo('que-hacemos')}
-                className="inline-flex items-center gap-2 px-7 py-3 text-sm font-semibold tracking-wide border transition-all hover:bg-white/5"
-                style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.85)' }}
-              >
-                Explore Our Approach
-              </button>
-            </div>
-          </FadeIn>
-        </div>
-      </div>
-
-      {/* Bottom trust bar */}
-      <div
-        className="relative border-t"
-        style={{ borderColor: GOLD20, backgroundColor: 'rgba(13,27,42,0.85)', backdropFilter: 'blur(8px)' }}
-      >
-        <div className="max-w-7xl mx-auto px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { label: 'Focus', value: 'Costa Rica' },
-            { label: 'Strategy', value: 'Real Assets & Structuring' },
-            { label: 'Counterparties', value: 'Investors, Banks, Fiduciaries and Family Offices' },
-            { label: 'Objective', value: 'Create long-term institutional value' },
-          ].map((item, i) => (
-            <div key={i} className="flex flex-col gap-1">
-              <span className="text-xs tracking-widest uppercase" style={{ color: GOLD, letterSpacing: '0.12em' }}>
-                {item.label}
-              </span>
-              <span className="text-sm font-medium text-white">{item.value}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <SeoImage
+      src={src}
+      alt={alt}
+      className={className}
+      loading={eager ? "eager" : "lazy"}
+      fetchPriority={eager ? "high" : "auto"}
+      decoding="async"
+    />
   )
 }
 
-/* ── Platform Layer ───────────────────────────────────────────── */
-
-const PLATFORM_STAGES = ['Origination', 'Structuring', 'Capital Readiness', 'Execution', 'Monetization']
-
-const PLATFORM_WORKS = [
+const services = [
   {
-    title: 'Origination',
-    desc: 'Identifying opportunities before they become widely marketed.',
+    number: "01", name: "Residence", id: "residence-services",
+    description: "A considered starting point for your presence in Costa Rica, with attention to your personal objectives and professional coordination.",
+    focus: "Personal priorities / Local coordination",
+    image: "/costa-rica-forest.jpg", alt: "Suspension bridge through Costa Rica's Monteverde cloud forest",
+    cta: "Discuss your plans",
   },
   {
-    title: 'Structuring',
-    desc: 'Transforming opportunities into clear, defensible investment frameworks.',
+    number: "02", name: "Real Estate", id: "real-estate-services",
+    description: "A real asset perspective that connects location, intended use and long-term objectives with documentation and institutional review.",
+    focus: "Asset review / Structuring / Diligence",
+    image: "/architecture-interior.jpg", alt: "Contemporary residence with natural materials and an open interior",
+    cta: "Explore our real asset approach",
   },
   {
-    title: 'Capital Readiness',
-    desc: 'Preparing opportunities for institutional review, financing and execution.',
+    number: "03", name: "Concierge", id: "concierge-services",
+    description: "A personal conversation about the local arrangements, introductions and practical coordination your plans may require.",
+    focus: "Local introductions / Individual priorities",
+    image: "/costa-rica-coast.jpg", alt: "An aerial perspective of Costa Rica's Pacific coastline",
+    cta: "Begin a private conversation",
   },
   {
-    title: 'Execution Coordination',
-    desc: 'Coordinating legal, financial, technical and commercial stakeholders.',
+    number: "04", name: "Additional Services", id: "additional-services",
+    description: "Coordination around needs that extend beyond an individual asset, working alongside appropriate legal, financial and specialist professionals.",
+    focus: "Professional relationships / Coordinated review",
+    image: "/architecture-interior.jpg", alt: "Thoughtfully arranged contemporary living and dining space",
+    cta: "Discuss your requirements",
   },
 ]
 
-function PlatformLayer() {
-  return (
-    <section className="py-24 px-6" style={{ backgroundColor: GRAPHITE }}>
-      <div className="max-w-7xl mx-auto">
-        <FadeIn>
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
-            <div>
-              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Institutional Platform
-              </p>
-              <h2
-                className="font-serif text-3xl md:text-4xl leading-tight text-white text-balance"
-                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
-              >
-                From Origination to Monetization
-              </h2>
-            </div>
-            <p className="text-base leading-relaxed self-end" style={{ color: WHITE70 }}>
-              Relationship-driven. Institutionally positioned. Capital ready.
-            </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={100}>
-          <div className="grid gap-5 mb-16">
-            <div className="border p-6 md:p-8" style={{ borderColor: GOLD20, backgroundColor: 'rgba(255,255,255,0.04)' }}>
-              <p className="text-xs uppercase tracking-widest mb-3" style={{ color: GOLD, letterSpacing: '0.14em' }}>
-                Capital Relationships
-              </p>
-              <p className="text-sm md:text-base text-white">
-                Family Offices · Investors · Banks · Funds · Developers · Operators
-              </p>
-            </div>
-
-            <div className="flex justify-center">
-              <span className="text-2xl" style={{ color: GOLD }}>↓</span>
-            </div>
-
-            <div className="border p-7 md:p-9 text-center" style={{ borderColor: GOLD40, backgroundColor: NAVY2 }}>
-              <p className="font-serif text-2xl md:text-3xl text-white" style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}>
-                Marqués Advisory & Investments
-              </p>
-              <p className="text-sm mt-3" style={{ color: WHITE40 }}>
-                Institutional real assets platform under evaluation, in structuring and capital readiness.
-              </p>
-            </div>
-
-            <div className="flex justify-center">
-              <span className="text-2xl" style={{ color: GOLD }}>↓</span>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
-              {PLATFORM_STAGES.map((stage, index) => (
-                <div
-                  key={stage}
-                  className="border p-5 text-center"
-                  style={{ borderColor: GOLD20, backgroundColor: 'rgba(255,255,255,0.035)' }}
-                >
-                  <p className="text-xs font-mono mb-2" style={{ color: GOLD40 }}>{String(index + 1).padStart(2, '0')}</p>
-                  <p className="text-sm font-semibold text-white">{stage}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex justify-center">
-              <span className="text-2xl" style={{ color: GOLD }}>↓</span>
-            </div>
-
-            <div className="border p-6 md:p-8 text-center" style={{ borderColor: GOLD20, backgroundColor: 'rgba(255,255,255,0.04)' }}>
-              <p className="text-xs uppercase tracking-widest mb-3" style={{ color: GOLD, letterSpacing: '0.14em' }}>
-                Real Assets
-              </p>
-              <p className="text-sm leading-relaxed max-w-2xl mx-auto" style={{ color: WHITE70 }}>
-                Opportunities remain subject to diligence, documentation, institutional review and appropriate professional coordination.
-              </p>
-            </div>
-          </div>
-        </FadeIn>
-
-        <div>
-          <FadeIn>
-            <div className="mb-10">
-              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                How the Platform Works
-              </p>
-              <h3
-                className="font-serif text-2xl md:text-3xl leading-tight text-white"
-                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
-              >
-                A disciplined pathway for institutional preparation.
-              </h3>
-            </div>
-          </FadeIn>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {PLATFORM_WORKS.map((item, index) => (
-              <FadeIn key={item.title} delay={index * 70}>
-                <div
-                  className="border p-7 h-full"
-                  style={{ borderColor: GOLD20, backgroundColor: 'rgba(255,255,255,0.04)' }}
-                >
-                  <p className="text-xs font-mono mb-5" style={{ color: GOLD }}>{String(index + 1).padStart(2, '0')}</p>
-                  <h4 className="text-base font-semibold text-white mb-3">{item.title}</h4>
-                  <p className="text-sm leading-relaxed" style={{ color: WHITE70 }}>{item.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ── Tesis de Inversión ─────────────────────────────────────── */
-
-function Tesis() {
-  return (
-    <section id="tesis" className="overflow-hidden" style={{ backgroundColor: '#F5F1EB' }}>
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 min-h-[460px]">
-          {/* Editorial image panel */}
-          <div
-            className="relative min-h-56 lg:min-h-full bg-cover bg-center order-2 lg:order-1"
-            style={{
-              backgroundImage:
-                'url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80)',
-            }}
-          >
-            <div
-              className="absolute inset-0"
-              style={{
-                background: 'linear-gradient(to right, rgba(245,241,235,0.0) 0%, rgba(245,241,235,0.35) 100%)',
-              }}
-            />
-          </div>
-
-          {/* Content */}
-          <div className="py-20 px-8 lg:px-14 flex flex-col justify-center order-1 lg:order-2">
-            <FadeIn>
-              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Investment Framework
-              </p>
-              <h2
-                className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-balance"
-                style={{ fontFamily: 'var(--font-playfair), serif', color: '#0D1B2A', fontWeight: 600 }}
-              >
-                Costa Rica needs more than opportunities. It needs an institutional framework.
-              </h2>
-              <div className="w-10 h-px my-6" style={{ backgroundColor: GOLD }} />
-              <p className="text-base leading-relaxed mb-5" style={{ color: '#334155' }}>
-                There is a significant gap between the abundance of real assets with potential in Costa Rica and the ability to move them from origination into structuring, capital readiness, execution coordination and monetization. The assets exist. The capital exists. What is often missing is the institutional framework that connects them.
-              </p>
-              <p className="text-base leading-relaxed" style={{ color: '#334155' }}>
-                Marqués Advisory & Investments works in that gap: between the asset opportunity and the bankable, traceable and defensible structure that allows sophisticated capital to evaluate with clarity, governance and a long-term perspective.
-              </p>
-            </FadeIn>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ── Qué Hacemos ─────────────────────────────────────────────── */
-
-const SERVICIOS = [
-  {
-    icon: Landmark,
-    title: 'Institutional Structuring',
-    desc: 'Design of financial and fiduciary-ready structures for real assets with institutional potential.',
-  },
-  {
-    icon: Building2,
-    title: 'Real Asset Advisory',
-    desc: 'Strategic assessment and positioning of real estate and infrastructure-related opportunities.',
-  },
-  {
-    icon: FileText,
-    title: 'Investment Preparation',
-    desc: 'Investment memos, financial modeling and diligence packages aligned with institutional standards.',
-  },
-  {
-    icon: DollarSign,
-    title: 'Project Finance Strategy',
-    desc: 'Structuring support for debt, capital and financing pathways for complex institutional opportunities.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Risk and Governance',
-    desc: 'Risk analysis, governance and institutional traceability for assets under structuring.',
-  },
-  {
-    icon: Layers,
-    title: 'Mixed-Use and Infrastructure Opportunities',
-    desc: 'Development and structuring support for opportunities with long-term economic and social relevance.',
-  },
+const reasons = [
+  { title: "Stability", text: "A long-term perspective on place, family and opportunity." },
+  { title: "Rule of Law", text: "Legal and documentation review at the heart of every decision." },
+  { title: "Connectivity", text: "A base in Central America for an international outlook." },
+  { title: "Lifestyle", text: "Pacific coastlines, green landscapes and a different daily rhythm." },
+  { title: "Real Assets", text: "Residential, hospitality and mixed-use opportunities to evaluate." },
+  { title: "Long-Term Presence", text: "A considered foundation for the next chapter of your life." },
 ]
-
-function QueHacemos() {
-  return (
-    <section id="que-hacemos" className="py-24 px-6" style={{ backgroundColor: '#FFFFFF' }}>
-      <div className="max-w-7xl mx-auto">
-        {/* Header row */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          <FadeIn>
-            <div>
-              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Capabilities
-              </p>
-              <h2
-                className="font-serif text-3xl md:text-4xl leading-tight text-balance"
-                style={{ fontFamily: 'var(--font-playfair), serif', color: '#0D1B2A', fontWeight: 600 }}
-              >
-                Platform capabilities for real assets
-              </h2>
-            </div>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <p className="text-base leading-relaxed self-end" style={{ color: '#334155' }}>
-              We help shape origination, structuring, capital readiness and execution coordination so real asset opportunities can be reviewed with institutional discipline.
-            </p>
-          </FadeIn>
-        </div>
-
-        {/* Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SERVICIOS.map((s, i) => {
-            const Icon = s.icon
-            return (
-              <FadeIn key={i} delay={i * 60}>
-                <div
-                  className="p-8 border flex flex-col gap-4 h-full transition-all hover:-translate-y-1 hover:shadow-lg"
-                  style={{ borderColor: '#E5DDD0', backgroundColor: '#FAFAF8' }}
-                >
-                  <Icon size={24} style={{ color: GOLD }} />
-                  <h3 className="font-semibold text-base" style={{ color: '#0D1B2A' }}>{s.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#64748B' }}>{s.desc}</p>
-                </div>
-              </FadeIn>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ── Cómo Pensamos ───────────────────────────────────────────── */
-
-const PROCESO = [
-  { step: '01', label: 'Asset origination' },
-  { step: '02', label: 'Thesis' },
-  { step: '03', label: 'Validation' },
-  { step: '04', label: 'Structure' },
-  { step: '05', label: 'Capital' },
-  { step: '06', label: 'Execution' },
-]
-
-function ComoPensamos() {
-  return (
-    <section id="como-pensamos" className="py-24 px-6" style={{ backgroundColor: GRAPHITE }}>
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <FadeIn>
-            <div>
-              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                How We Think
-              </p>
-              <h2
-                className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-white text-balance"
-                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
-              >
-                Before capital, there is structure.
-              </h2>
-              <Divider />
-              <p className="text-base leading-relaxed" style={{ color: WHITE70 }}>
-                We do not seek capital for opportunities without structure. We help build the platform logic that allows capital relationships to evaluate with conviction, not speculation. Each asset is reviewed through a disciplined process focused on traceability, governance and capital readiness from origination.
-              </p>
-            </div>
-          </FadeIn>
-          <FadeIn delay={150}>
-            <div className="flex flex-col gap-0">
-              {PROCESO.map((p, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-6 py-5 border-b"
-                  style={{ borderColor: GOLD20 }}
-                >
-                  <span className="text-xs font-mono" style={{ color: GOLD, minWidth: '2rem' }}>{p.step}</span>
-                  <div className="w-px h-6 shrink-0" style={{ backgroundColor: GOLD40 }} />
-                  <span className="text-base font-medium text-white">{p.label}</span>
-                  {i < PROCESO.length - 1 && (
-                    <ArrowRight size={14} className="ml-auto" style={{ color: GOLD40 }} />
-                  )}
-                </div>
-              ))}
-            </div>
-          </FadeIn>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ── Proyectos ───────────────────────────────────────────────── */
-
-function ProyectoModal({ onClose }: { onClose: () => void }) {
-  useEffect(() => {
-    const fn = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
-    document.addEventListener('keydown', fn)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', fn)
-      document.body.style.overflow = ''
-    }
-  }, [onClose])
-
-  return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      style={{ backgroundColor: 'rgba(13,27,42,0.92)', backdropFilter: 'blur(8px)' }}
-      onClick={onClose}
-    >
-      <div
-        className="relative max-w-2xl w-full p-10 border"
-        style={{ backgroundColor: NAVY2, borderColor: GOLD40 }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-5 right-5 p-1 transition-opacity hover:opacity-60"
-          style={{ color: WHITE70 }}
-          aria-label="Cerrar"
-        >
-          <X size={20} />
-        </button>
-        <p className="text-xs tracking-widest uppercase mb-3" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-          Institutional Opportunities
-        </p>
-        <h3
-          className="font-serif text-2xl md:text-3xl text-white mb-2"
-          style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
-        >
-          Décima Avenida
-        </h3>
-        <div
-          className="inline-block px-3 py-1 text-xs tracking-wide uppercase mb-5"
-          style={{ backgroundColor: GOLD10, border: `1px solid ${GOLD40}`, color: GOLD }}
-        >
-          Status: Institutional pre-feasibility
-        </div>
-        <p className="text-sm leading-relaxed mb-6" style={{ color: WHITE70 }}>
-          Strategic asset located in El Roble, Alajuela, with existing activity and phased development potential within the Coyol-Airport ecosystem. The opportunity is in a preliminary institutional structuring phase and remains subject to diligence and appropriate review.
-        </p>
-        <div className="grid grid-cols-2 gap-5 mb-8 border-t border-b py-5" style={{ borderColor: GOLD20 }}>
-          {[
-            { label: 'Location', value: 'El Roble, Alajuela' },
-            { label: 'Asset', value: 'Mixed-use' },
-            { label: 'Strategy', value: 'Phased development' },
-            { label: 'Focus', value: 'Institutional value and scalability' },
-          ].map((d, i) => (
-            <div key={i}>
-              <p className="text-xs uppercase tracking-wide mb-1" style={{ color: GOLD }}>{d.label}</p>
-              <p className="text-sm text-white">{d.value}</p>
-            </div>
-          ))}
-        </div>
-        <a
-          href="mailto:marquesadvisory@gmail.com"
-          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
-          style={{ backgroundColor: GOLD, color: NAVY }}
-        >
-          Request Institutional Information
-          <ArrowRight size={14} />
-        </a>
-      </div>
-    </div>
-  )
-}
-
-function Proyectos() {
-  const [modalOpen, setModalOpen] = useState(false)
-
-  return (
-    <>
-      {modalOpen && <ProyectoModal onClose={() => setModalOpen(false)} />}
-      <section id="proyectos" className="py-0" style={{ backgroundColor: NAVY2 }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 min-h-[520px]">
-            {/* Image with cinematic overlay */}
-            <div
-              className="relative min-h-64 lg:min-h-full bg-cover bg-center"
-              style={{
-                backgroundImage:
-                  'url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/D%C3%A9cima%20Avenida%20Rdr-fqy4LI79dGShBO9WtIpkK9WaN4dQ2e.jpg)',
-              backgroundPosition: 'center top',
-              }}
-            >
-            <div
-              className="absolute inset-0"
-              style={{
-                background: 'linear-gradient(to right, rgba(17,32,50,0) 60%, rgba(17,32,50,0.4) 100%)',
-              }}
-            />
-            </div>
-
-            {/* Content */}
-            <div className="py-16 px-10 lg:px-14 flex flex-col justify-center">
-              <FadeIn>
-                <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                  Institutional Opportunities
-                </p>
-                <h2
-                  className="font-serif text-3xl md:text-4xl leading-tight mb-4 text-white text-balance"
-                  style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
-                >
-                  Décima Avenida
-                </h2>
-                <div
-                  className="inline-block px-3 py-1 text-xs tracking-wide uppercase mb-6"
-                  style={{ backgroundColor: GOLD10, border: `1px solid ${GOLD40}`, color: GOLD }}
-                >
-                  Status: Institutional pre-feasibility
-                </div>
-                <p className="text-base leading-relaxed mb-8" style={{ color: WHITE70 }}>
-                  Preliminary institutional opportunity in El Roble, Alajuela, with existing activity and phased development potential oriented to the Coyol-Airport ecosystem.
-                </p>
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  {[
-                    { label: 'Location', value: 'El Roble, Alajuela' },
-                    { label: 'Asset', value: 'Mixed-use' },
-                    { label: 'Strategy', value: 'Phased development' },
-                    { label: 'Focus', value: 'Institutional value and scalability' },
-                  ].map((d, i) => (
-                    <div key={i}>
-                      <p className="text-xs uppercase tracking-wide mb-1" style={{ color: GOLD }}>{d.label}</p>
-                      <p className="text-sm text-white">{d.value}</p>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  onClick={() => setModalOpen(true)}
-                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border transition-all hover:bg-white/5 self-start"
-                  style={{ borderColor: 'rgba(255,255,255,0.25)', color: 'rgba(255,255,255,0.85)' }}
-                >
-                  Learn More
-                  <ArrowRight size={14} />
-                </button>
-              </FadeIn>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  )
-}
-
-/* ── Infraestructura Operativa Institucional ─────────────────── */
-
-const IAOS_PROCESSES = [
-  'Strategic analysis',
-  'Research',
-  'Structuring',
-  'Documentation',
-  'Traceability',
-  'Risk management',
-  'Institutional file preparation',
-]
-
-function Iaos() {
-  return (
-    <section className="py-0 overflow-hidden" style={{ backgroundColor: '#F5F1EB' }}>
-      {/* Top editorial band */}
-      <div
-        className="relative py-20 px-6"
-        style={{
-          background: 'linear-gradient(135deg, #0D1B2A 0%, #1C2B3A 60%, #0D1B2A 100%)',
-        }}
-      >
-        {/* Subtle architectural grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(201,169,110,1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(201,169,110,1) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px',
-          }}
-        />
-        <div className="relative max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
-            {/* Left: Label + Title */}
-            <div className="lg:col-span-5">
-              <FadeIn>
-                <p className="text-xs tracking-widest uppercase mb-5" style={{ color: GOLD, letterSpacing: '0.18em' }}>
-                  Institutional operating infrastructure
-                </p>
-                <h2
-                  className="font-serif text-3xl md:text-4xl leading-tight text-white text-balance"
-                  style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
-                >
-                  Technology applied to structuring, analysis and institutional preparation.
-                </h2>
-                <div className="w-10 h-px my-8" style={{ backgroundColor: GOLD }} />
-                <p className="text-sm leading-relaxed" style={{ color: WHITE70 }}>
-                  Marqués Advisory & Investments uses an AI-assisted institutional operating system to strengthen high-complexity processes in real assets and institutional structuring.
-                </p>
-                <p className="text-sm leading-relaxed mt-4" style={{ color: WHITE40 }}>
-                  The objective is to increase analytical capacity, operational consistency and execution speed within complex processes.
-                </p>
-              </FadeIn>
-            </div>
-
-            {/* Right: Process list with editorial line design */}
-            <div className="lg:col-span-7 lg:pl-12 lg:border-l" style={{ borderColor: GOLD20 }}>
-              <FadeIn delay={120}>
-                <p className="text-xs uppercase tracking-widest mb-6 font-semibold" style={{ color: GOLD40, letterSpacing: '0.14em' }}>
-                  Strengthened processes
-                </p>
-                <div className="flex flex-col">
-                  {IAOS_PROCESSES.map((process, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-5 py-4 border-b"
-                      style={{ borderColor: 'rgba(201,169,110,0.12)' }}
-                    >
-                      <span
-                        className="text-xs font-mono shrink-0 w-6 text-right"
-                        style={{ color: GOLD40 }}
-                      >
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <div className="w-px h-4 shrink-0" style={{ backgroundColor: GOLD20 }} />
-                      <span className="text-sm font-medium text-white">{process}</span>
-                    </div>
-                  ))}
-                </div>
-              </FadeIn>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom light band: capability summary */}
-      <div className="py-14 px-6" style={{ backgroundColor: '#F5F1EB' }}>
-        <div className="max-w-7xl mx-auto">
-          <FadeIn>
-            <div
-              className="border-l-2 pl-8 max-w-3xl"
-              style={{ borderColor: GOLD }}
-            >
-              <p className="text-base leading-relaxed italic" style={{ color: '#334155' }}>
-                "This is not task automation. It is analytical infrastructure applied to real asset structuring: more precise, more consistent and more defensible."
-              </p>
-              <p className="text-xs uppercase tracking-widest mt-4 font-semibold" style={{ color: GOLD }}>
-                Marqués Advisory & Investments
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ── Por qué Costa Rica ──────────────────────────────────────── */
-
-const CR_CARDS = [
-  { icon: Scale, title: 'Legal stability', desc: 'A solid legal framework, established rule of law and contractual security for long-term investment review.' },
-  { icon: Globe2, title: 'Free zones and foreign investment', desc: 'A well-established free zone regime with fiscal incentives and openness to international capital.' },
-  { icon: Wifi, title: 'Infrastructure and connectivity', desc: 'Strategic logistics connectivity with access to North American, European and global markets.' },
-  { icon: Users, title: 'Talent and capabilities', desc: 'Qualified human capital and a professional capabilities ecosystem suited to institutional processes.' },
-  { icon: Building2, title: 'Real assets with institutional potential', desc: 'Real estate and infrastructure markets with opportunities that may benefit from disciplined structuring.' },
-]
-
-function CostaRica() {
-  return (
-    <section id="costa-rica" className="py-24 px-6" style={{ backgroundColor: GRAPHITE }}>
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 mb-14">
-          <FadeIn>
-            <div>
-              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Why Costa Rica
-              </p>
-              <h2
-                className="font-serif text-3xl md:text-4xl leading-tight text-white text-balance"
-                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
-              >
-                A solid environment for long-term investment review.
-              </h2>
-            </div>
-          </FadeIn>
-          <FadeIn delay={100}>
-            <p className="text-base leading-relaxed self-end" style={{ color: WHITE70 }}>
-              Macroeconomic stability, talent, infrastructure, a free zone regime, commercial openness and sustainability commitments make Costa Rica a strategic market for institutional capital evaluation.
-            </p>
-          </FadeIn>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {CR_CARDS.map((c, i) => {
-            const Icon = c.icon
-            return (
-              <FadeIn key={i} delay={i * 60}>
-                <div
-                  className="flex flex-col gap-4 p-7 border h-full transition-all hover:-translate-y-1"
-                  style={{ borderColor: GOLD20, backgroundColor: 'rgba(255,255,255,0.04)' }}
-                >
-                  <Icon size={22} style={{ color: GOLD }} />
-                  <h3 className="font-semibold text-sm text-white leading-snug">{c.title}</h3>
-                  <p className="text-xs leading-relaxed" style={{ color: WHITE40 }}>{c.desc}</p>
-                </div>
-              </FadeIn>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ── Contacto ────────────────────────────────────────────────── */
-
-function Contacto() {
-  return (
-    <section id="contacto" className="py-24 px-6" style={{ backgroundColor: NAVY2 }}>
-      <div className="max-w-5xl mx-auto">
-        <FadeIn>
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <p className="text-xs tracking-widest uppercase mb-4" style={{ color: GOLD, letterSpacing: '0.15em' }}>
-                Institutional Inquiry
-              </p>
-              <h2
-                className="font-serif text-3xl md:text-4xl leading-tight text-white mb-6 text-balance"
-                style={{ fontFamily: 'var(--font-playfair), serif', fontWeight: 600 }}
-              >
-                Let us discuss real assets, capital and structuring.
-              </h2>
-              <Divider />
-              <p className="text-base leading-relaxed" style={{ color: WHITE70 }}>
-                Request a private conversation with our team. We support family offices, funds, banks, fiduciaries and developers with an institutional perspective.
-              </p>
-            </div>
-            <div className="flex flex-col gap-4">
-              <a
-                href="mailto:marquesadvisory@gmail.com"
-                className="flex items-center gap-4 px-6 py-4 border transition-all hover:bg-white/5"
-                style={{ borderColor: GOLD40 }}
-              >
-                <Mail size={18} style={{ color: GOLD }} />
-                <div>
-                  <p className="text-xs uppercase tracking-wide mb-0.5" style={{ color: GOLD }}>Email</p>
-                  <p className="text-sm text-white">marquesadvisory@gmail.com</p>
-                </div>
-              </a>
-              <a
-                href="tel:+50672679806"
-                className="flex items-center gap-4 px-6 py-4 border transition-all hover:bg-white/5"
-                style={{ borderColor: GOLD20 }}
-              >
-                <Phone size={18} style={{ color: GOLD }} />
-                <div>
-                  <p className="text-xs uppercase tracking-wide mb-0.5" style={{ color: GOLD }}>Phone</p>
-                  <p className="text-sm text-white">+506 7267-9806</p>
-                </div>
-              </a>
-              <a
-                href="https://wa.me/50672679806"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 px-6 py-4 border transition-all hover:bg-white/5"
-                style={{ borderColor: GOLD20 }}
-              >
-                <MessageCircle size={18} style={{ color: GOLD }} />
-                <div>
-                  <p className="text-xs uppercase tracking-wide mb-0.5" style={{ color: GOLD }}>WhatsApp</p>
-                  <p className="text-sm text-white">+506 7267-9806</p>
-                </div>
-              </a>
-              <a
-                href="https://wa.me/50672679806"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 flex items-center justify-center gap-2 px-6 py-4 text-sm font-semibold tracking-wide transition-all hover:opacity-90"
-                style={{ backgroundColor: GOLD, color: NAVY }}
-              >
-                Request Conversation
-                <ArrowRight size={16} />
-              </a>
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  )
-}
-
-/* ── Footer ──────────────────────────────────────────────────── */
-
-function Footer() {
-  return (
-    <footer style={{ backgroundColor: NAVY, borderTop: `1px solid ${GOLD20}` }}>
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20sin%20fondo-76W6yyCO5gUzFF2qWEPYIWgP3amG1g.png"
-              alt="Marqués Advisory & Investments"
-              className="h-16 w-auto object-contain mb-5"
-              style={{ filter: 'drop-shadow(0 0 6px rgba(201,169,110,0.15))' }}
-            />
-            <p className="text-xs leading-relaxed mb-5" style={{ color: WHITE40 }}>
-              Relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.
-            </p>
-            <a
-              href="https://www.linkedin.com/company/marquesadvisory"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-8 h-8 border transition-all hover:border-[#C9A96E]"
-              style={{ borderColor: GOLD20, color: WHITE40 }}
-            >
-              <Linkedin size={14} />
-            </a>
-          </div>
-
-          {/* Navegación */}
-          <div>
-            <p className="text-xs uppercase tracking-widest mb-5 font-semibold" style={{ color: GOLD, letterSpacing: '0.12em' }}>
-              Navigation
-            </p>
-            <ul className="flex flex-col gap-3">
-              {NAV_LINKS.map((l) => (
-                <li key={'href' in l ? l.href : l.id}>
-                  {'href' in l ? (
-                    <a
-                      href={l.href}
-                      className="text-xs transition-colors hover:text-[#C9A96E]"
-                      style={{ color: WHITE40 }}
-                    >
-                      {l.label}
-                    </a>
-                  ) : (
-                    <button
-                      onClick={() => scrollTo(l.id)}
-                      className="text-xs transition-colors hover:text-[#C9A96E]"
-                      style={{ color: WHITE40 }}
-                    >
-                      {l.label}
-                    </button>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Enfoque */}
-          <div>
-            <p className="text-xs uppercase tracking-widest mb-5 font-semibold" style={{ color: GOLD, letterSpacing: '0.12em' }}>
-              Focus
-            </p>
-            <ul className="flex flex-col divide-y" style={{ borderColor: GOLD20 }}>
-              {[
-                { label: 'Real Assets', desc: 'Origination and structuring of real asset opportunities with an institutional lens.' },
-                { label: 'Infrastructure', desc: 'Platforms oriented to connectivity, logistics and strategic development.' },
-                { label: 'Private Capital', desc: 'Preparation and structuring of opportunities for sophisticated capital review.' },
-                { label: 'Capital Readiness', desc: 'Development of phased financing logic and capital-facing asset strategies.' },
-                { label: 'Fiduciary Architecture', desc: 'Fiduciary-ready architecture for protection, governance and traceability.' },
-                { label: 'Institutional Structuring', desc: 'Conversion of complex opportunities into bankable and defensible platforms.' },
-              ].map((item) => (
-                <li
-                  key={item.label}
-                  className="group py-3 cursor-default"
-                >
-                  <p
-                    className="text-xs font-semibold mb-1 transition-colors group-hover:text-[#C9A96E]"
-                    style={{ color: 'rgba(255,255,255,0.75)', letterSpacing: '0.04em' }}
-                  >
-                    {item.label}
-                  </p>
-                  <p
-                    className="text-xs leading-relaxed transition-colors"
-                    style={{ color: 'rgba(255,255,255,0.32)' }}
-                  >
-                    {item.desc}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contacto */}
-          <div>
-            <p className="text-xs uppercase tracking-widest mb-5 font-semibold" style={{ color: GOLD, letterSpacing: '0.12em' }}>
-              Institutional Inquiry
-            </p>
-            <p className="text-xs mb-5 leading-relaxed" style={{ color: WHITE40 }}>
-              Request a private conversation with our team.
-            </p>
-            <a
-              href="https://wa.me/50672679806"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-full px-4 py-3 text-xs font-semibold border tracking-wide mb-3 transition-all hover:bg-white/5"
-              style={{ borderColor: GOLD40, color: GOLD }}
-            >
-              Request Institutional Conversation
-            </a>
-            <p className="text-xs" style={{ color: WHITE40 }}>marquesadvisory@gmail.com</p>
-          </div>
-        </div>
-
-        {/* Bottom */}
-        <div
-          className="pt-8 border-t flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
-          style={{ borderColor: GOLD20 }}
-        >
-          <p className="text-xs" style={{ color: WHITE40 }}>
-            © 2024 Marqués Advisory & Investments. All rights reserved.
-          </p>
-          <p className="text-xs max-w-2xl leading-relaxed text-right" style={{ color: WHITE40 }}>
-            {siteConfig.disclaimer}
-          </p>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
-/* ── Page ────────────────────────────────────────────────────── */
 
 export default function Home() {
   return (
-    <main>
+    <div className={styles.page}>
       <SiteHeader />
-      <Hero />
-      <PlatformLayer />
-      <Tesis />
-      <QueHacemos />
-      <ComoPensamos />
-      <Proyectos />
-      <Iaos />
-      <CostaRica />
-      <Contacto />
-      <Footer />
-    </main>
+      <JsonLd data={webPageSchema(pageSeo["/"])} />
+      <main id="home-content" tabIndex={-1}>
+        <section id="hero" className={styles.hero} aria-labelledby="hero-heading">
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrow}><T>Marqués Advisory &amp; Investments</T></p>
+            <h1 id="hero-heading"><span><T>Establish Your</T></span><T> Presence in </T><span className={styles.countryName}><T>Costa Rica.</T></span></h1>
+            <div className={styles.goldRule} />
+            <p className={styles.heroDescription}><T>Private advisory for residency, real assets and investment opportunities in Costa Rica.</T></p>
+            <div className={styles.heroActions}>
+              <Link href="/residency" className={styles.primaryButton}><T>
+                Become a Resident in Costa Rica </T><ArrowRight size={17} strokeWidth={1.4} aria-hidden="true" />
+              </Link>
+              <TextLink href="/investments"><T>Explore Investment Opportunities</T></TextLink>
+            </div>
+            <a href="#about-marques" className={styles.heroScroll}>
+              <ArrowDown size={14} aria-hidden="true" /><T> A local perspective. An international outlook.
+            </T></a>
+          </div>
+          <figure className={styles.heroMedia}>
+            <EditorialImage src="/costa-rica-coast.jpg" alt="Costa Rica's Pacific coastline, where forested hills meet the ocean" eager />
+            <figcaption><span><T>Costa Rica</T></span><span><T>Pacific perspective</T></span></figcaption>
+          </figure>
+        </section>
+
+        <Localized as="div" className={styles.pillarStrip} aria-label="Marqués areas of focus">
+          <div className={styles.container}>
+            <span className={styles.pillarLabel}><T>One considered perspective</T></span>
+            <Link href="/residency"><T>Residency by Investment</T></Link>
+            <Link href="/investment-framework"><T>Institutional Structuring</T></Link>
+            <Link href="/projects"><T>Real Assets</T></Link>
+          </div>
+        </Localized>
+
+        <section id="about-marques" className={styles.section} aria-labelledby="about-heading">
+          <div className={styles.editorialSplit}>
+            <div className={styles.editorialCopy}>
+              <p className={styles.eyebrow}><T>About Marqués</T></p>
+              <h2 id="about-heading"><T>Advisory Meets</T><br /><T>Investment.</T></h2>
+              <p className={styles.lead}><T>Global perspective.</T><br /><T>A personal connection to Costa Rica.</T></p>
+              <p><T>Marqués Advisory &amp; Investments is a relationship-driven platform focused on real assets, structuring and capital readiness in Costa Rica.</T></p>
+              <p><T>We bring an institutional lens to private decisions, connecting opportunities with the preparation and professional coordination they require.</T></p>
+              <TextLink href="/about"><T>Discover Marqués</T></TextLink>
+            </div>
+            <figure className={styles.aboutMedia}>
+              <EditorialImage src="/architecture-interior.jpg" alt="Natural light, stone and wood in a contemporary residential interior" />
+              <figcaption><T>Perspective begins with how you want to live.</T></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <Localized as="section" className={styles.pathways} aria-label="Residency and investment perspectives">
+          <div className={styles.container}>
+            <div className={styles.sectionIntro}>
+              <p className={styles.eyebrow}><T>Your presence. Your perspective.</T></p>
+              <h2><T>Two conversations.</T><br /><T>One connection to Costa Rica.</T></h2>
+            </div>
+            <div className={styles.pathwayGrid}>
+              <article id="residency" className={styles.pathway}>
+                <div className={styles.pathwayMedia}><EditorialImage src="/costa-rica-forest.jpg" alt="A walkway through the lush Monteverde cloud forest in Costa Rica" /></div>
+                <div className={styles.pathwayTop}><p className={styles.eyebrow}><T>Residency</T></p><span className={styles.smallNumber}>01</span></div>
+                <h3><T>A place to call your own.</T></h3>
+                <p><T>Your next chapter begins with your objectives, your family and a private conversation about Costa Rica.</T></p>
+                <div className={styles.categories}><span><T>Personal objectives</T></span><span><T>Local perspective</T></span><span><T>Professional review</T></span></div>
+                <TextLink href="/residency"><T>Discuss your presence in Costa Rica</T></TextLink>
+              </article>
+              <article id="investments" className={styles.pathway}>
+                <div className={styles.pathwayMedia}><EditorialImage src={towerImage} alt="Décima Avenida mixed-use tower concept rendering in Alajuela" className={styles.tower} /></div>
+                <div className={styles.pathwayTop}><p className={styles.eyebrow}><T>Investments</T></p><span className={styles.smallNumber}>02</span></div>
+                <h3><T>A more considered opportunity.</T></h3>
+                <p><T>Real asset opportunities evaluated through an institutional framework, from origination and structuring to capital readiness.</T></p>
+                <div className={styles.categories}><span><T>Real assets</T></span><span><T>Structuring</T></span><span><T>Capital readiness</T></span></div>
+                <TextLink href="/investments"><T>Explore Investment Opportunities</T></TextLink>
+              </article>
+            </div>
+          </div>
+        </Localized>
+
+        <section id="private-client-services" className={styles.services} aria-labelledby="services-heading">
+          <span id="que-hacemos" className={styles.anchor} />
+          <div className={styles.container}>
+            <div className={styles.directoryHeading}>
+              <div><p className={styles.eyebrow}><T>Private Client Services</T></p><h2 id="services-heading"><T>A considered approach.</T><br /><T>A personal relationship.</T></h2></div>
+              <p><T>Individual priorities. Local knowledge. A coordinated perspective across the decisions that shape your presence in Costa Rica.</T></p>
+            </div>
+            <div className={styles.serviceDirectory}>
+              {services.map((service) => (
+                <article key={service.number} id={service.id} className={styles.serviceRow}>
+                  <div className={styles.serviceMedia}><EditorialImage src={service.image} alt={service.alt} /></div>
+                  <div className={styles.serviceCopy}>
+                    <div className={styles.serviceTitle}><span className={styles.smallNumber}><T>{service.number}</T></span><h3><T>{service.name}</T></h3></div>
+                    <p><T>{service.description}</T></p>
+                    <p className={styles.serviceFocus}><T>{service.focus}</T></p>
+                    <TextLink href={service.number === "02" ? "/residency/real-estate" : INQUIRY}><T>{service.cta}</T></TextLink>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <article className={styles.developmentFeature}>
+              <div className={styles.developmentMedia}>
+                <EditorialImage src="/projects/plaza-los-mangos.png" alt="Plaza Los Mangos mixed-use development concept rendering" />
+                <span><T>Plaza Los Mangos / Concept rendering</T></span>
+              </div>
+              <div className={styles.developmentCopy}>
+                <p className={styles.eyebrow}><T>Private Client Services / 05</T></p>
+                <h3><T>Properties &amp;</T><br /><T>Hotel Development</T></h3>
+                <p><T>From the underlying asset to an institutional development framework. Origination, structuring and coordination across legal, financial, technical and commercial stakeholders.</T></p>
+                <TextLink href="/what-we-do"><T>Explore development capabilities</T></TextLink>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sovereign-portfolio" className={styles.portfolio} aria-labelledby="portfolio-heading">
+          <span id="tesis" className={styles.anchor} />
+          <span id="como-pensamos" className={styles.anchor} />
+          <div className={styles.container}>
+            <div className={styles.portfolioIntro}>
+              <div><p className={styles.eyebrow}><T>Sovereign Portfolio</T></p><h2 id="portfolio-heading"><T>The whole picture.</T><br /><T>Thoughtfully connected.</T></h2></div>
+              <p><T>A coordinated view of residency, real assets, capital and private client priorities. Each decision considered in the context of your wider objectives.</T></p>
+            </div>
+            <ol className={styles.portfolioStages}>
+              {[
+                ["Residency", "The starting point for a personal connection to Costa Rica."],
+                ["Real Assets", "Place, purpose and the underlying asset."],
+                ["Capital", "Structuring and preparation for disciplined review."],
+                ["Private Client Coordination", "Professional relationships aligned around your objectives."],
+              ].map(([title, description], index) => (
+                <li key={title}><span className={styles.smallNumber}>0{index + 1}</span><h3><T>{title}</T></h3><p><T>{description}</T></p></li>
+              ))}
+            </ol>
+            <TextLink href="/investment-framework" light><T>Our institutional framework</T></TextLink>
+          </div>
+        </section>
+
+        <section id="proyectos" className={styles.opportunities} aria-labelledby="opportunities-heading">
+          <div className={styles.editorialSplit}>
+            <div className={styles.editorialCopy}>
+              <p className={styles.eyebrow}><T>Private Investment Perspective</T></p>
+              <h2 id="opportunities-heading"><T>Selected</T><br /><T>Opportunities.</T></h2>
+              <p className={styles.lead}><T>Access begins with alignment.</T></p>
+              <p><T>Selected opportunities are presented privately based on investor profile, availability and qualification.</T></p>
+              <p><T>Public showcases provide institutional context for assets under review or in structuring. Further discussion remains subject to diligence and appropriate documentation.</T></p>
+              <TextLink href={INQUIRY}><T>Discuss Investment Opportunities</T></TextLink>
+              <div className={styles.projectReferences}>
+                <Link href="/projects/plaza-los-mangos"><T>Plaza Los Mangos </T><ArrowUpRight size={14} aria-hidden="true" /></Link>
+                <Link href="/projects/decima-avenida"><T>Décima Avenida </T><ArrowUpRight size={14} aria-hidden="true" /></Link>
+              </div>
+            </div>
+            <figure className={styles.opportunityMedia}>
+              <EditorialImage src={towerImage} alt="Décima Avenida tower and urban district concept rendering" />
+              <figcaption><span><T>Décima Avenida</T></span><span><T>El Roble, Alajuela / Concept rendering</T></span></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section id="costa-rica" className={styles.costaRica} aria-labelledby="costa-rica-heading">
+          <div className={styles.countryGrid}>
+            <figure className={styles.countryMedia}>
+              <EditorialImage src="/costa-rica-coast.jpg" alt="Pacific coastline and open landscape in Guanacaste, Costa Rica" />
+              <figcaption><T>Costa Rica / A longer view</T></figcaption>
+            </figure>
+            <div className={styles.countryCopy}>
+              <p className={styles.eyebrow}><T>Why Costa Rica</T></p>
+              <h2 id="costa-rica-heading"><T>A compelling destination</T><br /><T>for global citizens.</T></h2>
+              <ol className={styles.countryReasons}>
+                {reasons.map((reason, index) => (
+                  <li key={reason.title}><span className={styles.smallNumber}>0{index + 1}</span><div><h3><T>{reason.title}</T></h3><p><T>{reason.text}</T></p></div></li>
+                ))}
+              </ol>
+              <TextLink href={INQUIRY}><T>Explore your connection to Costa Rica</T></TextLink>
+            </div>
+          </div>
+        </section>
+
+        <section id="contacto" className={styles.finalCta} aria-labelledby="contact-heading">
+          <div className={styles.container}>
+            <div><p className={styles.eyebrow}><T>A private conversation</T></p><h2 id="contact-heading"><T>Your next chapter</T><br /><T>starts with a conversation.</T></h2></div>
+            <div className={styles.finalActions}>
+              <p><T>Share your perspective. Let us consider what comes next, together.</T></p>
+              <EnquiryButton className={styles.goldButton}><T>Begin a Private Conversation </T><ArrowUpRight size={18} aria-hidden="true" /></EnquiryButton>
+              <a href={siteConfig.whatsapp} className={styles.finalPhone}><Phone size={14} aria-hidden="true" /> <T>{siteConfig.phone}</T></a>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer className={styles.footer}>
+        <div className={styles.container}>
+          <div className={styles.footerTop}>
+            <div className={styles.footerBrand}>
+              <Link href="/" aria-label={siteConfig.name + " home"}><Localized as="img" src={siteConfig.logo} alt={siteConfig.name} width={1672} height={941} /></Link>
+              <p><T>A local perspective.</T><br /><T>An international outlook.</T></p>
+            </div>
+            <div><h3><T>Explore Marqués</T></h3><Localized as="nav" aria-label="Footer navigation">{siteConfig.nav.map(item => <Link key={item.href} href={item.href}><T>{item.label}</T></Link>)}</Localized></div>
+            <div><h3><T>Institutional Perspective</T></h3><Localized as="nav" aria-label="Institutional resources"><Link href="/who-we-serve"><T>Who We Serve</T></Link><Link href="/what-we-do"><T>Capabilities</T></Link><Link href="/investment-framework"><T>Investment Framework</T></Link><Link href="/capital-partners"><T>Capital Partners</T></Link><Link href="/projects"><T>Institutional Opportunities</T></Link></Localized></div>
+            <div className={styles.footerContact}><h3><T>Connect</T></h3><a href={"mailto:" + siteConfig.email}><Mail size={14} aria-hidden="true" /><T>{siteConfig.email}</T></a><a href={siteConfig.whatsapp}><Phone size={14} aria-hidden="true" /><T>{siteConfig.phone}</T></a><a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer"><T>WhatsApp </T><ArrowUpRight size={14} aria-hidden="true" /></a></div>
+          </div>
+          <p className={styles.disclaimer}><T>{siteConfig.disclaimer}</T></p>
+          <div className={styles.footerBottom}><p>© {new Date().getFullYear()}<T> Marqués Advisory &amp; Investments. All rights reserved.</T></p><span><T>Costa Rica</T></span></div>
+          <p className={styles.credits}><T>Photography: </T><a href="https://unsplash.com/photos/HOWad0OR_AQ" target="_blank" rel="noopener noreferrer"><T>César Badilla Miranda</T></a> / <a href="https://unsplash.com/photos/6W8f3vRk6vk" target="_blank" rel="noopener noreferrer"><T>Tom Podmore</T></a><T> / Unsplash.</T></p>
+        </div>
+      </footer>
+    </div>
   )
 }

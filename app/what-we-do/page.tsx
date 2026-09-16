@@ -1,3 +1,4 @@
+import { T } from "@/components/language-provider"
 import type { Metadata } from "next"
 import { JsonLd } from "@/components/json-ld"
 import { SiteHeader } from "@/components/site-header"
@@ -58,14 +59,14 @@ export default function WhatWeDoPage() {
       <section className="px-6 pb-20 pt-40">
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">Capabilities</p>
+            <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]"><T>Capabilities</T></p>
             <h1 className="font-serif text-4xl leading-tight md:text-6xl">
-              Platform capabilities for origination, structuring and capital readiness.
-            </h1>
+              <T>Platform capabilities for origination, structuring and capital readiness.
+            </T></h1>
           </div>
           <p className="text-base leading-8 text-white/70">
-            The work is centered on clarity: asset logic, documentation, governance, risk framing and the capital readiness required before sophisticated capital relationships can evaluate an institutional opportunity responsibly.
-          </p>
+            <T>The work is centered on clarity: asset logic, documentation, governance, risk framing and the capital readiness required before sophisticated capital relationships can evaluate an institutional opportunity responsibly.
+          </T></p>
         </div>
       </section>
 
@@ -73,15 +74,15 @@ export default function WhatWeDoPage() {
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {capabilities.map((capability) => (
             <article key={capability.title} className="border border-[#E5DDD0] bg-white p-8">
-              <h2 className="mb-4 text-lg font-semibold">{capability.title}</h2>
-              <p className="text-sm leading-7 text-slate-600">{capability.body}</p>
+              <h2 className="mb-4 text-lg font-semibold"><T>{capability.title}</T></h2>
+              <p className="text-sm leading-7 text-slate-600"><T>{capability.body}</T></p>
             </article>
           ))}
         </div>
       </section>
 
       <section className="px-6 py-12">
-        <p className="mx-auto max-w-5xl text-xs leading-6 text-white/45">{siteConfig.disclaimer}</p>
+        <p className="mx-auto max-w-5xl text-xs leading-6 text-white/45"><T>{siteConfig.disclaimer}</T></p>
       </section>
     </main>
   )

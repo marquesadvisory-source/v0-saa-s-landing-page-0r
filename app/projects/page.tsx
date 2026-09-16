@@ -1,9 +1,10 @@
+import { T } from "@/components/language-provider"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight, Building2, FileText, Layers, ShieldCheck } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { JsonLd } from "@/components/json-ld"
-import { breadcrumbSchema, createMetadata } from "@/lib/seo"
+import { breadcrumbSchema, createMetadata, webPageSchema, opportunityListSchema } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
 
 export const metadata: Metadata = createMetadata({
@@ -87,21 +88,8 @@ export default function ProjectsPage() {
             { name: "Institutional Opportunities", path: "/projects" },
           ]),
           {
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            name: "Institutional Opportunities",
-            url: `${siteConfig.domain}/projects`,
-            description:
-              "Selected real asset opportunities reviewed through MA&I's institutional preparation framework in Costa Rica.",
-            publisher: {
-              "@type": "Organization",
-              name: siteConfig.name,
-            },
-            mainEntity: opportunities.map((opportunity) => ({
-              "@type": "CreativeWork",
-              name: opportunity.name,
-              description: opportunity.thesis,
-            })),
+            ...webPageSchema({title: "Institutional Opportunities", description: "Selected real asset opportunities reviewed through MA&I's institutional preparation framework in Costa Rica.", path: "/projects"}, "CollectionPage"),
+            mainEntity: opportunityListSchema(opportunities.map(opportunity => ({name: opportunity.name, slug: opportunity.href.split("/").pop()!})), "/projects"),
           },
         ]}
       />
@@ -112,19 +100,19 @@ export default function ProjectsPage() {
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-              Institutional Pipeline
-            </p>
+              <T>Institutional Pipeline
+            </T></p>
             <h1 className="font-serif text-4xl leading-tight md:text-6xl">
-              Institutional Opportunities
-            </h1>
+              <T>Institutional Opportunities
+            </T></h1>
           </div>
           <div className="space-y-6 text-base leading-8 text-white/70">
             <p>
-              Selected real asset opportunities reviewed through MA&I&apos;s institutional preparation framework.
-            </p>
+              <T>Selected real asset opportunities reviewed through MA&I&apos;s institutional preparation framework.
+            </T></p>
             <p>
-              Opportunities shown on this page are not public offerings, investment solicitations or brokerage listings. They are institutional showcases of real asset opportunities under evaluation, structuring or capital readiness preparation.
-            </p>
+              <T>Opportunities shown on this page are not public offerings, investment solicitations or brokerage listings. They are institutional showcases of real asset opportunities under evaluation, structuring or capital readiness preparation.
+            </T></p>
           </div>
         </div>
       </section>
@@ -134,11 +122,11 @@ export default function ProjectsPage() {
           <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                Opportunity Pipeline Stages
-              </p>
+                <T>Opportunity Pipeline Stages
+              </T></p>
               <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                A disciplined path from asset access to monetization strategy.
-              </h2>
+                <T>A disciplined path from asset access to monetization strategy.
+              </T></h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
               {pipelineStages.map((stage, index) => (
@@ -149,8 +137,8 @@ export default function ProjectsPage() {
                   <p className="mb-4 text-xs font-mono text-[#C9A96E]">
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="mb-3 text-base font-semibold">{stage.title}</h3>
-                  <p className="text-sm leading-7 text-slate-600">{stage.body}</p>
+                  <h3 className="mb-3 text-base font-semibold"><T>{stage.title}</T></h3>
+                  <p className="text-sm leading-7 text-slate-600"><T>{stage.body}</T></p>
                 </article>
               ))}
             </div>
@@ -159,11 +147,11 @@ export default function ProjectsPage() {
           <div className="mb-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                How MA&I Reviews Opportunities
-              </p>
+                <T>How MA&I Reviews Opportunities
+              </T></p>
               <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                Each opportunity is reviewed through a repeatable institutional lens.
-              </h2>
+                <T>Each opportunity is reviewed through a repeatable institutional lens.
+              </T></h2>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {reviewFramework.map((item, index) => (
@@ -171,7 +159,7 @@ export default function ProjectsPage() {
                   <p className="mb-2 text-xs font-mono text-[#C9A96E]">
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <p className="text-sm font-semibold">{item}</p>
+                  <p className="text-sm font-semibold"><T>{item}</T></p>
                 </div>
               ))}
             </div>
@@ -201,7 +189,7 @@ export default function ProjectsPage() {
                           <div key={component} className="min-h-24 border border-[#C9A96E]/25 bg-white/[0.04] p-3">
                             <div className="mb-3 h-1.5 w-8 bg-[#C9A96E]/60" />
                             <p className="text-[10px] uppercase leading-4 tracking-[0.12em] text-white/55">
-                              {component}
+                              <T>{component}</T>
                             </p>
                           </div>
                         ))}
@@ -216,26 +204,26 @@ export default function ProjectsPage() {
 
                   <div className="relative flex min-h-[320px] flex-col justify-end p-8 md:p-12 lg:min-h-[520px]">
                     <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                      Institutional Opportunity
-                    </p>
+                      <T>Institutional Opportunity
+                    </T></p>
                     <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                      {opportunity.name}
+                      <T>{opportunity.name}</T>
                     </h2>
                     <p className="mt-5 max-w-md text-sm leading-7 text-white/68">
-                      {opportunity.location}
+                      <T>{opportunity.location}</T>
                     </p>
                     <p className="mt-6 inline-flex w-fit border border-[#C9A96E]/35 bg-[#0D1B2A]/45 px-3 py-2 text-[10px] uppercase tracking-[0.14em] text-[#C9A96E]">
-                      {opportunity.visualLabel}
+                      <T>{opportunity.visualLabel}</T>
                     </p>
                   </div>
                 </div>
 
                 <div className="p-8 md:p-12">
                   <div className="mb-6 inline-block border border-[#C9A96E]/40 bg-[#C9A96E]/10 px-3 py-1 text-xs uppercase tracking-[0.14em] text-[#C9A96E]">
-                    {opportunity.status}
+                    <T>{opportunity.status}</T>
                   </div>
                   <p className="mb-8 text-sm leading-7 text-white/70">
-                    {opportunity.thesis}
+                    <T>{opportunity.thesis}</T>
                   </p>
 
                   <div className="mb-8 grid gap-5 border-y border-[#C9A96E]/20 py-6 sm:grid-cols-2">
@@ -247,9 +235,9 @@ export default function ProjectsPage() {
                     ].map(([label, value]) => (
                       <div key={label}>
                         <p className="mb-1 text-xs uppercase tracking-[0.12em] text-[#C9A96E]">
-                          {label}
+                          <T>{label}</T>
                         </p>
-                        <p className="text-sm text-white">{value}</p>
+                        <p className="text-sm text-white"><T>{value}</T></p>
                       </div>
                     ))}
                   </div>
@@ -259,12 +247,12 @@ export default function ProjectsPage() {
                       href={opportunity.href}
                       className="inline-flex items-center gap-2 bg-[#C9A96E] px-6 py-3 text-sm font-semibold text-[#0D1B2A] transition-opacity hover:opacity-90"
                     >
-                      {opportunity.cta}
+                      <T>{opportunity.cta}</T>
                       <ArrowRight size={16} />
                     </Link>
                   ) : (
                     <div className="inline-flex items-center gap-2 border border-white/25 px-6 py-3 text-sm font-semibold text-white/70">
-                      {opportunity.cta}
+                      <T>{opportunity.cta}</T>
                     </div>
                   )}
                 </div>
@@ -277,9 +265,9 @@ export default function ProjectsPage() {
       <section className="px-6 py-12">
         <div className="mx-auto max-w-5xl">
           <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-            Institutional Disclaimer
-          </p>
-          <p className="text-xs leading-6 text-white/45">{pageDisclaimer}</p>
+            <T>Institutional Disclaimer
+          </T></p>
+          <p className="text-xs leading-6 text-white/45"><T>{pageDisclaimer}</T></p>
         </div>
       </section>
     </main>
