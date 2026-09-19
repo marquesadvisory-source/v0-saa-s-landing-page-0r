@@ -4,7 +4,7 @@ import { createContext, createElement, useContext, useEffect, useState, type Rea
 import { usePathname } from "next/navigation"
 import { translate, type Locale } from "@/lib/translations"
 
-import { locales } from "@/lib/i18n/config"
+import { resolveBrowserLocale } from "@/lib/i18n/browser-locale"
 const translatedPages = ["/", "/about", "/residency", "/residency/about-costa-rica", "/residency/real-estate", "/contact", "/investments", "/projects", "/projects/plaza-los-mangos", "/projects/decima-avenida", "/capital-partners", "/investment-framework", "/institutional-inquiry", "/who-we-serve", "/what-we-do"]
 const Context = createContext<{ locale: Locale; setLocale: (locale: Locale) => void }>({locale: "en", setLocale: () => {}})
 
@@ -12,10 +12,11 @@ export function LanguageProvider({children}: {children: ReactNode}) {
   const [locale, setLanguage] = useState<Locale>("en")
   const pathname = usePathname()
   useEffect(() => {
+    let saved: string | null = null
     try {
-      const saved = localStorage.getItem("marques-language") as Locale
-      if (locales.includes(saved)) setLanguage(saved)
+      saved = localStorage.getItem("marques-language")
     } catch { /* Browsing with storage disabled still supports in-session switching. */ }
+    setLanguage(resolveBrowserLocale(saved, navigator.languages?.length ? navigator.languages : [navigator.language]))
   }, [])
   useEffect(() => {
     document.documentElement.lang = translatedPages.includes(pathname) ? (locale === "zh-cn" ? "zh-Hans" : locale) : "en"
