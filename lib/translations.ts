@@ -10,6 +10,9 @@ import { institutionalFinalMessages } from "./institutional-final-translations"
 import { interfaceFinalMessages } from "./interface-final-translations"
 import { accessibilityMessages } from "./accessibility-translations"
 import { servicesMessages } from "./services-translations"
+import { navigationMessages } from "./navigation-translations"
+import { heroPositioningMessages } from "./hero-positioning-translations"
+import { homeArchitectureMessages } from "./home-architecture-translations"
 import type { Locale } from "./i18n/config"
 export type { Locale } from "./i18n/config"
 type Translation = readonly [es: string, fr: string, zh: string]
@@ -28,6 +31,9 @@ export const messages: Record<string, Translation> = {
   ...interfaceFinalMessages,
   ...accessibilityMessages,
   ...servicesMessages,
+  ...navigationMessages,
+  ...heroPositioningMessages,
+  ...homeArchitectureMessages,
   "Website language": ["Idioma del sitio", "Langue du site", "网站语言"],
   "Costa Rica residency": ["Residencia en Costa Rica", "Résidence au Costa Rica", "哥斯达黎加居留"],
   "Real estate opportunity views": ["Vistas de oportunidades inmobiliarias", "Vues des opportunités immobilières", "房地产机会视图"],

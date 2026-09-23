@@ -1,55 +1,65 @@
-.hero { position: relative; padding: 34px 0; background: #193340; overflow: hidden; }
+.hero { position: relative; display: flex; align-items: center; min-height: 430px; padding: 72px 0; background: #152b3b; overflow: hidden; }
 .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,rgba(12,31,42,.93),rgba(12,31,42,.72)); }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12,31,42,.92), rgba(12,31,42,.72) 55%, rgba(12,31,42,.36)); }
 .hero > div { position: relative; z-index: 1; }
-.hero h1 { color: white; font-size: 46px; line-height: 1.08; max-width: 900px; }
-.hero p:not(:first-child) { color: #e1e6e4; font-size: 12px; max-width: 770px; margin-top: 15px; }
-.hero > div > p:first-child { color: #dbc18d; margin-bottom: 14px; }
-.factsSection { padding: 26px 0 30px; }
-.facts { display: grid; grid-template-columns: 1fr 1.1fr 1.2fr 1.4fr 1fr; gap: 26px; margin: 0; }
-.facts > div { min-width: 0; }
-.facts dt { font-size: 10px; color: #8b703e; margin-bottom: 12px; }
-.facts dd { font-size: 12px; line-height: 1.8; color: #606e72; margin: 0; }
-.facts .amount { font: 500 32px/1.15 var(--font-cormorant), Georgia, serif; color: #19313f; }
-.pathwaysSection { padding: 32px 0 0; }
-.pathwaysSection .discoveryHeading { font: 500 11px/1.5 var(--font-inter),sans-serif; color: #8b703e; margin: 0; text-transform: uppercase; }
-.gateways { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 44px; }
-.gateway { min-width: 0; padding-bottom: 30px; border-bottom: 1px solid #d5d9d0; }
-.gatewayLabel { display: flex; align-items: baseline; gap: 20px; padding: 12px 0 20px; }
-.gatewayLabel > span { color: #8b703e; font-size: 12px; }
-.gatewayLabel h2 { font: 500 12px/1.6 var(--font-inter),sans-serif; letter-spacing: 0; }
-.gatewayImage { display: block; aspect-ratio: 16/9; overflow: hidden; background: #193340; }
-.gatewayImage img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.gateway h3 { font-size: 34px; line-height: 1.1; margin: 25px 0 17px; max-width: 520px; }
-.gateway p { font-size: 13px; line-height: 1.8; }
-.gateway .gatewayNote { font-size: 11px; margin-top: 14px; }
-.gateway > a:last-child { margin-top: 23px; font-size: 11px; }
-.discoverySection { scroll-margin-top: 165px; }
-.disclaimer { font-size: 11px!important; margin-top: 24px; max-width: 970px; }
-.enquiryBand { background: #f4f3ed; padding: 48px 0; border-block: 1px solid #d5d9d0; }
-.enquiryInner { display: flex; align-items: center; justify-content: space-between; gap: 36px; }
-.enquiryInner h2 { font-size: 36px; max-width: 640px; }
-.enquiryInner > button { flex-shrink: 0; }
-.stages { list-style: none; padding: 0; margin-top: 35px; border-top: 1px solid #d5d9d0; }
-.stages li { display: grid; grid-template-columns: 48px minmax(0,1fr) minmax(0,1.7fr); align-items: baseline; gap: 25px; padding: 27px 0; border-bottom: 1px solid #d5d9d0; }
-.stages h3 { font-size: 28px; }
-.stages p { font-size: 13px; }
-.frameworkNote { margin-top: 34px; }
-.lens { display: flex; flex-wrap: wrap; gap: 14px 28px; padding: 0; list-style: none; margin: 22px 0 30px; }
-.lens li { border-left: 1px solid #ab8d52; padding-left: 15px; font-size: 12px; }
-@media(max-width:1000px) { .facts { grid-template-columns: repeat(2,minmax(0,1fr)); } .facts > div:first-child { grid-column: 1/-1; } }
-@media(max-width:600px) {
-  .hero { padding-block: 28px; }
-  .hero h1 { font-size: 36px; }
-  .hero p:not(:first-child) { font-size: 12px; }
-  .gateways { grid-template-columns: 1fr; gap: 28px; }
-  .gateway h3 { font-size: 31px; }
-  .gatewayLabel { gap: 15px; }
-  .facts { grid-template-columns: 1fr; gap: 22px; }
-  .facts > div { border-bottom: 1px solid #d5d9d0; padding-bottom: 20px; }
-  .enquiryInner { align-items: flex-start; flex-direction: column; gap: 25px; }
-  .enquiryInner h2 { font-size: 31px; }
-  .stages li { grid-template-columns: 28px minmax(0,1fr); gap: 14px; }
-  .stages p { grid-column: 2; }
-  .stages h3 { font-size: 26px; overflow-wrap: anywhere; }
+.hero h1 { max-width: 850px; color: #fff; font: 500 58px/1.06 var(--font-cormorant), Georgia, serif; }
+.hero :global(.eyebrow) { color: #dbc18d; margin-bottom: 17px; }
+.heroIntro { max-width: 700px; margin-top: 23px; color: #f3f1eb; font-size: 16px; line-height: 1.75; }
+.universe { padding: 78px 0 84px; background: #fbfaf6; }
+.sectionHeading { max-width: 700px; margin-bottom: 42px; }
+.sectionHeading h2, .economicIntro h2, .pathwaysHeading h2 { margin-top: 12px; color: #182e3b; font: 500 40px/1.12 var(--font-cormorant), Georgia, serif; }
+.sectionHeading > p:last-child, .economicIntro > p:last-child { max-width: 620px; margin-top: 14px; color: #59676b; font-size: 14px; line-height: 1.8; }
+.themes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid #c9c7bc; }
+.theme { min-width: 0; padding: 20px 24px 8px 0; }
+.theme + .theme { padding-left: 24px; border-left: 1px solid #d7d5cb; }
+.themeNumber { color: #927b4b; font-size: 11px; }
+.theme h3 { margin-top: 20px; color: #1b303c; font: 500 24px/1.12 var(--font-cormorant), Georgia, serif; }
+.theme p { margin-top: 13px; color: #5e6b6e; font-size: 13px; line-height: 1.8; }
+.economic { padding: 69px 0 73px; color: #f6f3e9; background: #182e3d; }
+.economic :global(.eyebrow) { color: #d1b679; }
+.economicIntro { max-width: 730px; }
+.economicIntro h2 { color: #fbf9f2; }
+.economicIntro > p:last-child { color: #d6dcda; }
+.considerations { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 25px; padding: 0; margin: 34px 0 0; list-style: none; border-top: 1px solid rgba(233,224,201,.28); }
+.considerations li { padding: 17px 0; border-bottom: 1px solid rgba(233,224,201,.2); color: #f1eee6; font: 500 18px/1.3 var(--font-cormorant), Georgia, serif; }
+.frameworkLink { display: inline-flex; align-items: center; gap: 10px; margin-top: 27px; color: #e5d1a2; font-size: 12px; text-decoration: none; }
+.frameworkLink:hover, .frameworkLink:focus-visible { text-decoration: underline; text-underline-offset: 5px; }
+.pathways { padding: 76px 0 70px; background: #f5f3ed; }
+.pathwaysHeading { margin-bottom: 28px; }
+.pathwayList { border-top: 1px solid #c9c7bc; }
+.pathway { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(220px, .8fr); align-items: center; gap: 40px; padding: 23px 0; border-bottom: 1px solid #d7d5cb; }
+.pathway h3 { color: #1b303c; font: 500 27px/1.15 var(--font-cormorant), Georgia, serif; }
+.pathway p { max-width: 620px; margin-top: 7px; color: #5e6b6e; font-size: 13px; line-height: 1.7; }
+.pathway > a, .inquiry a { display: inline-flex; align-items: center; justify-self: start; gap: 8px; color: #19313f; font-size: 12px; text-decoration: none; }
+.pathway > a:hover, .pathway > a:focus-visible, .inquiry a:hover, .inquiry a:focus-visible { color: #826631; text-decoration: underline; text-underline-offset: 5px; }
+.inquiry { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 26px; color: #606c6f; font-size: 13px; line-height: 1.7; }
+.inquiry a { color: #19313f; }
+
+@media (max-width: 1000px) {
+  .themes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .theme:nth-child(3) { padding-left: 0; border-left: 0; }
+  .theme:nth-child(n+3) { border-top: 1px solid #d7d5cb; padding-top: 21px; }
+  .considerations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .hero { min-height: 390px; padding: 52px 0; }
+  .hero h1 { max-width: 560px; font-size: 43px; }
+  .heroIntro { margin-top: 18px; font-size: 14px; line-height: 1.7; }
+  .universe, .pathways { padding: 54px 0; }
+  .sectionHeading h2, .economicIntro h2, .pathwaysHeading h2 { font-size: 34px; }
+  .sectionHeading { margin-bottom: 28px; }
+  .themes { grid-template-columns: 1fr; }
+  .theme, .theme + .theme, .theme:nth-child(3) { padding: 18px 0 20px; border-left: 0; border-top: 1px solid #d7d5cb; }
+  .theme:first-child { border-top: 0; }
+  .theme h3 { margin-top: 12px; font-size: 26px; }
+  .theme p { font-size: 14px; }
+  .economic { padding: 54px 0; }
+  .considerations { gap: 0 17px; margin-top: 26px; }
+  .considerations li { font-size: 17px; }
+  .pathway { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 20px 0; }
+  .pathway h3 { font-size: 26px; }
+}
+@media (max-width: 360px) {
+  .hero h1 { font-size: 39px; }
+  .considerations { grid-template-columns: 1fr; }
 }

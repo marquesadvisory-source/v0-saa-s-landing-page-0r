@@ -29,7 +29,7 @@ const services = [
     name: "Real Estate", id: "real-estate", image: "service-real-estate",
     alt: "Illustrative penthouse interior with a green highland city outlook",
     description: "A real asset perspective that connects location, intended use and long-term objectives with documentation and institutional review.",
-    focus: "Asset review / Structuring / Diligence", cta: "Explore our real asset approach", href: "/residency/real-estate",
+    focus: "Asset review / Structuring / Diligence", cta: "Explore our real asset approach", href: "/real-estate",
   },
   {
     name: "Concierge", id: "concierge", image: "service-concierge",

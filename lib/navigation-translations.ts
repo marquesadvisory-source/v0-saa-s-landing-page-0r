@@ -1,0 +1,17 @@
+export const navigationMessages: Record<string, readonly [string, string, string]> = {
+  "The Firm": ["La firma", "Le cabinet", "公司"],
+  "Private Clients": ["Clientes privados", "Clients privés", "私人客户"],
+  "Luxury Real Estate": ["Bienes raíces de lujo", "Immobilier de prestige", "高端房地产"],
+  "Private Client Services": ["Servicios para clientes privados", "Services aux clients privés", "私人客户服务"],
+  "Strategic Real Assets": ["Activos reales estratégicos", "Actifs réels stratégiques", "战略实物资产"],
+  "Investment Framework": ["Marco de inversión", "Cadre d’investissement", "投资框架"],
+  "Institutional Opportunities": ["Oportunidades institucionales", "Opportunités institutionnelles", "机构投资机会"],
+  "Capital Partners": ["Socios de capital", "Partenaires financiers", "资本合作伙伴"],
+  "Institutional Inquiry": ["Consulta institucional", "Demande institutionnelle", "机构咨询"],
+  "About Marqués": ["Acerca de Marqués", "À propos de Marqués", "关于 Marqués"],
+  "Who We Serve": ["A quiénes acompañamos", "Nos interlocuteurs", "服务对象"],
+  "Capabilities": ["Capacidades", "Expertises", "专业能力"],
+  "Contact / Legal": ["Contacto / Información legal", "Contact / Mentions légales", "联系 / 法律信息"],
+  "Expand navigation section": ["Expandir sección de navegación", "Développer la rubrique de navigation", "展开导航栏目"],
+  "Collapse navigation section": ["Contraer sección de navegación", "Réduire la rubrique de navigation", "收起导航栏目"],
+}

@@ -1,0 +1,80 @@
+.page { --ivory: #f7f6f2; --ink: #152d3b; --gold: #826631; padding-top: 143px; background: var(--ivory); color: var(--ink); font-family: var(--font-inter), sans-serif; letter-spacing: 0; }
+.page * { box-sizing: border-box; }
+.page h1, .page h2, .page p, .page dl, .page dd { margin: 0; }
+.page h1, .page h2, .classification { font-family: var(--font-cormorant), Georgia, serif; font-weight: 400; }
+.page a:focus-visible { outline: 2px solid #b39761; outline-offset: 6px; }
+.container { width: min(100%, 1360px); margin-inline: auto; padding-inline: 64px; }
+.hero { padding-block: 60px 54px; background: #fff; }
+.eyebrow { display: flex; align-items: center; gap: 16px; font-size: 11px; line-height: 1.6; font-weight: 500; color: var(--gold); }
+.eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--gold); }
+.hero h1 { max-width: 1120px; font-size: 68px; line-height: 1.06; margin-top: 24px; text-wrap: balance; }
+.intro { max-width: 740px; font-size: 16px; line-height: 1.8; color: #53636a; margin-top: 24px !important; }
+.opportunity { padding-block: 54px 80px; }
+.opportunity:nth-child(even) { background: #fff; }
+.projectHeading { display: flex; align-items: baseline; gap: 26px; padding-top: 24px; margin-bottom: 32px; border-top: 1px solid #d5d6cf; position: relative; }
+.projectHeading::before { content: ""; position: absolute; top: -1px; left: 0; width: 64px; height: 1px; background: var(--gold); transform-origin: left; transition: transform 900ms ease; }
+.projectHeading[data-pending]::before { transform: scaleX(0); }
+.number { flex-shrink: 0; font-size: 11px; color: var(--gold); }
+.projectHeading h2 { font-size: 48px; line-height: 1.1; }
+.location { font-size: 12px; line-height: 1.7; color: #617077; margin-top: 10px !important; }
+.projectGrid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; gap: 54px; }
+.reversed { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+.reversed .visual { grid-column: 2; grid-row: 1; }
+.reversed .details { grid-column: 1; grid-row: 1; }
+.visual { aspect-ratio: 1; overflow: hidden; background: #e3e5df; }
+.visual img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1800ms ease; }
+.visual[data-pending] img { transform: scale(1.035); }
+@media(hover:hover) { .visual:hover img { transform: scale(1.018); } }
+.classification { font-size: 32px; line-height: 1.15; text-wrap: balance; }
+.thesis { margin-top: 20px !important; font-size: 15px; line-height: 1.85; color: #53636a; }
+.facts { margin-top: 26px !important; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 26px; }
+.facts > div { border-top: 1px solid #d5d6cf; padding: 16px 0 22px; transition-delay: var(--reveal-delay, 0ms); }
+.facts dt { font-size: 11px; line-height: 1.6; color: var(--gold); margin-bottom: 6px; }
+.facts dd { font-size: 13px; line-height: 1.75; }
+.overviewLink { display: inline-block; max-width: 100%; padding: 12px 0; border-bottom: 1px solid #b39761; color: var(--ink); text-decoration: none; font-size: 13px; line-height: 1.7; transition: color 220ms ease, border-color 220ms ease; }
+.overviewLink:hover { color: var(--gold); border-color: var(--gold); }
+.access { background: var(--ink); color: var(--ivory); padding-block: 70px; }
+.accessInner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 80px; }
+.access h2 { max-width: 500px; font-size: 48px; line-height: 1.08; text-wrap: balance; }
+.access p { font-size: 15px; line-height: 1.85; color: #dce1dc; }
+.accessLink { display: inline-flex; justify-content: center; align-items: center; margin-top: 28px; padding: 14px 22px; max-width: 100%; border: 1px solid #b39761; color: #f2e4c7; font-size: 13px; line-height: 1.6; text-decoration: none; transition: color 220ms ease, background 220ms ease; }
+.accessLink:hover { color: var(--ink); background: #f2e4c7; }
+.disclaimer { background: var(--ink); padding-block: 0 38px; color: #c0c8c9; }
+.disclaimer .container { padding-top: 24px; position: relative; }
+.disclaimer .container::before { content: ""; position: absolute; top: 0; left: 64px; right: 64px; height: 1px; background: #485c65; }
+.disclaimer p { font-size: 11px; line-height: 1.9; }
+.disclaimerLabel { color: #ddc99f; margin-bottom: 8px !important; }
+.page [data-reveal] { transition: opacity 700ms ease, transform 850ms ease; transition-delay: var(--reveal-delay, 0ms); }
+.page [data-pending] { opacity: 0; transform: translateY(16px); }
+@media(max-width:1099px) {
+  .container { padding-inline: 40px; } .hero h1 { font-size: 58px; }
+  .projectGrid, .reversed { gap: 36px; } .projectHeading h2 { font-size: 42px; }
+  .classification { font-size: 28px; } .accessInner { gap: 44px; } .access h2 { font-size: 42px; }
+  .disclaimer .container::before { left: 40px; right: 40px; }
+}
+@media(max-width:900px) {
+  .projectGrid, .reversed { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .reversed .visual, .reversed .details { grid-column: auto; grid-row: auto; }
+  .visual { aspect-ratio: 4 / 3; } .facts { gap: 0 36px; } .details { max-width: 720px; }
+}
+@media(max-width:767px) {
+  .container { padding-inline: 24px; } .hero { padding-block: 40px; }
+  .hero h1 { font-size: 46px; } .intro { font-size: 15px; }
+  .opportunity { padding-block: 38px 48px; } .projectHeading { gap: 18px; margin-bottom: 24px; }
+  .projectHeading h2 { font-size: 38px; } .location { font-size: 12px; }
+  .visual { aspect-ratio: 1; } .classification { font-size: 30px; } .thesis { margin-top: 16px !important; }
+  .facts { column-gap: 20px; } .access { padding-block: 50px; }
+  .accessInner { grid-template-columns: minmax(0, 1fr); gap: 26px; } .access h2 { font-size: 40px; }
+  .disclaimer .container::before { left: 24px; right: 24px; }
+}
+@media(max-width:600px) { .page { padding-top: 119px; } }
+@media(max-width:359px) {
+  .hero h1 { font-size: 39px; overflow-wrap: anywhere; } .projectHeading h2 { font-size: 34px; }
+  .facts { grid-template-columns: minmax(0, 1fr); } .facts > div { padding-bottom: 16px; }
+  .access h2 { font-size: 36px; } .overviewLink, .accessLink { font-size: 12px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .page *, .page *::before { transition: none !important; animation: none !important; }
+  .page [data-reveal] { opacity: 1; transform: none; }
+  .visual img, .visual:hover img, .projectHeading::before { transform: none !important; }
+}

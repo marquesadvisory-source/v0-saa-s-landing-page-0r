@@ -1,5 +1,5 @@
-// Hosting preview protection is separate from public production indexing.
-export function isHostingPreview(): boolean {
-  return process.env.VERCEL_ENV === "preview"
+// Only an explicitly identified Vercel production deployment is indexable.
+export function isNonProductionDeployment(): boolean {
+  return process.env.VERCEL_ENV !== "production"
 }
 export const nonPublicPaths = ["/api/", "/admin/", "/private/", "/preview/"]

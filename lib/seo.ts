@@ -5,6 +5,7 @@ import { seoImages } from "@/lib/seo-images"
 type SeoOptions = { title: string; description: string; path?: string; image?: string }
 
 export function absoluteUrl(path = "/") {
+  if (path === "/") return siteConfig.domain
   return new URL(path, siteConfig.domain).toString()
 }
 export function createMetadata({ title, description, path = "/", image = siteConfig.ogImage }: SeoOptions): Metadata {

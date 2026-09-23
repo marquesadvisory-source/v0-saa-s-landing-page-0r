@@ -38,9 +38,9 @@
 .lightLink svg { color: #d2b77d; }
 .hero { display: grid; grid-template-columns: 1fr 1fr; max-width: 1600px; margin-inline: auto; background: #f8f7f3; }
 .heroCopy { padding: 55px 48px 26px max(48px, calc((100vw - 1200px) / 2)); align-self: center; }
-.heroCopy h1 { font-size: 56px; line-height: 1.025; max-width: 560px; }
+.heroCopy h1 { font-size: 42px; line-height: 1.1; max-width: 560px; text-transform: uppercase; }
 .heroCopy h1 span { display: block; }
-.heroCopy h1 .countryName { display: inline-block; white-space: nowrap; }
+.heroCopy h1 .heroLead { font-family: var(--font-inter), sans-serif; font-size: 12px; line-height: 1.6; font-weight: 500; margin-bottom: 18px; }
 .heroCopy .heroDescription { max-width: 355px; font-size: 14px; line-height: 1.85; }
 .heroActions { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-top: 30px; }
 .heroActions .textLink { font-size: 11px; }
@@ -64,7 +64,7 @@
 .aboutMedia { height: 470px; position: relative; padding-bottom: 34px; }
 .aboutMedia img { object-position: 51% center; }
 .aboutMedia figcaption { position: absolute; left: 0; right: 0; bottom: 0; font-size: 10px; color: #6f7776; padding-top: 12px; }
-.pathways { padding: 76px 0 80px; background: var(--ivory); }
+.pathways { padding: 76px 0 84px; background: var(--ivory); }
 .sectionIntro { margin-bottom: 42px; }
 .sectionIntro .eyebrow { margin-bottom: 15px; }
 .pathwayGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
@@ -75,8 +75,14 @@
 .pathwayTop { display: flex; justify-content: space-between; align-items: baseline; }
 .pathwayTop .eyebrow { margin-bottom: 12px; }
 .smallNumber { color: #917744; font-size: 11px; font-family: var(--font-inter), sans-serif; font-weight: 400; }
-.pathway h3 { margin-bottom: 15px; }
-.pathway > p { max-width: 480px; }
+.pathway h3 { max-width: 480px; margin-bottom: 14px; font-size: 32px; }
+.pathway > p { max-width: 480px; min-height: 52px; }
+.pathwayLinks { list-style: none; padding: 0; margin: 23px 0 0; border-top: 1px solid #d0d1c9; }
+.pathwayLinks li { border-bottom: 1px solid #d0d1c9; }
+.pathwayLinks a { display: flex; min-height: 48px; align-items: center; justify-content: space-between; gap: 14px; color: var(--ink); font-size: 12px; }
+.pathwayLinks a svg { flex-shrink: 0; color: var(--gold); transition: transform 160ms ease; }
+.pathwayLinks a:hover { color: #826631; }
+.pathwayLinks a:hover svg { transform: translate(2px, -2px); }
 .categories { display: flex; flex-wrap: wrap; gap: 7px 0; margin: 24px 0 15px; padding: 15px 0; border-top: 1px solid #d5d6cc; border-bottom: 1px solid #d5d6cc; }
 .categories span { font-size: 10px; color: #5c686b; padding: 0 14px; border-left: 1px solid #bfc3b9; }
 .categories span:first-child { padding-left: 0; border-left: 0; }
@@ -122,6 +128,10 @@
 .opportunityMedia img { object-position: 50% 27%; }
 .opportunityMedia figcaption { position: absolute; inset: auto 0 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 5px 16px; align-items: baseline; color: #697475; font-size: 9px; padding-top: 14px; }
 .opportunityMedia figcaption span:first-child { font-size: 16px; font-family: var(--font-cormorant), Georgia, serif; color: var(--ink); }
+.context { padding: 82px 0; background: var(--ivory); }
+.contextMedia { position: relative; height: 430px; padding-bottom: 30px; }
+.contextMedia img { object-position: center 47%; }
+.contextMedia figcaption { position: absolute; inset: auto 0 0; padding-top: 10px; color: #657073; font-size: 10px; }
 .costaRica { background: var(--ivory); padding: 75px 0; }
 .countryGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: stretch; width: min(100% - 96px, 1200px); margin-inline: auto; }
 .countryMedia { position: relative; min-height: 690px; }
@@ -135,22 +145,27 @@
 .countryReasons h3 { font-size: 24px; margin-bottom: 3px; }
 .countryReasons p { font-size: 12px; line-height: 1.6; }
 .finalCta { background: var(--navy); padding: 66px 0; color: #fff; }
-.finalCta .container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 70px; align-items: center; }
+.finalCta .container { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
 .finalCta .eyebrow { color: #d0b77f; }
 .finalCta h2 { font-size: 45px; }
-.finalActions { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
-.finalActions p { color: #c6cdd0; font-size: 13px; max-width: 330px; }
+.conversionPaths { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+.conversionPaths > div { min-width: 0; border-top: 1px solid #8c7952; padding-top: 17px; }
+.conversionPaths .eyebrow { margin-bottom: 12px; }
+.conversionPaths p:not(.eyebrow) { color: #c6cdd0; font-size: 12px; min-height: 48px; margin-bottom: 12px; }
 .goldButton { background: #c5aa75; color: #122939; border: 1px solid #c5aa75; }
 .goldButton:hover { background: #deca9e; }
 .finalPhone { display: inline-flex; align-items: center; gap: 10px; color: #d4d9da; font-size: 12px; }
 .footer { padding: 54px 0 20px; background: #fff; }
-.footerTop { display: grid; grid-template-columns: 0.85fr 1.1fr 1fr 1.2fr; gap: 35px; padding-bottom: 38px; }
+.footerTop { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 25px; padding-bottom: 38px; }
 .footerBrand > a { display: block; position: relative; width: 138px; height: 100px; overflow: hidden; margin: -14px 0 12px; }
 .footerBrand img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .footerBrand p { font-size: 11px; }
 .footer h3 { font-family: var(--font-inter), sans-serif; font-size: 11px; font-weight: 600; margin: 13px 0 22px; }
 .footer nav { display: flex; flex-direction: column; gap: 12px; }
 .footer nav a, .footerContact > a { font-size: 11px; line-height: 1.6; color: #637073; }
+.footerGroup { min-width: 0; }
+.footerGroup nav { gap: 9px; }
+.footerGroup nav a { font-size: 10px; overflow-wrap: anywhere; }
 .footer a:hover { color: #8b703e; }
 .footerContact { min-width: 0; }
 .footerContact > a { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; overflow-wrap: anywhere; }
@@ -163,7 +178,7 @@
 @media (min-width: 1600px) { .heroCopy { padding-left: 100px; } }
 @media (max-width: 1199px) {
   .heroCopy { padding: 38px 38px 26px 48px; }
-  .heroCopy h1 { font-size: 54px; }
+  .heroCopy h1 { font-size: 38px; }
   .heroMedia { min-height: 550px; }
   .editorialSplit { gap: 55px; }
   .countryGrid { gap: 45px; }
@@ -175,7 +190,7 @@
   .container, .editorialSplit, .countryGrid { width: calc(100% - 64px); }
   .page h2 { font-size: 40px; }
   .heroCopy { padding: 34px 28px 26px 32px; }
-  .heroCopy h1 { font-size: 46px; }
+  .heroCopy h1 { font-size: 34px; }
   .heroMedia { min-height: 530px; }
   .primaryButton { font-size: 11px; padding: 14px 15px; gap: 12px; }
   .heroScroll { font-size: 9px; align-items: flex-start; line-height: 1.6; margin-top: 28px; }
@@ -212,7 +227,9 @@
   .finalCta .container { gap: 30px; }
   .finalCta h2 { font-size: 38px; }
   .goldButton { gap: 12px; padding: 14px 16px; font-size: 11px; }
-  .footerTop { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .footerTop { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .footerBrand { grid-column: 1 / -1; }
+  .finalCta .container { grid-template-columns: 1fr; gap: 30px; }
 }
 @media (max-width: 600px) {
   .page { padding-top: 119px; }
@@ -223,7 +240,7 @@
   .page p { font-size: 13px; }
   .hero { grid-template-columns: 1fr; }
   .heroCopy { padding: 32px 24px 26px; }
-  .heroCopy h1 { font-size: 43px; max-width: 370px; }
+  .heroCopy h1 { font-size: 32px; max-width: 370px; }
   .heroCopy .eyebrow { font-size: 9px; }
   .goldRule { margin: 19px 0 15px; width: 36px; }
   .heroCopy .heroDescription { font-size: 12px; max-width: 320px; line-height: 1.75; }
@@ -249,6 +266,7 @@
   .sectionIntro { margin-bottom: 30px; }
   .pathwayGrid { grid-template-columns: 1fr; gap: 40px; }
   .pathwayMedia { height: 235px; margin-bottom: 22px; }
+  .pathway > p { min-height: 0; }
   .pathway h3 { font-size: 32px; }
   .pathwayTop .eyebrow { margin-bottom: 12px; }
   .categories { margin-top: 20px; }
@@ -289,21 +307,23 @@
   .countryReasons p { font-size: 12px; }
   .finalCta { padding: 44px 0; }
   .finalCta .container { grid-template-columns: 1fr; gap: 27px; }
+  .conversionPaths { grid-template-columns: 1fr; gap: 23px; }
+  .conversionPaths p:not(.eyebrow) { min-height: 0; }
   .finalCta h2 { font-size: 37px; }
   .finalActions { gap: 20px; }
   .goldButton { font-size: 11px; padding: 15px 19px; }
   .footer { padding: 36px 0 20px; }
-  .footerTop { grid-template-columns: 1fr 1fr; gap: 28px 22px; }
+  .footerTop { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 18px; }
   .footerBrand { grid-column: 1 / -1; display: flex; gap: 25px; align-items: center; }
   .footerBrand > a { flex-shrink: 0; margin: -14px 0 0; width: 124px; }
-  .footerContact { grid-column: 1 / -1; }
   .footer nav a { font-size: 10px; }
+  .footerGroup nav { gap: 9px; }
   .footer h3 { font-size: 10px; margin-top: 0; margin-bottom: 18px; }
   .page .disclaimer { font-size: 9px; }
   .footerBottom { align-items: start; }
 }
 @media (max-width: 359px) {
-  .heroCopy h1 { font-size: 38px; }
+  .heroCopy h1 { font-size: 28px; }
   .primaryButton { gap: 10px; padding-inline: 12px; }
   .page h2 { font-size: 33px; }
   .categories { gap: 8px 0; }

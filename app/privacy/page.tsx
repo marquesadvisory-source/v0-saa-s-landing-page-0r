@@ -2,7 +2,7 @@ import { SiteHeader } from "@/components/site-header"
 import { LanguageNotice } from "@/components/language-provider"
 import { ResidencyFooter } from "@/components/residency-editorial"
 import { JsonLd } from "@/components/json-ld"
-import { absoluteUrl, breadcrumbSchema, createMetadata } from "@/lib/seo"
+import { breadcrumbSchema, createMetadata, webPageSchema } from "@/lib/seo"
 import approvedPolicy from "@/lib/privacy-policy.json"
 import s from "@/app/residency/residency.module.css"
 
@@ -11,7 +11,7 @@ export const metadata = createMetadata({title: "Privacy Policy", description: "T
 export default function PrivacyPage() {
   // Public controller address currently displayed as Santa Cruz, Guanacaste, Costa Rica. Confirm legal sufficiency before production.
   return <div className={s.page}><SiteHeader />
-    <JsonLd data={[{"@context":"https://schema.org","@type":"WebPage",name:"Privacy Policy",url:absoluteUrl("/privacy")},breadcrumbSchema([{name:"Home",path:"/"},{name:"Privacy Policy",path:"/privacy"}])]} />
+    <JsonLd data={[webPageSchema({title:"Privacy Policy",description:"The approved Privacy Policy of Marqués Advisory & Investments, operated by Besta & Violeta SRL.",path:"/privacy"}),breadcrumbSchema([{name:"Home",path:"/"},{name:"Privacy Policy",path:"/privacy"}])]} />
     <main className={s.legal} lang="en">
       <LanguageNotice legal />
       {approvedPolicy.map((paragraph,index) => {

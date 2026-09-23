@@ -1,0 +1,28 @@
+export const opportunities = [
+  {
+    name: "Plaza Los Mangos",
+    location: "Santa Cruz, Guanacaste, Costa Rica",
+    classification: "Mixed-Use Institutional Development",
+    image: "/projects/plaza-los-mangos.png",
+    imageAlt: "Plaza Los Mangos mixed-use development rendering in Santa Cruz, Guanacaste",
+    imagePosition: "center",
+    assetClass: "Mixed-Use Real Asset Development",
+    stage: "Predevelopment / Capital Readiness",
+    role: "Origination, structuring, capital readiness and institutional positioning",
+    thesis: "A mixed-use real asset opportunity currently in structuring, designed to integrate commercial, hospitality, residential, service-oriented retail and parking uses within a single institutional development framework.",
+    href: "/projects/plaza-los-mangos",
+  },
+  {
+    name: "Décima Avenida",
+    location: "El Roble, Alajuela, Costa Rica",
+    classification: "Coyol–Airport Growth Corridor",
+    image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/D%C3%A9cima%20Avenida%20Rdr-fqy4LI79dGShBO9WtIpkK9WaN4dQ2e.jpg",
+    imageAlt: "Décima Avenida mixed-use tower rendering in El Roble, Alajuela",
+    imagePosition: "58% 18%",
+    assetClass: "Mixed-Use / Real Asset Opportunity",
+    stage: "Origination / Under Structuring",
+    role: "Thesis development, structuring review and strategic positioning",
+    thesis: "A preliminary mixed-use real asset opportunity under evaluation in the Coyol–Airport ecosystem, with potential for phased positioning subject to diligence, documentation and institutional review.",
+    href: "/projects/decima-avenida",
+  },
+] as const

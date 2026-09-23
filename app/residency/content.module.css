@@ -18,7 +18,7 @@
   column-gap: 50px;
 }
 .benefits > li { min-width: 0; }
-.firstQuestion { text-transform: uppercase; }
+.editorialLabel.editorialLabel, .facts.facts span { text-transform: none; }
 .journey .journeyStatement {
   max-width: 760px;
   margin-top: 24px;

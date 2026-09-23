@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { translate, type Locale } from "@/lib/translations"
 
 import { resolveBrowserLocale } from "@/lib/i18n/browser-locale"
-const translatedPages = ["/", "/about", "/residency", "/residency/about-costa-rica", "/residency/real-estate", "/contact", "/investments", "/projects", "/projects/plaza-los-mangos", "/projects/decima-avenida", "/capital-partners", "/investment-framework", "/institutional-inquiry", "/who-we-serve", "/what-we-do"]
+const translatedPages = ["/", "/about", "/residency", "/residency/about-costa-rica", "/residency/real-estate", "/real-estate", "/contact", "/investments", "/projects", "/projects/plaza-los-mangos", "/projects/decima-avenida", "/capital-partners", "/investment-framework", "/institutional-inquiry", "/who-we-serve", "/what-we-do", "/services"]
 const Context = createContext<{ locale: Locale; setLocale: (locale: Locale) => void }>({locale: "en", setLocale: () => {}})
 
 export function LanguageProvider({children}: {children: ReactNode}) {

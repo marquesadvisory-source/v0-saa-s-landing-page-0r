@@ -6,9 +6,9 @@ import { EnquiryProvider } from "@/components/enquiry-provider"
 import { FixedCallback } from "@/components/fixed-callback"
 import { LanguageProvider } from "@/components/language-provider"
 import { JsonLd } from "@/components/json-ld"
-import { organizationSchema, websiteSchema } from "@/lib/seo"
+import { absoluteUrl, organizationSchema, websiteSchema } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
-import { isHostingPreview } from "@/lib/crawl-policy"
+import { isNonProductionDeployment } from "@/lib/crawl-policy"
 import "./globals.css"
 
 const inter = Inter({
@@ -50,14 +50,14 @@ export const metadata: Metadata = {
     "from origination to monetization",
   ],
   alternates: {
-    canonical: siteConfig.domain,
+    canonical: absoluteUrl("/"),
   },
   openGraph: {
     title:
       "Marqués Advisory & Investments | Relationship-Driven Real Assets Platform",
     description:
       "A relationship-driven real assets platform focused on origination, structuring and capital readiness in Costa Rica.",
-    url: siteConfig.domain,
+    url: absoluteUrl("/"),
     siteName: siteConfig.name,
     locale: siteConfig.locale,
     type: "website",
@@ -78,11 +78,11 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   robots: {
-    index: !isHostingPreview(),
-    follow: !isHostingPreview(),
+    index: !isNonProductionDeployment(),
+    follow: !isNonProductionDeployment(),
     googleBot: {
-      index: !isHostingPreview(),
-      follow: !isHostingPreview(),
+      index: !isNonProductionDeployment(),
+      follow: !isNonProductionDeployment(),
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,

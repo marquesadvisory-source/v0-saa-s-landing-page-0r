@@ -4,7 +4,7 @@ import { Mail, MessageCircle, Phone } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { EnquiryButton } from "@/components/enquiry-provider"
 import { JsonLd } from "@/components/json-ld"
-import { breadcrumbSchema, createMetadata } from "@/lib/seo"
+import { breadcrumbSchema, createMetadata, webPageSchema } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
 
 export const metadata: Metadata = createMetadata({
@@ -23,13 +23,12 @@ export default function InstitutionalInquiryPage() {
             { name: "Home", path: "/" },
             { name: "Institutional Inquiry", path: "/institutional-inquiry" },
           ]),
-          {
-            "@context": "https://schema.org",
-            "@type": "ContactPage",
-            name: "Institutional Inquiry",
-            url: `${siteConfig.domain}/institutional-inquiry`,
-            about: siteConfig.name,
-          },
+          webPageSchema({
+            title: "Institutional Inquiry",
+            description:
+              "Start a private institutional inquiry with Marqués Advisory & Investments regarding real asset preparation and structuring in Costa Rica.",
+            path: "/institutional-inquiry",
+          }, "ContactPage"),
         ]}
       />
       <SiteHeader />

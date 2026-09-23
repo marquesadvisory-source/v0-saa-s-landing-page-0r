@@ -1,0 +1,70 @@
+// Page-scoped editorial copy: Spanish, French, Simplified Chinese.
+export const capitalPartnersCopy: Record<string, readonly [string, string, string]> = {
+  "CAPITAL PARTNERS": ["SOCIOS DE CAPITAL", "PARTENAIRES FINANCIERS", "资本合作伙伴"],
+  "Local access. Structured opportunities. Aligned capital.": [
+    "Acceso local. Oportunidades estructuradas. Capital alineado.",
+    "Ancrage local. Opportunités structurées. Capital aligné.",
+    "本地资源。结构化机会。契合的资本。",
+  ],
+  "Marqués connects disciplined real asset preparation in Costa Rica with qualified capital relationships, co-investment perspectives and strategic counterparties.": [
+    "Marqués conecta la preparación rigurosa de activos reales en Costa Rica con socios de capital calificados, perspectivas de coinversión y contrapartes estratégicas.",
+    "Marqués relie la préparation rigoureuse d’actifs réels au Costa Rica à des partenaires financiers qualifiés, des perspectives de co-investissement et des contreparties stratégiques.",
+    "Marqués 将哥斯达黎加实物资产的严谨准备与符合条件的资本合作关系、共同投资视角及战略合作方相连接。",
+  ],
+  "Contemporary architecture with natural materials and open living spaces": ["Arquitectura contemporánea con materiales naturales y espacios abiertos", "Architecture contemporaine, matériaux naturels et espaces de vie ouverts", "采用天然材料与开放式空间的当代建筑"],
+  "How We Work With Capital": ["Cómo trabajamos con el capital", "Notre approche du capital", "我们如何与资本合作"],
+  "REAL ASSET OPPORTUNITIES": ["OPORTUNIDADES EN ACTIVOS REALES", "OPPORTUNITÉS EN ACTIFS RÉELS", "实物资产机会"],
+  "Selected opportunities across real estate, hospitality, industrial, strategic land and related sectors.": [
+    "Oportunidades seleccionadas en inmuebles, hotelería, activos industriales, terrenos estratégicos y sectores afines.",
+    "Des opportunités sélectionnées dans l’immobilier, l’hôtellerie, les actifs industriels, le foncier stratégique et les secteurs connexes.",
+    "涵盖房地产、酒店业、工业资产、战略性土地及相关领域的精选机会。",
+  ],
+  "CO-INVESTMENT": ["COINVERSIÓN", "CO-INVESTISSEMENT", "共同投资"],
+  "Opportunities may be evaluated alongside aligned capital partners where structure, objectives and execution are compatible.": [
+    "Las oportunidades pueden evaluarse junto con socios de capital alineados cuando la estructura, los objetivos y la ejecución son compatibles.",
+    "Les opportunités peuvent être évaluées avec des partenaires financiers aux intérêts alignés, lorsque la structure, les objectifs et les modalités d’exécution sont compatibles.",
+    "在架构、目标和执行方式相契合的情况下，可与目标一致的资本合作伙伴共同评估机会。",
+  ],
+  "PROJECT STRUCTURING": ["ESTRUCTURACIÓN DE PROYECTOS", "STRUCTURATION DE PROJETS", "项目架构设计"],
+  "We help prepare opportunities around transaction logic, ownership, counterparties and execution pathways.": [
+    "Ayudamos a preparar oportunidades en torno a la lógica de la transacción, la propiedad, las contrapartes y las vías de ejecución.",
+    "Nous contribuons à préparer les opportunités autour de la logique de transaction, de la détention, des contreparties et des modalités de mise en œuvre.",
+    "我们协助围绕交易逻辑、权属、合作方及执行路径做好机会准备。",
+  ],
+  "CAPITAL COORDINATION": ["COORDINACIÓN DE CAPITAL", "COORDINATION DU CAPITAL", "资本协调"],
+  "We coordinate relevant capital relationships and support disciplined institutional review where appropriate.": [
+    "Coordinamos las relaciones de capital pertinentes y apoyamos una revisión institucional rigurosa cuando corresponde.",
+    "Nous coordonnons les relations pertinentes avec les apporteurs de capitaux et accompagnons, le cas échéant, un examen institutionnel rigoureux.",
+    "我们协调相关资本合作关系，并在适当情况下支持严谨的机构审查。",
+  ],
+  "EXECUTION ALIGNMENT": ["ALINEACIÓN DE LA EJECUCIÓN", "ALIGNEMENT DE L’EXÉCUTION", "执行协同"],
+  "We help align the legal, financial, technical and commercial relationships required to move an opportunity forward.": [
+    "Ayudamos a alinear las relaciones legales, financieras, técnicas y comerciales necesarias para hacer avanzar una oportunidad.",
+    "Nous contribuons à aligner les relations juridiques, financières, techniques et commerciales nécessaires à l’avancement d’une opportunité.",
+    "我们协助协调推动机会所需的法律、财务、技术及商业合作关系。",
+  ],
+  "A Costa Rica relationship for strategic capital.": ["Una relación en Costa Rica para el capital estratégico.", "Un partenaire au Costa Rica pour le capital stratégique.", "战略资本在哥斯达黎加的合作伙伴。"],
+  "From opportunity identification to capital alignment and execution coordination, Marqués provides a disciplined local relationship across the real asset lifecycle.": [
+    "Desde la identificación de oportunidades hasta la alineación de capital y la coordinación de la ejecución, Marqués ofrece una relación local rigurosa a lo largo del ciclo de vida del activo real.",
+    "De l’identification des opportunités à l’alignement du capital et à la coordination de l’exécution, Marqués offre une relation locale rigoureuse tout au long du cycle de vie des actifs réels.",
+    "从机会识别到资本匹配与执行协调，Marqués 以严谨的本地合作关系贯穿实物资产的整个生命周期。",
+  ],
+  "For family offices, institutional investors, developers, real asset operators and strategic capital relationships seeking disciplined access to Costa Rica opportunities.": [
+    "Para family offices, inversionistas institucionales, desarrolladores, operadores de activos reales y socios estratégicos de capital que buscan un acceso disciplinado a oportunidades en Costa Rica.",
+    "Pour les family offices, investisseurs institutionnels, promoteurs, opérateurs d’actifs réels et partenaires stratégiques en capital recherchant un accès rigoureux aux opportunités du Costa Rica.",
+    "面向寻求以严谨方式参与哥斯达黎加机会的家族办公室、机构投资者、开发商、实物资产运营商及战略资本合作伙伴。",
+  ],
+  "How We Engage": ["Cómo colaboramos", "Nos modes d’intervention", "合作方式"],
+  "Advisory": ["Asesoría", "Conseil", "顾问服务"],
+  "Origination": ["Originación", "Identification d’opportunités", "机会发掘"],
+  "Structuring": ["Estructuración", "Structuration", "架构设计"],
+  "Co-Investment Evaluation": ["Evaluación de coinversión", "Évaluation de co-investissements", "共同投资评估"],
+  "Strategic Partnerships": ["Alianzas estratégicas", "Partenariats stratégiques", "战略合作"],
+  "Discuss a Capital Relationship": ["Conversemos sobre una relación de capital", "Échangeons sur un partenariat en capital", "洽谈资本合作"],
+  "Private conversations regarding real assets, co-investment and strategic opportunities in Costa Rica.": [
+    "Conversaciones privadas sobre activos reales, coinversión y oportunidades estratégicas en Costa Rica.",
+    "Des échanges privés sur les actifs réels, le co-investissement et les opportunités stratégiques au Costa Rica.",
+    "围绕哥斯达黎加实物资产、共同投资及战略机会开展非公开交流。",
+  ],
+  "Institutional Inquiry": ["Consulta institucional", "Contact institutionnel", "机构咨询"],
+}

@@ -2,7 +2,7 @@ import { T } from "@/components/language-provider"
 import type { Metadata } from "next"
 import { JsonLd } from "@/components/json-ld"
 import { SiteHeader } from "@/components/site-header"
-import { breadcrumbSchema, createMetadata } from "@/lib/seo"
+import { absoluteUrl, breadcrumbSchema, createMetadata, webPageSchema } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
 
 export const metadata: Metadata = createMetadata({
@@ -36,6 +36,15 @@ export default function WhatWeDoPage() {
     <main className="min-h-screen bg-[#0D1B2A] text-white">
       <JsonLd
         data={[
+          {
+            ...webPageSchema({
+              title: "Capabilities",
+              description:
+                "Marqués Advisory & Investments provides platform capabilities for real assets, origination, structuring, capital readiness and execution coordination in Costa Rica.",
+              path: "/what-we-do",
+            }),
+            mainEntity: { "@id": absoluteUrl("/what-we-do#service") },
+          },
           breadcrumbSchema([
             { name: "Home", path: "/" },
             { name: "Capabilities", path: "/what-we-do" },
@@ -43,10 +52,12 @@ export default function WhatWeDoPage() {
           {
             "@context": "https://schema.org",
             "@type": "Service",
+            "@id": absoluteUrl("/what-we-do#service"),
+            url: absoluteUrl("/what-we-do"),
             name: "Institutional real asset preparation and structuring",
+            mainEntityOfPage: { "@id": absoluteUrl("/what-we-do#webpage") },
             provider: {
-              "@type": "Organization",
-              name: siteConfig.name,
+              "@id": absoluteUrl("/#organization"),
             },
             areaServed: "Costa Rica",
             description:

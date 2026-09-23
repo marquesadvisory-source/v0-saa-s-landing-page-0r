@@ -1,5 +1,5 @@
 import { Localized } from "@/components/language-provider"
-import { T } from "@/components/language-provider"
+import { ResidencyText as T } from "./residency-text"
 import { SeoImage } from "@/components/seo-image"
 import { pageSeo } from "@/lib/page-seo"
 import Link from "next/link"
@@ -26,10 +26,10 @@ export default function ResidencyPage() {
     <section id="residency-hero" className={s.hero} >
       <SeoImage src="/costa-rica-coast.jpg" alt="Pacific coastline and forest in Costa Rica" fetchPriority="high" loading="eager" sizes="100vw" />
       <div className={s.container + " " + s.heroCopy}>
-        <p className={s.eyebrow}><T>RESIDENCY</T></p><h1><T>Become a Resident in Costa Rica</T></h1>
+        <p className={s.eyebrow + " " + c.editorialLabel}><T>Residency</T></p><h1><T>Become a Resident in Costa Rica</T></h1>
         {content.hero.map(text => <p key={text}><T>{text}</T></p>)}
         <div className={s.actions + " " + c.heroActions}>
-          <Link className={s.button} href="#pathways"><T>Explore Your Residence Options</T><ArrowUpRight size={16} /></Link>
+          <Link className={s.button} href="#key-residency-facts"><T>Explore Your Residence Options</T><ArrowUpRight size={16} /></Link>
           <EnquiryButton kind="general" className={s.textLink}><T>Private Client Enquiry</T><ArrowUpRight size={16} /></EnquiryButton>
         </div>
       </div><span className={s.heroCaption}><T>Costa Rica · A long-term perspective</T></span>
@@ -39,7 +39,7 @@ export default function ResidencyPage() {
       <div className={s.container}>
         <div className={s.countryIdentity}>
           <Localized as="img" className={s.coat} src={countries[0].coatOfArms} alt="Official coat of arms of Costa Rica" width={96} height={105} />
-          <div><p className={s.eyebrow}><T>KEY RESIDENCY FACTS</T></p><h2><T>Costa Rica</T></h2></div>
+          <div><p className={s.eyebrow + " " + c.editorialLabel}><T>Key residency facts</T></p><h2><T>Costa Rica</T></h2></div>
         </div>
         <Localized as="div" className={s.quickFacts + " " + c.facts} aria-label="Key residency facts">
           {content.facts.map(([label,value,detail]) => <div key={label}><span><T>{label}</T></span><strong><T>{value}</T></strong><p><T>{detail}</T></p></div>)}
@@ -49,12 +49,12 @@ export default function ResidencyPage() {
 
     <section id="overview" className={s.section} >
       <div className={s.container + " " + s.intro}>
-        <div><p className={s.eyebrow}><T>COSTA RICA</T></p><h2><T>Residence by Investment Overview</T></h2></div>
+        <div><p className={s.eyebrow + " " + c.editorialLabel}><T>Costa Rica</T></p><h2><T>Residence by Investment Overview</T></h2></div>
         <div className={c.paragraphs}>
           {content.overview.map(text => <p key={text}><T>{text}</T></p>)}
           <div id="overview-enquiry" className={s.actions}>
-            <EnquiryButton kind="general" className={s.button}><T>PRIVATE CLIENT ENQUIRY</T><ArrowUpRight size={16} /></EnquiryButton>
-            <EnquiryButton kind="fact-sheet" className={s.textLink}><T>DOWNLOAD FACT SHEET</T><Download size={16} /></EnquiryButton>
+            <EnquiryButton kind="general" className={s.button}><T>Private Client Enquiry</T><ArrowUpRight size={16} /></EnquiryButton>
+            <EnquiryButton kind="fact-sheet" className={s.textLink}><T>Download Fact Sheet</T><Download size={16} /></EnquiryButton>
           </div>
         </div>
       </div>
@@ -63,11 +63,11 @@ export default function ResidencyPage() {
     <section id="frequently-asked-questions" className={s.section + " " + s.ivory} >
       <div className={s.container}>
         <h2><T>Frequently Asked Questions</T></h2>
-        <div className={s.faq}>{content.faqs.map(([question,answer],index) => <details key={question}>
-          <summary className={index === 0 ? c.firstQuestion : undefined}><T>{question}</T><Plus size={18} aria-hidden="true" /></summary>
+        <div className={s.faq}>{content.faqs.map(([question,answer]) => <details key={question}>
+          <summary><T>{question}</T><Plus size={18} aria-hidden="true" /></summary>
           {answer.map(text => text.includes("\n→ ") ? <ProcessFlow key={text} stages={text.split("\n→ ")} label="Application stages" /> : <p key={text}><T>{text}</T></p>)}
-          {index === 0 && <p className={s.note}><T>{content.taxNote}</T></p>}
-          {index === 14 && <div className={s.actions}>
+          {question === "Do I have to pay Costa Rican tax on money I transfer into the country?" && <p className={s.note}><T>{content.taxNote}</T></p>}
+          {question === "Can Marqués help identify and coordinate the qualifying investment?" && <div className={s.actions}>
             <Link className={s.textLink} href="/residency/real-estate"><T>Explore Real Estate</T><ArrowUpRight size={16} /></Link>
             <Link className={s.textLink} href="/investments"><T>View Investment Opportunities</T><ArrowUpRight size={16} /></Link>
           </div>}
@@ -95,13 +95,6 @@ export default function ResidencyPage() {
       </div>
     </section>
 
-    <section id="pathways" className={s.section + " " + s.ivory} ><div className={s.container}>
-      <div className={s.intro}><h2><T>Requirements and Residence Pathways</T></h2><p><T>{content.pathwayIntro}</T></p></div>
-      {content.pathways.map((item,index) => <article className={s.pathway} key={item.title}>
-        <span className={s.number}><T>0</T>{index+1}</span><div><h3><T>{item.title}</T></h3>{item.category && <p className={s.category}><T>{item.category}</T></p>}<p className={s.amount}><T>{item.amount}</T></p></div><p><T>{item.detail}</T></p>
-      </article>)}
-    </div></section>
-
     <section id="residence-journey" className={s.section + " " + c.journey} >
       <div className={s.container}>
         <h2><T>Your Residence Journey</T></h2>
@@ -113,17 +106,6 @@ export default function ResidencyPage() {
         </ol>
         <p className={c.journeyStatement}><T>{content.journeyStatement}</T></p>
         <p className={s.note + " " + c.supportingNote}><T>{content.journeyNote}</T></p>
-      </div>
-    </section>
-
-    <section id="marques-process" className={s.section + " " + s.navy + " " + c.procedure} >
-      <div className={s.container}>
-        <div className={s.intro}>
-          <h2><T>Procedure for Costa Rican Residence</T></h2>
-          <div className={c.paragraphs}>{content.procedure.map(text => <p key={text}><T>{text}</T></p>)}</div>
-        </div>
-        <ProcessFlow stages={content.procedureStages} label="Residence procedure" />
-        <p className={s.note + " " + c.supportingNote}><T>{content.procedureNote}</T></p>
       </div>
     </section>
 

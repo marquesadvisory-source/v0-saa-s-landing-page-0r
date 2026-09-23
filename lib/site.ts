@@ -14,17 +14,11 @@ export const siteConfig = {
   ogImage: "/images/marques-official.png",
   disclaimer:
     "Marqués Advisory & Investments does not present this website as a public offering of securities, investment solicitation, regulated financial advice or guarantee of investment performance. All opportunities are evaluated privately and remain subject to appropriate diligence, documentation, regulatory compliance and legal review.",
-  nav: [
-    { label: "Become a Resident in Costa Rica", href: "/residency" },
-    { label: "Investments", href: "/investments" },
-    { label: "Services", href: "/services" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
-  ],
 } as const
 
 export const siteRoutes = [
   "/services",
+  "/real-estate",
   "/investments",
   "/contact",
   "/residency",

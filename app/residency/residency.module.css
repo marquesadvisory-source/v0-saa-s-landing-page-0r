@@ -8,7 +8,7 @@
 .page p { font-size: 14px; line-height: 1.85; color: #606e72; }
 .page a { text-decoration: none; }
 .page :focus-visible { outline: 2px solid #987940; outline-offset: 5px; }
-.page section[id] { scroll-margin-top: 165px; }
+.page section[id] { scroll-margin-top: 235px; }
 .container { width: min(1200px, calc(100% - 96px)); margin-inline: auto; }
 .page .eyebrow { font-size: 10px; font-weight: 600; color: #8b703e; margin-bottom: 18px; text-transform: uppercase; }
 .hero { position: relative; min-height: 545px; display: flex; align-items: center; background: #173540; overflow: hidden; }
@@ -30,7 +30,7 @@
 .ivory { background: #f6f5f0; }
 .intro { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: end; margin-bottom: 38px; }
 .intro p { max-width: 460px; }
-.contextNav { display: flex; justify-content: center; gap: 48px; border-bottom: 1px solid #daddd5; background: #fff; padding-inline: 24px; overflow-x: auto; }
+.contextNav { position: sticky; top: 143px; z-index: 40; display: flex; justify-content: center; gap: 48px; border-bottom: 1px solid #daddd5; background: #fff; padding-inline: 24px; overflow-x: auto; overscroll-behavior-x: contain; }
 .contextNav a { padding: 25px 0 21px; color: #626d70; font-size: 12px; border-bottom: 3px solid transparent; text-align: center; white-space: nowrap; flex-shrink: 0; }
 .contextNav a[aria-current="page"] { color: #17303e; border-bottom-color: #ab8d52; }
 .country { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -91,9 +91,14 @@
 .inventory h3 { font-size: 34px; }
 .inventory .textLink { margin-top: 20px; }
 .footer { padding: 44px 0 24px; border-top: 1px solid #d9dcd5; }
-.footerTop { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 30px; }
+.footerTop { display: grid; grid-template-columns: minmax(180px, .8fr) minmax(0, 3fr); gap: 36px; margin-bottom: 30px; }
 .footerTop strong { font: 500 27px/1.3 var(--font-cormorant), Georgia, serif; }
-.footerLinks { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; font-size: 11px; }
+.footerGroups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.footerGroups section { min-width: 0; }
+.footer .footerGroups h2 { margin: 0 0 14px; font: 600 10px/1.5 var(--font-inter), sans-serif; color: #826631; }
+.footerGroups nav { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; font-size: 10px; line-height: 1.55; }
+.footerGroups a { overflow-wrap: anywhere; }
+.footerGroups a:hover { color: #826631; }
 .footer .note { border-top: 1px solid #d9dcd5; padding-top: 23px; font-size: 10px; }
 .footer .copyright { font-size: 10px; margin-top: 16px; }
 .legal { max-width: 840px; margin: auto; padding: 65px 28px; }
@@ -102,6 +107,10 @@
 .legal p { margin-bottom: 16px; white-space: pre-line; overflow-wrap: anywhere; }
 .legal ul { padding-left: 24px; margin: 15px 0 24px; }
 .legal li { font-size: 14px; color: #606e72; line-height: 1.9; }
+@media(max-width:899px) {
+ .footerTop { grid-template-columns: 1fr; gap: 24px; }
+ .footerGroups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 22px; }
+}
 @media(max-width:1099px) {
  .container { width: calc(100% - 64px); }
  .split,.country { gap: 36px; }
@@ -146,9 +155,11 @@
  .faq summary { font-size: 13px; }
  .inventory { padding: 30px 0; gap: 22px; }
  .footerTop { gap: 22px; }
- .footerLinks { gap: 18px; }
+ .footerGroups { gap: 24px 16px; }
+ .footerGroups h2 { margin-bottom: 10px; }
+ .footerGroups nav { font-size: 9px; gap: 8px; }
  .legal { padding: 44px 22px; }
 }
-@media(max-width:600px) { .page { padding-top: 119px; } .page section[id] { scroll-margin-top: 139px; } }
+@media(max-width:600px) { .page { padding-top: 119px; } .contextNav { top: 119px; } .page section[id] { scroll-margin-top: 200px; } }
 @media(max-width:359px) { .page h1 { font-size: 39px; } .contextNav { gap: 14px; } .contextNav a { font-size: 9px; } .button { gap: 14px; padding-inline: 17px; } }
 @media(max-width:359px) { .steps h3 { font-size: 22px; hyphens: auto; } }

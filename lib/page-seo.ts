@@ -1,13 +1,13 @@
 // Metadata describes existing public content, not an assertion of available listings or eligibility.
 export const pageSeo = {
   "/": {
-    title: "Costa Rica Residency, Real Estate & Investments",
-    description: "Private advisory for Costa Rica residency by investment, real estate and investment opportunities, with coordinated local review and execution.",
+    title: "Marqués Advisory & Investments | Costa Rica",
+    description: "A Costa Rican partner in Residence by Investment and strategic real assets, with private client real estate and capital relationships.",
     path: "/", image: "/costa-rica-coast.jpg",
   },
   "/investments": {
-    title: "Costa Rica Investment Opportunities",
-    description: "Explore Costa Rica real asset opportunities and investment categories, from mixed-use development to hospitality and commercial assets. Subject to review.",
+    title: "Costa Rica Real Assets Investment Platform",
+    description: "Explore Marqués’ investment universe across Costa Rica real estate, hospitality, development and income-producing real assets, with a focus on asset fundamentals and investment context.",
     path: "/investments", image: "/costa-rica-coast.jpg",
   },
   "/residency": {
@@ -16,9 +16,14 @@ export const pageSeo = {
     path: "/residency", image: "/costa-rica-coast.jpg",
   },
   "/residency/real-estate": {
-    title: "Costa Rica Real Estate & Luxury Property",
-    description: "Discuss Costa Rica luxury homes, residential property acquisition and real estate investment. Availability and residency relevance require individual review.",
+    title: "Costa Rica Investor Residency & Real Estate Investment",
+    description: "Understand how qualifying real estate may relate to Costa Rica Investor Residency. Property ownership alone does not establish eligibility; requirements and documentation remain subject to review.",
     path: "/residency/real-estate", image: "/architecture-interior.jpg",
+  },
+  "/real-estate": {
+    title: "Costa Rica Luxury Real Estate | Private Property Advisory",
+    description: "Private real estate advisory for international buyers considering luxury homes, coastal properties and other high-value real estate opportunities across Costa Rica.",
+    path: "/real-estate", image: "/images/private-client/service-real-estate.webp",
   },
   "/residency/about-costa-rica": {
     title: "About Costa Rica | Residence & Real Assets",

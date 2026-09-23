@@ -8,6 +8,7 @@ import { EnquiryButton } from "./enquiry-provider"
 import { JsonLd } from "./json-ld"
 import { webPageSchema, breadcrumbSchema } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
+import { footerNavigation } from "@/lib/footer-navigation"
 import type { ResidenceOpportunity } from "@/lib/residency"
 import s from "@/app/residency/residency.module.css"
 
@@ -36,9 +37,18 @@ export function ResidencyContact() {
 }
 export function ResidencyFooter() {
   return <footer className={s.footer}><div className={s.container}>
-    <div className={s.footerTop}><strong><T>Marqués Advisory &amp; Investments</T></strong><Localized as="nav" className={s.footerLinks} aria-label="Residency footer">
-      <Link href="/residency"><T>Residence by Investment</T></Link><Link href="/residency/real-estate"><T>Real Estate</T></Link><Link href="/privacy"><T>Privacy Policy</T></Link><a href={siteConfig.whatsapp}><T>{siteConfig.phone}</T></a>
-    </Localized></div>
+    <div className={s.footerTop}>
+      <strong><T>Marqués Advisory &amp; Investments</T></strong>
+      <div className={s.footerGroups}>
+        {footerNavigation.map((group, index) => <section key={group.label}>
+          <h2><T>{group.label}</T></h2>
+          <Localized as="nav" aria-label={group.label}>
+            {group.links.map(link => <Link key={link.href} href={link.href}><T>{link.label}</T></Link>)}
+            {index === 3 && <><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a><a href={siteConfig.whatsapp}><T>{siteConfig.phone}</T></a></>}
+          </Localized>
+        </section>)}
+      </div>
+    </div>
     <p className={s.note}><T>Marqués Advisory &amp; Investments is a private advisory firm and is not affiliated with the Government of Costa Rica. Residence applications remain subject to applicable law, documentation, professional review and determination by the competent authorities.</T><br /><br /><T>{siteConfig.disclaimer}</T></p>
     <p className={s.copyright}>© {new Date().getFullYear()}<T> Marqués Advisory &amp; Investments</T></p>
   </div></footer>

@@ -6,22 +6,22 @@ export const residencyContent = {
   ],
   "facts": [
     [
-      "INVESTOR",
+      "Investor",
       "From USD 150,000",
       "Qualifying documented investment."
     ],
     [
-      "INDEPENDENT INCOME",
+      "Independent income",
       "USD 2,500 / month",
       "Stable income for at least two years."
     ],
     [
-      "RETIREE",
+      "Retiree",
       "USD 1,000 / month",
       "Qualifying lifetime pension."
     ],
     [
-      "RESIDENCE STATUS",
+      "Residence status",
       "Temporary residence",
       "Renewable subject to applicable requirements."
     ]
@@ -39,27 +39,27 @@ export const residencyContent = {
   ],
   "benefits": [
     [
-      "FORMAL RESIDENCE STATUS",
+      "Formal residence status",
       "A structured immigration status for clients who wish to establish an ongoing presence in Costa Rica beyond ordinary visitor status."
     ],
     [
-      "LONG-TERM CONTINUITY",
+      "Long-term continuity",
       "Temporary residence may be renewed subject to the applicable requirements of the selected residence category."
     ],
     [
-      "DIMEX IDENTIFICATION",
+      "DIMEX identification",
       "Approved residents may proceed through the applicable documentation process for issuance of a Costa Rican DIMEX identification document."
     ],
     [
-      "INVESTMENT COORDINATION",
+      "Investment coordination",
       "Investor Residency may be coordinated with qualifying real estate or other recognized forms of investment, subject to documentation and verification."
     ],
     [
-      "FAMILY PLANNING",
+      "Family planning",
       "Family eligibility may be considered subject to the applicable immigration rules and the circumstances of each applicant."
     ],
     [
-      "MOBILITY PLANNING",
+      "Mobility planning",
       "Residence may form part of a broader international lifestyle or mobility strategy for individuals and families who maintain interests in multiple jurisdictions."
     ]
   ],
@@ -67,19 +67,19 @@ export const residencyContent = {
   "pathwayIntro": "The appropriate pathway depends on the applicant’s circumstances, financial profile and long-term objectives.",
   "pathways": [
     {
-      "title": "INVESTOR",
+      "title": "Investor",
       "category": "",
       "amount": "From USD 150,000",
       "detail": "Qualifying, documented and verifiable investment in Costa Rica, subject to applicable requirements."
     },
     {
-      "title": "INDEPENDENT INCOME",
+      "title": "Independent income",
       "category": "Rentista",
       "amount": "USD 2,500 / month",
       "detail": "Stable and permanent qualifying income for at least two years, subject to applicable requirements and supporting documentation."
     },
     {
-      "title": "RETIREE",
+      "title": "Retiree",
       "category": "Pensionado",
       "amount": "USD 1,000 / month",
       "detail": "Qualifying lifetime pension issued by a competent government or private entity, subject to applicable requirements."
@@ -87,7 +87,7 @@ export const residencyContent = {
   ],
   "journey": [
     {
-      "title": "FROM ABROAD",
+      "title": "From abroad",
       "steps": [
         "Eligibility assessment",
         "Residence pathway",
@@ -96,7 +96,7 @@ export const residencyContent = {
       ]
     },
     {
-      "title": "APPLICATION PREPARATION",
+      "title": "Application preparation",
       "steps": [
         "Document review",
         "Apostilles or legalizations",
@@ -105,7 +105,7 @@ export const residencyContent = {
       ]
     },
     {
-      "title": "COSTA RICA",
+      "title": "Costa Rica",
       "steps": [
         "Required in-country formalities",
         "Fingerprint registration",
@@ -113,7 +113,7 @@ export const residencyContent = {
       ]
     },
     {
-      "title": "APPROVAL & DOCUMENTATION",
+      "title": "Approval & documentation",
       "steps": [
         "CCSS coordination",
         "DIMEX",
@@ -128,13 +128,13 @@ export const residencyContent = {
     "The process begins with an evaluation of the applicant’s profile and the identification of the appropriate residence category.",
     "Foreign documents are then collected and reviewed for compliance with Costa Rican requirements. Depending on the issuing country, documents may require apostille or consular legalization and, where applicable, translation into Spanish.",
     "Once the application is prepared and filed, it enters review before the Costa Rican immigration authorities. Additional documentation or clarification may be requested during this stage.",
-    "After approval, the applicant proceeds through the applicable documentation requirements, which may include government payments, CCSS enrollment, fingerprint formalities if still pending and issuance of the DIMEX residence identification document."
+    "After approval, temporary residents must enroll in CCSS and comply with the applicable social-security requirements. The documentation stage may also include government payments, fingerprint formalities if still pending and issuance of the DIMEX residence identification document."
   ],
   "procedureStages": [
     "Evaluation",
     "Documentation",
     "Filing",
-    "Immigration Review",
+    "Immigration review",
     "Approval",
     "Documentation",
     "DIMEX"
@@ -147,28 +147,27 @@ export const residencyContent = {
   ],
   "faqs": [
     [
-      "Do I have to pay Costa Rican tax on money I transfer into the country?",
+      "How much do I need to invest to qualify as an Investor?",
       [
-        "Not necessarily. Transferring money into Costa Rica does not by itself determine whether those funds are taxable.",
-        "Costa Rica generally applies a territorial approach to income taxation, so the tax treatment depends on the nature and source of the income and the individual circumstances of the taxpayer.",
-        "Immigration residence also does not automatically make a person a Costa Rican tax resident.",
-        "Marqués coordinates with qualified tax and legal professionals where advice is required."
+        "The Investor Residency pathway currently begins from USD 150,000.",
+        "The investment must meet the applicable legal requirements and must be appropriately documented and verifiable.",
+        "Qualification depends on the investment structure and the evidence supporting the application."
       ]
     ],
     [
-      "How many days do I need to stay in Costa Rica each year?",
+      "What types of investment may be relevant to Investor Residency?",
       [
-        "Costa Rican residence does not necessarily mean that the applicant must live in the country full-time.",
-        "Immigration residence and tax residence are separate matters, and the number of days spent in Costa Rica may have tax or other legal implications depending on the individual circumstances.",
-        "Marqués evaluates the client’s mobility profile as part of the residence planning process."
+        "Real estate may be used as a qualifying investment when the applicable requirements are satisfied.",
+        "Other recognized forms of investment may also be considered under Costa Rican law, subject to the applicable category, documentation and verification requirements.",
+        "Marqués evaluates each investment individually and does not represent that every investment opportunity automatically qualifies for residence."
       ]
     ],
     [
-      "What is the advantage of residency if I can already enter Costa Rica as a tourist?",
+      "Can Marqués help identify and coordinate the qualifying investment?",
       [
-        "Tourist status is intended for temporary visits.",
-        "Residence provides a formal immigration status in Costa Rica, greater continuity for a long-term presence and access to a DIMEX residence identification document after completion of the applicable documentation process.",
-        "For clients who expect to spend only limited periods in Costa Rica, residence may or may not be necessary. The appropriate strategy depends on the client’s mobility, investment and long-term objectives."
+        "Yes.",
+        "Marqués Advisory & Investments can assist clients in identifying and evaluating real estate and private investment opportunities in Costa Rica and coordinating those opportunities with the client’s residence planning where appropriate.",
+        "Investment eligibility for residence is evaluated separately and remains subject to applicable legal requirements, documentation and verification."
       ]
     ],
     [
@@ -200,7 +199,7 @@ export const residencyContent = {
       [
         "Foreign public documents generally need to comply with the authentication requirements applicable for use in Costa Rica.",
         "Depending on the issuing country, this may involve an apostille or consular legalization. Translation into Spanish may also be required.",
-        "Marqués coordinates a pre-review of documents before filing to reduce the risk of incomplete or non-compliant documentation."
+        "Documents are pre-reviewed before filing to reduce the risk of incomplete or non-compliant documentation."
       ]
     ],
     [
@@ -211,27 +210,12 @@ export const residencyContent = {
       ]
     ],
     [
-      "Do I need to open a Costa Rican bank account?",
-      [
-        "A Costa Rican bank account is not necessarily a universal requirement for every residence pathway.",
-        "Whether an account is required or advisable depends on the residence category, investment structure and practical needs of the client.",
-        "Marqués evaluates this requirement as part of the client’s overall residence and investment structure."
-      ]
-    ],
-    [
-      "Do I need to enroll in Costa Rica’s Social Security system (CCSS)?",
-      [
-        "Following approval of legal residence, enrollment or continued affiliation with the Costa Rican Social Security system may be required as part of the applicable documentation and renewal requirements.",
-        "Marqués coordinates this stage with the relevant professionals and institutions where required."
-      ]
-    ],
-    [
       "What happens after my residency application is filed?",
       [
         "Once filed, the application enters review before the Costa Rican immigration authorities.",
         "The authorities may request additional documents, corrections or clarification during the review process.",
         "The general sequence is:",
-        "Filing\n→ Immigration Review\n→ Additional Requirements if Applicable\n→ Approval\n→ Documentation\n→ DIMEX",
+        "Filing\n→ Immigration review\n→ Additional requirements if applicable\n→ Approval\n→ Documentation\n→ DIMEX",
         "Marqués monitors the process and coordinates responses to administrative requirements where appropriate.",
         "No specific processing time is guaranteed."
       ]
@@ -240,37 +224,52 @@ export const residencyContent = {
       "What happens after the application is approved?",
       [
         "After approval, the applicant proceeds through the applicable documentation stage.",
-        "Depending on the case, this may include government payments, CCSS enrollment, completion of fingerprint requirements if still pending and issuance of the DIMEX residence identification document.",
+        "Temporary residents must enroll in CCSS and comply with the applicable social-security requirements. Depending on the case, the documentation stage may also include government payments, completion of fingerprint requirements if still pending and issuance of the DIMEX residence identification document.",
         "Marqués also coordinates renewal planning and ongoing residence requirements."
       ]
     ],
     [
-      "How much do I need to invest to qualify as an Investor?",
+      "Do I need to enroll in Costa Rica’s Social Security system (CCSS)?",
       [
-        "The Investor Residency pathway currently begins from USD 150,000.",
-        "The investment must meet the applicable legal requirements and must be appropriately documented and verifiable.",
-        "Qualification depends on the investment structure and the evidence supporting the application."
+        "Yes. Once legal residence is granted, temporary residents are required to enroll in Costa Rica’s Social Security system (CCSS) and remain compliant with the applicable social-security requirements.",
+        "Marqués coordinates this stage as part of the post-approval documentation process."
       ]
     ],
     [
-      "What types of investment may be relevant to Investor Residency?",
+      "Do I need to open a Costa Rican bank account?",
       [
-        "Real estate may be used as a qualifying investment when the applicable requirements are satisfied.",
-        "Other recognized forms of investment may also be considered under Costa Rican law, subject to the applicable category, documentation and verification requirements.",
-        "Marqués evaluates each investment individually and does not represent that every investment opportunity automatically qualifies for residence."
+        "A Costa Rican bank account is not necessarily a universal requirement for every residence pathway.",
+        "Whether an account is required or advisable depends on the residence category, investment structure and practical needs of the client."
       ]
     ],
     [
-      "Can Marqués help identify and coordinate the qualifying investment?",
+      "How many days do I need to stay in Costa Rica each year?",
       [
-        "Yes.",
-        "Marqués Advisory & Investments can assist clients in identifying and evaluating real estate and private investment opportunities in Costa Rica and coordinating those opportunities with the client’s residence planning where appropriate.",
-        "Investment eligibility for residence is evaluated separately and remains subject to applicable legal requirements, documentation and verification."
+        "Costa Rican residence does not necessarily mean that the applicant must live in the country full-time.",
+        "Immigration residence and tax residence are separate matters, and the number of days spent in Costa Rica may have tax or other legal implications depending on the individual circumstances.",
+        "Marqués evaluates the client’s mobility profile as part of the residence planning process."
+      ]
+    ],
+    [
+      "What is the advantage of residency if I can already enter Costa Rica as a tourist?",
+      [
+        "Tourist status is intended for temporary visits.",
+        "Residence provides a formal immigration status in Costa Rica, greater continuity for a long-term presence and access to a DIMEX residence identification document after completion of the applicable documentation process.",
+        "For clients who expect to spend only limited periods in Costa Rica, residence may or may not be necessary. The appropriate strategy depends on the client’s mobility, investment and long-term objectives."
+      ]
+    ],
+    [
+      "Do I have to pay Costa Rican tax on money I transfer into the country?",
+      [
+        "Not necessarily. Transferring money into Costa Rica does not by itself determine whether those funds are taxable.",
+        "Costa Rica generally applies a territorial approach to income taxation, so the tax treatment depends on the nature and source of the income and the individual circumstances of the taxpayer.",
+        "Immigration residence also does not automatically make a person a Costa Rican tax resident.",
+        "Marqués coordinates with qualified tax and legal professionals where advice is required."
       ]
     ]
   ],
   "taxNote": "Tax treatment depends on individual circumstances. Marqués Advisory & Investments does not provide tax advice.",
   "finalTitle": "Start Your Costa Rica Residence Strategy",
   "finalCopy": "Speak with a Marqués Private Advisor about your residence objectives, investment considerations and the steps required to begin your process.",
-  "finalCta": "SPEAK WITH A MARQUÉS PRIVATE ADVISOR"
+  "finalCta": "Speak with a Marqués Private Advisor"
 } as const

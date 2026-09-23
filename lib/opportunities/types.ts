@@ -5,8 +5,8 @@ export type Opportunity = {
   inventory: "real-estate" | "other-investments"
   propertyType?: typeof realEstatePropertyTypes[number]
   // Populate property details only from approved public residential documentation.
-  propertyDetails?: { askingPrice?: number; bedrooms?: number; bathrooms?: number; totalArea?: number; areaUnit?: "m²" | "ft²" }
-  id: string; slug: string; name: string; location: string; category: string
+  propertyDetails?: { askingPrice?: number; priceOnRequest?: boolean; bedrooms?: number; bathrooms?: number; totalArea?: number; landArea?: number; constructionArea?: number; areaUnit?: "m²" | "ft²" }
+  id: string; slug: string; name: string; location: string; region?: string; category: string
   primaryImage: string; gallery: string[]; investmentAmount?: number; currency?: string
   longDescription?: string
   localized?: { name?: Localized<string>; shortDescription?: Localized<string>; longDescription?: Localized<string> }
