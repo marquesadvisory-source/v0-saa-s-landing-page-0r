@@ -19,6 +19,7 @@ function load(relative) {
 const { headerNavigation } = load("lib/header-navigation")
 const { footerNavigation } = load("lib/footer-navigation")
 const { translate } = load("lib/translations")
+const residenceNav = fs.readFileSync(path.join(root, "components/residency-nav.tsx"), "utf8")
 assert.deepEqual(headerNavigation.map(item => item.label), ["The Firm", "Private Clients", "Investments", "Capital Partners", "Contact"])
 assert.deepEqual(headerNavigation.map(item => item.href ?? null), ["/about", null, null, "/capital-partners", "/contact"])
 assert.deepEqual(headerNavigation.find(item => item.id === "private-clients").groups.map(group => group.links.map(link => link.href)), [
@@ -55,6 +56,10 @@ for (const href of ["/residency", "/real-estate", "/services", "/investments", "
 assert(!homeSource.includes("Plaza Los Mangos ") && !homeSource.includes("Décima Avenida </T>"), "Homepage should not reproduce named opportunity cards")
 assert(footerNavigation.some(group => group.links.some(link => link.href === "/privacy")), "Privacy access must remain in the footer")
 console.log(`Header navigation: ${links} existing destinations; EN/ES/FR/ZH-CN label coverage passed.`)
+assert(residenceNav.includes('["Real Estate & Residency", "/residency/real-estate"]'), "Residence contextual label must keep its distinct route")
+assert.equal(translate("Real Estate & Residency", "es"), "Bienes raíces y residencia")
+assert.equal(translate("Real Estate & Residency", "fr"), "Immobilier et résidence")
+assert.equal(translate("Real Estate & Residency", "zh-cn"), "房地产与居留")
 for (const key of [
   "YOUR COSTA RICAN PARTNER FOR", "RESIDENCE BY INVESTMENT", "AND STRATEGIC REAL ASSETS",
   "Private advisory, co-investment and project structuring through one trusted local relationship.",

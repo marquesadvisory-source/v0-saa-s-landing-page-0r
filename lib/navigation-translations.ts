@@ -8,6 +8,7 @@ export const navigationMessages: Record<string, readonly [string, string, string
   "Institutional Opportunities": ["Oportunidades institucionales", "Opportunités institutionnelles", "机构投资机会"],
   "Capital Partners": ["Socios de capital", "Partenaires financiers", "资本合作伙伴"],
   "Institutional Inquiry": ["Consulta institucional", "Demande institutionnelle", "机构咨询"],
+  "Real Estate & Residency": ["Bienes raíces y residencia", "Immobilier et résidence", "房地产与居留"],
   "About Marqués": ["Acerca de Marqués", "À propos de Marqués", "关于 Marqués"],
   "Who We Serve": ["A quiénes acompañamos", "Nos interlocuteurs", "服务对象"],
   "Capabilities": ["Capacidades", "Expertises", "专业能力"],

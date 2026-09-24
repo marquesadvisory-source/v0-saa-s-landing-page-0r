@@ -1,5 +1,6 @@
 import "server-only"
 import type { Opportunity, OpportunityRepository } from "./types"
+import { realEstateOpportunities } from "./real-estate"
 
 // Only facts already approved on the existing public /projects pages.
 const publicOpportunities: Opportunity[] = [
@@ -26,5 +27,5 @@ const publicOpportunities: Opportunity[] = [
 ]
 
 export const localOpportunityRepository: OpportunityRepository = {
-  async list() { return structuredClone(publicOpportunities) },
+  async list() { return structuredClone([...publicOpportunities, ...realEstateOpportunities]) },
 }

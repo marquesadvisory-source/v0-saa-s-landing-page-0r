@@ -7,7 +7,7 @@ import s from "@/app/residency/residency.module.css"
 const links = [
   ["About Costa Rica", "/residency/about-costa-rica"],
   ["Residence by Investment", "/residency"],
-  ["Real Estate", "/residency/real-estate"],
+  ["Real Estate & Residency", "/residency/real-estate"],
 ] as const
 export function ResidencyNav() {
   const {t, locale} = useLanguage()

@@ -7,7 +7,7 @@ import { SeoImage } from "@/components/seo-image"
 import { SiteHeader } from "@/components/site-header"
 import { T } from "@/components/language-provider"
 import { OpportunityDiscovery } from "@/components/opportunity-discovery"
-import { getOpportunities } from "@/lib/opportunities/repository"
+import { getPublicRealEstateOpportunities } from "@/lib/opportunities/repository"
 import { breadcrumbSchema, createMetadata, webPageSchema } from "@/lib/seo"
 import { pageSeo } from "@/lib/page-seo"
 import s from "@/app/residency/residency.module.css"
@@ -31,7 +31,7 @@ const buyerSupport = [
 ] as const
 
 export default async function RealEstatePage() {
-  const approvedProperties = await getOpportunities("real-estate")
+  const approvedProperties = await getPublicRealEstateOpportunities()
 
   return <div className={s.page}>
     <SiteHeader />
@@ -73,14 +73,14 @@ export default async function RealEstatePage() {
         </ul>
       </section>
 
-      {approvedProperties.length > 0 && <section className={styles.inventory} aria-labelledby="selected-properties-title">
+      <section className={styles.inventory} aria-labelledby="selected-properties-title">
         <div className={styles.inventoryIntro}>
           <p className={s.eyebrow}><T>PRIVATE PROPERTY OPPORTUNITIES</T></p>
           <h2 id="selected-properties-title"><T>Selected Real Estate Opportunities</T></h2>
           <p><T>Property information is published only after its details and public status have been approved.</T></p>
         </div>
         <OpportunityDiscovery assets={approvedProperties} />
-      </section>}
+      </section>
 
       <section className={styles.privateAccess} aria-labelledby="private-access-title">
         <div>

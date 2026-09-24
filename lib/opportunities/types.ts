@@ -13,6 +13,8 @@ export type Opportunity = {
   shortDescription: string; residencyRelevance: "not-established" | "investment-only" | "potentially-relevant"
   residencyVerificationStatus: "not-reviewed" | "potentially-relevant" | "under-verification" | "verified" | "not-applicable"
   confidential: boolean; ndaRequired: boolean; featured: boolean
+  // Residential details, cards, and sitemap routes require explicit public approval.
+  publiclyListed?: boolean
   status: "available" | "private" | "under-review" | "coming-soon" | "closed"
   publicStatus: string; imagePosition?: string
 }

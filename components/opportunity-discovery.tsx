@@ -6,6 +6,7 @@ import Link from "next/link"
 import { ArrowLeft, ArrowRight, ArrowUpRight, RotateCcw } from "lucide-react"
 import { EnquiryButton } from "@/components/enquiry-provider"
 import { filterOpportunities, investmentCategories, realEstatePropertyTypes, type Opportunity } from "@/lib/opportunities"
+import { opportunityDetailPath } from "@/lib/opportunities/publication"
 import s from "@/app/residency/residency.module.css"
 import d from "@/app/residency/real-estate/discovery.module.css"
 
@@ -76,14 +77,14 @@ export function OpportunityDiscovery({assets, scope = "real-estate"}:{assets:Opp
               {a.propertyDetails.totalArea!==undefined&&a.propertyDetails.areaUnit&&<p><T>Total area:</T> {a.propertyDetails.totalArea.toLocaleString("en-US")} {a.propertyDetails.areaUnit}</p>}
             </div>}
             <p className={d.review}>{(!broad || a.residencyVerificationStatus !== "not-reviewed") && <><T>{a.residencyVerificationStatus==="verified"?"Residency relevance verified, subject to applicable requirements.":"Residency eligibility is not established."}</T> </>}<T>{a.ndaRequired?"Additional materials subject to NDA.":"Public overview; further materials subject to appropriate review."}</T></p>
-            <Link className={s.textLink} href={"/projects/"+a.slug}><T>View Opportunity</T><ArrowUpRight size={16}/></Link>
+            <Link className={s.textLink} href={opportunityDetailPath(a)}><T>View Opportunity</T><ArrowUpRight size={16}/></Link>
           </div>
           <EnquiryPanel subject={a.name} broad={broad} explicitCta={tabbed}/>
         </article>)}
       </>:<div className={d.emptyLayout}>
         <div className={d.empty}><p className={s.eyebrow}>{broad ? <T>PRIVATE INVESTMENT OPPORTUNITIES</T> : <span><T>PRIVATE REAL ESTATE OPPORTUNITIES</T></span>}</p>
           {tabbed ? <h3><T>Private opportunities require context.</T></h3> : <h3><T>An individual conversation,</T><br/><T>before an opportunity.</T></h3>}
-          {tabbed ? <><p><T>Selected opportunities are introduced based on investor profile, investment objectives, transaction readiness and availability.</T></p><p><T>Some opportunities may not be publicly marketed and are shared only following an initial private conversation.</T></p>{filtered && <p><T>No public opportunities match this selection. Our team can discuss your requirements privately.</T></p>}</> : filtered ? <p><T>No public opportunities match this selection. Our team can discuss your requirements privately.</T></p> : broad ? <p><T>Private opportunities are made available based on investor profile, availability and qualification.</T></p> : <p><T>Selected luxury and qualifying real estate opportunities are presented based on availability, client profile and applicable requirements.</T></p>}
+          {tabbed ? <><p><T>Selected opportunities are introduced based on investor profile, investment objectives, transaction readiness and availability.</T></p><p><T>Some opportunities may not be publicly marketed and are shared only following an initial private conversation.</T></p>{filtered && <p><T>No public opportunities match this selection. Our team can discuss your requirements privately.</T></p>}</> : filtered ? <p><T>No public opportunities match this selection. Our team can discuss your requirements privately.</T></p> : broad ? <p><T>Private opportunities are made available based on investor profile, availability and qualification.</T></p> : <p><T>Property opportunities are introduced according to availability and client requirements.</T></p>}
           <EnquiryButton kind={broad ? "general" : "real-estate"} className={s.textLink}><T>{tabbed?(broad?"INVESTMENT ENQUIRY":"REAL ESTATE ENQUIRY"):(broad ? "Request Investment Information" : "Request Real Estate Information")}</T><ArrowUpRight size={16}/></EnquiryButton>
         </div><EnquiryPanel broad={broad} explicitCta={tabbed}/>
       </div>}
