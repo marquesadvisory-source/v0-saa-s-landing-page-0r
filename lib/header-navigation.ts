@@ -28,5 +28,6 @@ export const headerNavigation: readonly HeaderItem[] = [
     ] }],
   },
   { id: "capital-partners", label: "Capital Partners", href: "/capital-partners" },
+  { id: "partners", label: "Become a Partner", href: "/partners" },
   { id: "contact", label: "Contact", href: "/contact" },
 ]

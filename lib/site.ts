@@ -35,4 +35,5 @@ export const siteRoutes = [
   "/projects/plaza-los-mangos",
   "/projects/decima-avenida",
   "/institutional-inquiry",
+  "/partners",
 ] as const

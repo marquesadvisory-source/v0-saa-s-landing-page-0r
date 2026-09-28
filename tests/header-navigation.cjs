@@ -18,10 +18,14 @@ function load(relative) {
 }
 const { headerNavigation } = load("lib/header-navigation")
 const { footerNavigation } = load("lib/footer-navigation")
+const { siteRoutes } = load("lib/site")
 const { translate } = load("lib/translations")
 const residenceNav = fs.readFileSync(path.join(root, "components/residency-nav.tsx"), "utf8")
-assert.deepEqual(headerNavigation.map(item => item.label), ["The Firm", "Private Clients", "Investments", "Capital Partners", "Contact"])
-assert.deepEqual(headerNavigation.map(item => item.href ?? null), ["/about", null, null, "/capital-partners", "/contact"])
+assert.deepEqual(headerNavigation.map(item => item.label), ["The Firm", "Private Clients", "Investments", "Capital Partners", "Become a Partner", "Contact"])
+assert.deepEqual(headerNavigation.map(item => item.href ?? null), ["/about", null, null, "/capital-partners", "/partners", "/contact"])
+assert.equal(translate("Become a Partner", "es"), "Conviértase en Partner")
+assert.equal(translate("Become a Partner", "fr"), "Devenir partenaire")
+assert.equal(translate("Become a Partner", "zh-cn"), "成为合作伙伴")
 assert.deepEqual(headerNavigation.find(item => item.id === "private-clients").groups.map(group => group.links.map(link => link.href)), [
   ["/residency", "/real-estate", "/services"],
 ])
@@ -49,8 +53,10 @@ function check(item) {
 }
 for (const item of headerNavigation) check(item)
 for (const group of footerNavigation) check(group)
+assert.equal(footerNavigation.flatMap(group => group.links).filter(link => link.label === "Become a Partner" && link.href === "/partners").length, 1, "Become a Partner must appear once in the existing footer groups")
+assert.equal(siteRoutes.filter(route => route === "/partners").length, 1, "The partner page must appear once in the public route registry")
 const homeSource = fs.readFileSync(path.join(root, "app/page.tsx"), "utf8")
-for (const href of ["/residency", "/real-estate", "/services", "/investments", "/projects", "/capital-partners", "/contact", "/institutional-inquiry"]) {
+for (const href of ["/residency", "/real-estate", "/services", "/investments", "/projects", "/capital-partners", "/partners", "/contact", "/institutional-inquiry"]) {
   assert(homeSource.includes(`href="${href}"`), `Homepage is missing the ${href} pathway`)
 }
 assert(!homeSource.includes("Plaza Los Mangos ") && !homeSource.includes("Décima Avenida </T>"), "Homepage should not reproduce named opportunity cards")

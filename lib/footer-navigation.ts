@@ -20,6 +20,7 @@ export const footerNavigation: readonly FooterGroup[] = [
   ] },
   { label: "Contact / Legal", links: [
     { label: "Contact", href: "/contact" },
+    { label: "Become a Partner", href: "/partners" },
     { label: "Institutional Inquiry", href: "/institutional-inquiry" },
     { label: "Privacy Policy", href: "/privacy" },
   ] },
