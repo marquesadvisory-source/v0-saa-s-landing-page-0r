@@ -1,11 +1,14 @@
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 import { T } from "@/components/language-provider"
-import type { Metadata } from "next"
+import { SeoImage } from "@/components/seo-image"
 import { JsonLd } from "@/components/json-ld"
 import { SiteHeader } from "@/components/site-header"
 import { absoluteUrl, breadcrumbSchema, createMetadata, webPageSchema } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
+import s from "./what-we-do.module.css"
 
-export const metadata: Metadata = createMetadata({
+export const metadata = createMetadata({
   title: "Capabilities",
   description:
     "Marqués Advisory & Investments provides platform capabilities for real assets, origination, structuring, capital readiness and execution coordination in Costa Rica.",
@@ -32,69 +35,68 @@ const capabilities = [
 ]
 
 export default function WhatWeDoPage() {
+  const description = "Marqués Advisory & Investments provides platform capabilities for real assets, origination, structuring, capital readiness and execution coordination in Costa Rica."
   return (
-    <main className="min-h-screen bg-[#0D1B2A] text-white">
-      <JsonLd
-        data={[
-          {
-            ...webPageSchema({
-              title: "Capabilities",
-              description:
-                "Marqués Advisory & Investments provides platform capabilities for real assets, origination, structuring, capital readiness and execution coordination in Costa Rica.",
-              path: "/what-we-do",
-            }),
-            mainEntity: { "@id": absoluteUrl("/what-we-do#service") },
-          },
-          breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Capabilities", path: "/what-we-do" },
-          ]),
-          {
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "@id": absoluteUrl("/what-we-do#service"),
-            url: absoluteUrl("/what-we-do"),
-            name: "Institutional real asset preparation and structuring",
-            mainEntityOfPage: { "@id": absoluteUrl("/what-we-do#webpage") },
-            provider: {
-              "@id": absoluteUrl("/#organization"),
-            },
-            areaServed: "Costa Rica",
-            description:
-              "Platform capabilities for institutional preparation, documentation, capital readiness and structuring of private real asset opportunities.",
-          },
-        ]}
-      />
+    <main className={s.page}>
+      <JsonLd data={[
+        {
+          ...webPageSchema({ title: "Capabilities", description, path: "/what-we-do" }),
+          mainEntity: { "@id": absoluteUrl("/what-we-do#service") },
+        },
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Capabilities", path: "/what-we-do" },
+        ]),
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": absoluteUrl("/what-we-do#service"),
+          url: absoluteUrl("/what-we-do"),
+          name: "Institutional real asset preparation and structuring",
+          mainEntityOfPage: { "@id": absoluteUrl("/what-we-do#webpage") },
+          provider: { "@id": absoluteUrl("/#organization") },
+          areaServed: "Costa Rica",
+          description: "Platform capabilities for institutional preparation, documentation, capital readiness and structuring of private real asset opportunities.",
+        },
+      ]} />
       <SiteHeader />
 
-      <section className="px-6 pb-20 pt-40">
-        <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]"><T>Capabilities</T></p>
-            <h1 className="font-serif text-4xl leading-tight md:text-6xl">
-              <T>Platform capabilities for origination, structuring and capital readiness.
-            </T></h1>
-          </div>
-          <p className="text-base leading-8 text-white/70">
-            <T>The work is centered on clarity: asset logic, documentation, governance, risk framing and the capital readiness required before sophisticated capital relationships can evaluate an institutional opportunity responsibly.
-          </T></p>
+      <section className={s.hero} aria-labelledby="capabilities-title">
+        <div className={s.heroCopy}>
+          <p className={s.eyebrow}><T>Capabilities</T></p>
+          <h1 id="capabilities-title"><T>Platform capabilities for origination, structuring and capital readiness.</T></h1>
+          <p><T>The work is centered on clarity: asset logic, documentation, governance, risk framing and the capital readiness required before sophisticated capital relationships can evaluate an institutional opportunity responsibly.</T></p>
         </div>
+        <figure className={s.heroImage}>
+          <SeoImage src="/images/optimized/architecture-interior-1400.webp" alt="Contemporary architectural interior with natural materials" sizes="(max-width: 760px) 100vw, 48vw" fetchPriority="high" loading="eager" />
+        </figure>
       </section>
 
-      <section className="bg-[#F5F1EB] px-6 py-20 text-[#0D1B2A]">
-        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
-          {capabilities.map((capability) => (
-            <article key={capability.title} className="border border-[#E5DDD0] bg-white p-8">
-              <h2 className="mb-4 text-lg font-semibold"><T>{capability.title}</T></h2>
-              <p className="text-sm leading-7 text-slate-600"><T>{capability.body}</T></p>
-            </article>
+      <section className={s.capabilitySection} aria-labelledby="capability-list-title">
+        <div className={s.capabilityIntro}>
+          <p className={s.eyebrow}><T>Capabilities</T></p>
+          <h2 id="capability-list-title"><T>What We Do</T></h2>
+        </div>
+        <ol className={s.capabilityList}>
+          {capabilities.map(({ title, body }, index) => (
+            <li key={title}>
+              <span className={s.number} aria-hidden="true">0{index + 1}</span>
+              <h3><T>{title}</T></h3>
+              <p><T>{body}</T></p>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      <section className="px-6 py-12">
-        <p className="mx-auto max-w-5xl text-xs leading-6 text-white/45"><T>{siteConfig.disclaimer}</T></p>
+      <section className={s.cta} aria-labelledby="framework-cta">
+        <div>
+          <p className={s.eyebrow}><T>Investment Framework</T></p>
+          <h2 id="framework-cta"><T>From opportunity to institutional readiness.</T></h2>
+        </div>
+        <Link href="/investment-framework" className={s.ctaLink}><T>Explore the Investment Framework</T><ArrowUpRight size={16} aria-hidden="true" /></Link>
       </section>
+
+      <p className={s.disclaimer}><T>{siteConfig.disclaimer}</T></p>
     </main>
   )
 }

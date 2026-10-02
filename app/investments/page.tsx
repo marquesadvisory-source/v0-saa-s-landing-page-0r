@@ -17,7 +17,7 @@ export default function InvestmentsPage() {
         webPageSchema(pageSeo["/investments"], "WebPage"),
       ]} />
       <InvestmentsExperience />
-      <ResidencyFooter />
+      <ResidencyFooter variant="investment" />
     </div>
   )
 }

@@ -16,7 +16,7 @@ export function InvestmentsExperience() {
       <section className={styles.hero} aria-labelledby="investments-title">
         <SeoImage src="/costa-rica-coast.jpg" alt="Pacific coastline in Costa Rica" fetchPriority="high" loading="eager" sizes="100vw" />
         <div className={pageStyles.container}>
-          <p className={pageStyles.eyebrow}>{copy.eyebrow}</p>
+          <p className={`${pageStyles.eyebrow} ${styles.heroEyebrow}`}>{copy.eyebrow}</p>
           <h1 id="investments-title">{copy.title}</h1>
           <p className={styles.heroIntro}>{copy.intro}</p>
         </div>
@@ -38,20 +38,6 @@ export function InvestmentsExperience() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className={styles.economic} aria-labelledby="economic-context-title">
-        <div className={pageStyles.container}>
-          <div className={styles.economicIntro}>
-            <p className={pageStyles.eyebrow}>{copy.lensEyebrow}</p>
-            <h2 id="economic-context-title">{copy.lensTitle}</h2>
-            <p>{copy.lensIntro}</p>
-          </div>
-          <ul className={styles.considerations}>
-            {copy.considerations.map(item => <li key={item}>{item}</li>)}
-          </ul>
-          <Link href="/investment-framework" className={styles.frameworkLink}>{copy.frameworkLink}</Link>
         </div>
       </section>
 

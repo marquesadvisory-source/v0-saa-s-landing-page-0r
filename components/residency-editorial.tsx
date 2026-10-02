@@ -35,8 +35,8 @@ export function ResidencyContact() {
     <div><p><T>Discuss your profile, priorities and long-term plans for Costa Rica with our team.</T></p><div className={s.actions}><EnquiryButton className={s.button}><T>PRIVATE CLIENT ENQUIRY</T><ArrowUpRight size={16} /></EnquiryButton></div></div>
   </div></section>
 }
-export function ResidencyFooter() {
-  return <footer className={s.footer}><div className={s.container}>
+export function ResidencyFooter({ variant = "private-client" }: { variant?: "private-client" | "investment" | "institutional" | "legal" }) {
+  return <footer className={s.footer} data-variant={variant}><div className={s.container}>
     <div className={s.footerTop}>
       <strong><T>Marqués Advisory &amp; Investments</T></strong>
       <div className={s.footerGroups}>
@@ -49,7 +49,7 @@ export function ResidencyFooter() {
         </section>)}
       </div>
     </div>
-    <p className={s.note}><T>Marqués Advisory &amp; Investments is a private advisory firm and is not affiliated with the Government of Costa Rica. Residence applications remain subject to applicable law, documentation, professional review and determination by the competent authorities.</T><br /><br /><T>{siteConfig.disclaimer}</T></p>
+    <p className={s.note}>{variant === "private-client" && <><T>Marqués Advisory &amp; Investments is a private advisory firm and is not affiliated with the Government of Costa Rica. Residence applications remain subject to applicable law, documentation, professional review and determination by the competent authorities.</T><br /><br /></>}<T>{siteConfig.disclaimer}</T></p>
     <p className={s.copyright}>© {new Date().getFullYear()}<T> Marqués Advisory &amp; Investments</T></p>
   </div></footer>
 }

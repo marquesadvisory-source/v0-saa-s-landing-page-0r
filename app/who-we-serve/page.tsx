@@ -1,11 +1,14 @@
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 import { T } from "@/components/language-provider"
-import type { Metadata } from "next"
+import { SeoImage } from "@/components/seo-image"
 import { JsonLd } from "@/components/json-ld"
 import { SiteHeader } from "@/components/site-header"
 import { breadcrumbSchema, createMetadata } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
+import s from "./who-we-serve.module.css"
 
-export const metadata: Metadata = createMetadata({
+export const metadata = createMetadata({
   title: "Who We Serve",
   description:
     "Marqués Advisory & Investments supports private stakeholders evaluating real asset opportunities that require institutional preparation in Costa Rica.",
@@ -33,41 +36,49 @@ const audiences = [
 
 export default function WhoWeServePage() {
   return (
-    <main className="min-h-screen bg-[#0D1B2A] text-white">
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Who We Serve", path: "/who-we-serve" },
-        ])}
-      />
+    <main className={s.page}>
+      <JsonLd data={breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Who We Serve", path: "/who-we-serve" },
+      ])} />
       <SiteHeader />
 
-      <section className="px-6 pb-20 pt-40">
-        <div className="mx-auto max-w-7xl">
-          <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]"><T>Who We Serve</T></p>
-          <h1 className="max-w-4xl font-serif text-4xl leading-tight md:text-6xl">
-            <T>Built for stakeholders who need real asset opportunities to be privately evaluated with institutional discipline.
-          </T></h1>
-          <p className="mt-8 max-w-3xl text-base leading-8 text-white/70">
-            <T>Marqués Advisory & Investments supports conversations where assets, capital, legal structure and documentation must align before an opportunity can move forward responsibly.
-          </T></p>
+      <section className={s.hero} aria-labelledby="who-we-serve-title">
+        <div className={s.heroCopy}>
+          <p className={s.eyebrow}><T>Who We Serve</T></p>
+          <h1 id="who-we-serve-title"><T>Built for stakeholders who need real asset opportunities to be privately evaluated with institutional discipline.</T></h1>
+          <p><T>Marqués Advisory &amp; Investments supports conversations where assets, capital, legal structure and documentation must align before an opportunity can move forward responsibly.</T></p>
         </div>
+        <figure className={s.heroImage}>
+          <SeoImage src="/images/optimized/costa-rica-forest-1200.webp" alt="Costa Rica forest landscape" sizes="(max-width: 760px) 100vw, 48vw" fetchPriority="high" loading="eager" />
+        </figure>
       </section>
 
-      <section className="bg-[#F5F1EB] px-6 py-20 text-[#0D1B2A]">
-        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
-          {audiences.map((audience) => (
-            <article key={audience.title} className="border border-[#E5DDD0] bg-white p-8">
-              <h2 className="mb-4 text-lg font-semibold"><T>{audience.title}</T></h2>
-              <p className="text-sm leading-7 text-slate-600"><T>{audience.body}</T></p>
-            </article>
+      <section className={s.audiences} aria-labelledby="audiences-title">
+        <div className={s.sectionIntro}>
+          <p className={s.eyebrow}><T>Who We Serve</T></p>
+          <h2 id="audiences-title"><T>Distinct perspectives. A shared need for clarity.</T></h2>
+        </div>
+        <ol className={s.audienceList}>
+          {audiences.map(({ title, body }, index) => (
+            <li key={title}>
+              <span className={s.number} aria-hidden="true">0{index + 1}</span>
+              <h3><T>{title}</T></h3>
+              <p><T>{body}</T></p>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      <section className="px-6 py-12">
-        <p className="mx-auto max-w-5xl text-xs leading-6 text-white/45"><T>{siteConfig.disclaimer}</T></p>
+      <section className={s.cta} aria-labelledby="who-we-serve-cta">
+        <div>
+          <p className={s.eyebrow}><T>Institutional Perspective</T></p>
+          <h2 id="who-we-serve-cta"><T>Begin with the asset and the people around it.</T></h2>
+        </div>
+        <Link href="/institutional-inquiry" className={s.ctaLink}><T>Institutional Inquiry</T><ArrowUpRight size={16} aria-hidden="true" /></Link>
       </section>
+
+      <p className={s.disclaimer}><T>{siteConfig.disclaimer}</T></p>
     </main>
   )
 }

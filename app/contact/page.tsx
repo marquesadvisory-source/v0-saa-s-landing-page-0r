@@ -19,7 +19,7 @@ export default function ContactPage() {
     <main className={s.section}><div className={s.container + " " + s.split}>
       <div className={s.copy}><p className={s.eyebrow}><T>CONTACT MARQUÉS</T></p><h1><T>A private conversation.</T><br /><T>A considered next step.</T></h1>
         <p style={{marginTop:24}}><T>Discuss your residence, real asset or investment objectives in Costa Rica with Marqués Advisory &amp; Investments.</T></p>
-        <div className={s.actions}><EnquiryButton className={s.button}><T>General Enquiry</T><ArrowUpRight size={16} /></EnquiryButton><EnquiryButton kind="callback" className={s.textLink}><T>Request a Callback</T><ArrowUpRight size={16} /></EnquiryButton></div>
+        <div className={s.actions}><EnquiryButton className={s.button}><T>General Enquiry</T><ArrowUpRight size={16} /></EnquiryButton></div>
         <div className={s.requirements}><p><a href="mailto:info@marquescr.com">info@marquescr.com</a></p><p><a href={siteConfig.whatsapp}><T>{siteConfig.phone}</T></a></p></div>
         <p className={s.note} style={{marginTop:24}}><T>Please review our </T><Link className={s.textLink} href="/privacy"><T>Privacy Policy</T></Link><T> before sharing personal information.</T></p>
       </div><SeoImage src="/images/private-client/service-concierge.webp" alt="Illustrative private-client assistance in a quiet hospitality lounge" fetchPriority="high" loading="eager" />

@@ -1,0 +1,52 @@
+.page { min-height: 100vh; padding-top: 143px; background: #f7f6f2; color: #152d3b; }
+.page * { box-sizing: border-box; }
+.page h1, .page h2, .page h3, .page p, .page figure { margin: 0; }
+.page h1, .page h2, .page h3 { font-family: var(--font-cormorant), Georgia, serif; font-weight: 500; letter-spacing: 0; }
+.page a:focus-visible { outline: 2px solid #cbb47f; outline-offset: 4px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .92fr); align-items: center; gap: clamp(44px, 7vw, 104px); width: min(100% - 96px, 1280px); margin-inline: auto; padding-block: 70px 84px; }
+.heroCopy { max-width: 670px; }
+.eyebrow { margin-bottom: 19px !important; color: #826631; font: 500 10px/1.6 var(--font-inter), sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.hero h1 { max-width: 14ch; font-size: clamp(46px, 5.2vw, 68px); line-height: 1.04; text-wrap: balance; }
+.heroCopy > p:last-child { max-width: 610px; margin-top: 25px; color: #58686d; font: 400 15px/1.9 var(--font-inter), sans-serif; }
+.heroImage { width: 100%; overflow: hidden; background: #d9ded8; }
+.heroImage :global(img) { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
+.capabilitySection { display: grid; grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr); gap: clamp(50px, 8vw, 124px); padding: 82px max(48px, calc((100vw - 1280px) / 2)) 94px; background: #152d3b; color: #f7f6f2; }
+.capabilitySection .eyebrow { color: #d6c391; }
+.capabilityIntro { max-width: 340px; }
+.capabilityIntro h2, .cta h2 { font-size: clamp(36px, 4vw, 50px); line-height: 1.08; text-wrap: balance; }
+.capabilityList { margin: 0; padding: 0; list-style: none; }
+.capabilityList li { display: grid; grid-template-columns: 42px minmax(0, .8fr) minmax(0, 1.2fr); gap: 16px; align-items: start; min-width: 0; padding: 22px 0 26px; border-top: 1px solid #65747a; }
+.capabilityList li:first-child { border-top-color: #b49b6a; }
+.number { padding-top: 5px; color: #d6c391; font: 400 11px/1.6 var(--font-inter), sans-serif; }
+.capabilityList h3 { min-width: 0; font-size: 26px; line-height: 1.18; overflow-wrap: anywhere; }
+.capabilityList p { color: #d5dcda; font: 400 12px/1.85 var(--font-inter), sans-serif; }
+.cta { display: flex; align-items: end; justify-content: space-between; gap: 38px; padding: 66px max(48px, calc((100vw - 1280px) / 2)); background: #fff; }
+.cta h2 { max-width: 16ch; }
+.ctaLink { display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 48px; padding: 12px 0; border-bottom: 1px solid #bda975; color: #152d3b; font: 500 12px/1.6 var(--font-inter), sans-serif; text-decoration: none; }
+.ctaLink svg { flex: 0 0 auto; }
+.disclaimer { max-width: 1280px; margin-inline: auto; padding: 27px 48px 42px; color: #647176; font: 400 10px/1.8 var(--font-inter), sans-serif; }
+@media (max-width: 800px) {
+  .hero { width: calc(100% - 64px); gap: 38px; padding-block: 54px 66px; }
+  .capabilitySection { grid-template-columns: minmax(0, .65fr) minmax(0, 1.35fr); gap: 38px; padding-inline: 32px; }
+  .capabilityList li { grid-template-columns: 34px minmax(0, 1fr); }
+  .capabilityList p { grid-column: 2; }
+  .cta { padding-inline: 32px; }
+  .disclaimer { padding-inline: 32px; }
+}
+@media (max-width: 640px) {
+  .page { padding-top: 119px; }
+  .hero { grid-template-columns: minmax(0, 1fr); width: calc(100% - 40px); gap: 28px; padding-block: 38px 48px; }
+  .hero h1 { max-width: 15ch; font-size: clamp(40px, 10vw, 52px); }
+  .heroCopy > p:last-child { margin-top: 19px; font-size: 14px; }
+  .heroImage :global(img) { aspect-ratio: 4 / 3; }
+  .capabilitySection { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 48px 20px 55px; }
+  .capabilityIntro h2 { font-size: 39px; }
+  .capabilityList li { grid-template-columns: 34px minmax(0, 1fr); gap: 9px 12px; padding-block: 20px 24px; }
+  .capabilityList h3 { font-size: 25px; }
+  .capabilityList p { grid-column: 2; }
+  .cta { align-items: flex-start; flex-direction: column; gap: 25px; padding: 48px 20px; }
+  .disclaimer { padding: 24px 20px 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page *, .page *::before, .page *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

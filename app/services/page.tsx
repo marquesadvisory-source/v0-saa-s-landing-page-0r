@@ -57,7 +57,6 @@ export default function ServicesPage() {
           <p className={s.lead}><T>Residence, real estate and local execution, coordinated around your priorities.</T></p>
           <Localized as="nav" className={s.index} aria-label="Private client service directory">
             {services.map((service,index) => <Link href={"#" + service.id} key={service.id}><span>0{index+1}</span><T>{service.name}</T></Link>)}
-            <Link href="#development"><span>05</span><T>Properties &amp; Hotel Development</T></Link>
           </Localized>
         </div>
       </section>
@@ -74,18 +73,22 @@ export default function ServicesPage() {
               </div>
             </article>)}
           </div>
-          <article id="development" className={h.developmentFeature + " " + s.development}>
-            <div className={h.developmentMedia}><SeoImage src="/images/private-client/service-development.webp" alt="Illustrative architectural model and development coordination discussion" loading="lazy" /><span><T>Development coordination · Illustrative concept</T></span></div>
-            <div className={h.developmentCopy}>
-              <p className={h.eyebrow}><T>Private Client Services / 05</T></p>
-              <h2><T>Properties &amp; Hotel Development</T></h2>
-              <p><T>From the underlying asset to an institutional development framework. Origination, structuring and coordination across legal, financial, technical and commercial stakeholders.</T></p>
-              <EnquiryButton kind="general" className={h.textLink}><T>Discuss your plans</T><ArrowUpRight size={17} aria-hidden="true" /></EnquiryButton>
-            </div>
-          </article>
           <p className={s.note}><T>Legal, tax, immigration, fiduciary and other regulated services are provided by the corresponding qualified professionals where required.</T></p>
         </div>
       </Localized>
+      <section id="development" className={s.institutional} aria-labelledby="development-heading">
+        <div className={h.container}>
+          <p className={h.eyebrow}><T>INSTITUTIONAL &amp; DEVELOPMENT</T></p>
+          <article className={h.developmentFeature + " " + s.development}>
+            <div className={h.developmentMedia}><SeoImage src="/images/private-client/service-development.webp" alt="Illustrative architectural model and development coordination discussion" loading="lazy" /><span><T>Development coordination · Illustrative concept</T></span></div>
+            <div className={h.developmentCopy}>
+              <h2 id="development-heading"><T>Properties &amp; Hotel Development</T></h2>
+              <p><T>From the underlying asset to an institutional development framework. Origination, structuring and coordination across legal, financial, technical and commercial stakeholders.</T></p>
+              <Link className={h.textLink} href="/institutional-inquiry"><T>Discuss your plans</T><ArrowUpRight size={17} aria-hidden="true" /></Link>
+            </div>
+          </article>
+        </div>
+      </section>
     </main>
     <ResidencyFooter />
   </div>

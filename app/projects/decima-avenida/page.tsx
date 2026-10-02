@@ -1,15 +1,15 @@
-import { Localized } from "@/components/language-provider"
 import { T } from "@/components/language-provider"
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Building2, FileText, Layers, MapPin, ShieldCheck } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
+import { ResidencyFooter } from "@/components/residency-editorial"
+import { ProjectHeroImage } from "@/components/project-hero-image"
 import { JsonLd } from "@/components/json-ld"
 import { breadcrumbSchema, createMetadata, webPageSchema } from "@/lib/seo"
-import { siteConfig } from "@/lib/site"
+import s from "../project-detail.module.css"
 
-const heroImage =
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/D%C3%A9cima%20Avenida%20Rdr-fqy4LI79dGShBO9WtIpkK9WaN4dQ2e.jpg"
+const heroImage = "/projects/decima-avenida-rdr.jpg"
 
 const projectDisclaimer =
   "Information regarding this opportunity is provided for institutional context only. Nothing on this page constitutes a public offering of securities, investment solicitation, securities offering, real estate brokerage listing, guarantee of investment performance or invitation to invest. Additional materials may be shared only with qualified parties following appropriate review, confidentiality procedures and legal documentation."
@@ -26,17 +26,13 @@ export const metadata: Metadata = createMetadata(projectSeo)
 const snapshot = [
   ["Asset Class", "Mixed-Use Real Asset Opportunity"],
   ["Location", "El Roble, Alajuela, Costa Rica"],
-  ["Stage", "Origination / Under Structuring"],
-  ["Status", "Early-Stage Institutional Review"],
-  ["MA&I Role", "Structuring & Institutional Positioning"],
-  ["Review Basis", "Subject to diligence, documentation and institutional review"],
+  ["Stage", "Early-Stage Structuring"],
+  ["MA&I Role", "Investment Structuring"],
 ]
-
-const platformStages = ["Origination", "Structuring", "Capital Readiness", "Execution", "Monetization"]
 
 export default function DecimaAvenidaPage() {
   return (
-    <main className="min-h-screen bg-[#0D1B2A] text-white">
+    <>
       <JsonLd
         data={[{...webPageSchema(projectSeo), spatialCoverage: {"@type": "Place", name: "El Roble, Alajuela, Costa Rica"}}, breadcrumbSchema([
           { name: "Home", path: "/" },
@@ -44,164 +40,54 @@ export default function DecimaAvenidaPage() {
           { name: "Décima Avenida", path: "/projects/decima-avenida" },
         ])]}
       />
-
       <SiteHeader />
-
-      <section className="relative min-h-screen overflow-hidden bg-[#0D1B2A]">
-        <Localized as="img" src={heroImage} alt="Décima Avenida mixed-use tower rendering in El Roble, Alajuela"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{objectPosition: "58% 12%"}} fetchPriority="high" loading="eager" decoding="async" />
-        <div className="absolute inset-0 bg-[#0D1B2A]/30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0D1B2A]/10 via-[#0D1B2A]/25 to-[#0D1B2A]/95" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B2A]/85 via-[#0D1B2A]/35 to-transparent" />
-
-        <div className="relative mx-auto flex min-h-screen max-w-7xl items-end px-6 pb-20 pt-44">
-          <div className="max-w-4xl">
-            <p className="mb-5 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-              <T>Institutional Mixed-Use Opportunity
-            </T></p>
-            <h1 className="font-serif text-4xl leading-tight md:text-6xl"><T>Décima Avenida</T></h1>
-            <p className="mt-5 text-sm uppercase tracking-[0.14em] text-white/55">
-              <T>El Roble, Alajuela, Costa Rica
-            </T></p>
-            <p className="mt-8 max-w-2xl text-base leading-8 text-white/75">
-              <T>A mixed-use real asset opportunity positioned within the Coyol-Airport growth corridor and currently under institutional review and structuring.
-            </T></p>
-            <Link
-              href="/institutional-inquiry"
-              className="mt-9 inline-flex items-center gap-2 bg-[#C9A96E] px-6 py-3 text-sm font-semibold text-[#0D1B2A] transition-opacity hover:opacity-90"
-            >
-              <T>Institutional Inquiry
-              </T><ArrowRight size={16} />
-            </Link>
+      <main className={s.page}>
+        <section className={s.hero}>
+          <div className={s.heroMedia}>
+            <ProjectHeroImage src={heroImage} alt="Décima Avenida mixed-use tower rendering in El Roble, Alajuela" objectPosition="58% 12%" />
           </div>
-        </div>
-      </section>
-
-      <section className="bg-[#F5F1EB] px-6 py-20 text-[#0D1B2A]">
-        <div className="mx-auto max-w-7xl space-y-16">
-          <section className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                <T>Why This Opportunity Matters
-              </T></p>
-              <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                <T>A strategically located real asset opportunity within an expanding growth corridor.
-              </T></h2>
+          <div className={s.heroShade} />
+          <div className={s.heroInner}>
+            <div className={s.heroCopy}>
+              <p className={s.eyebrow}><T>Institutional Mixed-Use Opportunity</T></p>
+              <h1 className={s.title}><T>Décima Avenida</T></h1>
+              <p className={s.location}><T>El Roble, Alajuela, Costa Rica</T></p>
+              <p className={s.heroLead}><T>A mixed-use real asset opportunity at an early stage of structuring.</T></p>
+              <Link href="/institutional-inquiry" className={s.heroAction}><T>Institutional Inquiry</T><ArrowRight size={16} aria-hidden="true" /></Link>
             </div>
-            <div className="space-y-5 text-sm leading-7 text-slate-700">
-              <p>
-                <T>Décima Avenida is positioned within the Coyol-Airport ecosystem, a corridor shaped by corporate, industrial, logistics and service-oriented activity.
-              </T></p>
-              <p>
-                <T>The opportunity is being reviewed through residential, commercial and service demand drivers, with a focus on mixed-use urban integration and long-term institutional relevance.
-              </T></p>
-              <p>
-                <T>Any future strategy remains subject to diligence, market validation, documentation and stakeholder coordination.
-              </T></p>
-            </div>
-          </section>
+          </div>
+        </section>
 
-          <section>
-            <div className="mb-8">
-              <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                <T>Opportunity Snapshot
-              </T></p>
-              <h2 className="font-serif text-3xl leading-tight md:text-4xl">
-                <T>Institutional information for preliminary review.
-              </T></h2>
-            </div>
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {snapshot.map(([label, value]) => (
-                <article key={label} className="border border-[#E5DDD0] bg-white p-7">
-                  <p className="mb-3 text-xs uppercase tracking-[0.14em] text-[#C9A96E]"><T>{label}</T></p>
-                  <p className="text-sm leading-7 text-slate-700"><T>{value}</T></p>
-                </article>
-              ))}
-            </div>
-          </section>
+        <section className={s.detailSection}>
+          <div className={s.container + " " + s.sectionStack}>
+            <section>
+              <p className={s.darkEyebrow + " " + s.eyebrow}><T>Opportunity Snapshot</T></p>
+              <h2 className={s.sectionTitle}><T>Project location, concept and current stage.</T></h2>
+              <div className={s.snapshot}>
+                {snapshot.map(([label, value]) => <div key={label} className={s.snapshotItem}>
+                  <p className={s.snapshotLabel}><T>{label}</T></p>
+                  <p className={s.snapshotValue}><T>{value}</T></p>
+                </div>)}
+              </div>
+            </section>
 
-          <section className="grid gap-6 md:grid-cols-3">
-            <article className="border border-[#E5DDD0] bg-white p-8 md:col-span-2">
-              <FileText className="mb-5 text-[#C9A96E]" size={24} />
-              <h2 className="mb-4 text-xl font-semibold"><T>Our Role</T></h2>
-              <p className="text-sm leading-7 text-slate-700">
-                <T>Marqués Advisory & Investments is evaluating the opportunity from a structuring, positioning and institutional-readiness perspective. Any future development strategy remains subject to diligence, documentation, market validation and stakeholder coordination.
-              </T></p>
-            </article>
-            <article className="border border-[#E5DDD0] bg-white p-8">
-              <ShieldCheck className="mb-5 text-[#C9A96E]" size={24} />
-              <h2 className="mb-4 text-xl font-semibold"><T>Current Stage</T></h2>
-              <p className="text-sm leading-7 text-slate-700">
-                <T>Origination / Under Structuring. Review remains subject to diligence and institutional validation.
-              </T></p>
-            </article>
-          </section>
+            <section className={s.editorialSplit}>
+              <div>
+                <p className={s.darkEyebrow + " " + s.eyebrow}><T>Development Concept</T></p>
+                <h2 className={s.sectionTitle}><T>Potential mixed-use configuration.</T></h2>
+              </div>
+              <p className={s.bodyCopy}><T>Potential alignment of residential, commercial and service uses within an urban real asset framework.</T></p>
+            </section>
+          </div>
+        </section>
 
-          <section>
-            <div className="mb-8">
-              <p className="mb-4 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-                <T>Position Within the MA&I Platform
-              </T></p>
-              <h2 className="max-w-3xl font-serif text-3xl leading-tight md:text-4xl">
-                <T>From origination to monetization, with current emphasis on early structuring.
-              </T></h2>
-            </div>
-            <div className="grid gap-4 md:grid-cols-5">
-              {platformStages.map((stage, index) => {
-                const active = stage === "Origination" || stage === "Structuring"
-                return (
-                  <article
-                    key={stage}
-                    className="border p-6"
-                    style={{
-                      borderColor: active ? "#C9A96E" : "#E5DDD0",
-                      backgroundColor: active ? "#112032" : "#FFFFFF",
-                      color: active ? "#FFFFFF" : "#0D1B2A",
-                    }}
-                  >
-                    <p className="mb-4 text-xs font-mono text-[#C9A96E]">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <h3 className="text-sm font-semibold"><T>{stage}</T></h3>
-                    {active && (
-                      <p className="mt-4 text-xs leading-6 text-white/60">
-                        <T>Current stage: Origination / Under Structuring
-                      </T></p>
-                    )}
-                  </article>
-                )
-              })}
-            </div>
-          </section>
-
-          <section className="grid gap-6 md:grid-cols-3">
-            {[
-              [MapPin, "Strategic Location", "Coyol-Airport corridor positioning with corporate, industrial and service-oriented demand drivers."],
-              [Building2, "Mixed-Use Integration", "Potential alignment of residential, commercial and service uses within an urban real asset framework."],
-              [Layers, "Institutional Relevance", "Reviewed for long-term positioning, documentation quality and disciplined structuring readiness."],
-            ].map(([Icon, title, body]) => {
-              const CardIcon = Icon as typeof MapPin
-              return (
-                <article key={title as string} className="border border-[#E5DDD0] bg-white p-8">
-                  <CardIcon className="mb-5 text-[#C9A96E]" size={24} />
-                  <h2 className="mb-4 text-xl font-semibold"><T>{title as string}</T></h2>
-                  <p className="text-sm leading-7 text-slate-700"><T>{body as string}</T></p>
-                </article>
-              )
-            })}
-          </section>
-        </div>
-      </section>
-
-      <section className="px-6 py-12">
-        <div className="mx-auto max-w-5xl">
-          <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#C9A96E]">
-            <T>Institutional Disclaimer
-          </T></p>
-          <p className="text-xs leading-6 text-white/45"><T>{projectDisclaimer}</T></p>
-        </div>
-      </section>
-    </main>
+        <section className={s.disclaimer}>
+          <div className={s.container}>
+            <p><T>Institutional Disclaimer</T><br /><T>{projectDisclaimer}</T></p>
+          </div>
+        </section>
+      </main>
+      <ResidencyFooter variant="institutional" />
+    </>
   )
 }

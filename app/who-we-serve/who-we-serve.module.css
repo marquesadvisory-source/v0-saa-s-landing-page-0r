@@ -1,0 +1,51 @@
+.page { min-height: 100vh; padding-top: 143px; background: #f7f6f2; color: #152d3b; }
+.page * { box-sizing: border-box; }
+.page h1, .page h2, .page h3, .page p, .page figure { margin: 0; }
+.page h1, .page h2, .page h3 { font-family: var(--font-cormorant), Georgia, serif; font-weight: 500; letter-spacing: 0; }
+.page a:focus-visible { outline: 2px solid #826631; outline-offset: 4px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .92fr); align-items: center; gap: clamp(44px, 7vw, 104px); width: min(100% - 96px, 1280px); margin-inline: auto; padding-block: 70px 84px; }
+.heroCopy { max-width: 650px; }
+.eyebrow { margin-bottom: 19px !important; color: #826631; font: 500 10px/1.6 var(--font-inter), sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.hero h1 { max-width: 22ch; font-size: clamp(46px, 4.2vw, 60px); line-height: 1.04; text-wrap: balance; }
+.heroCopy > p:last-child { max-width: 580px; margin-top: 25px; color: #58686d; font: 400 15px/1.9 var(--font-inter), sans-serif; }
+.heroImage { width: 100%; overflow: hidden; background: #d9ded8; }
+.heroImage :global(img) { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
+.audiences { padding: 78px max(48px, calc((100vw - 1280px) / 2)) 90px; background: #fff; }
+.sectionIntro { max-width: 600px; margin-bottom: 38px; }
+.sectionIntro h2, .cta h2 { font-size: clamp(34px, 4vw, 48px); line-height: 1.1; text-wrap: balance; }
+.audienceList { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; margin: 0; padding: 0; list-style: none; }
+.audienceList li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 8px 15px; min-width: 0; padding: 24px 0 29px; border-top: 1px solid #deded7; }
+.audienceList li:nth-child(-n + 2) { border-top-color: #b49b6a; }
+.number { grid-row: span 2; padding-top: 6px; color: #826631; font: 400 11px/1.6 var(--font-inter), sans-serif; }
+.audienceList h3 { min-width: 0; font-size: 26px; line-height: 1.18; overflow-wrap: anywhere; }
+.audienceList p { grid-column: 2; max-width: 470px; color: #606e72; font: 400 13px/1.85 var(--font-inter), sans-serif; }
+.cta { display: flex; align-items: end; justify-content: space-between; gap: 38px; padding: 65px max(48px, calc((100vw - 1280px) / 2)); background: #152d3b; color: #f7f6f2; }
+.cta .eyebrow { color: #d6c391; }
+.cta h2 { max-width: 17ch; }
+.ctaLink { display: inline-flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 48px; padding: 12px 0; border-bottom: 1px solid #bda975; color: #fff; font: 500 12px/1.6 var(--font-inter), sans-serif; text-decoration: none; }
+.ctaLink svg { flex: 0 0 auto; }
+.disclaimer { max-width: 1280px; margin: auto; padding: 28px 48px 44px; color: #647176; font: 400 10px/1.8 var(--font-inter), sans-serif; }
+@media (max-width: 800px) {
+  .hero { grid-template-columns: minmax(0, 1fr); width: calc(100% - 64px); gap: 38px; padding-block: 54px 66px; }
+  .hero h1 { max-width: none; }
+  .audiences { padding-inline: 32px; }
+  .cta { padding-inline: 32px; }
+  .disclaimer { padding-inline: 32px; }
+}
+@media (max-width: 640px) {
+  .page { padding-top: 119px; }
+  .hero { grid-template-columns: minmax(0, 1fr); width: calc(100% - 40px); gap: 28px; padding-block: 38px 48px; }
+  .hero h1 { max-width: none; font-size: clamp(36px, 9vw, 46px); }
+  .heroCopy > p:last-child { margin-top: 19px; font-size: 14px; }
+  .heroImage :global(img) { aspect-ratio: 4 / 3; }
+  .audiences { padding: 48px 20px 56px; }
+  .sectionIntro { margin-bottom: 25px; }
+  .audienceList { grid-template-columns: minmax(0, 1fr); }
+  .audienceList li:nth-child(2) { border-top-color: #deded7; }
+  .audienceList h3 { font-size: 25px; }
+  .cta { align-items: flex-start; flex-direction: column; gap: 25px; padding: 48px 20px; }
+  .disclaimer { padding: 24px 20px 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page *, .page *::before, .page *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

@@ -1,85 +1,56 @@
 "use client"
 
-import * as Accordion from "@radix-ui/react-accordion"
-import { ChevronDown } from "lucide-react"
 import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 import { T, useLanguage } from "@/components/language-provider"
 import { SeoImage } from "@/components/seo-image"
 import { siteConfig } from "@/lib/site"
 import { capitalPartnersCopy } from "./capital-partners-copy"
 import s from "./capital-partners.module.css"
 
-const capabilities = [
-  ["REAL ASSET OPPORTUNITIES", "Selected opportunities across real estate, hospitality, industrial, strategic land and related sectors."],
-  ["CO-INVESTMENT", "Opportunities may be evaluated alongside aligned capital partners where structure, objectives and execution are compatible."],
-  ["PROJECT STRUCTURING", "We help prepare opportunities around transaction logic, ownership, counterparties and execution pathways."],
-  ["CAPITAL COORDINATION", "We coordinate relevant capital relationships and support disciplined institutional review where appropriate."],
-  ["EXECUTION ALIGNMENT", "We help align the legal, financial, technical and commercial relationships required to move an opportunity forward."],
-]
-const engagements = ["Advisory", "Origination", "Structuring", "Co-Investment Evaluation", "Strategic Partnerships"]
-
 export function CapitalPartnersExperience() {
   const { locale, t } = useLanguage()
   const text = (key: string) => locale === "en" ? key : capitalPartnersCopy[key]?.[locale === "es" ? 0 : locale === "fr" ? 1 : 2] ?? t(key)
 
-  return (
-    <>
-      <section className={s.hero} aria-labelledby="capabilities-title">
-        <div className={s.container}>
-          <p className={s.eyebrow}>{text("CAPITAL PARTNERS")}</p>
-          <h1 id="capabilities-title">{text("Local access. Structured opportunities. Aligned capital.")}</h1>
-          <p className={s.introduction}>{text("Marqués connects disciplined real asset preparation in Costa Rica with qualified capital relationships, co-investment perspectives and strategic counterparties.")}</p>
-        </div>
-        <div className={s.heroImage}>
-          <SeoImage src="/architecture-interior.jpg" alt={text("Contemporary architecture with natural materials and open living spaces")} sizes="100vw" fetchPriority="high" />
-        </div>
-      </section>
+  return <>
+    <section className={s.hero} aria-labelledby="capital-title">
+      <div className={`${s.container} ${s.heroCopy}`}>
+        <p className={s.eyebrow}>{text("CAPITAL PARTNERS")}</p>
+        <h1 id="capital-title">{text("Capital relationships for real assets in Costa Rica.")}</h1>
+        <p className={s.introduction}>{text("Marqués works with family offices, private and institutional investors, capital allocators and strategic investors considering opportunities in Costa Rica.")}</p>
+      </div>
+      <div className={s.heroImage}>
+        <SeoImage src="/architecture-interior.jpg" alt={text("Contemporary architecture with natural materials and open living spaces")} sizes="100vw" fetchPriority="high" />
+      </div>
+    </section>
 
-      <section className={`${s.container} ${s.capabilities}`} aria-labelledby="our-capabilities">
-        <h2 id="our-capabilities">{text("How We Work With Capital")}</h2>
-        <Accordion.Root type="single" defaultValue="capability-0" collapsible className={s.accordion}>
-          {capabilities.map(([title, body], i) => (
-            <Accordion.Item value={`capability-${i}`} key={title} className={s.item}>
-              <Accordion.Header className={s.rowHeading}>
-                <Accordion.Trigger className={s.trigger}>
-                  <span className={s.number} aria-hidden="true">0{i + 1}</span>
-                  <span className={s.rowTitle}>{text(title)}</span>
-                  <ChevronDown size={22} strokeWidth={1} aria-hidden="true" className={s.chevron} />
-                </Accordion.Trigger>
-              </Accordion.Header>
-              <Accordion.Content className={s.answer}>
-                <p className={s.answerCopy}>{text(body)}</p>
-              </Accordion.Content>
-            </Accordion.Item>
-          ))}
-        </Accordion.Root>
-      </section>
+    <section className={`${s.container} ${s.opportunitySection}`} aria-label={text("Capital partner perspective")}>
+      <div className={s.opportunityColumn}>
+        <p className={s.sectionLabel}>{text("OPPORTUNITY CONTEXT")}</p>
+        <h2>{text("Selected real assets and capital perspectives.")}</h2>
+        <p>{text("Conversations may consider selected real estate, hospitality, industrial or strategic land opportunities, with co-investment perspectives where relevant to the parties and opportunity.")}</p>
+      </div>
+      <div className={s.opportunityColumn}>
+        <p className={s.sectionLabel}>{text("LOCAL PERSPECTIVE")}</p>
+        <h2>{text("A Costa Rica-based advisory relationship.")}</h2>
+        <p>{text("Marqués brings local context to real asset and project conversations, including relevant structure, counterparties and execution considerations.")}</p>
+        <p>{text("The scope of each relationship depends on the opportunity and the objectives of the parties involved.")}</p>
+      </div>
+    </section>
 
-      <section className={s.positioning} aria-labelledby="institutional-discipline">
-        <div className={s.container}>
-          <div className={s.positioningTop}>
-            <h2 id="institutional-discipline">{text("A Costa Rica relationship for strategic capital.")}</h2>
-            <p>{text("From opportunity identification to capital alignment and execution coordination, Marqués provides a disciplined local relationship across the real asset lifecycle.")}</p>
-          </div>
-          <p className={s.audience}>{text("For family offices, institutional investors, developers, real asset operators and strategic capital relationships seeking disciplined access to Costa Rica opportunities.")}</p>
-        </div>
-      </section>
-
-      <section className={`${s.container} ${s.engagement}`} aria-labelledby="how-we-engage">
-        <h2 id="how-we-engage">{text("How We Engage")}</h2>
-        <ul>{engagements.map(label => <li key={label}>{text(label)}</li>)}</ul>
-      </section>
-
-      <section className={`${s.container} ${s.cta}`} aria-labelledby="discuss-opportunity">
+    <section className={s.cta} aria-labelledby="capital-inquiry-title">
+      <div className={`${s.container} ${s.ctaInner}`}>
         <div>
-          <h2 id="discuss-opportunity">{text("Discuss a Capital Relationship")}</h2>
-          <p className={s.ctaCopy}>{text("Private conversations regarding real assets, co-investment and strategic opportunities in Costa Rica.")}</p>
+          <p className={s.ctaEyebrow}>{text("PRIVATE CONVERSATION")}</p>
+          <h2 id="capital-inquiry-title">{text("Begin with a capital conversation.")}</h2>
+          <p>{text("A private starting point for discussing Costa Rica real assets and capital relationships.")}</p>
         </div>
-        <Link href="/institutional-inquiry" className={s.ctaLink}>{text("Institutional Inquiry")}</Link>
-      </section>
-      <section className={s.disclaimer}>
-        <p className={s.container}><T>{siteConfig.disclaimer}</T></p>
-      </section>
-    </>
-  )
+        <Link href="/institutional-inquiry" className={s.ctaLink}>{text("Institutional Inquiry")}<ArrowUpRight size={17} aria-hidden="true" /></Link>
+      </div>
+    </section>
+
+    <section className={s.disclaimer}>
+      <p className={s.container}><T>{siteConfig.disclaimer}</T></p>
+    </section>
+  </>
 }

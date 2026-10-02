@@ -40,7 +40,6 @@ export default function ResidencyRealEstate() {
         </div>
         <div className={s.copy}>
           <p><T>A property decision and a residence application are related but separately evaluated. Any potential connection must be reviewed against applicable requirements and supporting documentation.</T></p>
-          <p><T>Property ownership alone does not establish residence eligibility. Residence outcomes remain subject to applicable law, documentation, professional review and determination by the competent authorities.</T></p>
           <Link href="/real-estate" className={s.textLink}><T>Explore Marqués private real-estate advisory</T><ArrowUpRight size={16} aria-hidden="true" /></Link>
         </div>
       </div>

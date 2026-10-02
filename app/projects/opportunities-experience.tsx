@@ -48,9 +48,9 @@ export function OpportunitiesExperience({ disclaimer }: { disclaimer: string }) 
     <div ref={root}>
       <section className={s.hero} aria-labelledby="opportunities-title">
         <div className={s.container}>
-          <p className={s.eyebrow}>{text("INSTITUTIONAL PIPELINE")}</p>
+          <p className={s.eyebrow}>{text("SELECTED OPPORTUNITIES")}</p>
           <h1 id="opportunities-title">{text("Institutional Opportunities")}</h1>
-          <p className={s.intro}>{text("Selected real asset opportunities in Costa Rica under origination, structuring or capital-readiness review.")}</p>
+          <p className={s.intro}>{text("Selected real asset opportunities in Costa Rica, presented with context on location, development concept and current stage.")}</p>
         </div>
       </section>
 
@@ -77,9 +77,8 @@ export function OpportunitiesExperience({ disclaimer }: { disclaimer: string }) 
                   <dl className={s.facts}>
                     {[
                       ["Asset Class", opportunity.assetClass],
-                      ["Pipeline Stage", opportunity.stage],
+                      ["Project Stage", opportunity.stage],
                       ["MA&I Role", opportunity.role],
-                      ["Review Basis", "Subject to diligence and institutional review"],
                     ].map(([label, value], i) => (
                       <div key={label} data-reveal style={{ "--reveal-delay": `${i * 60}ms` } as CSSProperties}>
                         <dt>{text(label)}</dt>
@@ -99,7 +98,7 @@ export function OpportunitiesExperience({ disclaimer }: { disclaimer: string }) 
         <div className={`${s.container} ${s.accessInner}`}>
           <h2 id="confidential-materials" data-reveal>{text("Confidential Investment Materials")}</h2>
           <div data-reveal>
-            <p>{text("Detailed investment information is available to qualified private and institutional counterparties following appropriate review and execution of a confidentiality agreement.")}</p>
+            <p>{text("Qualified private and institutional parties may request further information, subject to confidentiality requirements.")}</p>
             <Link href="/institutional-inquiry" className={s.accessLink}>{text("Request Institutional Access")}</Link>
           </div>
         </div>

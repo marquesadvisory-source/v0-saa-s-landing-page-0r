@@ -13,15 +13,16 @@ import { EnquiryButton } from "./enquiry-provider"
 
 export function SiteHeader() {
   const {locale, setLocale, t} = useLanguage()
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [mobileSection, setMobileSection] = useState<string | null>(null)
+  const [skipTarget, setSkipTarget] = useState(pathname === "/" ? "home-content" : "main-content")
   const headerRef = useRef<HTMLElement>(null)
   const toggleRef = useRef<HTMLButtonElement>(null)
   const triggers = useRef<Record<string, HTMLButtonElement | null>>({})
   const clickedMenu = useRef<string | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const pathname = usePathname()
   const matchesPath = (href: string) => pathname === href || pathname.startsWith(href + "/")
   const isItemActive = (item: HeaderItem) => (item.href ? matchesPath(item.href) : false) || item.groups?.some(group => group.links.some(link => matchesPath(link.href))) === true
 
@@ -53,6 +54,20 @@ export function SiteHeader() {
   }
 
   useEffect(() => { closeMenus() }, [pathname])
+
+  useEffect(() => {
+    const main = document.querySelector<HTMLElement>("main")
+    if (!main) return
+
+    const header = main.querySelector<HTMLElement>("header")
+    const target = header
+      ? Array.from(main.children).find(child => child.tagName !== "SCRIPT" && !child.contains(header))
+      : main
+    const content = target instanceof HTMLElement ? target : main
+    if (!content.id) content.id = pathname === "/" ? "home-content" : "main-content"
+    content.tabIndex = -1
+    setSkipTarget(content.id)
+  }, [pathname])
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -106,7 +121,7 @@ export function SiteHeader() {
     <header ref={headerRef} className={styles.header} lang={locale === "zh-cn" ? "zh-Hans" : locale}
       onMouseEnter={cancelClose} onMouseLeave={scheduleClose}
       onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) closeMenus() }}>
-      {pathname === "/" && <a href="#home-content" className={styles.skip}><T>Skip to content</T></a>}
+      <a href={`#${skipTarget}`} className={styles.skip}><T>Skip to content</T></a>
       <div className={styles.utility}>
         <div className={styles.utilityInner}>
           <span className={styles.location}><T>Private advisory. Costa Rica.</T></span>

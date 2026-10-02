@@ -4,7 +4,8 @@
 .hero > div { position: relative; z-index: 1; }
 .hero h1 { max-width: 850px; color: #fff; font: 500 58px/1.06 var(--font-cormorant), Georgia, serif; }
 .hero :global(.eyebrow) { color: #dbc18d; margin-bottom: 17px; }
-.heroIntro { max-width: 700px; margin-top: 23px; color: #f3f1eb; font-size: 16px; line-height: 1.75; }
+.hero .heroIntro { max-width: 720px; margin-top: 23px; color: #fbfaf7; font-size: 17px; line-height: 1.8; }
+.hero p.heroEyebrow { color: #e8d5a9; }
 .universe { padding: 78px 0 84px; background: #fbfaf6; }
 .sectionHeading { max-width: 700px; margin-bottom: 42px; }
 .sectionHeading h2, .economicIntro h2, .pathwaysHeading h2 { margin-top: 12px; color: #182e3b; font: 500 40px/1.12 var(--font-cormorant), Georgia, serif; }
@@ -12,7 +13,7 @@
 .themes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid #c9c7bc; }
 .theme { min-width: 0; padding: 20px 24px 8px 0; }
 .theme + .theme { padding-left: 24px; border-left: 1px solid #d7d5cb; }
-.themeNumber { color: #927b4b; font-size: 11px; }
+.themeNumber { color: var(--gold-text, #826631); font-size: 11px; }
 .theme h3 { margin-top: 20px; color: #1b303c; font: 500 24px/1.12 var(--font-cormorant), Georgia, serif; }
 .theme p { margin-top: 13px; color: #5e6b6e; font-size: 13px; line-height: 1.8; }
 .economic { padding: 69px 0 73px; color: #f6f3e9; background: #182e3d; }
@@ -44,7 +45,7 @@
 @media (max-width: 600px) {
   .hero { min-height: 390px; padding: 52px 0; }
   .hero h1 { max-width: 560px; font-size: 43px; }
-  .heroIntro { margin-top: 18px; font-size: 14px; line-height: 1.7; }
+  .hero .heroIntro { margin-top: 18px; font-size: 14px; line-height: 1.7; }
   .universe, .pathways { padding: 54px 0; }
   .sectionHeading h2, .economicIntro h2, .pathwaysHeading h2 { font-size: 34px; }
   .sectionHeading { margin-bottom: 28px; }

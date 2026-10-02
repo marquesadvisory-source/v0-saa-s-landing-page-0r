@@ -17,7 +17,8 @@ const enquiryOptions = [
 export function PartnersExperience() {
   const { locale, t } = useLanguage()
   const [enquiryType, setEnquiryType] = useState("")
-  const [status, setStatus] = useState("")
+  const [submissionState, setSubmissionState] = useState<"idle" | "sending" | "success" | "error">("idle")
+  const submitting = useRef(false)
   const started = useRef(false)
 
   useEffect(() => {
@@ -28,32 +29,45 @@ export function PartnersExperience() {
     try { track(name, { locale }) } catch { /* Analytics must not block partner contact. */ }
   }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const form = event.currentTarget
+    if (submitting.current) return
     if (!form.reportValidity()) return
 
     const data = new FormData(form)
     const field = (name: string) => String(data.get(name) ?? "").trim()
-    const lines = [
-      `${t("Enquiry type")}: ${t(field("enquiryType"))}`,
-      ...(field("question") ? [`${t("Your question")}: ${field("question")}`] : []),
-      `${t("Salutation")}: ${t(field("salutation"))}`,
-      `${t("First Name")}: ${field("firstName")}`,
-      `${t("Last Name")}: ${field("lastName")}`,
-      `${t("Telephone / WhatsApp")}: ${field("phone")}`,
-      `${t("E-mail Address")}: ${field("email")}`,
-      ...(field("companyName") ? [`${t("Company Name")}: ${field("companyName")}`] : []),
-      `${t("Company Location / Country")}: ${field("companyLocation")}`,
-      ...(field("companyPosition") ? [`${t("Company Position")}: ${field("companyPosition")}`] : []),
-    ]
-    const subject = encodeURIComponent("Partner conversation request — Marqués Partner Network")
-    const body = encodeURIComponent(lines.join("\n"))
-
-    // Temporary delivery: replace only after an approved server endpoint or form provider is available.
-    trackClick("partner_enquiry_submitted")
-    setStatus(t("Your partnership enquiry has been prepared."))
-    window.location.href = `mailto:info@marquescr.com?subject=${subject}&body=${body}`
+    submitting.current = true
+    setSubmissionState("sending")
+    try {
+      const response = await fetch("/api/partner-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          locale,
+          enquiryType: field("enquiryType"),
+          question: field("question"),
+          salutation: field("salutation"),
+          firstName: field("firstName"),
+          lastName: field("lastName"),
+          phone: field("phone"),
+          email: field("email"),
+          companyName: field("companyName"),
+          companyLocation: field("companyLocation"),
+          companyPosition: field("companyPosition"),
+          privacyConsent: data.get("privacyConsent") === "on",
+          website: field("website"),
+        }),
+      })
+      const result = await response.json().catch(() => null)
+      if (!response.ok || !result || result.ok !== true) throw new Error("Partner enquiry submission failed")
+      if (result.ignored !== true) trackClick("partner_enquiry_submitted")
+      setSubmissionState("success")
+    } catch {
+      setSubmissionState("error")
+    } finally {
+      submitting.current = false
+    }
   }
 
   return <>
@@ -123,12 +137,20 @@ export function PartnersExperience() {
             <label><T>Company Position</T><input name="companyPosition" autoComplete="organization-title" /></label>
           </div>
 
+          <div className={styles.honeypot} aria-hidden="true">
+            <label>Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label>
+          </div>
+
           <label className={styles.consent}>
             <input type="checkbox" name="privacyConsent" required />
             <span><T>I have read the</T> <Link href="/privacy" target="_blank" rel="noopener noreferrer"><T>Privacy Policy</T></Link> <T>and authorize Marqués Advisory & Investments to use this information to respond to my enquiry.</T> *</span>
           </label>
-          <button className={styles.submit} type="submit"><T>Request a Partner Conversation</T><span aria-hidden="true">↗</span></button>
-          {status && <p className={styles.formStatus} role="status"><T>Thank you.</T> <T>{status}</T></p>}
+          <button className={styles.submit} type="submit" disabled={submissionState === "sending" || submissionState === "success"} aria-busy={submissionState === "sending"}>
+            <T>Request a Partner Conversation</T><span aria-hidden="true">↗</span>
+          </button>
+          {submissionState !== "idle" && <p className={styles.formStatus} role="status" aria-live="polite" aria-atomic="true">
+            <T>{submissionState === "sending" ? "Sending…" : submissionState === "success" ? "Your enquiry has been sent to Marqués." : "Your enquiry could not be sent. Please try again."}</T>
+          </p>}
         </form>
       </div>
     </section>

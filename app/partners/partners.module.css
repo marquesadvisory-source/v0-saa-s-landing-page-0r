@@ -27,6 +27,7 @@
 .intakeIntro > p:not(.eyebrow) { max-width: 460px; margin-top: 14px; color: #53636a; font-size: 13px; line-height: 1.8; }
 .intakeIntro h2 { margin-top: 11px; font-size: 38px; }
 .form { min-width: 0; margin-top: 28px; }
+.honeypot { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
 .enquiryTypes { min-width: 0; padding: 0 0 24px; margin: 0 0 20px; border: 0; border-bottom: 1px solid #d5d6cf; }
 .enquiryTypes legend { padding: 0; margin-bottom: 15px; color: #3e515a; font-size: 13px; font-weight: 500; }
 .enquiryTypes label { display: flex; align-items: flex-start; gap: 11px; padding-block: 7px; color: #53636a; font-size: 13px; line-height: 1.55; cursor: pointer; }

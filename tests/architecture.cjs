@@ -56,10 +56,12 @@ function load(relative) {
   const detailRouteSource = fs.readFileSync(path.join(root, "app/real-estate/[slug]/page.tsx"), "utf8")
   assert(discoverySource.includes("opportunityDetailPath(a)"), "Opportunity cards must use asset-class-specific detail routes")
   assert(discoverySource.includes("Property opportunities are introduced according to availability and client requirements."), "Empty real-estate state must describe availability and client requirements")
-  assert(realEstatePageSource.includes("getPublicRealEstateOpportunities()") && !realEstatePageSource.includes("approvedProperties.length > 0"), "Property discovery remains visible with zero approved records")
+  assert(realEstatePageSource.includes("getPublicRealEstateOpportunities()") && realEstatePageSource.includes("approvedProperties.length > 0"), "Property filters render only when approved public inventory exists")
+  assert(realEstatePageSource.includes("No public property listings are currently available."), "The zero-inventory state must clearly explain availability")
   assert(detailRouteSource.includes("generateStaticParams") && detailRouteSource.includes("generateMetadata") && detailRouteSource.includes('webPageSchema(seo, "WebPage")'), "Property detail pages need record-based static params, metadata, and WebPage schema")
   assert(!/Offer|Product|FinancialProduct|InvestmentFund/.test(detailRouteSource), "Property detail schema must not invent offer or product structures")
   const {translate} = load("lib/translations")
+  for (const locale of ["es", "fr", "zh-cn"]) assert.notEqual(translate("No public property listings are currently available.", locale), "No public property listings are currently available.", `Zero-inventory message must be translated in ${locale}`)
   for (const [locale, expected] of [["es","Las oportunidades inmobiliarias se presentan según su disponibilidad y las necesidades del cliente."],["fr","Les opportunités immobilières sont présentées selon leur disponibilité et les besoins du client."],["zh-cn","房地产机会将根据可获得情况及客户需求予以介绍。"]]) {
     assert.equal(translate("Property opportunities are introduced according to availability and client requirements.", locale), expected)
   }

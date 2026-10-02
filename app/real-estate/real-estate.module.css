@@ -15,9 +15,13 @@
 .categoryList { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; margin: 0; padding: 0; list-style: none; }
 .categoryList li { display: grid; grid-template-columns: 35px minmax(0, 1fr); align-items: baseline; gap: 12px; min-width: 0; padding: 19px 10px 19px 0; border-top: 1px solid #e6e2d9; }
 .categoryList li:nth-child(-n + 2) { border-top: 1px solid #b49b6a; }
-.categoryList li > span, .supportList li > span { color: #8c7549; font-size: 10px; }
+.categoryList li > span, .supportList li > span { color: var(--gold-text, #826631); font-size: 10px; }
 .categoryList h3 { min-width: 0; margin: 0; font: 500 22px/1.2 var(--font-cormorant), Georgia, serif; letter-spacing: 0; overflow-wrap: anywhere; }
 .inventory { padding: 86px max(6vw, calc((100vw - 1240px) / 2)); background: #f2efe9; }
+.inventoryEmpty { background: #1a2332; color: #f7f6f2; }
+.privateAccessState { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 70px; align-items: start; }
+.privateAccessState h2 { max-width: 11ch; margin: 0; font: 500 clamp(36px, 4.2vw, 52px)/1.05 var(--font-cormorant), Georgia, serif; letter-spacing: 0; text-wrap: balance; }
+.privateAccessState .privateCopy p { color: rgb(251 250 247 / 86%); }
 .inventoryIntro { max-width: 600px; margin-bottom: 35px; }
 .privateAccess { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); gap: 72px; align-items: start; padding: 86px max(6vw, calc((100vw - 1240px) / 2)); background: #102838; color: #fbfaf7; }
 .lightEyebrow { margin: 0 0 18px; color: #d1bc8c; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; }
@@ -38,7 +42,7 @@
 @media (max-width: 900px) {
   .hero { min-height: auto; grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr); gap: 34px; padding-block: 68px; }
   .universe, .advisory { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 44px; }
-  .privateAccess, .residenceLink { gap: 42px; }
+  .privateAccess, .residenceLink, .privateAccessState { gap: 42px; }
   .supportList { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .supportList li { display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 12px; }
   .supportList li > span { grid-row: span 2; }
@@ -56,7 +60,8 @@
   .categoryList li:nth-child(2) { border-top-color: #e6e2d9; }
   .categoryList li:first-child { border-top-color: #b49b6a; }
   .categoryList h3 { font-size: 23px; }
-  .privateAccess, .residenceLink { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 62px 22px; }
+  .privateAccess, .residenceLink, .privateAccessState { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 62px 22px; }
+  .privateAccessState { padding: 0; }
   .privateAccess h2 { max-width: 12ch; }
   .supportList { gap: 20px; }
 }

@@ -7,6 +7,8 @@
 .index a:hover { color: #876b35; }
 .index span { color: #a5874f; font-size: 10px; }
 .directory { padding: 0 0 64px; }
+.institutional { padding: 56px 0 76px; background: #f5f3ee; border-top: 1px solid #e1ddd3; }
+.institutional > div > .eyebrow { margin: 0 0 18px; color: #826631; }
 .row h2 { font-size: 34px; line-height: 1.12; }
 .row .media { height: auto; aspect-ratio: 3 / 2; }
 .row .media img { object-position: center; }
@@ -27,4 +29,5 @@
   .row h2 { font-size: 32px; }
   .page .development h2 { font-size: 34px; }
   .directory { padding-bottom: 40px; }
+  .institutional { padding: 40px 0 52px; }
 }

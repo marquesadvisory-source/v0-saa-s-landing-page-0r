@@ -9,14 +9,12 @@ import { siteConfig } from "@/lib/site"
 import { frameworkCopy } from "./framework-copy"
 import s from "./framework.module.css"
 
-const stages = ["Asset", "Thesis", "Structure", "Capital", "Execution", "Monetization"]
+const stages = ["Asset context", "Commercial rationale", "Sponsor context", "Capital structure", "Execution context", "Risk and alignment"]
 const narrative = [
-  { title: "We begin with the asset.", words: ["Location", "Logic", "Potential"] },
-  { title: "Then we define the structure.", words: ["Thesis", "Capital", "Execution"] },
-  { title: "Only then do we position the opportunity.", words: ["Readiness", "Alignment", "Monetization"] },
+  { title: "Asset and commercial context.", words: ["Location", "Use", "Context"], body: "The discussion considers the asset, its setting and the commercial rationale presented for its intended use." },
+  { title: "Sponsor and stakeholder alignment.", words: ["Sponsor", "Objectives", "Alignment"], body: "Sponsor context, participant objectives and areas of alignment help frame the opportunity." },
+  { title: "Capital structure and execution.", words: ["Structure", "Execution", "Risk"], body: "Capital structure, execution context and relevant risks are considered at a high level." },
 ]
-const capabilities = ["Real Asset Review", "Project Structuring", "Capital Structuring", "Execution Coordination", "Strategic Opportunities"]
-const categories = ["Mixed-Use", "Hospitality", "Industrial & Logistics", "Strategic Land", "Build-to-Suit", "Sale-Leaseback"]
 const clamp = (value: number) => Math.max(0, Math.min(1, value))
 
 export function FrameworkExperience() {
@@ -91,8 +89,8 @@ export function FrameworkExperience() {
       <div className={s.heroContent}>
         <p className={s.eyebrow}>{text("Investment Framework")}</p>
         <h1 id="framework-title">{text("How Marqués Evaluates Real Asset Opportunities")}</h1>
-        <p className={s.heroSub}>{text("Structured for capital. Built for execution.")}</p>
-        <p className={s.heroBody}>{text("We evaluate, structure and prepare real asset opportunities for disciplined investment and execution.")}</p>
+        <p className={s.heroSub}>{text("A considered perspective on context, rationale and alignment.")}</p>
+        <p className={s.heroBody}>{text("A high-level review may consider asset context, sponsor, commercial rationale, capital structure, execution, risk and alignment.")}</p>
       </div>
     </section>
 
@@ -106,7 +104,7 @@ export function FrameworkExperience() {
           </h2>
         </div>
         <div className={s.railFooter}>
-          <p>{text("From asset clarity to institutional readiness.")}</p>
+          <p>{text("Considerations are shaped by the context of each opportunity.")}</p>
           <button type="button" className={s.motionToggle} onClick={() => setPaused(value => !value)} aria-label={text(paused ? "Resume framework motion" : "Pause framework motion")} title={text(paused ? "Resume framework motion" : "Pause framework motion")}>
             {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
           </button>
@@ -118,28 +116,23 @@ export function FrameworkExperience() {
       {narrative.map((item, index) => <section key={item.title} className={s.statement} aria-labelledby={`narrative-${index}`}>
         <div data-reveal className={s.statementInner}>
           <span className={s.number} aria-hidden="true">0{index + 1}</span>
-          <h2 id={`narrative-${index}`}>{text(item.title)}</h2>
-          <p className={s.statementWords}>{item.words.map(word => <span key={word}>{text(word)}.</span>)}</p>
+          <div className={s.statementContent}>
+            <h2 id={`narrative-${index}`}>{text(item.title)}</h2>
+            <div className={s.statementSide}>
+              <p className={s.statementWords}>{item.words.map(word => <span key={word}>{text(word)}.</span>)}</p>
+              <p className={s.statementCopy}>{text(item.body)}</p>
+            </div>
+          </div>
         </div>
       </section>)}
     </div>
 
-    <section className={s.capabilities} aria-labelledby="framework-capabilities">
-      <div className={s.sectionHeading} data-reveal><p className={s.eyebrow}>Marqués Advisory &amp; Investments</p><h2 id="framework-capabilities">{text("What We Do")}</h2></div>
-      <ul className={s.capabilityList}>{capabilities.map((item, i) => <li key={item} data-reveal><span className={s.number} aria-hidden="true">0{i + 1}</span><span>{text(item)}</span></li>)}</ul>
-    </section>
-
-    <section className={s.categories} aria-labelledby="framework-categories">
-      <h2 id="framework-categories" data-reveal>{text("Asset Categories")}</h2>
-      <ul>{categories.map(item => <li key={item} data-reveal>{text(item)}</li>)}</ul>
-    </section>
-
     <section className={s.cta} aria-labelledby="framework-inquiry">
       <div data-reveal>
-        <p className={s.eyebrow}>{text("Private Review")}</p>
-        <h2 id="framework-inquiry">{text("From opportunity to institutional readiness.")}</h2>
-        <p className={s.ctaCopy}>{text("A private conversation about real assets, structuring and execution in Costa Rica.")}</p>
-        <Link href="/institutional-inquiry" className={s.ctaLink}>{text("Discuss an Opportunity")}<span aria-hidden="true">&rarr;</span></Link>
+        <p className={s.eyebrow}>{text("PRIVATE CONVERSATION")}</p>
+        <h2 id="framework-inquiry">{text("A private conversation about a real asset opportunity.")}</h2>
+        <p className={s.ctaCopy}>{text("Discuss a real asset opportunity in Costa Rica with Marqués.")}</p>
+        <Link href="/institutional-inquiry" className={s.ctaLink}>{text("Begin an Institutional Inquiry")}<span aria-hidden="true">&rarr;</span></Link>
       </div>
     </section>
     <footer className={s.disclaimer}><p>{t(siteConfig.disclaimer)}</p></footer>
