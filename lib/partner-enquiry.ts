@@ -8,6 +8,7 @@ const enquiryTypes = [
 ] as const
 const salutations = ["Mr", "Mrs", "Ms", "Dr", "Other"] as const
 const localeLabels: Record<Locale, string> = { en: "EN", es: "ES", fr: "FR", "zh-cn": "ZH-CN" }
+const dateTimeLocales: Record<Locale, string> = { en: "en-US", es: "es-CR", fr: "fr-FR", "zh-cn": "zh-CN" }
 const limits = { enquiryType: 100, question: 5000, salutation: 20, firstName: 100, lastName: 100, phone: 60, email: 254, companyName: 160, companyLocation: 120, companyPosition: 120 } as const
 const defaultRecipient = "info@marquescr.com"
 const defaultSender = "Marqués Partner Network <notifications@marquescr.com>"
@@ -82,6 +83,11 @@ export function validatePartnerEnquiry(input: unknown): PartnerEnquiryValidation
 }
 
 export function createPartnerEnquiryEmail(enquiry: PartnerEnquiry, submittedAt = new Date(), routing: PartnerEnquiryRouting = { to: defaultRecipient, from: defaultSender }) {
+  const costaRicaTimestamp = new Intl.DateTimeFormat(dateTimeLocales[enquiry.locale], {
+    timeZone: "America/Costa_Rica",
+    dateStyle: "long",
+    timeStyle: "medium",
+  }).format(submittedAt)
   const fields: [string, string][] = [
     ["Enquiry type", enquiry.enquiryType],
     ...(enquiry.question ? [["Specific question", enquiry.question] as [string, string]] : []),
@@ -91,7 +97,8 @@ export function createPartnerEnquiryEmail(enquiry: PartnerEnquiry, submittedAt =
     ["Company Location / Country", enquiry.companyLocation],
     ...(enquiry.companyPosition ? [["Company Position", enquiry.companyPosition] as [string, string]] : []),
     ["Submitted from", "Marqués Partner Network"], ["Submission language", localeLabels[enquiry.locale]],
-    ["Timestamp (UTC)", submittedAt.toISOString()],
+    ["Timestamp (Costa Rica)", costaRicaTimestamp],
+    ["UTC reference", submittedAt.toISOString()],
   ]
   const escapeHtml = (value: string) => value.replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" })[character]!)
   return {
