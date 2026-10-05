@@ -3,10 +3,11 @@ import { locales, localeDefinitions } from "@/lib/i18n/config"
 import { T, useLanguage } from "@/components/language-provider"
 
 import { useEffect, useRef, useState } from "react"
-import Link from "next/link"
+import { LocaleLink as Link } from "@/components/locale-link"
 import { usePathname } from "next/navigation"
 import { ArrowUpRight, ChevronDown, Menu, Phone, X } from "lucide-react"
 import { siteConfig } from "@/lib/site"
+import { localePath } from "@/lib/i18n/config"
 import { headerNavigation, type HeaderItem } from "@/lib/header-navigation"
 import styles from "./site-header.module.css"
 import { EnquiryButton } from "./enquiry-provider"
@@ -17,13 +18,16 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [mobileSection, setMobileSection] = useState<string | null>(null)
-  const [skipTarget, setSkipTarget] = useState(pathname === "/" ? "home-content" : "main-content")
+  const [skipTarget, setSkipTarget] = useState(/^\/(?:es|fr|zh-hans)?\/?$/.test(pathname) ? "home-content" : "main-content")
   const headerRef = useRef<HTMLElement>(null)
   const toggleRef = useRef<HTMLButtonElement>(null)
   const triggers = useRef<Record<string, HTMLButtonElement | null>>({})
   const clickedMenu = useRef<string | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const matchesPath = (href: string) => pathname === href || pathname.startsWith(href + "/")
+  const matchesPath = (href: string) => {
+    const localized = localePath(href, locale)
+    return pathname === localized || pathname.startsWith(localized + "/")
+  }
   const isItemActive = (item: HeaderItem) => (item.href ? matchesPath(item.href) : false) || item.groups?.some(group => group.links.some(link => matchesPath(link.href))) === true
 
   const cancelClose = () => {
@@ -64,7 +68,7 @@ export function SiteHeader() {
       ? Array.from(main.children).find(child => child.tagName !== "SCRIPT" && !child.contains(header))
       : main
     const content = target instanceof HTMLElement ? target : main
-    if (!content.id) content.id = pathname === "/" ? "home-content" : "main-content"
+    if (!content.id) content.id = /^\/(?:es|fr|zh-hans)?\/?$/.test(pathname) ? "home-content" : "main-content"
     content.tabIndex = -1
     setSkipTarget(content.id)
   }, [pathname])
@@ -106,7 +110,7 @@ export function SiteHeader() {
             </h3>}
             <ul className={styles.linkList}>
               {group.links.map(link => <li key={link.label}>
-                <Link href={link.href} onClick={closeMenus} aria-current={!link.href.includes("#") && pathname === link.href ? "page" : undefined}>
+                <Link href={link.href} onClick={closeMenus} aria-current={!link.href.includes("#") && pathname === localePath(link.href, locale) ? "page" : undefined}>
                   <T>{link.label}</T>
                 </Link>
               </li>)}
@@ -150,7 +154,7 @@ export function SiteHeader() {
             {headerNavigation.map(item => <li key={item.id} className={styles.navItem}
               onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) item.groups ? openDesktop(item.id) : setActiveMenu(null) }}>
               <div className={styles.navLabel} data-active={activeMenu === item.id || isItemActive(item) || undefined}>
-                {item.href && <Link href={item.href} onClick={closeMenus} className={styles.primaryLink} aria-current={pathname === item.href ? "page" : undefined}
+                {item.href && <Link href={item.href} onClick={closeMenus} className={styles.primaryLink} aria-current={pathname === localePath(item.href, locale) ? "page" : undefined}
                   onFocus={event => { if (event.currentTarget.matches(":focus-visible")) item.groups ? openDesktop(item.id) : setActiveMenu(null) }}>
                   <T>{item.label}</T>
                 </Link>}
@@ -200,7 +204,7 @@ export function SiteHeader() {
           <ul className={styles.mobileList}>
             {headerNavigation.map(item => <li key={item.id}>
               <div className={styles.mobileRow} data-active={isItemActive(item) || undefined}>
-                {item.href && <Link href={item.href} onClick={closeMenus} aria-current={pathname === item.href ? "page" : undefined}><T>{item.label}</T></Link>}
+                {item.href && <Link href={item.href} onClick={closeMenus} aria-current={pathname === localePath(item.href, locale) ? "page" : undefined}><T>{item.label}</T></Link>}
                 {item.groups && <button type="button" className={item.href ? styles.mobileDisclosure : styles.mobileSectionButton}
                   aria-expanded={mobileSection === item.id} aria-controls={`mobile-${item.id}`}
                   aria-label={item.href ? `${t(mobileSection === item.id ? "Collapse navigation section" : "Expand navigation section")}: ${t(item.label)}` : undefined}

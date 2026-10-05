@@ -2,7 +2,7 @@
 import { T, useLanguage } from "@/components/language-provider"
 
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react"
-import Link from "next/link"
+import { LocaleLink as Link } from "@/components/locale-link"
 import { ArrowUpRight, Download, Mail, MessageCircle, X } from "lucide-react"
 import { getEnquiryForm, type EnquiryKind } from "@/lib/forms/config"
 import { factSheets, getResidenceFactSheet } from "@/lib/documents"

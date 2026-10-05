@@ -1,9 +1,10 @@
 "use client"
 import { T, useLanguage } from "@/components/language-provider"
-import Link from "next/link"
+import { LocaleLink as Link } from "@/components/locale-link"
 import { usePathname } from "next/navigation"
 import { useLayoutEffect, useRef } from "react"
-import s from "@/app/residency/residency.module.css"
+import { localePath } from "@/lib/i18n/config"
+import s from "@/app/(english)/residency/residency.module.css"
 const links = [
   ["About Costa Rica", "/residency/about-costa-rica"],
   ["Residence by Investment", "/residency"],
@@ -28,6 +29,6 @@ export function ResidencyNav() {
     }
   }, [pathname, locale])
   return <nav ref={navRef} className={s.contextNav} aria-label={t("Costa Rica residency")}>
-    {links.map(([label, href]) => <Link key={href} href={href} scroll={false} onNavigate={() => window.scrollTo({ top: 0, left: 0, behavior: "instant" })} aria-current={pathname === href ? "page" : undefined}><T>{label}</T></Link>)}
+    {links.map(([label, href]) => <Link key={href} href={href} scroll={false} onNavigate={() => window.scrollTo({ top: 0, left: 0, behavior: "instant" })} aria-current={pathname === localePath(href, locale) ? "page" : undefined}><T>{label}</T></Link>)}
   </nav>
 }

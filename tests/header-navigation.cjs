@@ -42,7 +42,8 @@ function check(item) {
   if (item.label && !identical.has(item.label)) for (const locale of ["es", "fr", "zh-cn"]) assert.notEqual(translate(item.label, locale), item.label, `${locale}: ${item.label}`)
   if (item.href) {
     const [route, anchor] = item.href.split("#")
-    const directory = path.join(root, "app", route)
+    const segments = route.split("/").filter(Boolean)
+    const directory = path.join(root, "app", "(english)", ...segments)
     const file = path.join(directory, "page.tsx")
     assert(fs.existsSync(file), `Missing route: ${item.href}`)
     if (anchor) {
@@ -58,7 +59,7 @@ for (const item of headerNavigation) check(item)
 for (const group of footerNavigation) check(group)
 assert.equal(footerNavigation.flatMap(group => group.links).filter(link => link.label === "Become a Partner" && link.href === "/partners").length, 1, "Become a Partner must appear once in the existing footer groups")
 assert.equal(siteRoutes.filter(route => route === "/partners").length, 1, "The partner page must appear once in the public route registry")
-const homeSource = fs.readFileSync(path.join(root, "app/page.tsx"), "utf8")
+const homeSource = fs.readFileSync(path.join(root, "app/(english)/page.tsx"), "utf8")
 for (const href of ["/residency", "/real-estate", "/services", "/investments", "/projects", "/capital-partners", "/partners", "/contact", "/institutional-inquiry"]) {
   assert(homeSource.includes(`href="${href}"`), `Homepage is missing the ${href} pathway`)
 }

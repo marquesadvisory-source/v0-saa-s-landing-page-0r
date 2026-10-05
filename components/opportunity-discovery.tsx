@@ -2,13 +2,13 @@
 import { SeoImage } from "@/components/seo-image"
 import { T, useLanguage } from "@/components/language-provider"
 import { useRef, useState } from "react"
-import Link from "next/link"
+import { LocaleLink as Link } from "@/components/locale-link"
 import { ArrowLeft, ArrowRight, ArrowUpRight, RotateCcw } from "lucide-react"
 import { EnquiryButton } from "@/components/enquiry-provider"
 import { filterOpportunities, investmentCategories, realEstatePropertyTypes, type Opportunity } from "@/lib/opportunities"
 import { opportunityDetailPath } from "@/lib/opportunities/publication"
-import s from "@/app/residency/residency.module.css"
-import d from "@/app/residency/real-estate/discovery.module.css"
+import s from "@/app/(english)/residency/residency.module.css"
+import d from "@/app/(english)/residency/real-estate/discovery.module.css"
 
 export function OpportunityDiscovery({assets, scope = "real-estate"}:{assets:Opportunity[]; scope?: "real-estate" | "investments"}) {
   const {t} = useLanguage()

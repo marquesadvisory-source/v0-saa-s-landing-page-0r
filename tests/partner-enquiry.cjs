@@ -81,7 +81,7 @@ assert.deepEqual(futureInboxEmail.to, ["partners@marquescr.com"], "configured pa
   assert.deepEqual(JSON.parse(request.options.body), email)
   assert.equal(await sendPartnerEnquiryEmail(email, "test-key-not-real", async () => new Response(null, { status: 500 })), false)
 
-  const client = fs.readFileSync(path.join(root, "app/partners/partners-experience.tsx"), "utf8")
+  const client = fs.readFileSync(path.join(root, "app/(english)/partners/partners-experience.tsx"), "utf8")
   assert(client.includes('fetch("/api/partner-enquiry"'), "the intake posts to the same-origin route")
   assert(!client.includes("mailto:info@marquescr.com"), "Partner Enquiry no longer opens an email application")
   assert(client.includes("submitting.current"), "client-side duplicate submission guard remains in place")

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { siteConfig } from "@/lib/site"
 import { seoImages } from "@/lib/seo-images"
+import { localeDefinitions, localePath, locales } from "@/lib/i18n/config"
 
 type SeoOptions = { title: string; description: string; path?: string; image?: string }
 
@@ -12,10 +13,14 @@ export function createMetadata({ title, description, path = "/", image = siteCon
   const url = absoluteUrl(path)
   const fullTitle = title.includes(siteConfig.name) ? title : title + " | " + siteConfig.name
   const imageInfo = seoImages[image]
+  const languages = Object.fromEntries([
+    ...locales.map(locale => [locale === "zh-cn" ? "zh-Hans" : locale, absoluteUrl(localePath(path, locale))]),
+    ["x-default", url],
+  ])
   return {
     title: { absolute: fullTitle },
     description,
-    alternates: { canonical: url },
+    alternates: path === "/privacy" ? { canonical: url } : { canonical: url, languages },
     openGraph: {
       title: fullTitle, description, url, siteName: siteConfig.name, locale: siteConfig.locale, type: "website",
       images: [{ url: absoluteUrl(image), width: imageInfo?.width, height: imageInfo?.height, alt: imageInfo?.alt ?? title }],

@@ -1,29 +1,34 @@
 "use client"
 
 import { createContext, createElement, useContext, useEffect, useState, type ReactNode, type ImgHTMLAttributes } from "react"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { translate, type Locale } from "@/lib/translations"
-
-import { resolveBrowserLocale } from "@/lib/i18n/browser-locale"
-const translatedPages = ["/", "/about", "/residency", "/residency/about-costa-rica", "/residency/real-estate", "/real-estate", "/contact", "/investments", "/projects", "/projects/plaza-los-mangos", "/projects/decima-avenida", "/capital-partners", "/investment-framework", "/institutional-inquiry", "/who-we-serve", "/what-we-do", "/services", "/partners"]
+import { localeFromSegment, localePath } from "@/lib/i18n/config"
 const Context = createContext<{ locale: Locale; setLocale: (locale: Locale) => void }>({locale: "en", setLocale: () => {}})
 
-export function LanguageProvider({children}: {children: ReactNode}) {
-  const [locale, setLanguage] = useState<Locale>("en")
+export function LanguageProvider({children, initialLocale}: {children: ReactNode; initialLocale: Locale}) {
+  const [locale, setLanguage] = useState<Locale>(initialLocale)
   const pathname = usePathname()
+  const router = useRouter()
   useEffect(() => {
-    let saved: string | null = null
-    try {
-      saved = localStorage.getItem("marques-language")
-    } catch { /* Browsing with storage disabled still supports in-session switching. */ }
-    setLanguage(resolveBrowserLocale(saved, navigator.languages?.length ? navigator.languages : [navigator.language]))
-  }, [])
-  useEffect(() => {
-    document.documentElement.lang = translatedPages.includes(pathname) ? (locale === "zh-cn" ? "zh-Hans" : locale) : "en"
-  }, [locale, pathname])
+    if (pathname !== "/privacy") return
+    const requested = new URLSearchParams(window.location.search).get("lang")
+    let saved = requested
+    if (!saved) {
+      try { saved = localStorage.getItem("marques-language") } catch { /* Storage is optional. */ }
+    }
+    if (saved) {
+      const preferred = localeFromSegment(saved)
+      if (preferred) setLanguage(preferred)
+    }
+  }, [pathname])
   const setLocale = (next: Locale) => {
     setLanguage(next)
     try { localStorage.setItem("marques-language", next) } catch { /* Preference is optional. */ }
+    if (next !== locale) {
+      const hash = typeof window === "undefined" ? "" : window.location.hash
+      router.push(localePath(pathname, next) + hash)
+    }
   }
   return <Context.Provider value={{locale, setLocale}}>{children}</Context.Provider>
 }

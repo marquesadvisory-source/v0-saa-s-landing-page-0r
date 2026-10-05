@@ -1,18 +1,19 @@
 "use client"
 
-import Link from "next/link"
+import { LocaleLink as Link } from "@/components/locale-link"
 import { ArrowUpRight } from "lucide-react"
 import { EnquiryButton } from "@/components/enquiry-provider"
 import { SeoImage } from "@/components/seo-image"
 import { T, useLanguage } from "@/components/language-provider"
 import { localizedValue } from "@/lib/i18n/config"
+import { propertyDescriptionForLocale } from "@/lib/opportunities/translation"
 import type { Opportunity } from "@/lib/opportunities"
-import s from "@/app/real-estate/[slug]/property-detail.module.css"
+import s from "@/app/(english)/real-estate/[slug]/property-detail.module.css"
 
 export function RealEstatePropertyDetail({ asset }: { asset: Opportunity }) {
   const { locale, t } = useLanguage()
   const name = localizedValue(asset.localized?.name, locale, asset.name)
-  const description = localizedValue(asset.localized?.longDescription, locale, asset.longDescription ?? asset.shortDescription)
+  const description = propertyDescriptionForLocale(asset, locale)
   const imageSources = [...new Set([asset.primaryImage, ...asset.gallery].filter(Boolean))]
   const facts = [
     asset.propertyType ? { label: "Property type", value: asset.propertyType } : null,
@@ -49,7 +50,7 @@ export function RealEstatePropertyDetail({ asset }: { asset: Opportunity }) {
         <div className={s.description}>
           <p className={s.eyebrow}><T>PRIVATE PROPERTY OPPORTUNITIES</T></p>
           <h2 id="property-details-title"><T>Property details</T></h2>
-          <p>{localizedValue(asset.localized?.longDescription, locale, asset.longDescription ?? description)}</p>
+          <p>{description}</p>
         </div>
         {facts.length > 0 && <dl className={s.facts}>
           {facts.map(({ label, value }) => <div key={label + value}><dt><T>{label}</T></dt><dd><T>{value}</T></dd></div>)}
