@@ -9,6 +9,8 @@ const links = [
   ["About Costa Rica", "/residency/about-costa-rica"],
   ["Residence by Investment", "/residency"],
   ["Real Estate & Residency", "/residency/real-estate"],
+  ["Real Estate", "/real-estate"],
+  ["Investments", "/investments"],
 ] as const
 export function ResidencyNav() {
   const {t, locale} = useLanguage()

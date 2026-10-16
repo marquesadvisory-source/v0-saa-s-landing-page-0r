@@ -6,28 +6,28 @@ export const pageSeo = {
     path: "/", image: "/costa-rica-coast.jpg",
   },
   "/investments": {
-    title: "Costa Rica Real Assets Investment Platform",
+    title: "Costa Rica Real Assets & Investment Opportunities | Marqués",
     description: "Explore Marqués’ investment universe across Costa Rica real estate, hospitality, development and income-producing real assets, with a focus on asset fundamentals and investment context.",
     path: "/investments", image: "/costa-rica-coast.jpg",
   },
   "/residency": {
-    title: "Costa Rica Residency by Investment",
-    description: "Explore Costa Rica investor residency and other residence pathways with Marqués. Qualification remains subject to documentation and professional review.",
+    title: "Costa Rica Residency & Residency by Investment | Marqués",
+    description: "Explore Costa Rica residency pathways, including Investor Residency, with Marqués. Understand residence options, key requirements and the role of professional review.",
     path: "/residency", image: "/costa-rica-coast.jpg",
   },
   "/residency/real-estate": {
-    title: "Costa Rica Investor Residency & Real Estate Investment",
+    title: "Costa Rica Residency by Investment & Real Estate | Marqués",
     description: "Understand how qualifying real estate may relate to Costa Rica Investor Residency. Property ownership alone does not establish eligibility; requirements and documentation remain subject to review.",
     path: "/residency/real-estate", image: "/architecture-interior.jpg",
   },
   "/real-estate": {
-    title: "Costa Rica Luxury Real Estate | Private Property Advisory",
-    description: "Private real estate advisory for international buyers considering luxury homes, coastal properties and other high-value real estate opportunities across Costa Rica.",
+    title: "Costa Rica Real Estate for International Buyers | Marqués",
+    description: "Private real estate advisory for international buyers considering luxury homes, coastal properties, investment property and other high-value real estate opportunities across Costa Rica.",
     path: "/real-estate", image: "/images/private-client/service-real-estate.webp",
   },
   "/residency/about-costa-rica": {
-    title: "About Costa Rica | Residence & Real Assets",
-    description: "Explore Costa Rica's setting, connectivity and real asset context for long-term residence planning and investment decisions with Marqués.",
+    title: "Living in Costa Rica | Residence, Lifestyle & Real Assets | Marqués",
+    description: "Explore Costa Rica’s setting, connectivity, lifestyle and real asset context for long-term residence planning and investment decisions with Marqués.",
     path: "/residency/about-costa-rica", image: "/costa-rica-forest.jpg",
   },
   "/about": {

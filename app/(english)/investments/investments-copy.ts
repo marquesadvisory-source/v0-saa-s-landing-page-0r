@@ -30,6 +30,7 @@ export const investmentsCopy: Record<Locale, {
     pathwaysEyebrow: "FURTHER CONTEXT",
     pathwaysTitle: "Choose the next perspective.",
     pathways: [
+      { title: "Residence by Investment", body: "Understand how a qualifying investment may relate to Costa Rica Investor Residency, including the separate role of real estate and residence review.", link: "Explore residency and qualifying investment", href: "/residency/real-estate" },
       { title: "Investment Framework", body: "Explore the approach Marqués uses to evaluate and structure investment opportunities.", link: "Explore the framework", href: "/investment-framework" },
       { title: "Selected Opportunities", body: "Explore selected real-asset opportunities and their project context.", link: "Explore selected opportunities", href: "/projects" },
       { title: "Capital Partners", body: "Learn how capital relationships and organizations may engage with the platform.", link: "Explore capital partnerships", href: "/capital-partners" },
@@ -53,6 +54,7 @@ export const investmentsCopy: Record<Locale, {
     pathwaysEyebrow: "MÁS CONTEXTO",
     pathwaysTitle: "Elija la siguiente perspectiva.",
     pathways: [
+      { title: "Residencia por inversión", body: "Comprenda cómo una inversión que califique puede relacionarse con la residencia para inversionistas en Costa Rica y el papel separado de la revisión inmobiliaria y migratoria.", link: "Explore residencia e inversión que califica", href: "/residency/real-estate" },
       { title: "Marco de Inversión", body: "Explore el enfoque que Marqués utiliza para evaluar y estructurar oportunidades de inversión.", link: "Explore el marco", href: "/investment-framework" },
       { title: "Oportunidades seleccionadas", body: "Explore oportunidades seleccionadas en activos reales y el contexto de cada proyecto.", link: "Explore las oportunidades", href: "/projects" },
       { title: "Socios de capital", body: "Conozca cómo las relaciones de capital y las organizaciones pueden vincularse con la plataforma.", link: "Explore las alianzas de capital", href: "/capital-partners" },
@@ -76,6 +78,7 @@ export const investmentsCopy: Record<Locale, {
     pathwaysEyebrow: "POUR ALLER PLUS LOIN",
     pathwaysTitle: "Choisissez la perspective suivante.",
     pathways: [
+      { title: "Résidence par investissement", body: "Comprenez comment un investissement admissible peut s’inscrire dans une stratégie de résidence pour investisseurs au Costa Rica, distincte de l’analyse immobilière.", link: "Découvrir résidence et investissement admissible", href: "/residency/real-estate" },
       { title: "Cadre d’investissement", body: "Découvrir l’approche de Marqués pour évaluer et structurer les opportunités d’investissement.", link: "Découvrir le cadre", href: "/investment-framework" },
       { title: "Opportunités sélectionnées", body: "Découvrir des opportunités sélectionnées en actifs réels et le contexte des projets.", link: "Découvrir les opportunités", href: "/projects" },
       { title: "Partenaires en capital", body: "Découvrir comment les relations de capital et les organisations peuvent s’engager avec la plateforme.", link: "Découvrir les partenariats", href: "/capital-partners" },
@@ -99,6 +102,7 @@ export const investmentsCopy: Record<Locale, {
     pathwaysEyebrow: "延伸了解",
     pathwaysTitle: "选择下一项内容。",
     pathways: [
+      { title: "投资居留", body: "了解符合条件的投资如何可能与哥斯达黎加投资者居留相关，以及房地产审查与居留审查各自的作用。", link: "了解居留与合格投资", href: "/residency/real-estate" },
       { title: "投资框架", body: "了解 Marqués 评估和构建投资机会所采用的方法。", link: "探索投资框架", href: "/investment-framework" },
       { title: "精选机会", body: "查看精选实物资产机会及其项目背景。", link: "查看精选机会", href: "/projects" },
       { title: "资本合作伙伴", body: "了解资本关系与机构如何与平台开展合作。", link: "了解资本合作", href: "/capital-partners" },

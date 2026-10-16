@@ -23,6 +23,7 @@ import RealEstatePropertyPage from "@/app/(english)/real-estate/[slug]/page"
 import ResidencyLayout from "@/app/(english)/residency/layout"
 import { localeFromSegment } from "@/lib/i18n/config"
 import { hasCompletePropertyTranslation, localizedMetadata, localizedPropertyMetadata, localizedRoutes } from "@/lib/international-seo"
+import { applyClusterSeo } from "@/lib/cluster-seo"
 import { getPublicRealEstateOpportunities } from "@/lib/opportunities/repository"
 
 const pages: Record<string, ComponentType> = {
@@ -68,7 +69,7 @@ export async function generateMetadata({ params }: RouteProps): Promise<Metadata
   const locale = localeFromSegment(segment)
   if (!locale || locale === "en") return { robots: { index: false, follow: false } }
   const pathname = pagePath(path)
-  if (pages[pathname]) return localizedMetadata(pathname, locale)
+  if (pages[pathname]) return applyClusterSeo(localizedMetadata(pathname, locale), pathname, locale)
 
   if (path?.length === 2 && path[0] === "real-estate") {
     const asset = (await getPublicRealEstateOpportunities()).find(item => item.slug === path[1])
