@@ -54,6 +54,18 @@ export default async function RealEstatePage() {
         </figure>
       </section>
 
+      <section className={styles.featuredDestination} aria-labelledby="featured-destination-title">
+        <div className={styles.destinationHeading}>
+          <p className={s.eyebrow}>FEATURED DESTINATION / GUANACASTE</p>
+          <h2 id="featured-destination-title">Discover Hacienda Pinilla.</h2>
+          <p>A gated Pacific coastal estate with championship golf, established residential communities and an extraordinary lifestyle.</p>
+        </div>
+        <Link href="/real-estate/hacienda-pinilla" className={styles.destinationCard} aria-label="Explore Hacienda Pinilla through Marqués">
+          <img src="https://www.haciendapinilla.com/assets/img/amenities/golf/golf-1.jpg" alt="Championship golf course at Hacienda Pinilla, Guanacaste" loading="lazy" />
+          <span className={styles.destinationOverlay}><span>HACIENDA PINILLA <small>THE DESTINATION</small></span><ArrowUpRight size={28} aria-hidden="true" /></span>
+        </Link>
+      </section>
+
       <section className={styles.universe} aria-labelledby="property-perspectives-title">
         <div className={styles.sectionIntro}>
           <p className={s.eyebrow}><T>PROPERTY PERSPECTIVES</T></p>
