@@ -27,15 +27,15 @@ export function HomesiteOptions({ name, locale }: { name: string; locale: Locale
       <div>
         <p className={styles.kickerDark}>{t("HOMESITE INVESTMENT OPTIONS")}</p>
         <h3 id="lapas-options">{t("Select your future homesite")}</h3>
-        <p>{t("Las Lapas is a planned golf-front enclave with 49 residential homesites. Explore the published price guidance and request the latest lot-by-lot availability through Marqués.")}</p>
+        <p>{t("Las Lapas is a planned golf-front enclave with 49 residential homesites. Explore the indicative price range and ask Marqués about current lot options.")}</p>
       </div>
     </div>
     <div className={styles.lapasRange}>
-      <div><span>{t("PUBLISHED STARTING PRICE")}</span><strong>{formatUsd(lapasPublishedRange.minUsd)}</strong><small>USD</small></div>
-      <div><span>{t("PUBLISHED UPPER PRICE RANGE")}</span><strong>{formatUsd(lapasPublishedRange.maxUsd)}</strong><small>USD</small></div>
+      <div><span>{t("INDICATIVE STARTING PRICE")}</span><strong>{formatUsd(lapasPublishedRange.minUsd)}</strong><small>USD</small></div>
+      <div><span>{t("INDICATIVE UPPER PRICE RANGE")}</span><strong>{formatUsd(lapasPublishedRange.maxUsd)}</strong><small>USD</small></div>
       <div><span>{t("PLANNED HOMESITES")}</span><strong>{lapasPublishedRange.plannedHomesites}</strong><small>{t("Approximately")} {formatArea(lapasPublishedRange.approximateAverageAreaSqm,locale)} m² {t("average lot area")}</small></div>
     </div>
-    <p className={styles.lotDisclaimer}>{t("The Las Lapas range is from a third-party brokerage listing, not a verified current lot-by-lot price sheet. Exact lot prices, areas, availability and reservation terms must be confirmed before any offer.")}</p>
+    <p className={styles.lotDisclaimer}>{t("The price range is indicative, and individual lot pricing and availability have not yet been confirmed. Marqués will assist you with current options and purchase conditions.")}</p>
     <a className={styles.lotAction} href={siteConfig.whatsapp+"?text="+encodeURIComponent(t("Hello Marqués, please send me the current Las Lapas lot-by-lot inventory with prices, areas, plans and reservation details."))} target="_blank" rel="noopener noreferrer">{t("Request current Las Lapas lot selection")} <ArrowUpRight size={16}/></a>
   </section>
 
@@ -45,9 +45,9 @@ export function HomesiteOptions({ name, locale }: { name: string; locale: Locale
       <div>
         <p className={styles.kickerDark}>{t("HOMESITE INVESTMENT OPTIONS")}</p>
         <h3 id="jaguar-options">{t("Find the lot for your vision")}</h3>
-        <p>{t("Compare 42 individually priced homesites from the official published El Jaguar catalogue. Choose your preferred lot to ask Marqués for a private consultation.")}</p>
+        <p>{t("Explore 42 residential lot options with individual prices and areas. Choose your preferred homesite and contact Marqués for a private consultation.")}</p>
       </div>
-      <div className={styles.lotRange}><span>{t("PUBLISHED PRICE RANGE")}</span><strong>$399,000 – $810,000</strong><small>USD</small></div>
+      <div className={styles.lotRange}><span>{t("INDICATIVE PRICE RANGE")}</span><strong>$399,000 – $810,000</strong><small>USD</small></div>
     </div>
     <div className={styles.lotFilters}>
       <label>{t("COMMUNITY PHASE")}
@@ -79,10 +79,10 @@ export function HomesiteOptions({ name, locale }: { name: string; locale: Locale
       {options.map(lot => <article key={lot.number} className={styles.lotItem}>
         <div className={styles.lotName}><strong>{t("Lot")} {lot.number}</strong><span>{lot.phase}</span></div>
         <div className={styles.lotArea}><strong>{formatArea(lot.areaSqm,locale)} m²</strong><span>{t("LOT AREA")}</span></div>
-        <div className={styles.lotPrice}><strong>{formatUsd(lot.askingUsd)}</strong><span>USD · {t("PUBLISHED ASKING PRICE")}</span></div>
+        <div className={styles.lotPrice}><strong>{formatUsd(lot.askingUsd)}</strong><span>USD · {t("INDICATIVE ASKING PRICE")}</span></div>
         <a href={siteConfig.whatsapp+"?text="+encodeURIComponent(`${t("Hello Marqués, I am interested in")} El Jaguar ${t("Lot")} ${lot.number} (${formatArea(lot.areaSqm,locale)} m², ${formatUsd(lot.askingUsd)} USD). ${t("Please confirm current price and availability.")}`)} target="_blank" rel="noopener noreferrer" aria-label={`${t("Enquire about")} El Jaguar ${t("Lot")} ${lot.number}`}>{t("Enquire")} <ArrowUpRight size={16} aria-hidden="true"/></a>
       </article>)}
     </div>
-    <p className={styles.lotDisclaimer}>{t("Lot sizes and asking prices are reproduced from the published Hacienda Pinilla El Jaguar catalogue for preliminary comparison only. This is not a live inventory. All prices, reservations, availability and development conditions require reconfirmation with Marqués.")}</p>
+    <p className={styles.lotDisclaimer}>{t("Prices and lot details are indicative and may change. Contact Marqués to confirm availability, current pricing and purchase conditions.")}</p>
   </section>
 }
