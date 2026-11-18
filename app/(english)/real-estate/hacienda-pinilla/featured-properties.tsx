@@ -130,7 +130,7 @@ export function FeaturedPropertyCards({ opportunities, locale }: { opportunities
           {selected.narrative.map((paragraph,index) => <p key={index}>{paragraph}</p>)}
         </div>
         <div className={styles.dialogActions}>
-          <a href={siteConfig.whatsapp + "?text=" + encodeURIComponent(`Hello Marqués, I would like more information and a private consultation about ${selected.name} at Hacienda Pinilla.`)} target="_blank" rel="noopener noreferrer" className={styles.spotlightInquiry}>
+          <a href={siteConfig.whatsapp + "?text=" + encodeURIComponent(`${t("Hello Marqués, I would like more information and a private consultation about")} ${selected.name} ${t("at Hacienda Pinilla.")}`)} target="_blank" rel="noopener noreferrer" className={styles.spotlightInquiry}>
             {t(selected.kind === "homesite" ? "Request homesite information" : "Request a private viewing")} <ArrowUpRight size={18} aria-hidden="true" />
           </a>
           <p>{t("All property enquiries are handled directly by Marqués Advisory & Investments. Details and availability are subject to confirmation.")}</p>
