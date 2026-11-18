@@ -1,0 +1,84 @@
+.shell { background:#f7f5f0; color:#17313d; }
+.page { min-width:0; overflow:hidden; }
+.page h1,.page h2,.page h3 { font-family:var(--font-cormorant),Georgia,serif; font-weight:500; letter-spacing:-.015em; }
+.page em { font-weight:400; }
+.hero { min-height:min(850px,94svh); position:relative; display:flex; align-items:center; color:#fff; background:#1a3437; }
+.heroImage,.heroShade { position:absolute; inset:0; width:100%; height:100%; }
+.heroImage { object-fit:cover; object-position:center 45%; }
+.heroShade { background:linear-gradient(90deg,rgba(10,27,32,.83) 0%,rgba(11,28,32,.55) 52%,rgba(10,25,28,.13) 100%),linear-gradient(0deg,rgba(10,25,28,.48),transparent 30%); }
+.heroContent { position:relative; z-index:1; width:min(1320px,100%); padding:175px clamp(26px,7vw,110px) 120px; margin:0 auto; }
+.kicker,.kickerDark { font-size:10px; font-weight:600; letter-spacing:.19em; line-height:1.8; }
+.kicker { color:#e5d5b1; }
+.kicker span { padding:0 8px; }
+.kickerDark { color:#8a744c; }
+.hero h1 { margin:30px 0 26px; max-width:920px; font-size:clamp(58px,7.4vw,116px); line-height:.94; text-wrap:balance; }
+.heroContent > p:not(.kicker) { max-width:540px; margin:0; font-size:16px; line-height:1.95; color:#f5f1e9; }
+.heroCta { display:inline-flex; align-items:center; gap:30px; margin-top:42px; padding:14px 0; border-bottom:1px solid #d4bb89; color:#fff; text-decoration:none; font-size:12px; letter-spacing:.04em; }
+.heroCta:hover { color:#e3ca98; }
+.heroBrand { position:absolute; z-index:1; right:clamp(26px,7vw,110px); bottom:33px; color:#eee7d9; font-size:10px; letter-spacing:.13em; }
+.heroBrand span { padding:0 7px; color:#d5bb86; }
+.intro { display:grid; grid-template-columns:.55fr 1.45fr; gap:clamp(30px,6vw,100px); padding:120px max(6vw,calc((100vw - 1240px)/2)); }
+.introLabel { display:flex; gap:18px; align-items:flex-start; padding-top:14px; font-size:11px; letter-spacing:.13em; color:#8a744c; }
+.introLabel span { color:#b99b62; }
+.intro h2,.sectionHeading h2,.mapHeading h2 { margin:0; font-size:clamp(49px,5.6vw,83px); line-height:1; }
+.intro p { max-width:700px; font-size:16px; line-height:2; color:#52616a; }
+.intro .smallNote { margin-top:22px; font-size:12px; color:#818784; }
+.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; border-top:1px solid #e1ddd4; border-bottom:1px solid #e1ddd4; padding:34px max(6vw,calc((100vw - 1240px)/2)); background:#f0ece4; }
+.stats div { display:flex; flex-direction:column; gap:8px; }
+.stats strong { font:500 clamp(27px,3.4vw,44px)/1 var(--font-cormorant),Georgia,serif; }
+.stats span { font-size:10px; color:#758085; letter-spacing:.1em; text-transform:uppercase; }
+.mapSection { padding:112px max(5vw,calc((100vw - 1380px)/2)) 110px; background:#fff; }
+.mapHeading { display:grid; grid-template-columns:1.3fr .7fr; gap:55px; align-items:end; margin-bottom:42px; }
+.mapHeading p:last-child { max-width:440px; color:#66757a; font-size:14px; line-height:1.85; }
+.mapFigure { margin:0; background:#d8ddce; }
+.mapFigure img { display:block; width:100%; max-height:1080px; object-fit:contain; }
+.mapFigure figcaption { padding:14px 18px; background:#f2f0e9; color:#66757a; font-size:11px; line-height:1.7; }
+.mapDetails { border-bottom:1px solid #d9d4c9; }
+.mapDetails summary { display:flex; justify-content:space-between; align-items:center; cursor:pointer; padding:20px 3px; font-size:12px; letter-spacing:.05em; list-style:none; }
+.mapDetails summary::-webkit-details-marker { display:none; }
+.mapZoom { overflow:auto; max-height:76vh; background:#e6e9df; border:1px solid #d5d9ce; }
+.mapZoom img { display:block; width:max(1400px,100%); max-width:none; }
+.golfSection { display:grid; grid-template-columns:1fr 1fr; min-height:710px; background:#102d38; color:#f6f3eb; }
+.golfImageWrap { min-height:600px; }
+.golfImageWrap img { display:block; width:100%; height:100%; object-fit:cover; }
+.golfCopy { display:flex; flex-direction:column; justify-content:center; padding:95px clamp(35px,6vw,110px); }
+.golfCopy h2 { margin:25px 0; font-size:clamp(48px,5.3vw,78px); line-height:.98; }
+.golfCopy > p:not(.kicker):not(.golfFootnote) { max-width:540px; color:#e2e7e4; font-size:14px; line-height:1.95; }
+.golfFacts { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin-top:38px; padding-top:25px; border-top:1px solid #50606a; }
+.golfFacts div { display:flex; flex-direction:column; gap:10px; }
+.golfFacts strong { font:500 clamp(29px,3vw,44px)/1 var(--font-cormorant),Georgia,serif; color:#f2e2bf; white-space:nowrap; }
+.golfFacts span { color:#d1d8d8; font-size:9px; letter-spacing:.12em; line-height:1.5; }
+.golfFootnote { max-width:490px; margin-top:30px; font-size:11px; line-height:1.8; color:#bfc9c9; }
+.lifestyle { padding:115px max(6vw,calc((100vw - 1240px)/2)); background:#f7f5f0; }
+.sectionHeading { margin-bottom:44px; }
+.sectionHeading h2 { margin:20px 0; }
+.lifestyleGrid { display:grid; grid-template-columns:1.25fr .75fr; gap:clamp(35px,6vw,95px); align-items:center; }
+.lifestyleImage { margin:0; }
+.lifestyleImage img { display:block; width:100%; aspect-ratio:1.28; object-fit:cover; }
+.lifestyleImage figcaption { margin-top:14px; font-size:10px; letter-spacing:.16em; color:#87754f; }
+.lifestyleText { max-width:420px; }
+.lifestyleText h3 { font-size:clamp(34px,4vw,55px); line-height:1.05; margin:0 0 22px; }
+.lifestyleText p { font-size:14px; line-height:1.95; color:#68757b; }
+.opportunities { padding:105px max(6vw,calc((100vw - 1240px)/2)) 120px; background:#ece9e1; }
+.sectionNote { max-width:600px; font-size:14px; line-height:1.8; color:#647278; }
+.propertyGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.property { display:flex; flex-direction:column; justify-content:space-between; min-height:300px; padding:30px; background:#fff; border:1px solid #e0dbd1; }
+.propertyTop { display:flex; justify-content:space-between; gap:20px; color:#907950; font-size:10px; letter-spacing:.14em; }
+.property h3 { margin:20px 0 10px; font-size:clamp(36px,4vw,54px); line-height:1; }
+.property p { max-width:440px; font-size:13px; line-height:1.8; color:#67767b; }
+.propertyLink { display:inline-flex; align-items:center; justify-content:space-between; gap:18px; width:fit-content; min-height:42px; margin-top:18px; border-bottom:1px solid #aa9369; color:#17313d; text-decoration:none; font-size:11px; }
+.propertyLink:hover { color:#94723b; }
+.availability { margin:26px 0 0; font-size:11px; color:#68757b; line-height:1.7; }
+.contact { display:flex; flex-direction:column; align-items:center; text-align:center; padding:125px 24px 70px; background:#152e39; color:#fff; }
+.contact h2 { margin:25px 0; font-size:clamp(50px,6vw,88px); line-height:.98; }
+.contact > p:not(.kicker) { max-width:650px; margin:0; color:#cbd4d4; font-size:14px; line-height:1.9; }
+.contactActions { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:25px; margin-top:35px; }
+.contactButton { display:inline-flex; gap:32px; align-items:center; justify-content:space-between; min-height:54px; padding:16px 23px; background:#e5d1a9; color:#17313d; border:1px solid #e5d1a9; cursor:pointer; font-size:12px; }
+.contactButton:hover { background:#f2dfb8; }
+.contactSecondary { color:#e5d1a9; font-size:12px; text-underline-offset:5px; }
+.back { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:85px; color:#a9b7bb; font-size:11px; }
+.back a { color:#e5d1a9; }
+.page a:focus-visible,.page button:focus-visible,.page summary:focus-visible { outline:2px solid #bfa069; outline-offset:4px; }
+@media(max-width:900px) { .intro { padding:85px 5vw; grid-template-columns:1fr; gap:15px; } .mapSection,.lifestyle,.opportunities { padding:85px 5vw; } .golfCopy { padding:60px 5vw; } .golfSection { min-height:0; } .golfImageWrap { min-height:500px; } .golfFacts { grid-template-columns:repeat(3,minmax(0,1fr)); } .golfFacts strong { font-size:29px; } }
+@media(max-width:680px) { .hero { min-height:710px; } .heroContent { padding:160px 24px 95px; } .hero h1 { font-size:clamp(54px,12vw,76px); } .heroContent > p:not(.kicker) { font-size:14px; } .heroBrand { left:24px; right:auto; bottom:22px; font-size:8px; } .intro h2,.sectionHeading h2,.mapHeading h2 { font-size:clamp(47px,10vw,68px); } .intro,.mapSection,.lifestyle,.opportunities { padding:70px 22px; } .stats { grid-template-columns:repeat(2,1fr); padding:32px 22px; row-gap:30px; } .mapHeading { grid-template-columns:1fr; gap:5px; } .mapFigure img { max-height:650px; } .golfSection { grid-template-columns:1fr; } .golfImageWrap { min-height:350px; max-height:450px; } .golfCopy { padding:65px 22px; } .golfCopy h2 { font-size:clamp(48px,11vw,70px); } .golfFacts strong { font-size:29px; } .lifestyleGrid,.propertyGrid { grid-template-columns:1fr; } .lifestyleGrid { gap:28px; } .property { min-height:280px; padding:25px; } .contact { padding:85px 22px 50px; } .contact h2 { font-size:clamp(48px,10vw,70px); } .contactActions { flex-direction:column; } .back { margin-top:65px; } }
+@media(prefers-reduced-motion:reduce) { .page * { scroll-behavior:auto; } }
