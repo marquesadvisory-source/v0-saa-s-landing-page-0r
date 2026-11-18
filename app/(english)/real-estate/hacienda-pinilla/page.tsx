@@ -66,6 +66,8 @@ const opportunities = [
   name: string
   kind: "residence" | "homesite"
   description: string
+  price?: string
+  highlights?: string
   images: readonly [PropertyImage, PropertyImage, ...PropertyImage[]]
 }[]
 
