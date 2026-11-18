@@ -116,11 +116,13 @@ const opportunities = [
     name: "El Jaguar",
     kind: "homesite",
     description: "An opportunity to acquire a homesite and create a residence tailored to your family.",
+    price: "From $399,000",
+    highlights: "42 lot price options · individual areas",
     narrative: [
       "El Jaguar presents a different path to living at Hacienda Pinilla: choosing a residential homesite and developing a residence around your own architectural vision, subject to the applicable community and construction requirements.",
       "The accompanying images illustrate the community context. Contact Marqués for confirmed lot sizes, pricing, current availability and applicable development guidelines.",
     ],
-    facts: [ { value: "Homesites", label: "PROPERTY TYPE" }, { value: "Custom", label: "RESIDENCE POTENTIAL" }, { value: "On request", label: "LOT PRICING" } ],
+    facts: [ { value: "Homesites", label: "PROPERTY TYPE" }, { value: "Custom", label: "RESIDENCE POTENTIAL" }, { value: "42", label: "LOT PRICING" } ],
     images: [
       { file: "el-jaguar.webp", alt: "Illustration of the El Jaguar homesite community", caption: "Community illustration" },
       { file: "el-jaguar-aerial.webp", alt: "The coastline and grounds of Hacienda Pinilla seen from the El Jaguar virtual tour", caption: "Aerial view from the El Jaguar tour" },
@@ -130,11 +132,13 @@ const opportunities = [
     name: "Las Lapas",
     kind: "homesite",
     description: "Residential land near the golf setting, offering a canvas for a custom-built home.",
+    price: "From $325,600",
+    highlights: "49 planned homesites · price range published",
     narrative: [
       "Las Lapas offers residential homesites for buyers who prefer to create their own residence rather than purchase an existing home. Its setting within Hacienda Pinilla may appeal to those who value both the coastal lifestyle and proximity to golf.",
       "Review the site plan and its enlarged detail, then speak with Marqués about available lots, dimensions, current prices and any construction or access conditions that apply.",
     ],
-    facts: [ { value: "Homesites", label: "PROPERTY TYPE" }, { value: "Custom", label: "RESIDENCE POTENTIAL" }, { value: "On request", label: "LOT PRICING" } ],
+    facts: [ { value: "Homesites", label: "PROPERTY TYPE" }, { value: "Custom", label: "RESIDENCE POTENTIAL" }, { value: "$325,600–$440,000", label: "LOT PRICING" } ],
     images: [
       { file: "las-lapas.webp", alt: "Las Lapas site plan showing residential lots within Hacienda Pinilla", caption: "Community site plan" },
       { file: "las-lapas-plan-detail.webp", alt: "Enlarged section of the Las Lapas lot layout beside the golf course", caption: "Site plan detail" },
@@ -154,6 +158,7 @@ export default function HaciendaPinillaPage({ locale = "en" }: { locale?: Locale
   const localizedOpportunities: FeaturedProperty[] = opportunities.map(item => ({
     ...item,
     description: t(item.description),
+    price: "price" in item && item.price ? t(item.price) : undefined,
     narrative: item.narrative.map(t),
     highlights: "highlights" in item && item.highlights ? t(item.highlights) : undefined,
     facts: item.facts.map(fact => ({ value: t(fact.value), label: t(fact.label) })),
