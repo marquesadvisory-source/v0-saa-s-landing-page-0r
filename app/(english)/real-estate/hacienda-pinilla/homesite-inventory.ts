@@ -56,3 +56,63 @@ export const lapasPublishedRange = {
   approximateAverageAreaSqm: 1600,
   pricingSource: "Published third-party listing; confirm individual lots directly before any reservation.",
 } as const
+
+
+/**
+ * Las Lapas parcel areas transcribed from the numbered project masterplan.
+ * Prices are present only when legible and independently cross-checked against
+ * the project price-range listing, and are not a live availability statement.
+ * All lots remain subject to confirmation by Marqués.
+ */
+export type LapasHomesite = { number: number; areaSqm: number; askingUsd?: number }
+export const lapasHomesites: readonly LapasHomesite[] = [
+  { number: 1, areaSqm: 1400, askingUsd: 325600 },
+  { number: 2, areaSqm: 1600, askingUsd: 413600 },
+  { number: 3, areaSqm: 1600, askingUsd: 413600 },
+  { number: 4, areaSqm: 1600 },
+  { number: 5, areaSqm: 1600 },
+  { number: 6, areaSqm: 1600 },
+  { number: 7, areaSqm: 2071 },
+  { number: 8, areaSqm: 2000 },
+  { number: 9, areaSqm: 1600 },
+  { number: 10, areaSqm: 1600 },
+  { number: 11, areaSqm: 1600 },
+  { number: 12, areaSqm: 1600 },
+  { number: 13, areaSqm: 1600 },
+  { number: 14, areaSqm: 1600 },
+  { number: 15, areaSqm: 1600 },
+  { number: 16, areaSqm: 1600 },
+  { number: 17, areaSqm: 1600 },
+  { number: 18, areaSqm: 1600 },
+  { number: 19, areaSqm: 1600 },
+  { number: 20, areaSqm: 1600 },
+  { number: 21, areaSqm: 1600 },
+  { number: 22, areaSqm: 1600 },
+  { number: 23, areaSqm: 1380 },
+  { number: 24, areaSqm: 1600 },
+  { number: 25, areaSqm: 1600 },
+  { number: 26, areaSqm: 1600 },
+  { number: 27, areaSqm: 1600 },
+  { number: 28, areaSqm: 1600 },
+  { number: 29, areaSqm: 1600 },
+  { number: 30, areaSqm: 1600 },
+  { number: 31, areaSqm: 1600 },
+  { number: 32, areaSqm: 1600 },
+  { number: 33, areaSqm: 1400 },
+  { number: 34, areaSqm: 1600 },
+  { number: 35, areaSqm: 1600 },
+  { number: 36, areaSqm: 1600 },
+  { number: 37, areaSqm: 1300 },
+  { number: 38, areaSqm: 1300 },
+  { number: 39, areaSqm: 1600 },
+  { number: 40, areaSqm: 1600 },
+  { number: 41, areaSqm: 1230 },
+  { number: 42, areaSqm: 1211 },
+  { number: 43, areaSqm: 1600 },
+  { number: 44, areaSqm: 1230 },
+  { number: 45, areaSqm: 1282 },
+  { number: 46, areaSqm: 1600 },
+  { number: 47, areaSqm: 1600 },
+  { number: 48, areaSqm: 1600 },
+  { number: 49, areaSqm: 1600, askingUsd: 440000 },
+] as const
