@@ -39,7 +39,7 @@ export function PropertyGallery({ name, kind, images }: PropertyGalleryProps) {
     >
       <figure className={styles.propertyMedia} data-kind={kind}>
         <img
-          src={`/images/real-estate/hacienda-pinilla/${image.file}`}
+          src={image.file.startsWith("https://www.haciendapinilla.com/assets/real-estate/") ? image.file : `/images/real-estate/hacienda-pinilla/${image.file}`}
           alt={image.alt}
           loading={index === 0 ? "lazy" : "eager"}
           decoding="async"
