@@ -230,3 +230,14 @@
  .lapasRange { grid-template-columns:1fr; padding:20px; }
  .lotAction { width:100%; white-space:normal; }
 }
+
+
+/* Las Lapas: readable numbered homesite masterplan inside the property dialog */
+.lapasPlan { margin: 15px 0 25px; overflow: hidden; border: 1px solid #ded8cb; background: #ecf0e7; }
+.lapasPlan img { display: block; width: 100%; height: auto; object-fit: contain; }
+.lapasPlan figcaption { padding: 12px 17px; background: #f7f5f0; font-size: 11px; line-height: 1.7; color: #6b777a; }
+@media(max-width:680px) {
+  .lapasPlan { overflow-x: auto; }
+  .lapasPlan img { width: max(650px, 100%); max-width: none; }
+  .lapasPlan figcaption { width: max(650px, 100%); }
+}

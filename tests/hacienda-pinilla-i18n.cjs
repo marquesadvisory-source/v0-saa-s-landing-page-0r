@@ -18,7 +18,7 @@ assert.ok(Object.keys(dictionary).length >= 120, "Complete editorial translation
 for (const [key, values] of Object.entries(dictionary)) {
   assert.ok(values.length === 3 && values.every(value => typeof value === "string" && value.trim().length), "Incomplete es/fr/zh-Hans translation: " + key)
 }
-const keys = [...(page + "\n" + cards + "\n" + gallery).matchAll(/\bt\("((?:[^"\\]|\\.)*)"\)/g)].map(match => match[1])
+const keys = [...(page + "\n" + cards + "\n" + gallery + "\n" + read(pinilla + "/homesite-options.tsx")).matchAll(/\bt\("((?:[^"\\]|\\.)*)"\)/g)].map(match => match[1])
 for (const key of keys) assert.ok(dictionary[key], "Missing localized string: " + key)
 
 assert.equal([...page.matchAll(/51-\d+\.jpg/g)].length, 28, "Casa Ensueño requires all 28 gallery photos")
@@ -38,7 +38,13 @@ assert.equal(Math.min(...lotRecords.map(match => Number(match[3]))), 399000, "Ja
 assert.equal(Math.max(...lotRecords.map(match => Number(match[3]))), 810000, "Jaguar highest published asking price")
 assert.ok(lotsSource.includes("minUsd: 325600") && lotsSource.includes("maxUsd: 440000"), "Las Lapas must show sourced price range, not invented lot data")
 assert.ok(optionsSource.includes("jaguarHomesites.filter") && optionsSource.includes("lot.number"), "The user must be able to compare specific Jaguar lots")
-assert.ok(optionsSource.includes("Las Lapas") && optionsSource.includes("individual lot pricing and availability have not yet been confirmed"), "The Las Lapas range requires source qualification")
+const lapasRecords = [...lotsSource.matchAll(/\{ number: (\d+), areaSqm: (\d+)(?:, askingUsd: (\d+))? \}/g)]
+assert.equal(lapasRecords.length, 49, "Las Lapas must offer 49 individually numbered homesites")
+assert.equal(new Set(lapasRecords.map(match => Number(match[1]))).size, 49, "All Las Lapas lot numbers must be unique")
+assert.ok(lapasRecords.every(match => Number(match[2]) >= 1200 && Number(match[2]) <= 2100), "Las Lapas must have mapped areas, not invented defaults")
+assert.ok(lapasRecords.filter(match => match[3]).length < 49, "Do not invent unverified lot prices")
+assert.ok(optionsSource.includes('lapasHomesites') && optionsSource.includes('lapasOptions.map') && optionsSource.includes('Las Lapas numbered 49-lot masterplan'), "Individual Las Lapas options and plan are required")
+assert.ok(optionsSource.includes("individual pricing and availability may change"), "Pricing must remain indicative")
 assert.ok(!optionsSource.includes("reproduced from the published Hacienda Pinilla") && !optionsSource.includes("third-party brokerage listing"), "Buyer-facing copy must not direct shoppers to source listings")
 assert.ok(cards.includes("<HomesiteOptions"), "Homesite choices must appear within the existing popup")
 

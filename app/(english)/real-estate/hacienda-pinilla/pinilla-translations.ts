@@ -3,6 +3,18 @@ import type { Locale } from "@/lib/i18n/config"
 // Hacienda Pinilla editorial translations: every meaningful visitor-facing string is localized.
 // Proper names, prices and numerals remain consistent across locales.
 const messages: Record<string, readonly [string, string, string]> = {
+  "Browse all 49 numbered Las Lapas homesites with their individual land areas. Select a lot to request its current price and availability through Marqués.": ["Explorá los 49 lotes numerados de Las Lapas con la superficie de cada terreno. Seleccioná el que te interesa y consultá su precio y disponibilidad actual con Marqués.","Explorez les 49 terrains numérotés de Las Lapas avec leur superficie. Sélectionnez celui qui vous intéresse pour demander son prix actuel et sa disponibilité auprès de Marqués.","浏览 Las Lapas 全部 49 个编号住宅地块及各自面积。选择心仪地块，并通过 Marqués 查询当前价格和供应情况。"],
+  "Las Lapas numbered 49-lot masterplan": ["Plano general numerado de los 49 lotes de Las Lapas","Plan général numéroté des 49 terrains de Las Lapas","Las Lapas 49 个编号地块的总体规划图"],
+  "Locate each numbered lot on the community plan, then choose it in the options below.": ["Ubicá cada lote numerado en el plano y seleccionalo en la lista inferior.","Repérez chaque terrain numéroté sur le plan, puis choisissez-le dans la liste ci-dessous.","在社区规划图中找到地块编号，然后在下方列表中选择。"],
+  "All lot sizes": ["Todos los tamaños","Toutes les superficies","所有地块面积"],
+  "Under 1,400 m²": ["Menos de 1.400 m²","Moins de 1 400 m²","低于 1,400 平方米"],
+  "1,400–1,600 m²": ["De 1.400 a 1.600 m²","De 1 400 à 1 600 m²","1,400 至 1,600 平方米"],
+  "Over 1,600 m²": ["Más de 1.600 m²","Plus de 1 600 m²","超过 1,600 平方米"],
+  "Below $400,000": ["Menos de $400.000","Moins de 400 000 $","低于 $400,000"],
+  "$400,000–$440,000": ["$400.000–$440.000","400 000 $–440 000 $","$400,000–$440,000"],
+  "Price on request": ["Precio por consultar","Prix sur demande","价格请咨询"],
+  "CONFIRM WITH MARQUÉS": ["CONSULTAR CON MARQUÉS","À CONFIRMER AVEC MARQUÉS","请向 Marqués 确认"],
+  "Lot areas are based on the community plan. Displayed prices are indicative; individual pricing and availability may change. Marqués will confirm the current selection and purchase conditions.": ["Las superficies provienen del plano del proyecto. Los precios mostrados son orientativos; el precio y la disponibilidad de cada lote pueden cambiar. Marqués confirmará las opciones y condiciones de compra vigentes.","Les superficies proviennent du plan de la communauté. Les prix affichés sont indicatifs ; le prix et la disponibilité de chaque terrain peuvent évoluer. Marqués confirmera les options et conditions d’achat actuelles.","地块面积依据社区规划图。所示价格仅供参考，各地块价格及可售情况可能变化。Marqués 将确认最新选择与购买条件。"],
   "INDICATIVE UPPER PRICE RANGE": ["LÍMITE SUPERIOR ORIENTATIVO","LIMITE SUPÉRIEURE INDICATIVE","参考价格上限"],
   "INDICATIVE STARTING PRICE": ["PRECIO INICIAL ORIENTATIVO","PRIX DE DÉPART INDICATIF","参考起价"],
   "INDICATIVE ASKING PRICE": ["PRECIO ORIENTATIVO","PRIX INDICATIF","参考挂牌价"],
