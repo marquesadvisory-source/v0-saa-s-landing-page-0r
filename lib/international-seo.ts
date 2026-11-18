@@ -14,7 +14,7 @@ type LocalizedSeoEntry = {
 export const localizedRoutes = [
   "/", "/about", "/who-we-serve", "/what-we-do", "/services", "/contact",
   "/partners", "/residency", "/residency/about-costa-rica", "/residency/real-estate",
-  "/real-estate", "/investments", "/investment-framework", "/projects",
+  "/real-estate", "/real-estate/hacienda-pinilla", "/investments", "/investment-framework", "/projects",
   "/projects/plaza-los-mangos", "/projects/decima-avenida", "/capital-partners",
   "/institutional-inquiry",
 ] as const
@@ -180,6 +180,21 @@ export const internationalSeo: Record<string, LocalizedSeoEntry> = {
       "zh-cn": "为考虑哥斯达黎加豪宅、海岸房产及其他高价值房地产机会的国际买家提供私人房地产顾问服务。",
     },
     image: "/images/private-client/service-real-estate.webp",
+  },
+  "/real-estate/hacienda-pinilla": {
+    title: {
+      en: "Hacienda Pinilla Luxury Real Estate & Homes | Marqués",
+      es: "Hacienda Pinilla: casas y terrenos de lujo | Marqués",
+      fr: "Hacienda Pinilla : villas et terrains de prestige | Marqués",
+      "zh-cn": "Hacienda Pinilla 豪宅与住宅用地｜Marqués",
+    },
+    description: {
+      en: "Explore Hacienda Pinilla in Guanacaste: Casa Ensueño, Villa Senderos, El Jaguar and Las Lapas homesites, championship golf and gated coastal living with Marqués.",
+      es: "Descubre Hacienda Pinilla en Guanacaste: Casa Ensueño, Villa Senderos y lotes de El Jaguar y Las Lapas, campo de golf y comunidades residenciales con acceso controlado.",
+      fr: "Découvrez Hacienda Pinilla à Guanacaste : Casa Ensueño, Villa Senderos, terrains El Jaguar et Las Lapas, golf de championnat et cadre de vie côtier sécurisé.",
+      "zh-cn": "探索瓜纳卡斯特 Hacienda Pinilla：Casa Ensueño、Villa Senderos、El Jaguar 及 Las Lapas 住宅地块、锦标赛级高尔夫和受控出入海岸社区。",
+    },
+    image: "/images/real-estate/hacienda-pinilla/casa-ensueno.webp",
   },
   "/investments": {
     title: {
