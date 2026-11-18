@@ -3,6 +3,26 @@ import type { Locale } from "@/lib/i18n/config"
 // Hacienda Pinilla editorial translations: every meaningful visitor-facing string is localized.
 // Proper names, prices and numerals remain consistent across locales.
 const messages: Record<string, readonly [string, string, string]> = {
+  "Hello Marqués, I would like to explore Hacienda Pinilla real estate.": [
+    "Hola Marqués, quisiera información sobre las propiedades de Hacienda Pinilla.",
+    "Bonjour Marqués, je souhaite obtenir des informations sur les biens à Hacienda Pinilla.",
+    "您好，Marqués，我想了解 Hacienda Pinilla 的房地产项目。"
+  ],
+  "Hello Marqués, I would like more information and a private consultation about": [
+    "Hola Marqués, quisiera más información y una asesoría privada sobre",
+    "Bonjour Marqués, je souhaite plus d’informations et une consultation privée au sujet de",
+    "您好，Marqués，我希望进一步了解并预约私人咨询："
+  ],
+  "at Hacienda Pinilla.": [
+    "en Hacienda Pinilla.",
+    "à Hacienda Pinilla.",
+    "Hacienda Pinilla。"
+  ],
+  "HACIENDA PINILLA": [
+    "HACIENDA PINILLA",
+    "HACIENDA PINILLA",
+    "HACIENDA PINILLA"
+  ],
   "MARQUÉS LUXURY REAL ESTATE": [
     "MARQUÉS · BIENES RAÍCES DE LUJO",
     "MARQUÉS · IMMOBILIER DE PRESTIGE",
