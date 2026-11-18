@@ -259,7 +259,7 @@ export default function HaciendaPinillaPage({ locale = "en" }: { locale?: Locale
         <p>{t("For property information, private viewings and a thoughtful introduction to Costa Rica's luxury residential market, begin a conversation with our team.")}</p>
         <div className={styles.contactActions}>
           <EnquiryButton kind="real-estate" subject="Hacienda Pinilla" className={styles.contactButton}>{t("Private enquiry")} <ArrowUpRight size={18} aria-hidden="true" /></EnquiryButton>
-          <a href={siteConfig.whatsapp + "?text=" + encodeURIComponent("Hello Marqués, I would like to explore Hacienda Pinilla real estate.")} target="_blank" rel="noopener noreferrer" className={styles.contactSecondary}>{t("Speak with Marqués on WhatsApp")}</a>
+          <a href={siteConfig.whatsapp + "?text=" + encodeURIComponent(t("Hello Marqués, I would like to explore Hacienda Pinilla real estate."))} target="_blank" rel="noopener noreferrer" className={styles.contactSecondary}>{t("Speak with Marqués on WhatsApp")}</a>
         </div>
         <div className={styles.back}><MapPin size={15} aria-hidden="true" /> Santa Cruz, Guanacaste, Costa Rica <span aria-hidden="true">·</span> <Link href="/real-estate">{t("Explore Marqués Real Estate")}</Link></div>
       </section>
