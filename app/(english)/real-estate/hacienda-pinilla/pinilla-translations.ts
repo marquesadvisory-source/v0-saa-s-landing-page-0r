@@ -3,6 +3,7 @@ import type { Locale } from "@/lib/i18n/config"
 // Hacienda Pinilla editorial translations: every meaningful visitor-facing string is localized.
 // Proper names, prices and numerals remain consistent across locales.
 const messages: Record<string, readonly [string, string, string]> = {
+  "PUBLISHED LOT OPTIONS": ["LOTES CON PRECIO PUBLICADO", "TERRAINS AVEC PRIX PUBLIÉS", "已公布价格的地块选择"],
   "HOMESITE INVESTMENT OPTIONS": ["OPCIONES DE INVERSIÓN EN TERRENOS", "OPTIONS D’INVESTISSEMENT FONCIER", "住宅用地投资选择"],
   "Select your future homesite": ["Elige el terreno de tu futura residencia", "Choisissez le terrain de votre future maison", "选择未来理想家园的地块"],
   "Las Lapas is a planned golf-front enclave with 49 residential homesites. Explore the published price guidance and request the latest lot-by-lot availability through Marqués.": ["Las Lapas es una comunidad planificada junto al campo de golf con 49 lotes residenciales. Consulta el rango de precios publicado y solicita a Marqués el inventario actualizado por lote.", "Las Lapas est un quartier résidentiel de 49 terrains planifiés à proximité du golf. Consultez les prix indicatifs publiés et demandez à Marqués les disponibilités détaillées.", "Las Lapas 是邻近高尔夫球场的规划住宅社区，共有 49 个地块。查看已公布的参考价格，并向 Marqués 索取最新逐地块库存。"],
