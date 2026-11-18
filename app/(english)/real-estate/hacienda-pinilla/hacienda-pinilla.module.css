@@ -1,19 +1,19 @@
 .shell { background:#f7f5f0; color:#17313d; }
-.page { min-width:0; overflow:hidden; }
+.page { --header-height:144px; min-width:0; padding-top:var(--header-height); overflow:hidden; }
 .page h1,.page h2,.page h3 { font-family:var(--font-cormorant),Georgia,serif; font-weight:500; letter-spacing:-.015em; }
 .page em { font-weight:400; }
-.hero { min-height:min(850px,94svh); position:relative; display:flex; align-items:center; color:#fff; background:#1a3437; }
+.hero { min-height:295px; position:relative; display:flex; align-items:center; color:#fff; background:#1a3437; }
 .heroImage,.heroShade { position:absolute; inset:0; width:100%; height:100%; }
 .heroImage { object-fit:cover; object-position:center 45%; }
 .heroShade { background:linear-gradient(90deg,rgba(10,27,32,.83) 0%,rgba(11,28,32,.55) 52%,rgba(10,25,28,.13) 100%),linear-gradient(0deg,rgba(10,25,28,.48),transparent 30%); }
-.heroContent { position:relative; z-index:1; width:min(1320px,100%); padding:175px clamp(26px,7vw,110px) 120px; margin:0 auto; }
+.heroContent { position:relative; z-index:1; width:min(1320px,100%); padding:42px clamp(26px,7vw,110px) 52px; margin:0 auto; }
 .kicker,.kickerDark { font-size:10px; font-weight:600; letter-spacing:.19em; line-height:1.8; }
 .kicker { color:#e5d5b1; }
 .kicker span { padding:0 8px; }
 .kickerDark { color:#8a744c; }
-.hero h1 { margin:30px 0 26px; max-width:920px; font-size:clamp(58px,7.4vw,116px); line-height:.94; text-wrap:balance; }
+.hero h1 { margin:20px 0 14px; max-width:920px; font-size:clamp(58px,7.4vw,116px); line-height:.94; text-wrap:balance; }
 .heroContent > p:not(.kicker) { max-width:540px; margin:0; font-size:16px; line-height:1.95; color:#f5f1e9; }
-.heroCta { display:inline-flex; align-items:center; gap:30px; margin-top:42px; padding:14px 0; border-bottom:1px solid #d4bb89; color:#fff; text-decoration:none; font-size:12px; letter-spacing:.04em; }
+.heroCta { display:inline-flex; align-items:center; gap:30px; margin-top:20px; padding:12px 0; border-bottom:1px solid #d4bb89; color:#fff; text-decoration:none; font-size:12px; letter-spacing:.04em; }
 .heroCta:hover { color:#e3ca98; }
 .heroBrand { position:absolute; z-index:1; right:clamp(26px,7vw,110px); bottom:33px; color:#eee7d9; font-size:10px; letter-spacing:.13em; }
 .heroBrand span { padding:0 7px; color:#d5bb86; }
@@ -59,14 +59,23 @@
 .lifestyleText { max-width:420px; }
 .lifestyleText h3 { font-size:clamp(34px,4vw,55px); line-height:1.05; margin:0 0 22px; }
 .lifestyleText p { font-size:14px; line-height:1.95; color:#68757b; }
-.opportunities { padding:105px max(6vw,calc((100vw - 1240px)/2)) 120px; background:#ece9e1; }
+.opportunities { padding:55px max(6vw,calc((100vw - 1240px)/2)) 90px; background:#ece9e1; }
 .sectionNote { max-width:600px; font-size:14px; line-height:1.8; color:#647278; }
 .propertyGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
 .property { display:flex; flex-direction:column; min-width:0; background:#fff; border:1px solid #e0dbd1; }
 .propertyMedia { position:relative; margin:0; aspect-ratio:16/10; background:#e4e1d7; overflow:hidden; }
-.propertyMedia img { display:block; width:100%; height:100%; object-fit:cover; }
+.propertyMedia img { display:block; width:100%; height:100%; object-fit:cover; touch-action:pan-y pinch-zoom; }
 .propertyMedia[data-kind="homesite"] img { object-fit:contain; background:#ebe8df; }
-.propertyMedia figcaption { position:absolute; right:12px; bottom:12px; padding:5px 9px; background:#fff; color:#17313d; font-size:10px; }
+.opportunities h2 { scroll-margin-top:calc(var(--header-height) + 16px); }
+.propertyGallery { min-width:0; }
+.galleryButton { position:absolute; top:50%; transform:translateY(-50%); display:grid; place-items:center; width:44px; height:44px; padding:0; border:1px solid #fff; border-radius:50%; background:#17313d; color:#fff; cursor:pointer; }
+.galleryButton:hover { background:#294754; }
+.galleryButton:focus-visible { outline:2px solid #f0cb83; outline-offset:3px; }
+.galleryPrevious { left:12px; }
+.galleryNext { right:12px; }
+.galleryStatus { position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:space-between; align-items:flex-end; gap:8px; padding:10px 12px; pointer-events:none; }
+.galleryCount,.galleryCaption { padding:5px 9px; background:#17313d; color:#fff; font-size:11px; line-height:1.4; }
+.galleryCount { margin-left:auto; white-space:nowrap; }
 .propertyBody { display:flex; flex:1; flex-direction:column; align-items:flex-start; padding:clamp(22px,3vw,34px); }
 .propertyType { margin:0; color:#79633e; font-size:10px; letter-spacing:.14em; text-transform:uppercase; }
 .property h3 { margin:20px 0 10px; font-size:clamp(36px,4vw,54px); line-height:1; }
@@ -84,6 +93,8 @@
 .back { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:85px; color:#a9b7bb; font-size:11px; }
 .back a { color:#e5d1a9; }
 .page a:focus-visible,.page button:focus-visible,.page summary:focus-visible { outline:2px solid #bfa069; outline-offset:4px; }
-@media(max-width:900px) { .intro { padding:85px 5vw; grid-template-columns:1fr; gap:15px; } .mapSection,.lifestyle,.opportunities { padding:85px 5vw; } .golfCopy { padding:60px 5vw; } .golfSection { min-height:0; } .golfImageWrap { min-height:500px; } .golfFacts { grid-template-columns:repeat(3,minmax(0,1fr)); } .golfFacts strong { font-size:29px; } }
-@media(max-width:680px) { .hero { min-height:710px; } .heroContent { padding:160px 24px 95px; } .hero h1 { font-size:clamp(54px,12vw,76px); } .heroContent > p:not(.kicker) { font-size:14px; } .heroBrand { left:24px; right:auto; bottom:22px; font-size:8px; } .intro h2,.sectionHeading h2,.mapHeading h2 { font-size:clamp(47px,10vw,68px); } .intro,.mapSection,.lifestyle,.opportunities { padding:70px 22px; } .stats { grid-template-columns:repeat(2,1fr); padding:32px 22px; row-gap:30px; } .mapHeading { grid-template-columns:1fr; gap:5px; } .mapFigure img { max-height:650px; } .golfSection { grid-template-columns:1fr; } .golfImageWrap { min-height:350px; max-height:450px; } .golfCopy { padding:65px 22px; } .golfCopy h2 { font-size:clamp(48px,11vw,70px); } .golfFacts strong { font-size:29px; } .lifestyleGrid,.propertyGrid { grid-template-columns:1fr; } .lifestyleGrid { gap:28px; } .contact { padding:85px 22px 50px; } .contact h2 { font-size:clamp(48px,10vw,70px); } .contactActions { flex-direction:column; } .back { margin-top:65px; } }
+@media(max-width:900px) { .intro { padding:85px 5vw; grid-template-columns:1fr; gap:15px; } .mapSection,.lifestyle { padding:85px 5vw; } .opportunities { padding:48px 5vw 75px; } .golfCopy { padding:60px 5vw; } .golfSection { min-height:0; } .golfImageWrap { min-height:500px; } .golfFacts { grid-template-columns:repeat(3,minmax(0,1fr)); } .golfFacts strong { font-size:29px; } }
+@media(max-width:680px) { .hero { min-height:0; } .heroContent { padding:32px 24px 44px; } .hero h1 { font-size:clamp(54px,12vw,76px); } .heroContent > p:not(.kicker) { font-size:14px; } .heroBrand { left:24px; right:auto; bottom:14px; font-size:8px; } .intro h2,.sectionHeading h2,.mapHeading h2 { font-size:clamp(47px,10vw,68px); } .intro,.mapSection,.lifestyle { padding:70px 22px; } .opportunities { padding:32px 22px 64px; } .stats { grid-template-columns:repeat(2,1fr); padding:32px 22px; row-gap:30px; } .mapHeading { grid-template-columns:1fr; gap:5px; } .mapFigure img { max-height:650px; } .golfSection { grid-template-columns:1fr; } .golfImageWrap { min-height:350px; max-height:450px; } .golfCopy { padding:65px 22px; } .golfCopy h2 { font-size:clamp(48px,11vw,70px); } .golfFacts strong { font-size:29px; } .lifestyleGrid,.propertyGrid { grid-template-columns:1fr; } .lifestyleGrid { gap:28px; } .contact { padding:85px 22px 50px; } .contact h2 { font-size:clamp(48px,10vw,70px); } .contactActions { flex-direction:column; } .back { margin-top:65px; } }
 @media(prefers-reduced-motion:reduce) { .page * { scroll-behavior:auto; } }
+
+@media(max-width:600px) { .page { --header-height:120px; } }

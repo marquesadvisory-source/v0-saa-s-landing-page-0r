@@ -5,6 +5,7 @@ import { LocaleLink as Link } from "@/components/locale-link"
 import { ResidencyFooter } from "@/components/residency-editorial"
 import { SiteHeader } from "@/components/site-header"
 import { siteConfig } from "@/lib/site"
+import { PropertyGallery, type PropertyImage } from "./property-gallery"
 import styles from "./hacienda-pinilla.module.css"
 
 export const metadata: Metadata = {
@@ -25,33 +26,46 @@ const opportunities = [
     name: "Casa Ensueño",
     kind: "residence",
     description: "A five-bedroom residence in Los Almendros with a private pool and covered terrace.",
-    image: "casa-ensueno.webp",
-    alt: "Casa Ensueño and its private pool at dusk",
+    images: [
+      { file: "casa-ensueno.webp", alt: "Casa Ensueño and its private pool at dusk" },
+      { file: "casa-ensueno-living.webp", alt: "Casa Ensueño living room opening onto the terrace" },
+      { file: "casa-ensueno-terrace.webp", alt: "Casa Ensueño covered terrace beside the pool" },
+    ],
   },
   {
     name: "Villa Senderos",
     kind: "residence",
     description: "A four-bedroom villa with a private pool and a spacious outdoor terrace.",
-    image: "villa-senderos.webp",
-    alt: "Villa Senderos dining and kitchen area opening onto a garden",
+    images: [
+      { file: "villa-senderos.webp", alt: "Villa Senderos dining and kitchen area opening onto a garden" },
+      { file: "villa-senderos-bedroom.webp", alt: "A bedroom at Villa Senderos" },
+      { file: "villa-senderos-bathroom.webp", alt: "A double vanity and shower at Villa Senderos" },
+    ],
   },
   {
     name: "El Jaguar",
     kind: "homesite",
     description: "Invest in a residential lot surrounded by nature, with room to build a home designed around your family.",
-    image: "el-jaguar.webp",
-    alt: "Illustration of the El Jaguar homesite community",
-    caption: "Community illustration",
+    images: [
+      { file: "el-jaguar.webp", alt: "Illustration of the El Jaguar homesite community", caption: "Community illustration" },
+      { file: "el-jaguar-aerial.webp", alt: "The coastline and grounds of Hacienda Pinilla seen from the El Jaguar virtual tour", caption: "Aerial view from the El Jaguar tour" },
+    ],
   },
   {
     name: "Las Lapas",
     kind: "homesite",
     description: "Invest in a residential lot in Hacienda Pinilla’s golf-course community and build a residence of your own.",
-    image: "las-lapas.webp",
-    alt: "Las Lapas site plan showing residential lots within Hacienda Pinilla",
-    caption: "Community site plan",
+    images: [
+      { file: "las-lapas.webp", alt: "Las Lapas site plan showing residential lots within Hacienda Pinilla", caption: "Community site plan" },
+      { file: "las-lapas-plan-detail.webp", alt: "Enlarged section of the Las Lapas lot layout beside the golf course", caption: "Site plan detail" },
+    ],
   },
-] as const
+] satisfies readonly {
+  name: string
+  kind: "residence" | "homesite"
+  description: string
+  images: readonly [PropertyImage, PropertyImage, ...PropertyImage[]]
+}[]
 
 const estateHighlights = [
   { number: "4,500+", label: "Gated acres" },
@@ -69,11 +83,37 @@ export default function HaciendaPinillaPage() {
         <div className={styles.heroShade} />
         <div className={styles.heroContent}>
           <p className={styles.kicker}>MARQUÉS LUXURY REAL ESTATE <span aria-hidden="true">/</span> GUANACASTE, COSTA RICA</p>
-          <h1 id="hacienda-title">A coastal estate<br /><em>beyond the ordinary.</em></h1>
-          <p>Hacienda Pinilla is more than a place to own a home. It is a world of coastal experiences, established residential communities and extraordinary natural beauty.</p>
-          <a href="#discover" className={styles.heroCta}>Discover the estate <ArrowDownRight size={18} aria-hidden="true" /></a>
+          <h1 id="hacienda-title">Hacienda Pinilla</h1>
+          <p>Private residences and homesites on Costa Rica’s Pacific coast.</p>
+          <a href="#opportunities-title" className={styles.heroCta}>View homes and homesites <ArrowDownRight size={18} aria-hidden="true" /></a>
         </div>
         <div className={styles.heroBrand}>HACIENDA PINILLA <span>—</span> PRESENTED BY MARQUÉS</div>
+      </section>
+
+      <section className={styles.opportunities} aria-labelledby="opportunities-title">
+        <div className={styles.sectionHeading}><h2 id="opportunities-title">Private residences <em>and homesites</em></h2><p className={styles.sectionNote}>Property details, pricing and availability are confirmed privately through Marqués.</p></div>
+        <div className={styles.propertyGrid}>
+          {opportunities.map((item) => {
+            const isHomesite = item.kind === "homesite"
+            const message = encodeURIComponent(`Hello Marqués, I would like information about ${item.name} at Hacienda Pinilla.`)
+            const linkLabel = isHomesite ? "Request homesite details" : "Request property details"
+
+            return (
+              <article className={styles.property} key={item.name}>
+                <PropertyGallery name={item.name} kind={item.kind} images={item.images} />
+                <div className={styles.propertyBody}>
+                  <p className={styles.propertyType}>{isHomesite ? "Homesites · Land investment" : "Private residence"}</p>
+                  <h3>{item.name}</h3>
+                  <p className={styles.propertyDescription}>{item.description}</p>
+                  <a href={siteConfig.whatsapp + "?text=" + message} target="_blank" rel="noopener noreferrer" className={styles.propertyLink} aria-label={`${linkLabel} for ${item.name} from Marqués`}>
+                    {linkLabel} <ArrowUpRight size={17} aria-hidden="true" />
+                  </a>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+        <p className={styles.availability}>Selected opportunities shown for preliminary review. No representation is made regarding current availability or included amenity memberships.</p>
       </section>
 
       <section className={styles.intro} id="discover" aria-labelledby="estate-intro">
@@ -121,35 +161,6 @@ export default function HaciendaPinillaPage() {
           <figure className={styles.lifestyleImage}><img src={photos.beach} alt="Hacienda Pinilla Beach Club at sunset" loading="lazy" /><figcaption>THE BEACH CLUB</figcaption></figure>
           <div className={styles.lifestyleText}><h3>Everything, in its own time.</h3><p>Beachfront relaxation, golf, horseback riding, tennis, pickleball, surfing and trails through Guanacaste's distinctive landscapes.</p><p>Whether you're searching for a family retreat or a lasting connection to Costa Rica, the lifestyle extends well beyond the front door.</p></div>
         </div>
-      </section>
-
-      <section className={styles.opportunities} aria-labelledby="opportunities-title">
-        <div className={styles.sectionHeading}><p className={styles.kickerDark}>04 / PRIVATE REAL ESTATE</p><h2 id="opportunities-title">Private residences<br /><em>and homesites.</em></h2><p className={styles.sectionNote}>Property details, pricing and availability are confirmed privately through Marqués.</p></div>
-        <div className={styles.propertyGrid}>
-          {opportunities.map((item) => {
-            const isHomesite = item.kind === "homesite"
-            const message = encodeURIComponent(`Hello Marqués, I would like information about ${item.name} at Hacienda Pinilla.`)
-            const linkLabel = isHomesite ? "Request homesite details" : "Request property details"
-
-            return (
-              <article className={styles.property} key={item.name}>
-                <figure className={styles.propertyMedia} data-kind={item.kind}>
-                  <img src={`/images/real-estate/hacienda-pinilla/${item.image}`} alt={item.alt} loading="lazy" decoding="async" />
-                  {"caption" in item && <figcaption>{item.caption}</figcaption>}
-                </figure>
-                <div className={styles.propertyBody}>
-                  <p className={styles.propertyType}>{isHomesite ? "Homesites · Land investment" : "Private residence"}</p>
-                  <h3>{item.name}</h3>
-                  <p className={styles.propertyDescription}>{item.description}</p>
-                  <a href={siteConfig.whatsapp + "?text=" + message} target="_blank" rel="noopener noreferrer" className={styles.propertyLink} aria-label={`${linkLabel} for ${item.name} from Marqués`}>
-                    {linkLabel} <ArrowUpRight size={17} aria-hidden="true" />
-                  </a>
-                </div>
-              </article>
-            )
-          })}
-        </div>
-        <p className={styles.availability}>Selected opportunities shown for preliminary review. No representation is made regarding current availability or included amenity memberships.</p>
       </section>
 
       <section className={styles.contact} aria-labelledby="contact-title">
