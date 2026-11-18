@@ -18,6 +18,7 @@ export type FeaturedProperty = {
 }
 
 const imageBase = "/images/real-estate/hacienda-pinilla/"
+const imageSrc = (file: string) => file.startsWith("https://www.haciendapinilla.com/assets/real-estate/") ? file : imageBase + file
 
 export function FeaturedPropertyCards({ opportunities }: { opportunities: readonly FeaturedProperty[] }) {
   const [selected, setSelected] = useState<FeaturedProperty | null>(null)
@@ -104,7 +105,7 @@ export function FeaturedPropertyCards({ opportunities }: { opportunities: readon
         </div>
         <div className={styles.dialogGallery}>
           <div className={styles.dialogPhotoFrame}>
-            <img src={imageBase + selected.images[imageIndex].file} alt={selected.images[imageIndex].alt} />
+            <img src={imageSrc(selected.images[imageIndex].file)} alt={selected.images[imageIndex].alt} />
             {selected.images.length > 1 && <>
               <button type="button" className={`${styles.dialogArrow} ${styles.dialogArrowPrev}`} aria-label="Previous photo" onClick={() => step(-1)}><ChevronLeft size={23}/></button>
               <button type="button" className={`${styles.dialogArrow} ${styles.dialogArrowNext}`} aria-label="Next photo" onClick={() => step(1)}><ChevronRight size={23}/></button>
@@ -113,7 +114,7 @@ export function FeaturedPropertyCards({ opportunities }: { opportunities: readon
           </div>
           <div className={styles.dialogThumbnails} aria-label="Photo thumbnails">
             {selected.images.map((image,index) => <button type="button" key={image.file} className={index === imageIndex ? styles.dialogThumbActive : styles.dialogThumb} onClick={() => setImageIndex(index)} aria-label={`View photo ${index + 1}: ${image.alt}`} aria-pressed={index === imageIndex}>
-              <img src={imageBase + image.file} alt="" loading="lazy"/>
+              <img src={imageSrc(image.file)} alt="" loading="lazy"/>
             </button>)}
           </div>
           {selected.images[imageIndex].caption && <p className={styles.dialogImageCaption}>{selected.images[imageIndex].caption}</p>}
