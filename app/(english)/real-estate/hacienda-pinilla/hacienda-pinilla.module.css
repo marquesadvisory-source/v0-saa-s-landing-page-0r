@@ -98,3 +98,33 @@
 @media(prefers-reduced-motion:reduce) { .page * { scroll-behavior:auto; } }
 
 @media(max-width:600px) { .page { --header-height:120px; } }
+
+
+/* Casa Ensueño expanded editorial presentation, kept within Hacienda Pinilla */
+.propertyPrice { margin:19px 0 4px; font:500 clamp(28px,2.8vw,40px)/1.15 var(--font-cormorant),Georgia,serif; color:#17313d; }
+.propertyPrice span { display:block; margin-bottom:5px; font:600 9px/1.5 var(--font-inter),sans-serif; color:#957d53; letter-spacing:.14em; }
+.propertyHighlights { border-top:1px solid #e6e0d5; padding-top:13px; font-size:11px; line-height:1.8; color:#6c7a7d; }
+.exploreResidence { display:inline-flex; align-items:center; gap:14px; margin:13px 0 19px; min-height:42px; border-bottom:1px solid #b49b6a; color:#17313d; font-size:11px; text-decoration:none; }
+.exploreResidence:hover { color:#8c6d38; }
+.spotlight { scroll-margin-top:156px; padding:105px max(6vw,calc((100vw - 1240px)/2)) 112px; background:#f7f5f0; }
+.spotlightLead { display:grid; grid-template-columns:1.2fr .8fr; align-items:end; gap:clamp(35px,6vw,90px); margin-bottom:40px; }
+.spotlightLead h2 { margin:17px 0 0; font-size:clamp(48px,5.6vw,83px); line-height:1.02; }
+.spotlightIntro p:not(.spotlightPrice) { font-size:14px; line-height:1.95; color:#68757b; }
+.spotlightPrice { margin:0 0 15px; font:500 clamp(40px,4.5vw,62px)/1 var(--font-cormorant),Georgia,serif; color:#17313d; }
+.spotlightPrice span { display:block; margin-top:7px; font:600 10px/1.7 var(--font-inter),sans-serif; letter-spacing:.13em; color:#907950; }
+.spotlightFacts { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:17px; padding:25px 0; margin-bottom:34px; border-top:1px solid #d9d2c6; border-bottom:1px solid #d9d2c6; }
+.spotlightFacts div { display:flex; flex-direction:column; gap:10px; min-width:0; }
+.spotlightFacts strong { font:500 clamp(26px,2.8vw,42px)/1 var(--font-cormorant),Georgia,serif; color:#17313d; }
+.spotlightFacts span { color:#7b7569; font-size:9px; letter-spacing:.09em; line-height:1.6; }
+.spotlightGallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.spotlightGallery figure { min-width:0; margin:0; }
+.spotlightGallery img { display:block; width:100%; aspect-ratio:1.5; object-fit:cover; background:#e7e3d9; }
+.spotlightGallery .spotlightHeroPhoto { grid-column:1/-1; }
+.spotlightGallery .spotlightHeroPhoto img { aspect-ratio:16/8; }
+.spotlightGallery figcaption { margin:11px 0 18px; font-size:9px; letter-spacing:.15em; color:#947d52; }
+.spotlightBottom { display:flex; justify-content:space-between; align-items:center; gap:60px; margin-top:26px; }
+.spotlightBottom p { max-width:680px; margin:0; color:#68757b; font-size:14px; line-height:1.95; }
+.spotlightInquiry { flex-shrink:0; display:inline-flex; justify-content:space-between; align-items:center; gap:26px; padding:17px 20px; background:#17313d; color:#fff; text-decoration:none; font-size:11px; }
+.spotlightInquiry:hover { background:#2c4c56; }
+@media(max-width:1100px) { .spotlightFacts { grid-template-columns:repeat(3,1fr); } .spotlightBottom { flex-direction:column; align-items:start; gap:25px; } }
+@media(max-width:680px) { .spotlight { padding:65px 22px; scroll-margin-top:125px; } .spotlightLead { grid-template-columns:1fr; gap:14px; } .spotlightLead h2 { font-size:clamp(48px,10vw,68px); } .spotlightFacts { grid-template-columns:repeat(2,1fr); gap:22px; } .spotlightGallery { grid-template-columns:1fr; gap:4px; } .spotlightGallery .spotlightHeroPhoto { grid-column:auto; } .spotlightGallery .spotlightHeroPhoto img { aspect-ratio:1.25; } .spotlightInquiry { width:100%; flex-shrink:1; } }
