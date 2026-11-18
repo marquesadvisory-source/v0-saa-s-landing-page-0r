@@ -122,7 +122,7 @@ const opportunities = [
       "El Jaguar presents a different path to living at Hacienda Pinilla: choosing a residential homesite and developing a residence around your own architectural vision, subject to the applicable community and construction requirements.",
       "The accompanying images illustrate the community context. Contact Marqués for confirmed lot sizes, pricing, current availability and applicable development guidelines.",
     ],
-    facts: [ { value: "Homesites", label: "PROPERTY TYPE" }, { value: "Custom", label: "RESIDENCE POTENTIAL" }, { value: "42", label: "LOT PRICING" } ],
+    facts: [ { value: "Homesites", label: "PROPERTY TYPE" }, { value: "Custom", label: "RESIDENCE POTENTIAL" }, { value: "42", label: "PUBLISHED LOT OPTIONS" } ],
     images: [
       { file: "el-jaguar.webp", alt: "Illustration of the El Jaguar homesite community", caption: "Community illustration" },
       { file: "el-jaguar-aerial.webp", alt: "The coastline and grounds of Hacienda Pinilla seen from the El Jaguar virtual tour", caption: "Aerial view from the El Jaguar tour" },
