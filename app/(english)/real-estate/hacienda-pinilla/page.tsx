@@ -5,7 +5,7 @@ import { LocaleLink as Link } from "@/components/locale-link"
 import { ResidencyFooter } from "@/components/residency-editorial"
 import { SiteHeader } from "@/components/site-header"
 import { siteConfig } from "@/lib/site"
-import { PropertyGallery, type PropertyImage } from "./property-gallery"
+import { FeaturedPropertyCards, type FeaturedProperty } from "./featured-properties"
 import styles from "./hacienda-pinilla.module.css"
 
 export const metadata: Metadata = {
@@ -28,6 +28,16 @@ const opportunities = [
     description: "Completed in 2025 in Los Almendros, this five-bedroom estate pairs expansive glass living spaces with a private pool and covered terrace.",
     price: "$3,125,000",
     highlights: "5 beds · 5 full baths + 2 powder rooms · 5,156 sq ft",
+    narrative: [
+      "Completed in 2025, Casa Ensueño is a refined estate set on over half an acre within the Los Almendros enclave at Hacienda Pinilla. Offering 5,156 sq ft, the single-level residence includes five spacious en-suite bedrooms, thoughtfully arranged for privacy and comfortable indoor-outdoor living.",
+      "Expansive glass openings connect the interiors to a private resort-style pool and covered terrace, an inviting setting for gathering with family and friends throughout the year.",
+      "Its location, distinctive architecture and high-end appeal may be attractive to buyers considering rental use as well as personal enjoyment. Any rental projection should be assessed separately; no financial return is represented.",
+    ],
+    facts: [
+      { value: "5,156", label: "SQ FT" }, { value: "5", label: "BEDROOMS" },
+      { value: "5 + 2", label: "FULL + POWDER BATHROOMS" }, { value: "Private", label: "SWIMMING POOL" },
+      { value: "4", label: "PARKING SPACES" }, { value: "1", label: "FLOOR" },
+    ],
     images: [
       { file: "casa-ensueno.webp", alt: "Casa Ensueño and its private pool at dusk" },
       { file: "casa-ensueno-living.webp", alt: "Casa Ensueño living room opening onto the terrace" },
@@ -37,7 +47,12 @@ const opportunities = [
   {
     name: "Villa Senderos",
     kind: "residence",
-    description: "A four-bedroom villa with a private pool and a spacious outdoor terrace.",
+    description: "An inviting tropical villa with a private pool and outdoor terrace in Hacienda Pinilla.",
+    narrative: [
+      "Villa Senderos offers a welcoming connection between interior living spaces and the tropical landscape at Hacienda Pinilla. Natural light, relaxed gathering areas and outdoor spaces make it an appealing option for a Costa Rica retreat.",
+      "Explore the interior spaces in the photographs and contact Marqués for verified room counts, area, price, availability and the details of a private viewing.",
+    ],
+    facts: [ { value: "Private", label: "POOL" }, { value: "Tropical", label: "SETTING" }, { value: "On request", label: "PRICE & PROPERTY DETAILS" } ],
     images: [
       { file: "villa-senderos.webp", alt: "Villa Senderos dining and kitchen area opening onto a garden" },
       { file: "villa-senderos-bedroom.webp", alt: "A bedroom at Villa Senderos" },
@@ -47,7 +62,12 @@ const opportunities = [
   {
     name: "El Jaguar",
     kind: "homesite",
-    description: "Invest in a residential lot surrounded by nature, with room to build a home designed around your family.",
+    description: "An opportunity to acquire a homesite and create a residence tailored to your family.",
+    narrative: [
+      "El Jaguar presents a different path to living at Hacienda Pinilla: choosing a residential homesite and developing a residence around your own architectural vision, subject to the applicable community and construction requirements.",
+      "The accompanying images illustrate the community context. Contact Marqués for confirmed lot sizes, pricing, current availability and applicable development guidelines.",
+    ],
+    facts: [ { value: "Homesites", label: "PROPERTY TYPE" }, { value: "Custom", label: "RESIDENCE POTENTIAL" }, { value: "On request", label: "LOT PRICING" } ],
     images: [
       { file: "el-jaguar.webp", alt: "Illustration of the El Jaguar homesite community", caption: "Community illustration" },
       { file: "el-jaguar-aerial.webp", alt: "The coastline and grounds of Hacienda Pinilla seen from the El Jaguar virtual tour", caption: "Aerial view from the El Jaguar tour" },
@@ -56,19 +76,18 @@ const opportunities = [
   {
     name: "Las Lapas",
     kind: "homesite",
-    description: "Invest in a residential lot in Hacienda Pinilla’s golf-course community and build a residence of your own.",
+    description: "Residential land near the golf setting, offering a canvas for a custom-built home.",
+    narrative: [
+      "Las Lapas offers residential homesites for buyers who prefer to create their own residence rather than purchase an existing home. Its setting within Hacienda Pinilla may appeal to those who value both the coastal lifestyle and proximity to golf.",
+      "Review the site plan and its enlarged detail, then speak with Marqués about available lots, dimensions, current prices and any construction or access conditions that apply.",
+    ],
+    facts: [ { value: "Homesites", label: "PROPERTY TYPE" }, { value: "Custom", label: "RESIDENCE POTENTIAL" }, { value: "On request", label: "LOT PRICING" } ],
     images: [
       { file: "las-lapas.webp", alt: "Las Lapas site plan showing residential lots within Hacienda Pinilla", caption: "Community site plan" },
       { file: "las-lapas-plan-detail.webp", alt: "Enlarged section of the Las Lapas lot layout beside the golf course", caption: "Site plan detail" },
     ],
   },
-] satisfies readonly {
-  name: string
-  kind: "residence" | "homesite"
-  description: string
-  price?: string
-  highlights?: string
-  images: readonly [PropertyImage, PropertyImage, ...PropertyImage[]]
+] satisfies readonly FeaturedProperty[]]
 }[]
 
 const estateHighlights = [
@@ -96,70 +115,8 @@ export default function HaciendaPinillaPage() {
 
       <section className={styles.opportunities} aria-labelledby="opportunities-title">
         <div className={styles.sectionHeading}><h2 id="opportunities-title">Private residences <em>and homesites</em></h2><p className={styles.sectionNote}>Property details, pricing and availability are confirmed privately through Marqués.</p></div>
-        <div className={styles.propertyGrid}>
-          {opportunities.map((item) => {
-            const isHomesite = item.kind === "homesite"
-            const message = encodeURIComponent(`Hello Marqués, I would like information about ${item.name} at Hacienda Pinilla.`)
-            const linkLabel = isHomesite ? "Request homesite details" : "Request property details"
-
-            return (
-              <article className={styles.property} key={item.name}>
-                <PropertyGallery name={item.name} kind={item.kind} images={item.images} />
-                <div className={styles.propertyBody}>
-                  <p className={styles.propertyType}>{isHomesite ? "Homesites · Land investment" : "Private residence"}</p>
-                  <h3>{item.name}</h3>
-                  {"price" in item && item.price && <p className={styles.propertyPrice}><span>ASKING PRICE</span> {item.price}</p>}
-                  <p className={styles.propertyDescription}>{item.description}</p>
-                  {"highlights" in item && item.highlights && <p className={styles.propertyHighlights}>{item.highlights}</p>}
-                  {item.name === "Casa Ensueño" && <a className={styles.exploreResidence} href="#casa-ensueno-spotlight">Explore Casa Ensueño <ArrowDownRight size={17} aria-hidden="true" /></a>}
-                  <a href={siteConfig.whatsapp + "?text=" + message} target="_blank" rel="noopener noreferrer" className={styles.propertyLink} aria-label={`${linkLabel} for ${item.name} from Marqués`}>
-                    {linkLabel} <ArrowUpRight size={17} aria-hidden="true" />
-                  </a>
-                </div>
-              </article>
-            )
-          })}
-        </div>
+        <FeaturedPropertyCards opportunities={opportunities} />
         <p className={styles.availability}>Selected opportunities shown for preliminary review. No representation is made regarding current availability or included amenity memberships.</p>
-      </section>
-
-      <section className={styles.spotlight} id="casa-ensueno-spotlight" aria-labelledby="casa-ensueno-heading">
-        <div className={styles.spotlightLead}>
-          <div>
-            <p className={styles.kickerDark}>FEATURED RESIDENCE / LOS ALMENDROS</p>
-            <h2 id="casa-ensueno-heading">Casa Ensueño.<br /><em>Made for extraordinary living.</em></h2>
-          </div>
-          <div className={styles.spotlightIntro}>
-            <p className={styles.spotlightPrice}>$3,125,000 <span>USD · ASKING PRICE</span></p>
-            <p>Completed in 2025, Casa Ensueño is an elegant single-level estate set on more than half an acre within Los Almendros at Hacienda Pinilla. Spacious en-suite bedrooms and open, light-filled interiors offer a natural balance of privacy and connection.</p>
-          </div>
-        </div>
-        <div className={styles.spotlightFacts} aria-label="Casa Ensueño property characteristics">
-          <div><strong>5,156</strong><span>SQ FT · RESIDENCE</span></div>
-          <div><strong>5</strong><span>EN-SUITE BEDROOMS</span></div>
-          <div><strong>5 + 2</strong><span>FULL BATHS + POWDER ROOMS</span></div>
-          <div><strong>Private</strong><span>POOL & COVERED TERRACE</span></div>
-          <div><strong>4</strong><span>PARKING SPACES</span></div>
-          <div><strong>1</strong><span>FLOOR</span></div>
-        </div>
-        <div className={styles.spotlightGallery}>
-          <figure className={styles.spotlightHeroPhoto}>
-            <img src="/images/real-estate/hacienda-pinilla/casa-ensueno.webp" alt="Casa Ensueño private swimming pool and residence at dusk" loading="lazy" />
-            <figcaption>PRIVATE POOL & ARCHITECTURE</figcaption>
-          </figure>
-          <figure>
-            <img src="/images/real-estate/hacienda-pinilla/casa-ensueno-living.webp" alt="Casa Ensueño open-plan living space" loading="lazy" />
-            <figcaption>INTERIOR LIVING</figcaption>
-          </figure>
-          <figure>
-            <img src="/images/real-estate/hacienda-pinilla/casa-ensueno-terrace.webp" alt="Casa Ensueño covered terrace and poolside space" loading="lazy" />
-            <figcaption>COVERED TERRACE</figcaption>
-          </figure>
-        </div>
-        <div className={styles.spotlightBottom}>
-          <p>Floor-to-ceiling openings connect the main living areas with a private, resort-style pool and a covered terrace. The estate offers an inviting setting for entertaining or simply enjoying the rhythms of coastal life. Its location and design may also appeal to buyers considering managed rental use, subject to individual financial, legal and operating review.</p>
-          <a className={styles.spotlightInquiry} href={siteConfig.whatsapp + "?text=" + encodeURIComponent("Hello Marqués, I would like to request the complete photo gallery, property information and a private viewing of Casa Ensueño at Hacienda Pinilla (USD 3,125,000).")} target="_blank" rel="noopener noreferrer">Request full gallery & private viewing <ArrowUpRight size={18} aria-hidden="true" /></a>
-        </div>
       </section>
 
       <section className={styles.intro} id="discover" aria-labelledby="estate-intro">
