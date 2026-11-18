@@ -65,3 +65,19 @@
   .privateAccess h2 { max-width: 12ch; }
   .supportList { gap: 20px; }
 }
+
+
+/* Hacienda Pinilla featured destination — editorial preview */
+.featuredDestination { padding:100px max(6vw,calc((100vw - 1240px)/2)); background:#fff; }
+.destinationHeading { max-width:760px; margin-bottom:35px; }
+.destinationHeading h2 { margin:14px 0; font:500 clamp(44px,5vw,70px)/1 var(--font-cormorant),Georgia,serif; }
+.destinationHeading > p:last-child { max-width:640px; font-size:14px; line-height:1.85; color:#65757a; }
+.destinationCard { display:block; position:relative; overflow:hidden; min-height:500px; background:#16343a; color:#fff; text-decoration:none; }
+.destinationCard > img { display:block; width:100%; height:560px; object-fit:cover; transition:transform .45s ease; }
+.destinationCard:hover > img { transform:scale(1.025); }
+.destinationCard::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,rgba(6,23,30,.8),transparent 58%); pointer-events:none; }
+.destinationOverlay { position:absolute; z-index:1; left:40px; right:40px; bottom:35px; display:flex; align-items:end; justify-content:space-between; gap:20px; font:500 clamp(30px,4.2vw,58px)/1 var(--font-cormorant),Georgia,serif; }
+.destinationOverlay small { display:block; margin-top:12px; font:500 10px/1.4 var(--font-inter),sans-serif; letter-spacing:.17em; color:#e7d4a9; }
+.destinationCard:focus-visible { outline:3px solid #b49b6a; outline-offset:4px; }
+@media(max-width:650px) { .featuredDestination { padding:65px 22px; } .destinationCard { min-height:350px; } .destinationCard > img { height:380px; } .destinationOverlay { left:22px; right:22px; bottom:23px; } }
+@media(prefers-reduced-motion:reduce) { .destinationCard > img { transition:none; } }

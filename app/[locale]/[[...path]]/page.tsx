@@ -12,6 +12,7 @@ import ResidencyPage from "@/app/(english)/residency/page"
 import AboutCostaRicaPage from "@/app/(english)/residency/about-costa-rica/page"
 import ResidencyRealEstatePage from "@/app/(english)/residency/real-estate/page"
 import RealEstatePage from "@/app/(english)/real-estate/page"
+import HaciendaPinillaPage from "@/app/(english)/real-estate/hacienda-pinilla/page"
 import InvestmentsPage from "@/app/(english)/investments/page"
 import InvestmentFrameworkPage from "@/app/(english)/investment-framework/page"
 import ProjectsPage from "@/app/(english)/projects/page"
@@ -69,6 +70,7 @@ export async function generateMetadata({ params }: RouteProps): Promise<Metadata
   const locale = localeFromSegment(segment)
   if (!locale || locale === "en") return { robots: { index: false, follow: false } }
   const pathname = pagePath(path)
+  if (pathname === "/real-estate/hacienda-pinilla") return localizedMetadata(pathname, locale)
   if (pages[pathname]) return applyClusterSeo(localizedMetadata(pathname, locale), pathname, locale)
 
   if (path?.length === 2 && path[0] === "real-estate") {
@@ -85,6 +87,7 @@ export default async function LocalizedPage({ params }: RouteProps) {
   const locale = localeFromSegment(segment)
   if (!locale || locale === "en") notFound()
   const pathname = pagePath(path)
+  if (pathname === "/real-estate/hacienda-pinilla") return <HaciendaPinillaPage locale={locale} />
   const Page = pages[pathname]
   if (Page) return pathname.startsWith("/residency") ? <ResidencyLayout><Page /></ResidencyLayout> : <Page />
 
