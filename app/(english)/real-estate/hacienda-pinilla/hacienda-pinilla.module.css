@@ -128,3 +128,63 @@
 .spotlightInquiry:hover { background:#2c4c56; }
 @media(max-width:1100px) { .spotlightFacts { grid-template-columns:repeat(3,1fr); } .spotlightBottom { flex-direction:column; align-items:start; gap:25px; } }
 @media(max-width:680px) { .spotlight { padding:65px 22px; scroll-margin-top:125px; } .spotlightLead { grid-template-columns:1fr; gap:14px; } .spotlightLead h2 { font-size:clamp(48px,10vw,68px); } .spotlightFacts { grid-template-columns:repeat(2,1fr); gap:22px; } .spotlightGallery { grid-template-columns:1fr; gap:4px; } .spotlightGallery .spotlightHeroPhoto { grid-column:auto; } .spotlightGallery .spotlightHeroPhoto img { aspect-ratio:1.25; } .spotlightInquiry { width:100%; flex-shrink:1; } }
+
+
+/* Interactive luxury property presentation: image-first cards and modal */
+.propertyOpenArea { position:relative; min-width:0; }
+.cardOpenButton { position:absolute; inset:0; z-index:1; display:flex; justify-content:flex-end; align-items:flex-start; padding:16px; width:100%; border:0; background:transparent; cursor:zoom-in; }
+.cardOpenHint { display:inline-flex; align-items:center; gap:9px; padding:11px 13px; background:rgba(20,45,55,.9); color:#fff; font-size:10px; letter-spacing:.03em; }
+.galleryButton { z-index:2; }
+.propertyDialog { position:fixed; inset:0; width:min(1100px,calc(100vw - 32px)); max-width:1100px; max-height:min(92dvh,1100px); margin:auto; border:1px solid #d7d1c4; background:#fbfaf7; color:#17313d; padding:0; overflow-y:auto; box-shadow:0 28px 100px rgba(8,26,32,.25); }
+.propertyDialog::backdrop { background:rgba(7,19,24,.78); backdrop-filter:blur(5px); }
+.dialogInner { min-width:0; padding:clamp(20px,3vw,42px); }
+.dialogTop { display:flex; justify-content:space-between; align-items:center; gap:16px; padding-bottom:18px; border-bottom:1px solid #e0dacf; }
+.dialogTop p { margin:0; color:#8a754e; font-size:10px; font-weight:600; letter-spacing:.15em; }
+.dialogTop p span { padding:0 7px; }
+.dialogClose { display:grid; place-items:center; flex-shrink:0; width:43px; height:43px; padding:0; border:1px solid #d7d1c4; background:#fff; color:#17313d; cursor:pointer; }
+.dialogClose:hover { background:#f0ebe2; }
+.dialogIntro { display:flex; justify-content:space-between; align-items:end; gap:30px; padding:32px 0 27px; }
+.dialogIntro h2 { margin:8px 0 0; font:500 clamp(48px,6vw,82px)/.98 var(--font-cormorant),Georgia,serif; }
+.dialogPrice { flex-shrink:0; display:flex; flex-direction:column; align-items:flex-end; gap:5px; }
+.dialogPrice span { color:#907950; font-size:10px; letter-spacing:.12em; }
+.dialogPrice strong { font:500 clamp(30px,4vw,48px)/1 var(--font-cormorant),Georgia,serif; }
+.dialogPrice small { color:#69767b; font-size:10px; letter-spacing:.08em; }
+.dialogGallery { margin:0; }
+.dialogPhotoFrame { position:relative; aspect-ratio:16/9; width:100%; overflow:hidden; background:#e7e5df; }
+.dialogPhotoFrame > img { display:block; width:100%; height:100%; object-fit:contain; }
+.dialogArrow { position:absolute; top:50%; transform:translateY(-50%); display:grid; place-items:center; width:48px; height:48px; border:1px solid rgba(255,255,255,.8); border-radius:50%; background:rgba(18,41,50,.9); color:#fff; cursor:pointer; }
+.dialogArrow:hover { background:#294754; }
+.dialogArrowPrev { left:15px; }
+.dialogArrowNext { right:15px; }
+.dialogCounter { position:absolute; right:15px; bottom:14px; padding:7px 13px; background:rgba(18,41,50,.89); color:#fff; font-size:11px; }
+.dialogThumbnails { display:flex; gap:10px; overflow-x:auto; padding:13px 0 3px; }
+.dialogThumb,.dialogThumbActive { width:100px; height:67px; padding:0; flex-shrink:0; overflow:hidden; border:3px solid transparent; background:#e5e4df; cursor:pointer; }
+.dialogThumbActive { border-color:#a88e5d; }
+.dialogThumbnails img { display:block; width:100%; height:100%; object-fit:cover; }
+.dialogImageCaption { color:#8a744c; margin:9px 0 0; font-size:11px; }
+.dialogFacts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; padding:30px 0; margin-top:28px; border-top:1px solid #d8d2c5; border-bottom:1px solid #d8d2c5; }
+.dialogFacts div { display:flex; flex-direction:column; gap:7px; }
+.dialogFacts strong { font:500 clamp(27px,3vw,41px)/1 var(--font-cormorant),Georgia,serif; }
+.dialogFacts span { color:#807b71; font-size:10px; letter-spacing:.09em; line-height:1.5; }
+.dialogDescription { max-width:860px; padding:30px 0 16px; }
+.dialogDescription h3 { margin:0 0 18px; font:500 clamp(34px,4vw,50px)/1.05 var(--font-cormorant),Georgia,serif; }
+.dialogDescription p { max-width:800px; color:#5d6c71; font-size:14px; line-height:1.95; margin:0 0 16px; }
+.dialogActions { display:flex; justify-content:space-between; align-items:center; gap:22px; padding:25px 0 6px; border-top:1px solid #e0dacf; }
+.dialogActions > p { max-width:420px; margin:0; color:#7b8487; font-size:11px; line-height:1.75; }
+@media(max-width:680px) {
+  .cardOpenButton { padding:12px; }
+  .cardOpenHint { font-size:10px; }
+  .propertyDialog { width:calc(100vw - 16px); max-height:95dvh; }
+  .dialogInner { padding:18px; }
+  .dialogTop p { font-size:8px; line-height:1.6; }
+  .dialogIntro { align-items:start; flex-direction:column; gap:18px; padding:25px 0; }
+  .dialogIntro h2 { font-size:clamp(47px,12vw,65px); }
+  .dialogPrice { align-items:flex-start; }
+  .dialogPhotoFrame { aspect-ratio:4/3; }
+  .dialogArrow { width:39px; height:39px; }
+  .dialogArrowPrev { left:7px; }
+  .dialogArrowNext { right:7px; }
+  .dialogThumb,.dialogThumbActive { width:82px; height:57px; }
+  .dialogFacts { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+  .dialogActions { flex-direction:column; align-items:stretch; }
+}
