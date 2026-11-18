@@ -3,6 +3,8 @@
 import { useRef, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import styles from "./hacienda-pinilla.module.css"
+import type { Locale } from "@/lib/i18n/config"
+import { pinillaText } from "./pinilla-translations"
 
 export type PropertyImage = {
   file: string
@@ -14,9 +16,11 @@ type PropertyGalleryProps = {
   name: string
   kind: "residence" | "homesite"
   images: readonly [PropertyImage, PropertyImage, ...PropertyImage[]]
+  locale: Locale
 }
 
-export function PropertyGallery({ name, kind, images }: PropertyGalleryProps) {
+export function PropertyGallery({ name, kind, images, locale }: PropertyGalleryProps) {
+  const t = (message: string) => pinillaText(message, locale)
   const [index, setIndex] = useState(0)
   const touchStart = useRef<{ x: number; y: number } | null>(null)
   const image = images[index]
@@ -60,10 +64,10 @@ export function PropertyGallery({ name, kind, images }: PropertyGalleryProps) {
           }}
           onPointerCancel={() => { touchStart.current = null }}
         />
-        <button type="button" className={`${styles.galleryButton} ${styles.galleryPrevious}`} aria-label={`Previous image of ${name}`} onClick={() => step(-1)}>
+        <button type="button" className={`${styles.galleryButton} ${styles.galleryPrevious}`} aria-label={`${t("Previous image of")} ${name}`} onClick={() => step(-1)}>
           <ChevronLeft size={19} aria-hidden="true" />
         </button>
-        <button type="button" className={`${styles.galleryButton} ${styles.galleryNext}`} aria-label={`Next image of ${name}`} onClick={() => step(1)}>
+        <button type="button" className={`${styles.galleryButton} ${styles.galleryNext}`} aria-label={`${t("Next image of")} ${name}`} onClick={() => step(1)}>
           <ChevronRight size={19} aria-hidden="true" />
         </button>
         <figcaption className={styles.galleryStatus} aria-live="polite" aria-atomic="true">
