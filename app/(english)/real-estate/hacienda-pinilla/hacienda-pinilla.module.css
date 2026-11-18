@@ -188,3 +188,45 @@
   .dialogFacts { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
   .dialogActions { flex-direction:column; align-items:stretch; }
 }
+
+
+/* Individually priced homesite options in the established property modal */
+.lotPanel { margin:35px 0 10px; padding:32px 0; border-top:1px solid #d8d2c5; }
+.lotHeading { display:flex; justify-content:space-between; align-items:end; gap:32px; margin-bottom:26px; }
+.lotHeading h3 { margin:10px 0; font:500 clamp(35px,4vw,52px)/1.06 var(--font-cormorant),Georgia,serif; }
+.lotHeading p:not(.kickerDark) { max-width:660px; margin:0; color:#647278; font-size:13px; line-height:1.85; }
+.lotRange { flex-shrink:0; min-width:230px; display:flex; flex-direction:column; align-items:flex-end; gap:5px; text-align:right; }
+.lotRange span,.lapasRange span { color:#927950; font-size:9px; font-weight:600; letter-spacing:.12em; line-height:1.5; }
+.lotRange strong,.lapasRange strong { font:500 clamp(28px,3vw,40px)/1.1 var(--font-cormorant),Georgia,serif; }
+.lotRange small,.lapasRange small { font-size:10px; color:#748084; }
+.lotFilters { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; padding:19px; background:#f0ede6; }
+.lotFilters label { display:flex; flex-direction:column; gap:9px; color:#826d48; font-size:9px; font-weight:600; letter-spacing:.12em; }
+.lotFilters select { width:100%; min-width:0; min-height:42px; border:1px solid #d8d1c2; border-radius:0; background:#fff; color:#17313d; padding:0 10px; font-size:12px; letter-spacing:0; }
+.lotCount { margin:22px 0 12px; color:#6c787b; font-size:11px; }
+.lotList { display:grid; gap:8px; max-height:550px; overflow-y:auto; padding-right:4px; }
+.lotItem { display:grid; grid-template-columns:1.18fr .9fr 1.1fr auto; align-items:center; gap:14px; padding:17px 18px; border:1px solid #e0dbd1; background:#fff; }
+.lotName,.lotArea,.lotPrice { display:flex; flex-direction:column; gap:5px; }
+.lotName strong { font:500 25px/1 var(--font-cormorant),Georgia,serif; }
+.lotArea strong,.lotPrice strong { font:500 25px/1 var(--font-cormorant),Georgia,serif; white-space:nowrap; }
+.lotName span,.lotArea span,.lotPrice span { color:#7b807d; font-size:9px; line-height:1.5; letter-spacing:.07em; }
+.lotItem>a,.lotAction { display:inline-flex; gap:9px; align-items:center; justify-content:center; min-height:39px; padding:10px 13px; background:#17313d; color:#fff; font-size:11px; text-decoration:none; white-space:nowrap; }
+.lotItem>a:hover,.lotAction:hover { background:#36535b; }
+.lotDisclaimer { margin:19px 0; max-width:900px; color:#6a777b; font-size:11px; line-height:1.8; }
+.lapasRange { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:15px; padding:24px; margin:18px 0; border:1px solid #ddd4c7; background:#fff; }
+.lapasRange>div { display:flex; flex-direction:column; gap:8px; }
+.lotAction { width:fit-content; margin-top:8px; }
+@media(max-width:800px) {
+ .lotHeading { flex-direction:column; align-items:flex-start; gap:18px; }
+ .lotRange { align-items:flex-start; text-align:left; }
+ .lotItem { grid-template-columns:1fr 1fr; }
+ .lotItem>a { grid-column:1/-1; justify-self:stretch; }
+}
+@media(max-width:570px) {
+ .lotPanel { padding:24px 0; }
+ .lotFilters { grid-template-columns:1fr; padding:14px; }
+ .lotItem { padding:13px; gap:12px; }
+ .lotItem strong { font-size:22px; }
+ .lotList { max-height:470px; }
+ .lapasRange { grid-template-columns:1fr; padding:20px; }
+ .lotAction { width:100%; white-space:normal; }
+}
