@@ -87,8 +87,7 @@ const opportunities = [
       { file: "las-lapas-plan-detail.webp", alt: "Enlarged section of the Las Lapas lot layout beside the golf course", caption: "Site plan detail" },
     ],
   },
-] satisfies readonly FeaturedProperty[]]
-}[]
+] satisfies readonly FeaturedProperty[]
 
 const estateHighlights = [
   { number: "4,500+", label: "Gated acres" },
