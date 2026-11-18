@@ -47,12 +47,19 @@ const opportunities = [
   {
     name: "Villa Senderos",
     kind: "residence",
-    description: "An inviting tropical villa with a private pool and outdoor terrace in Hacienda Pinilla.",
+    description: "A refined four-bedroom tropical villa with private pool, generous terrace and access to a community pool.",
+    price: "$999,000",
+    highlights: "4 bedrooms · 4 full baths + 1 powder room · 4,553 sq ft",
     narrative: [
-      "Villa Senderos offers a welcoming connection between interior living spaces and the tropical landscape at Hacienda Pinilla. Natural light, relaxed gathering areas and outdoor spaces make it an appealing option for a Costa Rica retreat.",
-      "Explore the interior spaces in the photographs and contact Marqués for verified room counts, area, price, availability and the details of a private viewing.",
+      "Villa Senderos offers a refined take on tropical luxury within the exclusive Senderos community at Hacienda Pinilla. This move-in-ready, four-bedroom residence combines sophisticated comfort with effortless indoor-outdoor living.",
+      "The home features four full bathrooms, a powder room, private pool, expansive terrace and access to a community pool, framed by lush tropical landscaping. With two floors and parking for two vehicles, the residence is designed for privacy, relaxation and time together.",
+      "Whether enjoyed as a personal retreat, vacation residence or prospective investment property, Villa Senderos provides a sophisticated connection to the natural setting of Hacienda Pinilla. Any financial or rental performance should be evaluated separately.",
     ],
-    facts: [ { value: "Private", label: "POOL" }, { value: "Tropical", label: "SETTING" }, { value: "On request", label: "PRICE & PROPERTY DETAILS" } ],
+    facts: [
+      { value: "4,553", label: "SQ FT" }, { value: "4", label: "BEDROOMS" },
+      { value: "4 + 1", label: "FULL + POWDER BATHROOMS" }, { value: "Private + shared", label: "POOL ACCESS" },
+      { value: "2", label: "PARKING SPACES" }, { value: "2", label: "FLOORS" },
+    ],
     images: [
       { file: "villa-senderos.webp", alt: "Villa Senderos dining and kitchen area opening onto a garden" },
       { file: "villa-senderos-bedroom.webp", alt: "A bedroom at Villa Senderos" },
