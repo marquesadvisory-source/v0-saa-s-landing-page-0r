@@ -38,7 +38,8 @@ assert.equal(Math.min(...lotRecords.map(match => Number(match[3]))), 399000, "Ja
 assert.equal(Math.max(...lotRecords.map(match => Number(match[3]))), 810000, "Jaguar highest published asking price")
 assert.ok(lotsSource.includes("minUsd: 325600") && lotsSource.includes("maxUsd: 440000"), "Las Lapas must show sourced price range, not invented lot data")
 assert.ok(optionsSource.includes("jaguarHomesites.filter") && optionsSource.includes("lot.number"), "The user must be able to compare specific Jaguar lots")
-assert.ok(optionsSource.includes("Las Lapas") && optionsSource.includes("third-party brokerage"), "The Las Lapas range requires source qualification")
+assert.ok(optionsSource.includes("Las Lapas") && optionsSource.includes("individual lot pricing and availability have not yet been confirmed"), "The Las Lapas range requires source qualification")
+assert.ok(!optionsSource.includes("reproduced from the published Hacienda Pinilla") && !optionsSource.includes("third-party brokerage listing"), "Buyer-facing copy must not direct shoppers to source listings")
 assert.ok(cards.includes("<HomesiteOptions"), "Homesite choices must appear within the existing popup")
 
 assert.ok(page.includes("FeaturedPropertyCards opportunities={localizedOpportunities} locale={locale}"))
