@@ -544,7 +544,7 @@ const messages: Record<string, readonly [string, string, string]> = {
     "其位置、建筑设计及高端品质既适合自住，也可能吸引考虑度假租赁的买家。任何租金预测均需单独评估，不构成收益保证。"
   ],
   "A refined four-bedroom tropical villa with private pool, generous terrace and access to a community pool.": [
-    "一栋融合热带风情与精致生活的四卧室别墅，配备私人泳池、宽敞露台及社区泳池使用权。",
+    "Una villa tropical refinada de cuatro dormitorios, con piscina privada, amplia terraza y acceso a una piscina comunitaria.",
     "Une villa tropicale raffinée de quatre chambres, avec piscine privée, grande terrasse et accès à une piscine commune.",
     "一栋精致的四卧室热带别墅，设有私人泳池、宽敞露台，并可使用社区泳池。"
   ],
