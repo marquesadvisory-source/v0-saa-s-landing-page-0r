@@ -21,9 +21,9 @@ const photos = {
 } as const
 
 const opportunities = [
-  { name: "Casa Ensueño", type: "PRIVATE RESIDENCE", description: "A refined five-bedroom residence in Los Almendros, designed for effortless indoor-outdoor living." },
-  { name: "Villa Senderos", type: "PRIVATE RESIDENCE", description: "A four-bedroom tropical villa with a private pool and expansive terrace." },
-  { name: "El Jaguar", type: "RESIDENTIAL HOMESITES", description: "A collection of homesites with nature-led surroundings and golf-oriented living." },
+  { name: "Casa Ensueño", type: "PRIVATE RESIDENCE", description: "A selected residential opportunity within Hacienda Pinilla. Details available through Marqués." },
+  { name: "Villa Senderos", type: "PRIVATE RESIDENCE", description: "A selected residential opportunity within Hacienda Pinilla. Details available through Marqués." },
+  { name: "El Jaguar", type: "RESIDENTIAL HOMESITES", description: "Residential homesites within Hacienda Pinilla. Details and availability on request." },
   { name: "Las Lapas", type: "RESIDENTIAL HOMESITES", description: "Residential homesites within the Hacienda Pinilla estate." },
 ] as const
 
@@ -85,7 +85,7 @@ export default function HaciendaPinillaPage() {
           <h2 id="golf-title">Championship golf.<br /><em>Designed by Mike Young.</em></h2>
           <p>An 18-hole, par-72 championship course stretching up to 7,200 yards, shaped by acclaimed golf architect Mike Young to follow the natural contours of Hacienda Pinilla.</p>
           <div className={styles.golfFacts}><div><strong>18</strong><span>HOLES</span></div><div><strong>PAR 72</strong><span>CHAMPIONSHIP COURSE</span></div><div><strong>7,200</strong><span>YARDS · UP TO</span></div></div>
-          <p className={styles.golfFootnote}>Recognized as an Audubon Cooperative Sanctuary for environmental stewardship.</p>
+          <p className={styles.golfFootnote}>The course has been recognized through the Audubon Cooperative Sanctuary Program.</p>
         </div>
       </section>
 
