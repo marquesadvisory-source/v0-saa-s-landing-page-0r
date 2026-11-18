@@ -6,6 +6,7 @@ import { PropertyGallery, type PropertyImage } from "./property-gallery"
 import { siteConfig } from "@/lib/site"
 import type { Locale } from "@/lib/i18n/config"
 import { pinillaText } from "./pinilla-translations"
+import { HomesiteOptions } from "./homesite-options"
 import styles from "./hacienda-pinilla.module.css"
 
 export type FeaturedProperty = {
@@ -129,6 +130,7 @@ export function FeaturedPropertyCards({ opportunities, locale }: { opportunities
           <h3>{t(selected.kind === "homesite" ? "A place to build your vision." : "Designed for a remarkable way of life.")}</h3>
           {selected.narrative.map((paragraph,index) => <p key={index}>{paragraph}</p>)}
         </div>
+        {selected.kind === "homesite" && <HomesiteOptions name={selected.name} locale={locale} />}
         <div className={styles.dialogActions}>
           <a href={siteConfig.whatsapp + "?text=" + encodeURIComponent(`${t("Hello Marqués, I would like more information and a private consultation about")} ${selected.name} ${t("at Hacienda Pinilla.")}`)} target="_blank" rel="noopener noreferrer" className={styles.spotlightInquiry}>
             {t(selected.kind === "homesite" ? "Request homesite information" : "Request a private viewing")} <ArrowUpRight size={18} aria-hidden="true" />
