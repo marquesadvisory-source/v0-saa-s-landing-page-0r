@@ -72,7 +72,7 @@ export function FeaturedPropertyCards({ opportunities, locale }: { opportunities
             <p className={styles.propertyType}>{t(isHomesite ? "Homesites · Land investment" : "Private residence")}</p>
             <h3>{item.name}</h3>
             <p className={styles.propertyPrice}>
-              <span>{t(item.price ? "ASKING PRICE" : "PRICING")}</span>{item.price || t("On request")}
+              <span>{t(isHomesite ? "PUBLISHED STARTING PRICE" : item.price ? "ASKING PRICE" : "PRICING")}</span>{item.price || t("On request")}
             </p>
             <p className={styles.propertyDescription}>{item.description}</p>
             {item.highlights && <p className={styles.propertyHighlights}>{item.highlights}</p>}
@@ -102,7 +102,7 @@ export function FeaturedPropertyCards({ opportunities, locale }: { opportunities
             <h2>{selected.name}</h2>
           </div>
           <div className={styles.dialogPrice}>
-            <span>{t(selected.price ? "ASKING PRICE" : "PRICING")}</span>
+            <span>{t(selected.kind === "homesite" ? "PUBLISHED STARTING PRICE" : selected.price ? "ASKING PRICE" : "PRICING")}</span>
             <strong>{selected.price || t("On request")}</strong>
             {selected.price && <small>USD</small>}
           </div>
